@@ -1,0 +1,2 @@
+# HugoGithub
+HugoGithubPage
