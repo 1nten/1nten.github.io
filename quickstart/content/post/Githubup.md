@@ -1,6 +1,7 @@
 ---
 title: "About"
 date: 2021-04-13T09:32:03+08:00
+draft: false
 ---
 
 # Github
@@ -128,7 +129,7 @@ https://training.github.com/downloads/zh_CN/github-git-cheat-sheet/
 
 
 
-
+hugo  --baseUrl="https://1nten.github.io/"
 
 ```
 git init
