@@ -2,89 +2,89 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://example.org/</loc>
+    <loc>https://inten.kro1lsec.com/</loc>
     <lastmod>2021-04-13T15:07:34+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="l2"
-                href="http://example.org/l2/"
+                href="https://inten.kro1lsec.com/l2/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://example.org/"
+                href="https://inten.kro1lsec.com/"
                 />
   </url><url>
-    <loc>http://example.org/post/</loc>
+    <loc>https://inten.kro1lsec.com/post/</loc>
     <lastmod>2021-04-13T15:07:34+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/post/typora-&#43;-picgo&#43;-chevereto/</loc>
+    <loc>https://inten.kro1lsec.com/post/typora-&#43;-picgo&#43;-chevereto/</loc>
     <lastmod>2021-04-13T15:07:34+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/about/</loc>
+    <loc>https://inten.kro1lsec.com/about/</loc>
     <lastmod>2021-04-13T15:06:46+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/post/githubup/</loc>
+    <loc>https://inten.kro1lsec.com/post/githubup/</loc>
     <lastmod>2021-04-10T15:07:34+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/archives/</loc>
+    <loc>https://inten.kro1lsec.com/archives/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="l2"
-                href="http://example.org/l2/archives/"
+                href="https://inten.kro1lsec.com/l2/archives/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://example.org/archives/"
+                href="https://inten.kro1lsec.com/archives/"
                 />
   </url><url>
-    <loc>http://example.org/categories/</loc>
+    <loc>https://inten.kro1lsec.com/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="l2"
-                href="http://example.org/l2/categories/"
+                href="https://inten.kro1lsec.com/l2/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://example.org/categories/"
+                href="https://inten.kro1lsec.com/categories/"
                 />
   </url><url>
-    <loc>http://example.org/search/</loc>
+    <loc>https://inten.kro1lsec.com/search/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="l2"
-                href="http://example.org/l2/search/"
+                href="https://inten.kro1lsec.com/l2/search/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://example.org/search/"
+                href="https://inten.kro1lsec.com/search/"
                 />
   </url><url>
-    <loc>http://example.org/series/</loc>
+    <loc>https://inten.kro1lsec.com/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="l2"
-                href="http://example.org/l2/series/"
+                href="https://inten.kro1lsec.com/l2/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://example.org/series/"
+                href="https://inten.kro1lsec.com/series/"
                 />
   </url><url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://inten.kro1lsec.com/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="l2"
-                href="http://example.org/l2/tags/"
+                href="https://inten.kro1lsec.com/l2/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://example.org/tags/"
+                href="https://inten.kro1lsec.com/tags/"
                 />
   </url>
 </urlset>

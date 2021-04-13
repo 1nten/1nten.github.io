@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>inten</title>
-    <link>http://example.org/</link>
+    <link>https://inten.kro1lsec.com/</link>
     <description>Recent content on inten</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 Apr 2021 15:07:34 +0800</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Apr 2021 15:07:34 +0800</lastBuildDate><atom:link href="https://inten.kro1lsec.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Typora &#43; PicGo&#43; Chevereto踩坑指南</title>
-      <link>http://example.org/post/typora-&#43;-picgo&#43;-chevereto/</link>
+      <link>https://inten.kro1lsec.com/post/typora-&#43;-picgo&#43;-chevereto/</link>
       <pubDate>Tue, 13 Apr 2021 15:07:34 +0800</pubDate>
       
-      <guid>http://example.org/post/typora-&#43;-picgo&#43;-chevereto/</guid>
+      <guid>https://inten.kro1lsec.com/post/typora-&#43;-picgo&#43;-chevereto/</guid>
       <description>运行环境 win10
 version 0. 9. 98 (beta)★website★@typora
 picgo-2.2.2
@@ -38,19 +38,19 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
     
     <item>
       <title>About</title>
-      <link>http://example.org/about/</link>
+      <link>https://inten.kro1lsec.com/about/</link>
       <pubDate>Tue, 13 Apr 2021 15:06:46 +0800</pubDate>
       
-      <guid>http://example.org/about/</guid>
+      <guid>https://inten.kro1lsec.com/about/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Github初入</title>
-      <link>http://example.org/post/githubup/</link>
+      <link>https://inten.kro1lsec.com/post/githubup/</link>
       <pubDate>Sat, 10 Apr 2021 15:07:34 +0800</pubDate>
       
-      <guid>http://example.org/post/githubup/</guid>
+      <guid>https://inten.kro1lsec.com/post/githubup/</guid>
       <description>Git基本操作 初次使用需要配置好邮箱用户名，ssh或token
 https://docs.github.com/cn/github/getting-started-with-github/quickstart
 大致流程 1.链接
