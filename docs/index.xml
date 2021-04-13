@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>https://1nten.github.io/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://1nten.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://1nten.github.io/githubup/</link>
+      <pubDate>Tue, 13 Apr 2021 09:32:03 +0800</pubDate>
+      
+      <guid>https://1nten.github.io/githubup/</guid>
+      <description>Github Git基本操作 初次使用需要配置好邮箱用户名，ssh或token
+https://docs.github.com/cn/github/getting-started-with-github/quickstart
+大致流程 1.链接
+2.增删改查
+3.提交更改
+4.提交分支
+echo &amp;#34;# KroCTF&amp;#34; &amp;gt;&amp;gt; README.md git init git add README.md git commit -m &amp;#34;first commit&amp;#34; git branch -M main git remote add origin https://github.com/1nten/KroCTF.git git push -u origin main 配置 $ git config --global user.email &amp;#34;email@example.com&amp;#34; $ git config --global user.name &amp;#34;Mona Lisa&amp;#34; $ git config --global user.name $ git config --global user.email 基础信息 //显示工作目录和暂存区的状态 $ git status //显示日志（项目历史的信息） $ git log //将分支new1同步到云端GitHub $ git push origin new1 //克隆 $ git clone https://github.</description>
+    </item>
+    
+  </channel>
+</rss>
