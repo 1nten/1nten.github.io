@@ -1,10 +1,7 @@
 ---
-title: "About"
-date: 2021-04-13T09:32:03+08:00
+title: "Github"
 draft: false
 ---
-
-# Github
 
 ## Git基本操作
 
@@ -121,21 +118,8 @@ $ git push origin new1
 
 ## 参考链接
 
-[【git】- 将本地项目关联到github远程仓库]: https://zhuanlan.zhihu.com/p/88246764
+https://zhuanlan.zhihu.com/p/88246764
 
-[官方文档]: https://docs.github.com/cn/github/getting-started-with-github/quickstart
+https://docs.github.com/cn/github/getting-started-with-github/quickstart
 
 https://training.github.com/downloads/zh_CN/github-git-cheat-sheet/
-
-
-
-hugo  --baseUrl="https://1nten.github.io/"
-
-```
-git init
-git remote add origin https://github.com/coderzh/coderzh.github.io.git
-git add -A
-git commit -m "first commit"
-git push -u origin main
-```
-

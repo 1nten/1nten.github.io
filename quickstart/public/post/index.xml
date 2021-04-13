@@ -5,24 +5,14 @@
     <link>https://1nten.github.io/post/</link>
     <description>Recent content in Posts on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 13 Apr 2021 09:32:54 +0800</lastBuildDate><atom:link href="https://1nten.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://1nten.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>First</title>
-      <link>https://1nten.github.io/post/first/</link>
-      <pubDate>Tue, 13 Apr 2021 09:32:54 +0800</pubDate>
-      
-      <guid>https://1nten.github.io/post/first/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>About</title>
+      <title>Github</title>
       <link>https://1nten.github.io/post/githubup/</link>
-      <pubDate>Tue, 13 Apr 2021 09:32:03 +0800</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://1nten.github.io/post/githubup/</guid>
-      <description>Github Git基本操作 初次使用需要配置好邮箱用户名，ssh或token
+      <description>Git基本操作 初次使用需要配置好邮箱用户名，ssh或token
 https://docs.github.com/cn/github/getting-started-with-github/quickstart
 大致流程 1.链接
 2.增删改查
