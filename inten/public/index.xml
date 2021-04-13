@@ -37,15 +37,6 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
     </item>
     
     <item>
-      <title>About</title>
-      <link>https://inten.kro1lsec.com/about/</link>
-      <pubDate>Tue, 13 Apr 2021 15:06:46 +0800</pubDate>
-      
-      <guid>https://inten.kro1lsec.com/about/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Github初入</title>
       <link>https://inten.kro1lsec.com/post/githubup/</link>
       <pubDate>Sat, 10 Apr 2021 15:07:34 +0800</pubDate>
