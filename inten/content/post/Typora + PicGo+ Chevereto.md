@@ -16,31 +16,31 @@ picgo-2.2.2
 
 ### 2.配置typora
 
-![image-20210310144511055](http://www.kro1lsec.com:8080/images/2021/03/10/20210310144511.png)
+![image-20210310144511055](https://www.kro1lsec.com:442/images/2021/03/10/20210310144511.png)
 
 ### 2.配置picgo
 
 修改端口
 
-![image-20210310143246950](http://www.kro1lsec.com:8080/images/2021/03/10/20210310143247.png)
+![image-20210310143246950](https://www.kro1lsec.com:442/images/2021/03/10/20210310143247.png)
 
 安装插件
 
-![image-20210310143133724](http://www.kro1lsec.com:8080/images/2021/03/10/20210310143133.png)
+![image-20210310143133724](https://www.kro1lsec.com:442/images/2021/03/10/20210310143133.png)
 
 配置Chevereto
 
 注意仔细核对url
 
 ```js
-"url": "http://个人服务器Cheverto图床域名或地址/api/1/upload"
+"url": "https://个人服务器Cheverto图床域名或地址/api/1/upload"
 ```
 
-![image-20210310143416160](http://www.kro1lsec.com:8080/images/2021/03/10/20210310143416.png)
+![image-20210310143416160](https://www.kro1lsec.com:442/images/2021/03/10/20210310143416.png)
 
 记得**打开时间戳重命名**，Chevereto不允许上传同名图片，不然会出现以下错误。
 
-![image-20210310143609783](http://www.kro1lsec.com:8080/images/2021/03/10/20210310143609.png)
+![image-20210310143609783](https://www.kro1lsec.com:442/images/2021/03/10/20210310143609.png)
 
 我测试时
 
@@ -61,7 +61,7 @@ picgo的时间戳不会重命名typora的验证图片时的测试图片，所以
 按照chevereto官方文档的说明（https://v3-docs.chevereto.com/API/V1.html#api-call）
 
 我们最好采用“POST”的形式来传数据。默认的上传url为：
-`http://mysite.com/api/1/upload`
+`https://mysite.com/api/1/upload`
 
 **为什么锁定是url的问题？**
 
