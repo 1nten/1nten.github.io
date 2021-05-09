@@ -251,6 +251,26 @@ echo &#34;# KroCTF&#34; &gt;&gt; README.md git init git add README.md git commit
   <footer class="entry-footer">April 10, 2021&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Theme PaperMod</footer>
   <a class="entry-link" aria-label="post link to Github初入" href="https://inten.kro1lsec.com/post/githubup/"></a>
 </article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>[CSAPPLAB]Attack Lab</h2>
+  </header>
+  <section class="entry-content">
+    <p>ctarget 首先执行getbuf函数，读取标准输入。
+unsigned getbuf() { char buf[BUFFER_SIZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现
+FAILED: Initialization error: Running on an illegal host [localhost.localdomain] 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。
+1.1level 1 观察test，getbuf和touch1
+目的：将getbuf的返回地址由test改为touch1
+小建议
+ 利用objdump -d ./ctarget&gt;&gt;ctarget.s得到汇编代码 思路是将touch1的开始地址，放在某个位置，以实现当ret指令被getbuf执行后会将控制权转移给touch1 一定要注意字节序 你可以使用gdb设置断点来进行调试。并且gcc会影响栈帧中buf存放的位置。需要注意  思路：getbuf函数执行ret指令后，就会从%rsp&#43;40处获取返回地址，只要我们修改这个返回地址，改为touch1的地址，就能使程序返回touch1，而不是test。
+(gdb) p (char*)0x403188 #p(print) 0x403188上存的值 $1 = 0x403188 &#34;No exploit. Getbuf returned 0x%x\n&#34; stack : padding(00..) &#43; touch1(0x4017c0)
+攻击序列touch1.txt
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 17 40 00 00 00 00 00 保存在touch1....</p>
+  </section>
+  <footer class="entry-footer">5 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <a class="entry-link" aria-label="post link to [CSAPPLAB]Attack Lab" href="https://inten.kro1lsec.com/post/attack-lab/"></a>
+</article>
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">inten</a></span>
