@@ -1,8 +1,10 @@
 ---
 title: "[CSAPPLAB]Attack Lab"
-date: 2021-05-9
+date: 2021-05-9T15:07:34+08:00
 draft: false
 ---
+
+[TOC]
 
 **ctarget**
 首先执行getbuf函数，读取标准输入。
@@ -24,7 +26,7 @@ unsigned getbuf()
 FAILED: Initialization error: Running on an illegal host [localhost.localdomain]
 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。
 
-### 1.1level 1
+### **1.1level 1**
 
 观察test，getbuf和touch1
 

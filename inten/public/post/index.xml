@@ -13,7 +13,8 @@
       <pubDate>Tue, 13 Apr 2021 15:07:34 +0800</pubDate>
       
       <guid>https://inten.kro1lsec.com/post/typora-&#43;-picgo&#43;-chevereto/</guid>
-      <description>运行环境 win10
+      <description>[TOC]
+运行环境 win10
 version 0. 9. 98 (beta)★website★@typora
 picgo-2.2.2
 1.去官网下载最新的typora和picgo，并安装 2.配置typora 2.配置picgo 修改端口
@@ -42,7 +43,8 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
       <pubDate>Sat, 10 Apr 2021 15:07:34 +0800</pubDate>
       
       <guid>https://inten.kro1lsec.com/post/githubup/</guid>
-      <description>Git基本操作 初次使用需要配置好邮箱用户名，ssh或token
+      <description>[TOC]
+Git基本操作 初次使用需要配置好邮箱用户名，ssh或token
 https://docs.github.com/cn/github/getting-started-with-github/quickstart
 大致流程 1.链接
 2.增删改查
@@ -57,7 +59,8 @@ echo &amp;#34;# KroCTF&amp;#34; &amp;gt;&amp;gt; README.md git init git add READ
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://inten.kro1lsec.com/post/attack-lab/</guid>
-      <description>ctarget 首先执行getbuf函数，读取标准输入。
+      <description>[TOC]
+ctarget 首先执行getbuf函数，读取标准输入。
 unsigned getbuf() { char buf[BUFFER_SIZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现
 FAILED: Initialization error: Running on an illegal host [localhost.localdomain] 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。
 1.1level 1 观察test，getbuf和touch1
