@@ -5,10 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Posts | inten</title>
+<title>Posts | intenのblog🍦</title>
 <meta name="keywords" content="" />
-<meta name="description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod">
-<meta name="author" content="Theme PaperMod">
+<meta name="description" content="">
+<meta name="author" content="">
 <link rel="canonical" href="https://inten.kro1lsec.com/post/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css" integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
@@ -20,15 +20,14 @@
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.82.0" />
 <link rel="alternate" type="application/rss&#43;xml" href="https://inten.kro1lsec.com/post/index.xml">
-<link rel="alternate" hreflang="en" href="https://inten.kro1lsec.com/post/" />
 <meta property="og:title" content="Posts" />
-<meta property="og:description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://inten.kro1lsec.com/post/" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content="Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"/>
+<meta name="twitter:description" content=""/>
 
 
 <script type="application/ld+json">
@@ -99,7 +98,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://inten.kro1lsec.com/" accesskey="h" title="inten (Alt + H)">inten</a>
+            <a href="https://inten.kro1lsec.com/" accesskey="h" title="intenのblog🍦 (Alt + H)">intenのblog🍦</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -121,12 +120,6 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
-                <ul class="lang-switch"><li>|</li>
-                    <li>
-                        <a href="https://inten.kro1lsec.com/l2/" title="kro1lsec"
-                            aria-label="kro1lsec">kro1lsec</a>
-                    </li>
-                </ul>
             </span>
         </div>
         <ul id="menu" onscroll="menu_on_scroll()">
@@ -155,10 +148,94 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>[CSAPPLAB]Attack Lab</h2>
+  </header>
+  <section class="entry-content">
+    <p>ctarget 首先执行getbuf函数，读取标准输入。
+unsigned getbuf() { char buf[BUFFER_SIZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现
+FAILED: Initialization error: Running on an illegal host [localhost.localdomain] 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。
+1.1level 1 观察test，getbuf和touch1
+目的：将getbuf的返回地址由test改为touch1
+小建议
+ 利用objdump -d ./ctarget&gt;&gt;ctarget.s得到汇编代码 思路是将touch1的开始地址，放在某个位置，以实现当ret指令被getbuf执行后会将控制权转移给touch1 一定要注意字节序 你可以使用gdb设置断点来进行调试。并且gcc会影响栈帧中buf存放的位置。需要注意  思路：getbuf函数执行ret指令后，就会从%rsp&#43;40处获取返回地址，只要我们修改这个返回地址，改为touch1的地址，就能使程序返回touch1，而不是test。
+(gdb) p (char*)0x403188 #p(print) 0x403188上存的值 $1 = 0x403188 &#34;No exploit. Getbuf returned 0x%x\n&#34; stack : padding(00..) &#43; touch1(0x4017c0)
+攻击序列touch1.txt
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 17 40 00 00 00 00 00 保存在touch1....</p>
+  </section>
+  <footer class="entry-footer">April 20, 2021&nbsp;·&nbsp;5 min</footer>
+  <a class="entry-link" aria-label="post link to [CSAPPLAB]Attack Lab" href="https://inten.kro1lsec.com/post/csapplabattack-lab/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>[CSAPPLAB]Bomb Lab</h2>
+  </header>
+  <section class="entry-content">
+    <p>总体感觉考查对汇编的理解和熟练度
+phase_1 400e37: 48 89 c7 mov %rax,%rdi //第一个参数 400e3a: e8 a1 00 00 00 callq 400ee0 &lt;phase_1&gt;...0x0000000000400ee0 &lt;&#43;0&gt;: sub $0x8,%rsp 0x0000000000400ee4 &lt;&#43;4&gt;: mov $0x402400,%esi //第二个参数0x0000000000400ee9 &lt;&#43;9&gt;: callq 0x401338 &lt;strings_not_equal&gt;让参数一，二相等即可
+Border relations with Canada have never been better.
+phase_2 利用callq 0x40145c &lt;read_six_numbers&gt;确定字符串格式，
+利用0000000000400F1A add eax, eax让后边的数翻倍
+字符串为“1 2 4 8 16 32”
+phase_3 尝试分析时，发现jcc指令经常弄混，又回去复习了一遍
+cmp oprd1,oprd2 &#43; JNBE/JA 无符号cmp oprd1,oprd2 &#43; JNLE/JG 有符号oprd1&gt;oprd2时跳转JZ/JE 相等则跳转代码中0x402470&#43;8*第一参数打印内存信息，可以看到相应的跳转地址，已经对应的eax值应该是多少，也就是第二数字的应该的取值。打印内存信息的命令行为jmp QWORD PTR [rax*8&#43;0x402470]...</p>
+  </section>
+  <footer class="entry-footer">April 15, 2021&nbsp;·&nbsp;4 min</footer>
+  <a class="entry-link" aria-label="post link to [CSAPPLAB]Bomb Lab" href="https://inten.kro1lsec.com/post/csapplabbomb-lab/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>应急响应</h2>
+  </header>
+  <section class="entry-content">
+    <p>https://bypass007.github.io/Emergency-Response-Notes/ 应急响应笔记
+https://www.cnblogs.com/H4ck3R-XiX/p/12234762.html Nmap使用教程（进阶篇）
+方法论 浅谈我所理解的应急响应流程
+https://www.freebuf.com/column/193690.html应急响应的整体思路和基本流程
+https://www.freebuf.com/articles/terminal/192859.html应急响应方式 现场应急响应：通常是要到客户突发现场进行应急处置。需注意相关操作必须获得用户授权，并对操作过程进行记录。 远程应急响应：远程通过电话、邮件等方式指导用户进行应急处置。
+应急响应流程 业内通常使用的
+PDCERF方法学 准备阶段——&gt;检测阶段——&gt;抑制阶段——&gt;根除阶段——&gt;恢复阶段——&gt;跟踪总结
+准备阶段 准备阶段需要及时和客户确认事件背景、相关负责人联系方式、确定参与此次应急响应人员、根据客户描述，初步判定事件响应策略，携带应急响应工具包前往客户现场。
+准备阶段主要包括：事件背景、响应人员确定、事件响应策略、相关负责人联系方式、应急响应相关授权、应急响应工具包、应急响应手册等。
+检测阶段 检测阶段确认入侵事件是否发生，如真发生了入侵事件，评估造成的危害、范围以及发展的速度，事件会不会进一步升级。然后根据评估结果通知相关的人员进入应急的流程。
+检测阶段主要包括：事件类型、事件影响范围、受影响系统、事件发展趋势、安全设备等。
+备注：事件类型分类
+安全事件分类主要参考中央网信办发布《国家网络安全事件应急预案》，网络安全事件分为有害程序事件、网络攻击事件、信息破坏事件、信息内容安全事件、设备设施故障、灾害性事件和其他网络安全事件等。 （1）有害程序事件分为计算机病毒事件、蠕虫事件、特洛伊木马事件、僵尸网络事件、混合程序攻击事件、网页内嵌恶意代码事件和其他有害程序事件。 （2）网络攻击事件分为拒绝服务攻击事件、后门攻击事件、漏洞攻击事件、网络扫描窃听事件、网络钓鱼事件、干扰事件和其他网络攻击事件。 （3）信息破坏事件分为信息篡改事件、信息假冒事件、信息泄露事件、信息窃取事件、信息丢失事件和其他信息破坏事件。 （4）信息内容安全事件是指通过网络传播法律法规禁止信息，组织非法串联、煽动集会游行或炒作敏感问题并危害国家安全、社会稳定和公众利益的事件。 （5）设备设施故障分为软硬件自身故障、外围保障设施故障、人为破坏事故和其他设备设施故障。 （6）灾害性事件是指由自然灾害等其他突发事件导致的网络安全事件。 （7）其他事件是指不能归为以上分类的网络安全事件
+抑制阶段 采用针对性的安全措施降低事件损失、避免安全事件的扩散和安全事件对受害系统的持续性破坏。主要分为：物理遏制、网络遏制、主机遏制、应用遏制等。常见手段：断网、降权、网络封堵等。
+根除阶段 本阶段主要任务是通过事件分析查明事件危害的方式，并且给出清除危害的解决方案。个人认为可以从以下几个方面入手：系统基本信息、网络排查、进程排查、注册表排查、计划任务排查、服务排查、关键目录排查、用户组排查、事件日志排查、webshell排查、中间件日志排查、安全设备日志排查等。
+恢复阶段 恢复系统的运行过程，就是把受影响系统、设备、软件和应用服务还原到正常的工作状态；系统恢复、网络恢复、用户恢复、数据恢复以及重新部署。常见手段：系统重装、补丁加固、网络恢复、密码重置、木马清除等。
+跟踪阶段 在业务系统恢复后，需要整理一份详细的事件总结报告，包括事件发生及各部门介入处理的时间线，事件可能造成的损失，为客户提供安全加固优化建议。
+跟踪阶段主要包括：调查事件原因，输出应急响应报告，提供安全建议、加强安全教育、避免同类事件再次发生。
+常规流程 **收集信息：**收集客户信息和中毒主机信息，包括样本。
+**判断类型：**判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DoS等等。
+**深入分析：**日志分析、进程分析、启动项分析、样本分析。
+**清理处置：**直接杀掉进程，删除文件，打补丁，抑或是修复文件。
+**产出报告：**整理并输出完整的安全事件报告。
+系统日志及日志分析 日志类型  **Windows系统日志：**Windows系统自带的审计日志、操作日志、故障日志。
+**Linux系统日志：**Linux系统自带的审计日志、操作日志、故障日志。
+**应用日志：**包括但不限于Web应用等众多繁杂的日志。
+ Windows系统日志
+ 日志路径：C:\Windows\System32\winevt\Logs
+必看日志：Security.evtx、System.evtx、Application.evtx
+ Linux系统日志
+ 日志路径：/var/log
+必看日志：secure、history
+ 威胁情报的作用 威胁情报有时候会给我们提供大量有用的信息，甚至直接推动了安全事件的快速响应。
+威胁情报的元素，包括但不限于域名、URL、IP、文件Hash、文件路径、文件名、数字签名、备案信息、排名信息。
+域名 威胁情报中，域名扮演着极为基础和关键的角色，URL也是以域名为基础的。这里列举若干类域名，是属于黑客常用（偏爱）的域名，取证过程中需要重点关注这类域名的信息。
+随机域名（DGA）： 动态域名： 动态域名是子域名开放给其他人使用，并且子域名绑定的IP是可以动态获取的，大多数是免费的，因此常被黑客所使用，如 abc....</p>
+  </section>
+  <footer class="entry-footer">April 15, 2021&nbsp;·&nbsp;3 min</footer>
+  <a class="entry-link" aria-label="post link to 应急响应" href="https://inten.kro1lsec.com/post/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Typora &#43; PicGo&#43; Chevereto踩坑指南</h2>
   </header>
   <section class="entry-content">
-    <p>[TOC]
+    <p>目的： 解决md文件图片传输不方便的问题，将图片上传到图床，方便分享md文件。
 运行环境 win10
 version 0. 9. 98 (beta)★website★@typora
 picgo-2.2.2
@@ -181,17 +258,16 @@ picgo的时间戳不会重命名typora的验证图片时的测试图片，所以
 PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web端的通信是通过给url传不同的参数来实现。
 要么传的参数有问题，要么url有问题，逐个排查也可。参数大概是软件设置的选项，然后我也一直在调，常见的问题都搜过了，小概率是问题太偏。但url真的很可疑呀，我填的时候没有想太多，就理所当然地复制了。连文档都没查，参考的博客看得也不仔细。</p>
   </section>
-  <footer class="entry-footer">April 13, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Theme PaperMod</footer>
+  <footer class="entry-footer">April 13, 2021&nbsp;·&nbsp;1 min</footer>
   <a class="entry-link" aria-label="post link to Typora &#43; PicGo&#43; Chevereto踩坑指南" href="https://inten.kro1lsec.com/post/typora-&#43;-picgo&#43;-chevereto/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Github初入</h2>
+    <h2>[工具]Github初入</h2>
   </header>
   <section class="entry-content">
-    <p>[TOC]
-Git基本操作 初次使用需要配置好邮箱用户名，ssh或token
+    <p>Git基本操作 初次使用需要配置好邮箱用户名，ssh或token
 https://docs.github.com/cn/github/getting-started-with-github/quickstart
 大致流程 1.链接
 2.增删改查
@@ -199,37 +275,87 @@ https://docs.github.com/cn/github/getting-started-with-github/quickstart
 4.提交分支
 echo &#34;# KroCTF&#34; &gt;&gt; README.md git init git add README.md git commit -m &#34;first commit&#34; git branch -M main git remote add origin https://github.com/1nten/KroCTF.git git push -u origin main 配置 $ git config --global user.email &#34;email@example.com&#34; $ git config --global user.name &#34;Mona Lisa&#34; $ git config --global user.name $ git config --global user.email 基础信息 //显示工作目录和暂存区的状态 $ git status //显示日志（项目历史的信息） $ git log //将分支new1同步到云端GitHub $ git push origin new1 //克隆 $ git clone https://github....</p>
   </section>
-  <footer class="entry-footer">April 10, 2021&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Theme PaperMod</footer>
-  <a class="entry-link" aria-label="post link to Github初入" href="https://inten.kro1lsec.com/post/githubup/"></a>
+  <footer class="entry-footer">April 10, 2021&nbsp;·&nbsp;2 min</footer>
+  <a class="entry-link" aria-label="post link to [工具]Github初入" href="https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7github%E5%88%9D%E5%85%A5/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>[CSAPPLAB]Attack Lab</h2>
+    <h2>[工具]IDA</h2>
   </header>
   <section class="entry-content">
-    <p>[TOC]
-ctarget 首先执行getbuf函数，读取标准输入。
-unsigned getbuf() { char buf[BUFFER_SIZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现
-FAILED: Initialization error: Running on an illegal host [localhost.localdomain] 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。
-1.1level 1 观察test，getbuf和touch1
-目的：将getbuf的返回地址由test改为touch1
-小建议
- 利用objdump -d ./ctarget&gt;&gt;ctarget.s得到汇编代码 思路是将touch1的开始地址，放在某个位置，以实现当ret指令被getbuf执行后会将控制权转移给touch1 一定要注意字节序 你可以使用gdb设置断点来进行调试。并且gcc会影响栈帧中buf存放的位置。需要注意  思路：getbuf函数执行ret指令后，就会从%rsp&#43;40处获取返回地址，只要我们修改这个返回地址，改为touch1的地址，就能使程序返回touch1，而不是test。
-(gdb) p (char*)0x403188 #p(print) 0x403188上存的值 $1 = 0x403188 &#34;No exploit. Getbuf returned 0x%x\n&#34; stack : padding(00..) &#43; touch1(0x4017c0)
-攻击序列touch1.txt
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 17 40 00 00 00 00 00 保存在touch1....</p>
+    <p>简介 加密与解密 p122
+再探 IDA 常用操作 窗口介绍 Structures 结构体窗口
+显示硬编码 ACDU
+a 字符串
+跳转指令 G
+搜索（汇编）指令 Alt &#43; t
+重命名 n
+Alt &#43; q 引用结构体窗口中对应的结构体
+局部变量指定结构体 T
+y 改函数的声明
+d 改类型
+注释 ; 会在任何引用该位置的地方留下注释的副本
+：引用的地方没有副本
+针对函数的注释 选中函数按;
+会显示在被注释函数的上方
+交叉引用 Ctrl&#43;x
+所有调用该函数 / 数据的地方
+在 F5 的界面里，选定一个函数按 X 交叉引用
+IDA PATCH 修改错误无法撤销
+保存文件
+导入头文件 注意：即使导入头文件，也无法识别标准库函数
+新建结构体 在结构体窗口按 insert
+d 添加成员
+实战技巧 IDA 类型识别错误 *(_BYTE *)(i &#43; a2) = byte_442198[j] ^ (*(_BYTE *)(i &#43; a1) &#43; 13); 当出现 (_BYTE ) 这种类型，多半是识别错误...</p>
   </section>
-  <footer class="entry-footer">5 min&nbsp;·&nbsp;Theme PaperMod</footer>
-  <a class="entry-link" aria-label="post link to [CSAPPLAB]Attack Lab" href="https://inten.kro1lsec.com/post/attack-lab/"></a>
+  <footer class="entry-footer">April 10, 2021&nbsp;·&nbsp;2 min</footer>
+  <a class="entry-link" aria-label="post link to [工具]IDA" href="https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ida/"></a>
 </article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>[工具]Ollydbg</h2>
+  </header>
+  <section class="entry-content">
+    <p>简介 快捷键  Ctrl&#43;F1：打开与所选行内符号相关的 API 帮助文档。 F2：在光标选定位置按 F2 键设置或取消断点。 Shift&#43;F2：在首个选择命令设置条件断点。 Ctrl&#43;F2：重新启动被调试程序。 F4：运行到光标选定位置处暂停。 Shift&#43;F4：设置记录断点。 F5：最大化当前窗口。 Ctrl&#43;F5：打开与首个选择的命令相对应的源文件。 Alt&#43;F5：让 OllyDbg 窗口总在最前面。 F6：切换到下一个窗口。 Shift&#43;F6：切换到前一个窗口。 F7：单步步入：每次执行一条指令，遇到 call 等子程序时进入其中。 Shift&#43;F7：与 F7 相同，但当被调试程序发生异常而中止时，调试器首先尝试步入被调试程序指定的异常处理。 Ctrl&#43;F7：自动步入，在所有的函数调用中一条一条地执行命令。 Alt&#43;F7：转到上一个找到的参考。 F8：单步步过，每次执行一条指令，遇到 call 等子程序时不进入其中。 Shift&#43;F8：与 F8 相同，但当被调试程序发生异常而中止时，调试器首先尝试步过被调试程序指定的异常处理。 Ctrl&#43;F8：自动步过，一条一条执行命令，但不进入函数内部调用。 Alt&#43;F8：转到下一个找到的参考。 F9：运行，被调试软件继续运行，直到遇到下一个断点。 Shift&#43;F9：与 F9 相同，但当被调试程序发生异常而中止时，调试器首先尝试执行被调试程序指定的异常处理。 Ctrl&#43;F9：执行到返回，在执行到一个 ret 指令时暂停，常用于从当前函数快速返回到上一个函数。 Alt&#43;F9：执行到用户代码，可用于从系统部分快速返回到被调试程序部分。 F10：打开与当前窗口或面板相关的快捷菜单。 Ctrl&#43;F11：Run 跟踪步入，一条一条执行命令，进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 F12：停止执行，暂停所有线程。 Ctrl&#43;F12：Run 跟踪步过，一条一条执行命令，不进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 Alt&#43;F3：关闭当前窗口。 Alt&#43;B：显示断点窗口。 Alt&#43;C：显示 CPU 窗口。 Alt&#43;E：显示模块列表。 Alt&#43;K：显示调用栈。 Alt&#43;L：显示日志窗口。 Alt&#43;M：显示内存窗口。 Alt&#43;O：显示选项对话框。 Alt&#43;Backspace：撤销对所选部分的修改。 Ctrl&#43;A：分析当前模块的代码段。 Ctrl&#43;B：开始二进制搜索。 Ctrl&#43;E：以十六进制格式编辑所选内容。 Ctrl&#43;F：开始命令搜索。 Ctrl&#43;G：转到某地址。 Ctrl&#43;J：列出所有的涉及到该位置的调用和跳转。 Ctrl&#43;K：查看与当前函数相关的调用树。 Ctrl&#43;L：搜索下一个。 Ctrl&#43;N：打开当前模块的名称列表。 Ctrl&#43;O：扫描对象文件。 Ctrl&#43;P：显示补丁窗口。 Ctrl&#43;R：搜索所选命令的参考。 Ctrl&#43;S：命令搜索。 Ctrl&#43;T：打开“暂停Run跟踪”对话框。 Esc：停止自动执行或跟踪。 Enter：将选中的命令添加到命令历史，如果当前命令是一个跳转或者函数，则进入到目的地址。 Backspace：如果分析器将代码误识为数据，可以将选中部分的自动分析信息移除。 *：转到原始位置 Ctrl&#43;*：指定新的起始位置。 &#43;：如果 Run 跟踪没有激活，则根据历史命令跳到下一条运行过命令的地方；否则跳到 Run 跟踪的下一个记录。 Ctrl&#43;&#43;：跳到前一个函数的开始处。 -：如果 Run 跟踪没有激活，则根据历史命令跳到前一条运行过命令的地方；否则跳到 Run 跟踪的前一个记录。 Ctrl&#43;-：跳到下一个函数的开始处。 Space：修改命令。 :：添加标签。 ;：添加注释。  -（减号）：回看之前单步跟踪的代码...</p>
+  </section>
+  <footer class="entry-footer">April 10, 2021&nbsp;·&nbsp;3 min</footer>
+  <a class="entry-link" aria-label="post link to [工具]Ollydbg" href="https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ollydbg/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>[基础]C/C&#43;&#43;</h2>
+  </header>
+  <section class="entry-content">
+    <p>裸函数 void __declspec(naked) Function() //编译器不执行格外操作{__asm //在c中调用汇编格式__asm{}{ret } //需要手动写ret才能正常运行}常见的几种调用约定：
+__cdecl:默认调用约定。外平栈。
+__stdcall:内平栈。
+__fastcall:2个参数以内时，直接用寄存器存取数据，提高执行速度。内平栈。
+浮点数的存储 以12.5为例
+符号部分：正数为0，负数为1
+12=» c =» 1100
+0.5 乘二取整 1.0 =»1
+12.5 =» 1100.1 =» 1.1001 * 10^3
+尾数部分： 1001 0000000000000000000
+指数部分：127 &#43; 3 = 130 =» 1000 0010 //127 &#43; 指数计算即可
+0 1000 0010 1001 0000000000000000000
+内存图 全局变量&amp;局部变量 mov [ arr (00427326)] ，eax //全局变量mov dword ptr [ebp-4] , 6Ah //局部变量mov dword ptr [ebp-8], 14h全局变量...</p>
+  </section>
+  <footer class="entry-footer">11 min</footer>
+  <a class="entry-link" aria-label="post link to [基础]C/C&#43;&#43;" href="https://inten.kro1lsec.com/post/%E5%9F%BA%E7%A1%80c/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://inten.kro1lsec.com/post/page/2/">Next Page »</a>
+  </nav>
+</footer>
     </main>
     <footer class="footer">
-    <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">inten</a></span>
+    <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
     <span>&middot;</span>
-    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
-    <span>&middot;</span>
-    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
+    
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
     <button class="top-link" id="top-link" type="button" accesskey="g">

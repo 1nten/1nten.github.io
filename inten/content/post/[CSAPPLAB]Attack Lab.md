@@ -1,10 +1,8 @@
 ---
 title: "[CSAPPLAB]Attack Lab"
-date: 2021-05-9T15:07:34+08:00
+date: 2021-04-20T15:07:34+08:00
 draft: false
 ---
-
-[TOC]
 
 **ctarget**
 首先执行getbuf函数，读取标准输入。

@@ -1,2 +1,0 @@
-# HugoGithub
-HugoGithubPage

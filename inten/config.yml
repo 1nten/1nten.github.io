@@ -1,6 +1,6 @@
 baseURL: https://inten.kro1lsec.com/
 languageCode: en-us
-title: inten
+title: intenのblog🍦
 paginate: 8
 theme: PaperMod
 enableInlineShortcodes: true
@@ -28,43 +28,43 @@ languages:
                   url: tags/
                   weight: 10
 
-    l2:
-        languageName: "kro1lsec"
-        weight: 2C
-        title: kro1lsec
-        profileMode:
-            enabled: true
-            title: Cool
-            # imageUrl: "#"
-            # imageTitle: my image
-            # imageWidth: 120
-            # imageHeight: 120
-            subtitle: "☄️ Fast | ☁️ Fluent | 🌙 Smooth | 📱 Responsive"
-            buttons:
-                - name: Blog
-                  url: posts
-                - name: Tags
-                  url: tags
-        menu:
-            main:
-                - name: Archive
-                  url: archives/
-                  weight: 5
-                - name: Tags
-                  url: tags
-                  weight: 10
-                - name: Categories
-                  url: categories
-                  weight: 10
-                - name: Series
-                  url: series
-                  weight: 10
-                - name: NullLink
-                  url: "#"
-                - name: NullLink2
-                  url: "#"
-                - name: NullLink3
-                  url: "#"
+#    l2:
+#        languageName: "kro1lsec"
+#        weight: 2C
+#        title: kro1lsec
+#        profileMode:
+#            enabled: true
+#            title: Cool
+#            # imageUrl: "#"
+#            # imageTitle: my image
+#            # imageWidth: 120
+#            # imageHeight: 120
+#            subtitle: "☄️ Fast | ☁️ Fluent | 🌙 Smooth | 📱 Responsive"
+#            buttons:
+#                - name: Blog
+#                  url: posts
+#                - name: Tags
+#                  url: tags
+#        menu:
+#            main:
+#                - name: Archive
+#                  url: archives/
+#                  weight: 5
+#                - name: Tags
+#                  url: tags
+#                  weight: 10
+#                - name: Categories
+#                  url: categories
+#                 weight: 10
+#                - name: Series
+#                  url: series
+#                  weight: 10
+#                - name: NullLink
+#                  url: "#"
+#                - name: NullLink2
+#                  url: "#"
+#                - name: NullLink3
+#                  url: "#"
 
 
 outputs:
@@ -75,8 +75,8 @@ outputs:
 
 params:
     env: production
-    description: "Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"
-    author: Theme PaperMod
+    #description: "Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"
+    #author: Theme PaperMod
     # author: ["Me", "You"] # multiple authors
     ShowReadingTime: true
     defaultTheme: auto
@@ -100,9 +100,10 @@ params:
               url: tags
 
     homeInfoParams:
-        Title: "Hi there 🍍"
-        Content: >
-            Welcome to demo of inten's blog.
+        Title: "intenのblog🍦"
+        #Content: >
+        #    何が無事だね~全く
+        #    たまの故郷は，会いに行くのさ
 
             
 
