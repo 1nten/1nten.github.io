@@ -1,6 +1,6 @@
 ---
 title: "Typora + PicGo+ Chevereto踩坑指南"
-date: 2021-04-13T15:07:34+08:00
+date: 2021-03-13T15:07:34+08:00
 draft: false
 ---
 

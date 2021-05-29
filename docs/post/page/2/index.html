@@ -148,6 +148,29 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>[基础]C/C&#43;&#43;</h2>
+  </header>
+  <section class="entry-content">
+    <p>裸函数 void __declspec(naked) Function() //编译器不执行格外操作{__asm //在c中调用汇编格式__asm{}{ret } //需要手动写ret才能正常运行}常见的几种调用约定：
+__cdecl:默认调用约定。外平栈。
+__stdcall:内平栈。
+__fastcall:2个参数以内时，直接用寄存器存取数据，提高执行速度。内平栈。
+浮点数的存储 以12.5为例
+符号部分：正数为0，负数为1
+12=» c =» 1100
+0.5 乘二取整 1.0 =»1
+12.5 =» 1100.1 =» 1.1001 * 10^3
+尾数部分： 1001 0000000000000000000
+指数部分：127 &#43; 3 = 130 =» 1000 0010 //127 &#43; 指数计算即可
+0 1000 0010 1001 0000000000000000000
+内存图 全局变量&amp;局部变量 mov [ arr (00427326)] ，eax //全局变量mov dword ptr [ebp-4] , 6Ah //局部变量mov dword ptr [ebp-8], 14h全局变量...</p>
+  </section>
+  <footer class="entry-footer">11 min</footer>
+  <a class="entry-link" aria-label="post link to [基础]C/C&#43;&#43;" href="https://inten.kro1lsec.com/post/%E5%9F%BA%E7%A1%80c/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>[工具]Docker</h2>
   </header>
   <section class="entry-content">

@@ -148,6 +148,29 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>CVE-2017-11882漏洞分析</h2>
+  </header>
+  <section class="entry-content">
+    <p>漏洞描述  成因：Office的公式编辑器EQNEDT32.EXE读入包含MathType的OLE数据，在拷贝公式字体名称前没有对名称长度进行校验，当EQNEDT32.EXE尝试将字体名称复制到本地创建的缓冲区时，攻击者可以通过刻意构造的数据内容覆盖栈上的函数返回地址，从而劫持程序流程。 影响版本：Office 2003到2016的所有版本 POC：https://github.com/Ridter/CVE-2017-11882  漏洞复现   环境
+Microsoft Windows XPProfessional版本2002 Service Fack 3
+Office2003SP3
+  复现过程
+下载poc，输出test.doc，将test.doc复制到相应环境下，双击打开即可。
+漏洞分析  环境 Winxp x32 Office2003 工具 windbg IDA Pro  漏洞发生点如下图所示：
+可以看到，函数给SrcStr变量分配的大小是0x24个字节，长度超过该大小就会造成栈溢出。微软后续的补丁将大小限制为0x20可能是为了安全起见。
+触发逻辑
+构造POC 由于该漏洞涉及到MathType公式数据在OLE中的结构，所以我们需要熟悉其结构分布。整个“Equation Native”的数据构成为：
+Equation Native Stream Data = EQNOLEFILEHDR &#43; MTEFData，其中
+MTEFData = MTEF header &#43; MTEF Byte Stream
+EQNOLEFILEHDR 头的结构
+struct EQNOLEFILEHDR {WORD cCBHdr; // 格式头长度,大小为0x1CDWORD nVersion; // 固定为0×00020000。WORD nCf; // 该公式对象的剪贴板格式DWORD cbObject; // MTEF数据的长度，不包括头部DWORD nReserved1; // 未使用DWORD nReserved2; // 未使用DWORD nReserved3; // 未使用DWORD nReserved4; // 未使用};MTEF header 的结构，里面存放一些版本信息...</p>
+  </section>
+  <footer class="entry-footer">May 11, 2021&nbsp;·&nbsp;4 min</footer>
+  <a class="entry-link" aria-label="post link to CVE-2017-11882漏洞分析" href="https://inten.kro1lsec.com/post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>[CSAPPLAB]Attack Lab</h2>
   </header>
   <section class="entry-content">
@@ -258,7 +281,7 @@ picgo的时间戳不会重命名typora的验证图片时的测试图片，所以
 PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web端的通信是通过给url传不同的参数来实现。
 要么传的参数有问题，要么url有问题，逐个排查也可。参数大概是软件设置的选项，然后我也一直在调，常见的问题都搜过了，小概率是问题太偏。但url真的很可疑呀，我填的时候没有想太多，就理所当然地复制了。连文档都没查，参考的博客看得也不仔细。</p>
   </section>
-  <footer class="entry-footer">April 13, 2021&nbsp;·&nbsp;1 min</footer>
+  <footer class="entry-footer">March 13, 2021&nbsp;·&nbsp;1 min</footer>
   <a class="entry-link" aria-label="post link to Typora &#43; PicGo&#43; Chevereto踩坑指南" href="https://inten.kro1lsec.com/post/typora-&#43;-picgo&#43;-chevereto/"></a>
 </article>
 
@@ -275,7 +298,7 @@ https://docs.github.com/cn/github/getting-started-with-github/quickstart
 4.提交分支
 echo &#34;# KroCTF&#34; &gt;&gt; README.md git init git add README.md git commit -m &#34;first commit&#34; git branch -M main git remote add origin https://github.com/1nten/KroCTF.git git push -u origin main 配置 $ git config --global user.email &#34;email@example.com&#34; $ git config --global user.name &#34;Mona Lisa&#34; $ git config --global user.name $ git config --global user.email 基础信息 //显示工作目录和暂存区的状态 $ git status //显示日志（项目历史的信息） $ git log //将分支new1同步到云端GitHub $ git push origin new1 //克隆 $ git clone https://github....</p>
   </section>
-  <footer class="entry-footer">April 10, 2021&nbsp;·&nbsp;2 min</footer>
+  <footer class="entry-footer">March 10, 2021&nbsp;·&nbsp;2 min</footer>
   <a class="entry-link" aria-label="post link to [工具]Github初入" href="https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7github%E5%88%9D%E5%85%A5/"></a>
 </article>
 
@@ -309,7 +332,7 @@ IDA PATCH 修改错误无法撤销
 d 添加成员
 实战技巧 IDA 类型识别错误 *(_BYTE *)(i &#43; a2) = byte_442198[j] ^ (*(_BYTE *)(i &#43; a1) &#43; 13); 当出现 (_BYTE ) 这种类型，多半是识别错误...</p>
   </section>
-  <footer class="entry-footer">April 10, 2021&nbsp;·&nbsp;2 min</footer>
+  <footer class="entry-footer">March 10, 2021&nbsp;·&nbsp;2 min</footer>
   <a class="entry-link" aria-label="post link to [工具]IDA" href="https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ida/"></a>
 </article>
 
@@ -320,31 +343,8 @@ d 添加成员
   <section class="entry-content">
     <p>简介 快捷键  Ctrl&#43;F1：打开与所选行内符号相关的 API 帮助文档。 F2：在光标选定位置按 F2 键设置或取消断点。 Shift&#43;F2：在首个选择命令设置条件断点。 Ctrl&#43;F2：重新启动被调试程序。 F4：运行到光标选定位置处暂停。 Shift&#43;F4：设置记录断点。 F5：最大化当前窗口。 Ctrl&#43;F5：打开与首个选择的命令相对应的源文件。 Alt&#43;F5：让 OllyDbg 窗口总在最前面。 F6：切换到下一个窗口。 Shift&#43;F6：切换到前一个窗口。 F7：单步步入：每次执行一条指令，遇到 call 等子程序时进入其中。 Shift&#43;F7：与 F7 相同，但当被调试程序发生异常而中止时，调试器首先尝试步入被调试程序指定的异常处理。 Ctrl&#43;F7：自动步入，在所有的函数调用中一条一条地执行命令。 Alt&#43;F7：转到上一个找到的参考。 F8：单步步过，每次执行一条指令，遇到 call 等子程序时不进入其中。 Shift&#43;F8：与 F8 相同，但当被调试程序发生异常而中止时，调试器首先尝试步过被调试程序指定的异常处理。 Ctrl&#43;F8：自动步过，一条一条执行命令，但不进入函数内部调用。 Alt&#43;F8：转到下一个找到的参考。 F9：运行，被调试软件继续运行，直到遇到下一个断点。 Shift&#43;F9：与 F9 相同，但当被调试程序发生异常而中止时，调试器首先尝试执行被调试程序指定的异常处理。 Ctrl&#43;F9：执行到返回，在执行到一个 ret 指令时暂停，常用于从当前函数快速返回到上一个函数。 Alt&#43;F9：执行到用户代码，可用于从系统部分快速返回到被调试程序部分。 F10：打开与当前窗口或面板相关的快捷菜单。 Ctrl&#43;F11：Run 跟踪步入，一条一条执行命令，进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 F12：停止执行，暂停所有线程。 Ctrl&#43;F12：Run 跟踪步过，一条一条执行命令，不进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 Alt&#43;F3：关闭当前窗口。 Alt&#43;B：显示断点窗口。 Alt&#43;C：显示 CPU 窗口。 Alt&#43;E：显示模块列表。 Alt&#43;K：显示调用栈。 Alt&#43;L：显示日志窗口。 Alt&#43;M：显示内存窗口。 Alt&#43;O：显示选项对话框。 Alt&#43;Backspace：撤销对所选部分的修改。 Ctrl&#43;A：分析当前模块的代码段。 Ctrl&#43;B：开始二进制搜索。 Ctrl&#43;E：以十六进制格式编辑所选内容。 Ctrl&#43;F：开始命令搜索。 Ctrl&#43;G：转到某地址。 Ctrl&#43;J：列出所有的涉及到该位置的调用和跳转。 Ctrl&#43;K：查看与当前函数相关的调用树。 Ctrl&#43;L：搜索下一个。 Ctrl&#43;N：打开当前模块的名称列表。 Ctrl&#43;O：扫描对象文件。 Ctrl&#43;P：显示补丁窗口。 Ctrl&#43;R：搜索所选命令的参考。 Ctrl&#43;S：命令搜索。 Ctrl&#43;T：打开“暂停Run跟踪”对话框。 Esc：停止自动执行或跟踪。 Enter：将选中的命令添加到命令历史，如果当前命令是一个跳转或者函数，则进入到目的地址。 Backspace：如果分析器将代码误识为数据，可以将选中部分的自动分析信息移除。 *：转到原始位置 Ctrl&#43;*：指定新的起始位置。 &#43;：如果 Run 跟踪没有激活，则根据历史命令跳到下一条运行过命令的地方；否则跳到 Run 跟踪的下一个记录。 Ctrl&#43;&#43;：跳到前一个函数的开始处。 -：如果 Run 跟踪没有激活，则根据历史命令跳到前一条运行过命令的地方；否则跳到 Run 跟踪的前一个记录。 Ctrl&#43;-：跳到下一个函数的开始处。 Space：修改命令。 :：添加标签。 ;：添加注释。  -（减号）：回看之前单步跟踪的代码...</p>
   </section>
-  <footer class="entry-footer">April 10, 2021&nbsp;·&nbsp;3 min</footer>
+  <footer class="entry-footer">March 10, 2021&nbsp;·&nbsp;3 min</footer>
   <a class="entry-link" aria-label="post link to [工具]Ollydbg" href="https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ollydbg/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>[基础]C/C&#43;&#43;</h2>
-  </header>
-  <section class="entry-content">
-    <p>裸函数 void __declspec(naked) Function() //编译器不执行格外操作{__asm //在c中调用汇编格式__asm{}{ret } //需要手动写ret才能正常运行}常见的几种调用约定：
-__cdecl:默认调用约定。外平栈。
-__stdcall:内平栈。
-__fastcall:2个参数以内时，直接用寄存器存取数据，提高执行速度。内平栈。
-浮点数的存储 以12.5为例
-符号部分：正数为0，负数为1
-12=» c =» 1100
-0.5 乘二取整 1.0 =»1
-12.5 =» 1100.1 =» 1.1001 * 10^3
-尾数部分： 1001 0000000000000000000
-指数部分：127 &#43; 3 = 130 =» 1000 0010 //127 &#43; 指数计算即可
-0 1000 0010 1001 0000000000000000000
-内存图 全局变量&amp;局部变量 mov [ arr (00427326)] ，eax //全局变量mov dword ptr [ebp-4] , 6Ah //局部变量mov dword ptr [ebp-8], 14h全局变量...</p>
-  </section>
-  <footer class="entry-footer">11 min</footer>
-  <a class="entry-link" aria-label="post link to [基础]C/C&#43;&#43;" href="https://inten.kro1lsec.com/post/%E5%9F%BA%E7%A1%80c/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

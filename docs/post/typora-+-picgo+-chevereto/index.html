@@ -67,8 +67,8 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
 要么传的参数有问题，要么url有问题，逐个排查也可。参数大概是软件设置的选项，然后我也一直在调，常见的问题都搜过了，小概率是问题太偏。但url真的很可疑呀，我填的时候没有想太多，就理所当然地复制了。连文档都没查，参考的博客看得也不仔细。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://inten.kro1lsec.com/post/typora-&#43;-picgo&#43;-chevereto/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-04-13T15:07:34&#43;08:00" />
-<meta property="article:modified_time" content="2021-04-13T15:07:34&#43;08:00" />
+<meta property="article:published_time" content="2021-03-13T15:07:34&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-13T15:07:34&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Typora &#43; PicGo&#43; Chevereto踩坑指南"/>
@@ -129,8 +129,8 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
   "articleBody": "目的： 解决md文件图片传输不方便的问题，将图片上传到图床，方便分享md文件。\n运行环境 win10\nversion 0. 9. 98 (beta)★website★@typora\npicgo-2.2.2\n1.去官网下载最新的typora和picgo，并安装 2.配置typora 2.配置picgo 修改端口\n安装插件\n配置Chevereto\n注意仔细核对url\n\"url\": \"https://个人服务器Cheverto图床域名或地址/api/1/upload\" 记得打开时间戳重命名，Chevereto不允许上传同名图片，不然会出现以下错误。\n我测试时\npicgo的时间戳不会重命名typora的验证图片时的测试图片，所以会出现第一次验证成功，之后失败的情况。\n实际功能正常。\n踩坑与调试 1.为什么原来的URL不行\n可以说得按照官方文档来，乱填url当然不行，感觉这样的回答太牵强。\n我推测是图像界面面向用户上传图片的调用方法 和 为PicGo这类用于快速上传图片并获取图片 URL 链接的工具的接口不一样。后者至少比前者多一个获取图片 URL 链接的返回数据。如果用前者的url那typora就收不到图片的链接，功能会无法实现\n2.为什么现在这个URL可以\n按照chevereto官方文档的说明（https://v3-docs.chevereto.com/API/V1.html#api-call）\n我们最好采用“POST”的形式来传数据。默认的上传url为： https://mysite.com/api/1/upload\n为什么锁定是url的问题？\n假设Typora + PicGo+ Chevereto这三个软件及插件都没问题，key也没问题。\nPicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web端的通信是通过给url传不同的参数来实现。\n要么传的参数有问题，要么url有问题，逐个排查也可。参数大概是软件设置的选项，然后我也一直在调，常见的问题都搜过了，小概率是问题太偏。但url真的很可疑呀，我填的时候没有想太多，就理所当然地复制了。连文档都没查，参考的博客看得也不仔细。\n",
   "wordCount" : "44",
   "inLanguage": "en",
-  "datePublished": "2021-04-13T15:07:34+08:00",
-  "dateModified": "2021-04-13T15:07:34+08:00",
+  "datePublished": "2021-03-13T15:07:34+08:00",
+  "dateModified": "2021-03-13T15:07:34+08:00",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://inten.kro1lsec.com/post/typora-+-picgo+-chevereto/"
@@ -250,7 +250,7 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
     <h1 class="post-title">
       Typora &#43; PicGo&#43; Chevereto踩坑指南
     </h1>
-    <div class="post-meta">April 13, 2021&nbsp;·&nbsp;1 min
+    <div class="post-meta">March 13, 2021&nbsp;·&nbsp;1 min
 </div>
   </header> 
   <div class="post-content"><h3 id="目的">目的：<a hidden class="anchor" aria-hidden="true" href="#目的">#</a></h3>
