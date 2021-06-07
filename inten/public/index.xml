@@ -6,7 +6,19 @@
     <description>Recent content on intenのblog🍦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 May 2021 15:07:34 +0800</lastBuildDate><atom:link href="https://inten.kro1lsec.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Jun 2021 15:07:34 +0800</lastBuildDate><atom:link href="https://inten.kro1lsec.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[TinyKernel]Lab0</title>
+      <link>https://inten.kro1lsec.com/post/tinykernellab0/</link>
+      <pubDate>Sun, 06 Jun 2021 15:07:34 +0800</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/tinykernellab0/</guid>
+      <description>gcc #安装sudo apt-get install build-essential#编译$ gcc -Wall hello.c -o hello该命令将文件‘hello.c’中的代码编译为机器码并存储在可执行文件 ‘hello’中。机器码的文件名是通过 -o 选项指定的。该选项通常作为命令行中的最后一个参数。如果被省略，输出文件默认为 ‘a.out’。
+选项 -Wall 开启编译器几乎所有常用的警告，默认情况下GCC 不会产生任何警告信息。
+AT&amp;amp;T汇编基本语法 Ucore中用到的是AT&amp;amp;T格式的汇编，与Intel格式的汇编有一些不同。二者语法上主要有以下几个不同：
+* 寄存器命名原则AT&amp;amp;T: %eax Intel: eax* 源/目的操作数顺序 AT&amp;amp;T: movl %eax, %ebx Intel: mov ebx, eax* 常数/立即数的格式　AT&amp;amp;T: movl $_value, %ebx Intel: mov eax, _value把value的地址放入eax寄存器AT&amp;amp;T: movl $0xd00d, %ebx Intel: mov ebx, 0xd00d* 操作数长度标识 AT&amp;amp;T: movw %ax, %bx Intel: mov bx, ax* 寻址方式 AT&amp;amp;T: immed32(basepointer, indexpointer, indexscale)Intel: [basepointer + indexpointer × indexscale + imm32)如果操作系统工作于保护模式下，用的是32位线性地址，所以在计算地址时不用考虑segment:offset的问题。上式中的地址应为：</description>
+    </item>
+    
     <item>
       <title>CVE-2017-11882漏洞分析</title>
       <link>https://inten.kro1lsec.com/post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
@@ -113,6 +125,17 @@ PDCERF方法学 准备阶段——&amp;gt;检测阶段——&amp;gt;抑制阶段
       
       <guid>https://inten.kro1lsec.com/about/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>[CSAPPLAB]Data lab</title>
+      <link>https://inten.kro1lsec.com/post/csapplabdata-lab/</link>
+      <pubDate>Sun, 11 Apr 2021 15:07:34 +0800</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/csapplabdata-lab/</guid>
+      <description>前置知识 csapp第二章
+位运算符
+   运算符 描述 实例     &amp;amp; 按位与操作，按二进制位进行&amp;quot;与&amp;quot;运算。运算规则：0&amp;amp;0=0; 0&amp;amp;1=0; 1&amp;amp;0=0; 1&amp;amp;1=1; (A &amp;amp; B) 将得到 12，即为 0000 1100   | 按位或运算符，按二进制位进行&amp;quot;或&amp;quot;运算。运算规则：`0 0=0; 0   ^ 异或运算符，按二进制位进行&amp;quot;异或&amp;quot;运算。运算规则：0^0=0; 0^1=1; 1^0=1; 1^1=0; (A ^ B) 将得到 49，即为 0011 0001   ~ 取反运算符，按二进制位进行&amp;quot;取反&amp;quot;运算。运算规则：~1=-2; ~0=-1; (~A ) 将得到 -61，即为 1100 0011，一个有符号二进制数的补码形式。   &amp;laquo; 二进制左移运算符。将一个运算对象的各二进制位全部左移若干位（左边的二进制位丢弃，右边补0）。 A &amp;laquo; 2 将得到 240，即为 1111 0000   &amp;raquo; 二进制右移运算符。将一个数的各二进制位全部右移若干位，正数左补0，负数左补1，右边丢弃。 A &amp;raquo; 2 将得到 15，即为 0000 1111    运算符的优先级</description>
     </item>
     
     <item>
@@ -261,6 +284,21 @@ pwndbg&amp;gt; vmmap
     </item>
     
     
+    
+    <item>
+      <title>CTFD源码简析</title>
+      <link>https://inten.kro1lsec.com/post/ctfd%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/ctfd%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90/</guid>
+      <description>源地址：CTFd
+框架：Flask
+FLASK 安装与快速启动
+https://flask.palletsprojects.com/en/1.1.x/
+helloword测试 创建hello.py
+from flask import Flask app = Flask(__name__) @app.route(&amp;#39;/&amp;#39;) def hello_world(): return &amp;#39;Hello, World!&amp;#39; $ export FLASK_APP=hello.py $ export FLASK_ENV=development #调试模式 $ python3 -m flask run 官方文档博客 运行 新建项目flaskr
+$ flask init-db #初始化数据库 Initialized the database. $ export FLASK_APP=flaskr #linux $ export FLASK_ENV=development $ flask run # cmd &amp;gt; set FLASK_APP=flaskr &amp;gt; set FLASK_ENV=development &amp;gt; flask run #PowerShell &amp;gt; $env:FLASK_APP = &amp;#34;flaskr&amp;#34; &amp;gt; $env:FLASK_ENV = &amp;#34;development&amp;#34; &amp;gt; flask run 测试 pytest tests 构建和安装 Deploy to Production — Flask Documentation (1.</description>
+    </item>
     
     
     

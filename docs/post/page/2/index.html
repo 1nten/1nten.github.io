@@ -148,6 +148,51 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>[工具]IDA</h2>
+  </header>
+  <section class="entry-content">
+    <p>简介 加密与解密 p122
+再探 IDA 常用操作 窗口介绍 Structures 结构体窗口
+显示硬编码 ACDU
+a 字符串
+跳转指令 G
+搜索（汇编）指令 Alt &#43; t
+重命名 n
+Alt &#43; q 引用结构体窗口中对应的结构体
+局部变量指定结构体 T
+y 改函数的声明
+d 改类型
+注释 ; 会在任何引用该位置的地方留下注释的副本
+：引用的地方没有副本
+针对函数的注释 选中函数按;
+会显示在被注释函数的上方
+交叉引用 Ctrl&#43;x
+所有调用该函数 / 数据的地方
+在 F5 的界面里，选定一个函数按 X 交叉引用
+IDA PATCH 修改错误无法撤销
+保存文件
+导入头文件 注意：即使导入头文件，也无法识别标准库函数
+新建结构体 在结构体窗口按 insert
+d 添加成员
+实战技巧 IDA 类型识别错误 *(_BYTE *)(i &#43; a2) = byte_442198[j] ^ (*(_BYTE *)(i &#43; a1) &#43; 13); 当出现 (_BYTE ) 这种类型，多半是识别错误...</p>
+  </section>
+  <footer class="entry-footer">March 10, 2021&nbsp;·&nbsp;2 min</footer>
+  <a class="entry-link" aria-label="post link to [工具]IDA" href="https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ida/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>[工具]Ollydbg</h2>
+  </header>
+  <section class="entry-content">
+    <p>简介 快捷键  Ctrl&#43;F1：打开与所选行内符号相关的 API 帮助文档。 F2：在光标选定位置按 F2 键设置或取消断点。 Shift&#43;F2：在首个选择命令设置条件断点。 Ctrl&#43;F2：重新启动被调试程序。 F4：运行到光标选定位置处暂停。 Shift&#43;F4：设置记录断点。 F5：最大化当前窗口。 Ctrl&#43;F5：打开与首个选择的命令相对应的源文件。 Alt&#43;F5：让 OllyDbg 窗口总在最前面。 F6：切换到下一个窗口。 Shift&#43;F6：切换到前一个窗口。 F7：单步步入：每次执行一条指令，遇到 call 等子程序时进入其中。 Shift&#43;F7：与 F7 相同，但当被调试程序发生异常而中止时，调试器首先尝试步入被调试程序指定的异常处理。 Ctrl&#43;F7：自动步入，在所有的函数调用中一条一条地执行命令。 Alt&#43;F7：转到上一个找到的参考。 F8：单步步过，每次执行一条指令，遇到 call 等子程序时不进入其中。 Shift&#43;F8：与 F8 相同，但当被调试程序发生异常而中止时，调试器首先尝试步过被调试程序指定的异常处理。 Ctrl&#43;F8：自动步过，一条一条执行命令，但不进入函数内部调用。 Alt&#43;F8：转到下一个找到的参考。 F9：运行，被调试软件继续运行，直到遇到下一个断点。 Shift&#43;F9：与 F9 相同，但当被调试程序发生异常而中止时，调试器首先尝试执行被调试程序指定的异常处理。 Ctrl&#43;F9：执行到返回，在执行到一个 ret 指令时暂停，常用于从当前函数快速返回到上一个函数。 Alt&#43;F9：执行到用户代码，可用于从系统部分快速返回到被调试程序部分。 F10：打开与当前窗口或面板相关的快捷菜单。 Ctrl&#43;F11：Run 跟踪步入，一条一条执行命令，进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 F12：停止执行，暂停所有线程。 Ctrl&#43;F12：Run 跟踪步过，一条一条执行命令，不进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 Alt&#43;F3：关闭当前窗口。 Alt&#43;B：显示断点窗口。 Alt&#43;C：显示 CPU 窗口。 Alt&#43;E：显示模块列表。 Alt&#43;K：显示调用栈。 Alt&#43;L：显示日志窗口。 Alt&#43;M：显示内存窗口。 Alt&#43;O：显示选项对话框。 Alt&#43;Backspace：撤销对所选部分的修改。 Ctrl&#43;A：分析当前模块的代码段。 Ctrl&#43;B：开始二进制搜索。 Ctrl&#43;E：以十六进制格式编辑所选内容。 Ctrl&#43;F：开始命令搜索。 Ctrl&#43;G：转到某地址。 Ctrl&#43;J：列出所有的涉及到该位置的调用和跳转。 Ctrl&#43;K：查看与当前函数相关的调用树。 Ctrl&#43;L：搜索下一个。 Ctrl&#43;N：打开当前模块的名称列表。 Ctrl&#43;O：扫描对象文件。 Ctrl&#43;P：显示补丁窗口。 Ctrl&#43;R：搜索所选命令的参考。 Ctrl&#43;S：命令搜索。 Ctrl&#43;T：打开“暂停Run跟踪”对话框。 Esc：停止自动执行或跟踪。 Enter：将选中的命令添加到命令历史，如果当前命令是一个跳转或者函数，则进入到目的地址。 Backspace：如果分析器将代码误识为数据，可以将选中部分的自动分析信息移除。 *：转到原始位置 Ctrl&#43;*：指定新的起始位置。 &#43;：如果 Run 跟踪没有激活，则根据历史命令跳到下一条运行过命令的地方；否则跳到 Run 跟踪的下一个记录。 Ctrl&#43;&#43;：跳到前一个函数的开始处。 -：如果 Run 跟踪没有激活，则根据历史命令跳到前一条运行过命令的地方；否则跳到 Run 跟踪的前一个记录。 Ctrl&#43;-：跳到下一个函数的开始处。 Space：修改命令。 :：添加标签。 ;：添加注释。  -（减号）：回看之前单步跟踪的代码...</p>
+  </section>
+  <footer class="entry-footer">March 10, 2021&nbsp;·&nbsp;3 min</footer>
+  <a class="entry-link" aria-label="post link to [工具]Ollydbg" href="https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ollydbg/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>[基础]C/C&#43;&#43;</h2>
   </header>
   <section class="entry-content">
@@ -209,6 +254,23 @@ pwndbg&gt; vmmap
   </section>
   <footer class="entry-footer">9 min</footer>
   <a class="entry-link" aria-label="post link to [工具]GDB" href="https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7gdb/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>CTFD源码简析</h2>
+  </header>
+  <section class="entry-content">
+    <p>源地址：CTFd
+框架：Flask
+FLASK 安装与快速启动
+https://flask.palletsprojects.com/en/1.1.x/
+helloword测试 创建hello.py
+from flask import Flask app = Flask(__name__) @app.route(&#39;/&#39;) def hello_world(): return &#39;Hello, World!&#39; $ export FLASK_APP=hello.py $ export FLASK_ENV=development #调试模式 $ python3 -m flask run 官方文档博客 运行 新建项目flaskr
+$ flask init-db #初始化数据库 Initialized the database. $ export FLASK_APP=flaskr #linux $ export FLASK_ENV=development $ flask run # cmd &gt; set FLASK_APP=flaskr &gt; set FLASK_ENV=development &gt; flask run #PowerShell &gt; $env:FLASK_APP = &#34;flaskr&#34; &gt; $env:FLASK_ENV = &#34;development&#34; &gt; flask run 测试 pytest tests 构建和安装 Deploy to Production — Flask Documentation (1....</p>
+  </section>
+  <footer class="entry-footer">2 min</footer>
+  <a class="entry-link" aria-label="post link to CTFD源码简析" href="https://inten.kro1lsec.com/post/ctfd%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
