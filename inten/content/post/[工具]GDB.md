@@ -1,6 +1,9 @@
 ---
 title: "[工具]GDB"
-date: 2021-03-3T15:07:34+08:00
+date: "2021-03-05"
+tags: ["工具", "二进制"]
+ShowToc: true
+TocOpen: true
 draft: false
 ---
 
@@ -146,6 +149,8 @@ $ cat /proc/sys/kernel/yama/ptrace_scope
 # **gdb 基本操作**
 
 使用 `-tui` 选项可以将代码显示在一个漂亮的交互式窗口中。
+
+调试中可用Ctrl+X+A切换
 
 ## **break -- b**
 

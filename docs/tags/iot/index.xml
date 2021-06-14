@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>IOT on intenのblog🍦</title>
+    <link>https://inten.kro1lsec.com/tags/iot/</link>
+    <description>Recent content in IOT on intenのblog🍦</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://inten.kro1lsec.com/tags/iot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[IOT]简易毫米波雷达开发小记</title>
+      <link>https://inten.kro1lsec.com/post/iot%E7%AE%80%E6%98%93%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/iot%E7%AE%80%E6%98%93%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/</guid>
+      <description>[IOT]简易毫米波雷达开发小记 开发环境 软件
+Visual Studio 2019
+EasyX_2018春分版
+FlyMcu.exe
+Windows串口调试工具.exe
+硬件
+电脑（Windows）
+定制的毫米波雷达电路板
+Micro USB数据线
+线路连接 用Micro USB数据线连接电路板和电脑即可
+电路板背面黑黑的正方形是主要的传感器
+部分电脑会缺少CP210x_USB.exe驱动,下载安装即可
+安装成功后，设备管理器就能识别出接上的电路板
+串口烧写 打开FlyMcu.exe按照下图配置开始编程，等待几分钟后完成。
+然后再打开Windows串口调试工具，将电路板背面的传感器朝上，将手机之类的物品放置到上方15cm处。下图中绿色的数字即为雷达检测到的信息。但是这种显示方式很不直观，接下来我们编写可视化窗口。
+可视化窗口编写 先配置VS2019+EasyX的开发环境VS2019安装EasyX详细过程
+如果缺少SDK，按照提示下载安装即可
+#include &amp;#34;pch.h&amp;#34;#include &amp;lt;Windows.h&amp;gt;#include &amp;lt;memory.h&amp;gt;#include &amp;lt;string.h&amp;gt;#include &amp;lt;winsock.h&amp;gt;#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;stdint.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;#include &amp;lt;windows.h&amp;gt; #include&amp;lt;graphics.h&amp;gt; //如果您需要在vc及vs环境中使用graphics.h的功能 您可以下载EasyX图形库#include &amp;lt;conio.h&amp;gt;#define X0 10 #define Y0 860 #define BUFSIZE 512 #pragma comment(lib,&amp;#34;ws2_32.lib&amp;#34;)  using namespace std; int port_setting(); HANDLE hCom; //将一个任务切换到指定的线程中去执行  int main(void) { if (!(port_setting())) { printf(&amp;#34;串口初始化异常&amp;#34;); } DWORD wCount; //定义一个32位的无符号整数，用到头文件#include &amp;lt;windows.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>CVE | intenのblog🍦</title>
+<meta name="keywords" content="" />
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://inten.kro1lsec.com/tags/cve/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.fe63ae84f306727c713665eb03a6c71ec6c611434c8182ba17ba7e7d26a979e9.css" integrity="sha256-/mOuhPMGcnxxNmXrA6bHHsbGEUNMgYK6F7p&#43;fSapeek=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://inten.kro1lsec.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://inten.kro1lsec.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://inten.kro1lsec.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://inten.kro1lsec.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.82.0" />
+<link rel="alternate" type="application/rss+xml" href="https://inten.kro1lsec.com/tags/cve/index.xml">
+<meta property="og:title" content="CVE" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://inten.kro1lsec.com/tags/cve/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CVE"/>
+<meta name="twitter:description" content=""/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://inten.kro1lsec.com/" accesskey="h" title="intenのblog🍦 (Alt + H)">intenのblog🍦</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://inten.kro1lsec.com/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://inten.kro1lsec.com/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://inten.kro1lsec.com/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>CVE</h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>CVE-2017-11882漏洞分析</h2>
+  </header>
+  <section class="entry-content">
+    <p>漏洞描述  成因：Office的公式编辑器EQNEDT32.EXE读入包含MathType的OLE数据，在拷贝公式字体名称前没有对名称长度进行校验，当EQNEDT32.EXE尝试将字体名称复制到本地创建的缓冲区时，攻击者可以通过刻意构造的数据内容覆盖栈上的函数返回地址，从而劫持程序流程。 影响版本：Office 2003到2016的所有版本 POC：https://github.com/Ridter/CVE-2017-11882  漏洞复现   环境
+Microsoft Windows XPProfessional版本2002 Service Fack 3
+Office2003SP3
+  复现过程
+下载poc，输出test.doc，将test.doc复制到相应环境下，双击打开即可。
+漏洞分析  环境 Winxp x32 Office2003 工具 windbg IDA Pro  漏洞发生点如下图所示：
+可以看到，函数给SrcStr变量分配的大小是0x24个字节，长度超过该大小就会造成栈溢出。微软后续的补丁将大小限制为0x20可能是为了安全起见。
+触发逻辑
+构造POC 由于该漏洞涉及到MathType公式数据在OLE中的结构，所以我们需要熟悉其结构分布。整个“Equation Native”的数据构成为：
+Equation Native Stream Data = EQNOLEFILEHDR &#43; MTEFData，其中
+MTEFData = MTEF header &#43; MTEF Byte Stream
+EQNOLEFILEHDR 头的结构
+struct EQNOLEFILEHDR {WORD cCBHdr; // 格式头长度,大小为0x1CDWORD nVersion; // 固定为0×00020000。WORD nCf; // 该公式对象的剪贴板格式DWORD cbObject; // MTEF数据的长度，不包括头部DWORD nReserved1; // 未使用DWORD nReserved2; // 未使用DWORD nReserved3; // 未使用DWORD nReserved4; // 未使用};MTEF header 的结构，里面存放一些版本信息...</p>
+  </section>
+  <footer class="entry-footer">May 11, 2021&nbsp;·&nbsp;4 min</footer>
+  <a class="entry-link" aria-label="post link to CVE-2017-11882漏洞分析" href="https://inten.kro1lsec.com/post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/"></a>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
+    
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>uCore on intenのblog🍦</title>
+    <link>https://inten.kro1lsec.com/tags/ucore/</link>
+    <description>Recent content in uCore on intenのblog🍦</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 13 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://inten.kro1lsec.com/tags/ucore/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[uCore]Lab1</title>
+      <link>https://inten.kro1lsec.com/post/ucorelab1/</link>
+      <pubDate>Sun, 13 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/ucorelab1/</guid>
+      <description>[练习1] 练习 操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
+ 设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，
+lab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试
+debug-mon: 使用qemu的monitor和gdb配合调试
+qemu: 使用qemu混合模式
+qemu-mon:使用qemu monitor模式
+qemu-nox:使用qemu 命令行模式
+一个被系统认为是符合规范的硬盘主引导扇区的特征是什么?
+从/tool/sign.c的代码来看，一个磁盘主引导扇区只有512字节。且 第510个（倒数第二个）字节是0x55， 第511个（倒数第一个）字节是0xAA。
+[练习2] 使用qemu执行并调试lab1中的软件。
+单步调试和查看BIOS代码
+修改tools/gdbinit为
+file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue   gdb脚本中的define hook-stop .</description>
+    </item>
+    
+    <item>
+      <title>[uCore]Lab0</title>
+      <link>https://inten.kro1lsec.com/post/ucorelab0/</link>
+      <pubDate>Sun, 06 Jun 2021 15:07:34 +0800</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/ucorelab0/</guid>
+      <description>gcc #安装sudo apt-get install build-essential#编译$ gcc -Wall hello.c -o hello该命令将文件‘hello.c’中的代码编译为机器码并存储在可执行文件 ‘hello’中。机器码的文件名是通过 -o 选项指定的。该选项通常作为命令行中的最后一个参数。如果被省略，输出文件默认为 ‘a.out’。
+选项 -Wall 开启编译器几乎所有常用的警告，默认情况下GCC 不会产生任何警告信息。
+AT&amp;amp;T汇编基本语法 Ucore中用到的是AT&amp;amp;T格式的汇编，与Intel格式的汇编有一些不同。二者语法上主要有以下几个不同：
+* 寄存器命名原则AT&amp;amp;T: %eax Intel: eax* 源/目的操作数顺序 AT&amp;amp;T: movl %eax, %ebx Intel: mov ebx, eax* 常数/立即数的格式　AT&amp;amp;T: movl $_value, %ebx Intel: mov eax, _value把value的地址放入eax寄存器AT&amp;amp;T: movl $0xd00d, %ebx Intel: mov ebx, 0xd00d* 操作数长度标识 AT&amp;amp;T: movw %ax, %bx Intel: mov bx, ax* 寻址方式 AT&amp;amp;T: immed32(basepointer, indexpointer, indexscale)Intel: [basepointer + indexpointer × indexscale + imm32)如果操作系统工作于保护模式下，用的是32位线性地址，所以在计算地址时不用考虑segment:offset的问题。上式中的地址应为：</description>
+    </item>
+    
+  </channel>
+</rss>

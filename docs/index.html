@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="canonical" href="https://inten.kro1lsec.com/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css" integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.fe63ae84f306727c713665eb03a6c71ec6c611434c8182ba17ba7e7d26a979e9.css" integrity="sha256-/mOuhPMGcnxxNmXrA6bHHsbGEUNMgYK6F7p&#43;fSapeek=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://inten.kro1lsec.com/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://inten.kro1lsec.com/favicon-32x32.png">
@@ -19,7 +19,7 @@
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.82.0" />
-<link rel="alternate" type="application/rss&#43;xml" href="https://inten.kro1lsec.com/index.xml">
+<link rel="alternate" type="application/rss+xml" href="https://inten.kro1lsec.com/index.xml">
 <link rel="alternate" type="application/json" href="https://inten.kro1lsec.com/index.json">
 <meta property="og:title" content="intenのblog🍦" />
 <meta property="og:description" content="" />
@@ -121,7 +121,7 @@
                 </button>
             </span>
         </div>
-        <ul id="menu" onscroll="menu_on_scroll()">
+        <ul id="menu">
             <li>
                 <a href="https://inten.kro1lsec.com/archives" title="Archive">
                     <span>Archive</span>
@@ -198,7 +198,58 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>[TinyKernel]Lab0</h2>
+    <h2>[uCore]Lab1</h2>
+  </header>
+  <section class="entry-content">
+    <p>[练习1] 练习 操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
+ 设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，
+lab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试
+debug-mon: 使用qemu的monitor和gdb配合调试
+qemu: 使用qemu混合模式
+qemu-mon:使用qemu monitor模式
+qemu-nox:使用qemu 命令行模式
+一个被系统认为是符合规范的硬盘主引导扇区的特征是什么?
+从/tool/sign.c的代码来看，一个磁盘主引导扇区只有512字节。且 第510个（倒数第二个）字节是0x55， 第511个（倒数第一个）字节是0xAA。
+[练习2] 使用qemu执行并调试lab1中的软件。
+单步调试和查看BIOS代码
+修改tools/gdbinit为
+file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue   gdb脚本中的define hook-stop ....</p>
+  </section>
+  <footer class="entry-footer">June 13, 2021&nbsp;·&nbsp;6 min</footer>
+  <a class="entry-link" aria-label="post link to [uCore]Lab1" href="https://inten.kro1lsec.com/post/ucorelab1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>[IOT]简易毫米波雷达开发小记</h2>
+  </header>
+  <section class="entry-content">
+    <p>[IOT]简易毫米波雷达开发小记 开发环境 软件
+Visual Studio 2019
+EasyX_2018春分版
+FlyMcu.exe
+Windows串口调试工具.exe
+硬件
+电脑（Windows）
+定制的毫米波雷达电路板
+Micro USB数据线
+线路连接 用Micro USB数据线连接电路板和电脑即可
+电路板背面黑黑的正方形是主要的传感器
+部分电脑会缺少CP210x_USB.exe驱动,下载安装即可
+安装成功后，设备管理器就能识别出接上的电路板
+串口烧写 打开FlyMcu.exe按照下图配置开始编程，等待几分钟后完成。
+然后再打开Windows串口调试工具，将电路板背面的传感器朝上，将手机之类的物品放置到上方15cm处。下图中绿色的数字即为雷达检测到的信息。但是这种显示方式很不直观，接下来我们编写可视化窗口。
+可视化窗口编写 先配置VS2019&#43;EasyX的开发环境VS2019安装EasyX详细过程
+如果缺少SDK，按照提示下载安装即可
+#include &#34;pch.h&#34;#include &lt;Windows.h&gt;#include &lt;memory.h&gt;#include &lt;string.h&gt;#include &lt;winsock.h&gt;#include &lt;stdio.h&gt;#include &lt;stdint.h&gt;#include &lt;stdlib.h&gt;#include &lt;windows.h&gt; #include&lt;graphics.h&gt; //如果您需要在vc及vs环境中使用graphics.h的功能 您可以下载EasyX图形库#include &lt;conio.h&gt;#define X0 10 #define Y0 860 #define BUFSIZE 512 #pragma comment(lib,&#34;ws2_32.lib&#34;)  using namespace std; int port_setting(); HANDLE hCom; //将一个任务切换到指定的线程中去执行  int main(void) { if (!(port_setting())) { printf(&#34;串口初始化异常&#34;); } DWORD wCount; //定义一个32位的无符号整数，用到头文件#include &lt;windows....</p>
+  </section>
+  <footer class="entry-footer">June 8, 2021&nbsp;·&nbsp;2 min</footer>
+  <a class="entry-link" aria-label="post link to [IOT]简易毫米波雷达开发小记" href="https://inten.kro1lsec.com/post/iot%E7%AE%80%E6%98%93%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>[uCore]Lab0</h2>
   </header>
   <section class="entry-content">
     <p>gcc #安装sudo apt-get install build-essential#编译$ gcc -Wall hello.c -o hello该命令将文件‘hello.c’中的代码编译为机器码并存储在可执行文件 ‘hello’中。机器码的文件名是通过 -o 选项指定的。该选项通常作为命令行中的最后一个参数。如果被省略，输出文件默认为 ‘a.out’。
@@ -207,7 +258,7 @@ AT&amp;T汇编基本语法 Ucore中用到的是AT&amp;T格式的汇编，与Inte
 * 寄存器命名原则AT&amp;T: %eax Intel: eax* 源/目的操作数顺序 AT&amp;T: movl %eax, %ebx Intel: mov ebx, eax* 常数/立即数的格式　AT&amp;T: movl $_value, %ebx Intel: mov eax, _value把value的地址放入eax寄存器AT&amp;T: movl $0xd00d, %ebx Intel: mov ebx, 0xd00d* 操作数长度标识 AT&amp;T: movw %ax, %bx Intel: mov bx, ax* 寻址方式 AT&amp;T: immed32(basepointer, indexpointer, indexscale)Intel: [basepointer &#43; indexpointer × indexscale &#43; imm32)如果操作系统工作于保护模式下，用的是32位线性地址，所以在计算地址时不用考虑segment:offset的问题。上式中的地址应为：...</p>
   </section>
   <footer class="entry-footer">June 6, 2021&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to [TinyKernel]Lab0" href="https://inten.kro1lsec.com/post/tinykernellab0/"></a>
+  <a class="entry-link" aria-label="post link to [uCore]Lab0" href="https://inten.kro1lsec.com/post/ucorelab0/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -329,55 +380,6 @@ PDCERF方法学 准备阶段——&gt;检测阶段——&gt;抑制阶段——&g
   <footer class="entry-footer">April 11, 2021&nbsp;·&nbsp;4 min</footer>
   <a class="entry-link" aria-label="post link to [CSAPPLAB]Data lab" href="https://inten.kro1lsec.com/post/csapplabdata-lab/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Typora &#43; PicGo&#43; Chevereto踩坑指南</h2>
-  </header>
-  <section class="entry-content">
-    <p>目的： 解决md文件图片传输不方便的问题，将图片上传到图床，方便分享md文件。
-运行环境 win10
-version 0. 9. 98 (beta)★website★@typora
-picgo-2.2.2
-1.去官网下载最新的typora和picgo，并安装 2.配置typora 2.配置picgo 修改端口
-安装插件
-配置Chevereto
-注意仔细核对url
-&#34;url&#34;: &#34;https://个人服务器Cheverto图床域名或地址/api/1/upload&#34; 记得打开时间戳重命名，Chevereto不允许上传同名图片，不然会出现以下错误。
-我测试时
-picgo的时间戳不会重命名typora的验证图片时的测试图片，所以会出现第一次验证成功，之后失败的情况。
-实际功能正常。
-踩坑与调试 1.为什么原来的URL不行
-可以说得按照官方文档来，乱填url当然不行，感觉这样的回答太牵强。
-我推测是图像界面面向用户上传图片的调用方法 和 为PicGo这类用于快速上传图片并获取图片 URL 链接的工具的接口不一样。后者至少比前者多一个获取图片 URL 链接的返回数据。如果用前者的url那typora就收不到图片的链接，功能会无法实现
-2.为什么现在这个URL可以
-按照chevereto官方文档的说明（https://v3-docs.chevereto.com/API/V1.html#api-call）
-我们最好采用“POST”的形式来传数据。默认的上传url为： https://mysite.com/api/1/upload
-为什么锁定是url的问题？
-假设Typora &#43; PicGo&#43; Chevereto这三个软件及插件都没问题，key也没问题。
-PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web端的通信是通过给url传不同的参数来实现。
-要么传的参数有问题，要么url有问题，逐个排查也可。参数大概是软件设置的选项，然后我也一直在调，常见的问题都搜过了，小概率是问题太偏。但url真的很可疑呀，我填的时候没有想太多，就理所当然地复制了。连文档都没查，参考的博客看得也不仔细。</p>
-  </section>
-  <footer class="entry-footer">March 13, 2021&nbsp;·&nbsp;1 min</footer>
-  <a class="entry-link" aria-label="post link to Typora &#43; PicGo&#43; Chevereto踩坑指南" href="https://inten.kro1lsec.com/post/typora-&#43;-picgo&#43;-chevereto/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>[工具]Github初入</h2>
-  </header>
-  <section class="entry-content">
-    <p>Git基本操作 初次使用需要配置好邮箱用户名，ssh或token
-https://docs.github.com/cn/github/getting-started-with-github/quickstart
-大致流程 1.链接
-2.增删改查
-3.提交更改
-4.提交分支
-echo &#34;# KroCTF&#34; &gt;&gt; README.md git init git add README.md git commit -m &#34;first commit&#34; git branch -M main git remote add origin https://github.com/1nten/KroCTF.git git push -u origin main 配置 $ git config --global user.email &#34;email@example.com&#34; $ git config --global user.name &#34;Mona Lisa&#34; $ git config --global user.name $ git config --global user.email 基础信息 //显示工作目录和暂存区的状态 $ git status //显示日志（项目历史的信息） $ git log //将分支new1同步到云端GitHub $ git push origin new1 //克隆 $ git clone https://github....</p>
-  </section>
-  <footer class="entry-footer">March 10, 2021&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to [工具]Github初入" href="https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7github%E5%88%9D%E5%85%A5/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="next" href="https://inten.kro1lsec.com/page/2/">Next Page »</a>
@@ -386,7 +388,6 @@ echo &#34;# KroCTF&#34; &gt;&gt; README.md git init git add README.md git commit
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
-    <span>&middot;</span>
     
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
@@ -398,14 +399,10 @@ echo &#34;# KroCTF&#34; &gt;&gt; README.md git init git add README.md git commit
 </a>
 
 <script>
-    window.onload = function () {
-        if (localStorage.getItem("menu-scroll-position")) {
-            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
-        }
-    }
-
-    function menu_on_scroll() {
-        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

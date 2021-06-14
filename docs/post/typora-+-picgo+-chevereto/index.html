@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Typora &#43; PicGo&#43; Chevereto踩坑指南 | intenのblog🍦</title>
-<meta name="keywords" content="" />
+<meta name="keywords" content="工具" />
 <meta name="description" content="目的： 解决md文件图片传输不方便的问题，将图片上传到图床，方便分享md文件。
 运行环境 win10
 version 0. 9. 98 (beta)★website★@typora
@@ -31,7 +31,7 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
 要么传的参数有问题，要么url有问题，逐个排查也可。参数大概是软件设置的选项，然后我也一直在调，常见的问题都搜过了，小概率是问题太偏。但url真的很可疑呀，我填的时候没有想太多，就理所当然地复制了。连文档都没查，参考的博客看得也不仔细。">
 <meta name="author" content="">
 <link rel="canonical" href="https://inten.kro1lsec.com/post/typora-&#43;-picgo&#43;-chevereto/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css" integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.fe63ae84f306727c713665eb03a6c71ec6c611434c8182ba17ba7e7d26a979e9.css" integrity="sha256-/mOuhPMGcnxxNmXrA6bHHsbGEUNMgYK6F7p&#43;fSapeek=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
@@ -124,7 +124,7 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
   "name": "Typora \u002b PicGo\u002b Chevereto踩坑指南",
   "description": "目的： 解决md文件图片传输不方便的问题，将图片上传到图床，方便分享md文件。\n运行环境 win10\nversion 0. 9. 98 (beta)★website★@typora\npicgo-2.2.2\n1.去官网下载最新的typora和picgo，并安装 2.配置typora 2.配置picgo 修改端口\n安装插件\n配置Chevereto\n注意仔细核对url\n\u0026#34;url\u0026#34;: \u0026#34;https://个人服务器Cheverto图床域名或地址/api/1/upload\u0026#34; 记得打开时间戳重命名，Chevereto不允许上传同名图片，不然会出现以下错误。\n我测试时\npicgo的时间戳不会重命名typora的验证图片时的测试图片，所以会出现第一次验证成功，之后失败的情况。\n实际功能正常。\n踩坑与调试 1.为什么原来的URL不行\n可以说得按照官方文档来，乱填url当然不行，感觉这样的回答太牵强。\n我推测是图像界面面向用户上传图片的调用方法 和 为PicGo这类用于快速上传图片并获取图片 URL 链接的工具的接口不一样。后者至少比前者多一个获取图片 URL 链接的返回数据。如果用前者的url那typora就收不到图片的链接，功能会无法实现\n2.为什么现在这个URL可以\n按照chevereto官方文档的说明（https://v3-docs.chevereto.com/API/V1.html#api-call）\n我们最好采用“POST”的形式来传数据。默认的上传url为： https://mysite.com/api/1/upload\n为什么锁定是url的问题？\n假设Typora + PicGo+ Chevereto这三个软件及插件都没问题，key也没问题。\nPicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web端的通信是通过给url传不同的参数来实现。\n要么传的参数有问题，要么url有问题，逐个排查也可。参数大概是软件设置的选项，然后我也一直在调，常见的问题都搜过了，小概率是问题太偏。但url真的很可疑呀，我填的时候没有想太多，就理所当然地复制了。连文档都没查，参考的博客看得也不仔细。",
   "keywords": [
-    
+    "工具"
   ],
   "articleBody": "目的： 解决md文件图片传输不方便的问题，将图片上传到图床，方便分享md文件。\n运行环境 win10\nversion 0. 9. 98 (beta)★website★@typora\npicgo-2.2.2\n1.去官网下载最新的typora和picgo，并安装 2.配置typora 2.配置picgo 修改端口\n安装插件\n配置Chevereto\n注意仔细核对url\n\"url\": \"https://个人服务器Cheverto图床域名或地址/api/1/upload\" 记得打开时间戳重命名，Chevereto不允许上传同名图片，不然会出现以下错误。\n我测试时\npicgo的时间戳不会重命名typora的验证图片时的测试图片，所以会出现第一次验证成功，之后失败的情况。\n实际功能正常。\n踩坑与调试 1.为什么原来的URL不行\n可以说得按照官方文档来，乱填url当然不行，感觉这样的回答太牵强。\n我推测是图像界面面向用户上传图片的调用方法 和 为PicGo这类用于快速上传图片并获取图片 URL 链接的工具的接口不一样。后者至少比前者多一个获取图片 URL 链接的返回数据。如果用前者的url那typora就收不到图片的链接，功能会无法实现\n2.为什么现在这个URL可以\n按照chevereto官方文档的说明（https://v3-docs.chevereto.com/API/V1.html#api-call）\n我们最好采用“POST”的形式来传数据。默认的上传url为： https://mysite.com/api/1/upload\n为什么锁定是url的问题？\n假设Typora + PicGo+ Chevereto这三个软件及插件都没问题，key也没问题。\nPicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web端的通信是通过给url传不同的参数来实现。\n要么传的参数有问题，要么url有问题，逐个排查也可。参数大概是软件设置的选项，然后我也一直在调，常见的问题都搜过了，小概率是问题太偏。但url真的很可疑呀，我填的时候没有想太多，就理所当然地复制了。连文档都没查，参考的博客看得也不仔细。\n",
   "wordCount" : "44",
@@ -223,7 +223,7 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
                 </button>
             </span>
         </div>
-        <ul id="menu" onscroll="menu_on_scroll()">
+        <ul id="menu">
             <li>
                 <a href="https://inten.kro1lsec.com/archives" title="Archive">
                     <span>Archive</span>
@@ -252,7 +252,30 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
     </h1>
     <div class="post-meta">March 13, 2021&nbsp;·&nbsp;1 min
 </div>
-  </header> 
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <div class="details">Table of Contents</div>
+        </summary>
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e7%9b%ae%e7%9a%84" aria-label="目的：">目的：</a></li>
+                <li>
+                    <a href="#%e8%bf%90%e8%a1%8c%e7%8e%af%e5%a2%83" aria-label="运行环境">运行环境</a></li>
+                <li>
+                    <a href="#1%e5%8e%bb%e5%ae%98%e7%bd%91%e4%b8%8b%e8%bd%bd%e6%9c%80%e6%96%b0%e7%9a%84typora%e5%92%8cpicgo%e5%b9%b6%e5%ae%89%e8%a3%85" aria-label="1.去官网下载最新的typora和picgo，并安装">1.去官网下载最新的typora和picgo，并安装</a></li>
+                <li>
+                    <a href="#2%e9%85%8d%e7%bd%aetypora" aria-label="2.配置typora">2.配置typora</a></li>
+                <li>
+                    <a href="#2%e9%85%8d%e7%bd%aepicgo" aria-label="2.配置picgo">2.配置picgo</a></li>
+                <li>
+                    <a href="#%e8%b8%a9%e5%9d%91%e4%b8%8e%e8%b0%83%e8%af%95" aria-label="踩坑与调试">踩坑与调试</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
   <div class="post-content"><h3 id="目的">目的：<a hidden class="anchor" aria-hidden="true" href="#目的">#</a></h3>
 <p>解决md文件图片传输不方便的问题，将图片上传到图床，方便分享md文件。</p>
 <h3 id="运行环境">运行环境<a hidden class="anchor" aria-hidden="true" href="#运行环境">#</a></h3>
@@ -294,10 +317,15 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
 <p>PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web端的通信是通过给url传不同的参数来实现。</p>
 <p>要么传的参数有问题，要么url有问题，逐个排查也可。参数大概是软件设置的选项，然后我也一直在调，常见的问题都搜过了，小概率是问题太偏。但url真的很可疑呀，我填的时候没有想太多，就理所当然地复制了。连文档都没查，参考的博客看得也不仔细。</p>
 
-</div>
-  <footer class="post-footer"><div class="share-buttons">
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://inten.kro1lsec.com/tags/%E5%B7%A5%E5%85%B7/">工具</a></li>
+    </ul>
+<div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Typora &#43; PicGo&#43; Chevereto踩坑指南 on twitter"
-        href="https://twitter.com/intent/tweet/?text=Typora%20%2b%20PicGo%2b%20Chevereto%e8%b8%a9%e5%9d%91%e6%8c%87%e5%8d%97&amp;url=https%3a%2f%2finten.kro1lsec.com%2fpost%2ftypora-%2b-picgo%2b-chevereto%2f&amp;hashtags=">
+        href="https://twitter.com/intent/tweet/?text=Typora%20%2b%20PicGo%2b%20Chevereto%e8%b8%a9%e5%9d%91%e6%8c%87%e5%8d%97&amp;url=https%3a%2f%2finten.kro1lsec.com%2fpost%2ftypora-%2b-picgo%2b-chevereto%2f&amp;hashtags=%e5%b7%a5%e5%85%b7">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
@@ -345,7 +373,6 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
-    <span>&middot;</span>
     
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
@@ -357,14 +384,10 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
 </a>
 
 <script>
-    window.onload = function () {
-        if (localStorage.getItem("menu-scroll-position")) {
-            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
-        }
-    }
-
-    function menu_on_scroll() {
-        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -411,43 +434,6 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
         }
     })
 
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerText = 'copy';
-
-        function copyingDone() {
-            copybutton.innerText = 'copied!';
-            setTimeout(() => {
-                copybutton.innerText = 'copy';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        container.appendChild(copybutton);
-    });
 </script>
 </body>
 

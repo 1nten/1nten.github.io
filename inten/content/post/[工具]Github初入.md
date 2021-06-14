@@ -1,6 +1,9 @@
 ---
 title: "[工具]Github初入"
-date: 2021-03-10T15:07:34+08:00
+date: "2021-03-10"
+tags: ["工具"]
+ShowToc: true
+TocOpen: true
 draft: false
 ---
 

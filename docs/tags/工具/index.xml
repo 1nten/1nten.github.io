@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>工具 on intenのblog🍦</title>
+    <link>https://inten.kro1lsec.com/tags/%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content in 工具 on intenのblog🍦</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 13 Mar 2021 15:07:34 +0800</lastBuildDate><atom:link href="https://inten.kro1lsec.com/tags/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Typora &#43; PicGo&#43; Chevereto踩坑指南</title>
+      <link>https://inten.kro1lsec.com/post/typora-&#43;-picgo&#43;-chevereto/</link>
+      <pubDate>Sat, 13 Mar 2021 15:07:34 +0800</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/typora-&#43;-picgo&#43;-chevereto/</guid>
+      <description>目的： 解决md文件图片传输不方便的问题，将图片上传到图床，方便分享md文件。
+运行环境 win10
+version 0. 9. 98 (beta)★website★@typora
+picgo-2.2.2
+1.去官网下载最新的typora和picgo，并安装 2.配置typora 2.配置picgo 修改端口
+安装插件
+配置Chevereto
+注意仔细核对url
+&amp;#34;url&amp;#34;: &amp;#34;https://个人服务器Cheverto图床域名或地址/api/1/upload&amp;#34; 记得打开时间戳重命名，Chevereto不允许上传同名图片，不然会出现以下错误。
+我测试时
+picgo的时间戳不会重命名typora的验证图片时的测试图片，所以会出现第一次验证成功，之后失败的情况。
+实际功能正常。
+踩坑与调试 1.为什么原来的URL不行
+可以说得按照官方文档来，乱填url当然不行，感觉这样的回答太牵强。
+我推测是图像界面面向用户上传图片的调用方法 和 为PicGo这类用于快速上传图片并获取图片 URL 链接的工具的接口不一样。后者至少比前者多一个获取图片 URL 链接的返回数据。如果用前者的url那typora就收不到图片的链接，功能会无法实现
+2.为什么现在这个URL可以
+按照chevereto官方文档的说明（https://v3-docs.chevereto.com/API/V1.html#api-call）
+我们最好采用“POST”的形式来传数据。默认的上传url为： https://mysite.com/api/1/upload
+为什么锁定是url的问题？
+假设Typora + PicGo+ Chevereto这三个软件及插件都没问题，key也没问题。
+PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web端的通信是通过给url传不同的参数来实现。
+要么传的参数有问题，要么url有问题，逐个排查也可。参数大概是软件设置的选项，然后我也一直在调，常见的问题都搜过了，小概率是问题太偏。但url真的很可疑呀，我填的时候没有想太多，就理所当然地复制了。连文档都没查，参考的博客看得也不仔细。</description>
+    </item>
+    
+    <item>
+      <title>[工具]Ollydbg</title>
+      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ollydbg/</link>
+      <pubDate>Thu, 11 Mar 2021 15:07:34 +0800</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ollydbg/</guid>
+      <description>简介 快捷键  Ctrl+F1：打开与所选行内符号相关的 API 帮助文档。 F2：在光标选定位置按 F2 键设置或取消断点。 Shift+F2：在首个选择命令设置条件断点。 Ctrl+F2：重新启动被调试程序。 F4：运行到光标选定位置处暂停。 Shift+F4：设置记录断点。 F5：最大化当前窗口。 Ctrl+F5：打开与首个选择的命令相对应的源文件。 Alt+F5：让 OllyDbg 窗口总在最前面。 F6：切换到下一个窗口。 Shift+F6：切换到前一个窗口。 F7：单步步入：每次执行一条指令，遇到 call 等子程序时进入其中。 Shift+F7：与 F7 相同，但当被调试程序发生异常而中止时，调试器首先尝试步入被调试程序指定的异常处理。 Ctrl+F7：自动步入，在所有的函数调用中一条一条地执行命令。 Alt+F7：转到上一个找到的参考。 F8：单步步过，每次执行一条指令，遇到 call 等子程序时不进入其中。 Shift+F8：与 F8 相同，但当被调试程序发生异常而中止时，调试器首先尝试步过被调试程序指定的异常处理。 Ctrl+F8：自动步过，一条一条执行命令，但不进入函数内部调用。 Alt+F8：转到下一个找到的参考。 F9：运行，被调试软件继续运行，直到遇到下一个断点。 Shift+F9：与 F9 相同，但当被调试程序发生异常而中止时，调试器首先尝试执行被调试程序指定的异常处理。 Ctrl+F9：执行到返回，在执行到一个 ret 指令时暂停，常用于从当前函数快速返回到上一个函数。 Alt+F9：执行到用户代码，可用于从系统部分快速返回到被调试程序部分。 F10：打开与当前窗口或面板相关的快捷菜单。 Ctrl+F11：Run 跟踪步入，一条一条执行命令，进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 F12：停止执行，暂停所有线程。 Ctrl+F12：Run 跟踪步过，一条一条执行命令，不进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 Alt+F3：关闭当前窗口。 Alt+B：显示断点窗口。 Alt+C：显示 CPU 窗口。 Alt+E：显示模块列表。 Alt+K：显示调用栈。 Alt+L：显示日志窗口。 Alt+M：显示内存窗口。 Alt+O：显示选项对话框。 Alt+Backspace：撤销对所选部分的修改。 Ctrl+A：分析当前模块的代码段。 Ctrl+B：开始二进制搜索。 Ctrl+E：以十六进制格式编辑所选内容。 Ctrl+F：开始命令搜索。 Ctrl+G：转到某地址。 Ctrl+J：列出所有的涉及到该位置的调用和跳转。 Ctrl+K：查看与当前函数相关的调用树。 Ctrl+L：搜索下一个。 Ctrl+N：打开当前模块的名称列表。 Ctrl+O：扫描对象文件。 Ctrl+P：显示补丁窗口。 Ctrl+R：搜索所选命令的参考。 Ctrl+S：命令搜索。 Ctrl+T：打开“暂停Run跟踪”对话框。 Esc：停止自动执行或跟踪。 Enter：将选中的命令添加到命令历史，如果当前命令是一个跳转或者函数，则进入到目的地址。 Backspace：如果分析器将代码误识为数据，可以将选中部分的自动分析信息移除。 *：转到原始位置 Ctrl+*：指定新的起始位置。 +：如果 Run 跟踪没有激活，则根据历史命令跳到下一条运行过命令的地方；否则跳到 Run 跟踪的下一个记录。 Ctrl++：跳到前一个函数的开始处。 -：如果 Run 跟踪没有激活，则根据历史命令跳到前一条运行过命令的地方；否则跳到 Run 跟踪的前一个记录。 Ctrl+-：跳到下一个函数的开始处。 Space：修改命令。 :：添加标签。 ;：添加注释。  -（减号）：回看之前单步跟踪的代码</description>
+    </item>
+    
+    <item>
+      <title>[工具]IDA</title>
+      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ida/</link>
+      <pubDate>Wed, 10 Mar 2021 15:07:34 +0800</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ida/</guid>
+      <description>简介 加密与解密 p122
+再探 IDA 常用操作 窗口介绍 Structures 结构体窗口
+显示硬编码 ACDU
+a 字符串
+跳转指令 G
+搜索（汇编）指令 Alt + t
+重命名 n
+Alt + q 引用结构体窗口中对应的结构体
+局部变量指定结构体 T
+y 改函数的声明
+d 改类型
+注释 ; 会在任何引用该位置的地方留下注释的副本
+：引用的地方没有副本
+针对函数的注释 选中函数按;
+会显示在被注释函数的上方
+交叉引用 Ctrl+x
+所有调用该函数 / 数据的地方
+在 F5 的界面里，选定一个函数按 X 交叉引用
+IDA PATCH 修改错误无法撤销
+保存文件
+导入头文件 注意：即使导入头文件，也无法识别标准库函数
+新建结构体 在结构体窗口按 insert
+d 添加成员
+实战技巧 IDA 类型识别错误 *(_BYTE *)(i + a2) = byte_442198[j] ^ (*(_BYTE *)(i + a1) + 13); 当出现 (_BYTE ) 这种类型，多半是识别错误</description>
+    </item>
+    
+    <item>
+      <title>[工具]Github初入</title>
+      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7github%E5%88%9D%E5%85%A5/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7github%E5%88%9D%E5%85%A5/</guid>
+      <description>Git基本操作 初次使用需要配置好邮箱用户名，ssh或token
+https://docs.github.com/cn/github/getting-started-with-github/quickstart
+大致流程 1.链接
+2.增删改查
+3.提交更改
+4.提交分支
+echo &amp;#34;# KroCTF&amp;#34; &amp;gt;&amp;gt; README.md git init git add README.md git commit -m &amp;#34;first commit&amp;#34; git branch -M main git remote add origin https://github.com/1nten/KroCTF.git git push -u origin main 配置 $ git config --global user.email &amp;#34;email@example.com&amp;#34; $ git config --global user.name &amp;#34;Mona Lisa&amp;#34; $ git config --global user.name $ git config --global user.email 基础信息 //显示工作目录和暂存区的状态 $ git status //显示日志（项目历史的信息） $ git log //将分支new1同步到云端GitHub $ git push origin new1 //克隆 $ git clone https://github.</description>
+    </item>
+    
+    <item>
+      <title>[工具]GDB</title>
+      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7gdb/</link>
+      <pubDate>Fri, 05 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7gdb/</guid>
+      <description>小记 GDB&amp;amp;Pwndbg run：r 开始执行 continue：c 继续执行，到下一个断点 stack 24 查看栈中24个单位的数据 vmmap 虚拟内存的空间分布 gdb link plt 查看plt表 got 查看got表 x/20 gxb info b 查看断点 start 停留在main函数的第一行，如果没有，则停留在入口 backtrace 显示函数调用栈 return 跳出当前函数 gdb 里面 单步调试分两种一种是C语言级别的单步n一种是汇编指令级别的单步nini按一次 之后直接回车就好了gdb自动重复指令的 next：n 单步步过 ni： 汇编指令级别的单步步过
+step：s 单步步入
+si：汇编指令级别的 单步步入
+dissa addr： 对函数或地址处的指令进行反汇编
+b *addr：下断点
+x addr：查看地址addr处存储的数据值
+info function/ b：查看函数/ 断点
+x/ nfu &amp;lt;addr&amp;gt;查看内存： n：要显示内存单元的个数 f：显示方式 u：一个地址单元的长度 gdb.attach() 连到第一次输入之后 断点下到 gets 之后那一句
+pwndbg&amp;gt; vmmap
+查看地址是否可读可写
+使用方法:x先 r ,然后Ctrl C暂停,缓存不会清空.再vmmap
+简单的偏移计算示例 推断为esp寻址</description>
+    </item>
+    
+    <item>
+      <title>[工具]Docker</title>
+      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7docker/</link>
+      <pubDate>Tue, 02 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7docker/</guid>
+      <description>Docker
+基本概念 Docker 包括三个基本概念
+ 镜像（Image） 容器（Container） 仓库（Repository）  简单理解：
+镜像（Image）和容器（Container）== 面向对象中的 类 和 实例 。
+镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。
+镜像 导入镜像 先变成管理员再导入
+$sudo su $cat ubuntu17.04x86.tar | docker import - ubuntu17.04x86 获取镜像 docker pull。其命令格式为：
+$ docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签] 比如：省略了仓库地址，默认从官网获取
+$ docker pull ubuntu:18.04 列出镜像 docker image ls
+$ docker image ls REPOSITORY TAG IMAGE ID CREATED SIZE redis latest 5f515359c7f8 5 days ago 183 MB nginx latest 05a60462f8ba 5 days ago 181 MB mongo 3.</description>
+    </item>
+    
+  </channel>
+</rss>

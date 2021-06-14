@@ -1,6 +1,9 @@
 ---
-title: "[基础]C/C++"
-date: 2021-03-8T15:11:34+08:00
+title: "C/C++基础"
+date: "2021-03-08"
+tags: ["C/C++"]
+ShowToc: true
+TocOpen: true
 draft: false
 ---
 

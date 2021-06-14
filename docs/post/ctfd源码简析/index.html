@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>CTFD源码简析 | intenのblog🍦</title>
-<meta name="keywords" content="" />
+<meta name="keywords" content="Python, FLASK" />
 <meta name="description" content="源地址：CTFd
 框架：Flask
 FLASK 安装与快速启动
@@ -16,7 +16,7 @@ from flask import Flask app = Flask(__name__) @app.route(&#39;/&#39;) def hello_
 $ flask init-db #初始化数据库 Initialized the database. $ export FLASK_APP=flaskr #linux $ export FLASK_ENV=development $ flask run # cmd &gt; set FLASK_APP=flaskr &gt; set FLASK_ENV=development &gt; flask run #PowerShell &gt; $env:FLASK_APP = &#34;flaskr&#34; &gt; $env:FLASK_ENV = &#34;development&#34; &gt; flask run 测试 pytest tests 构建和安装 Deploy to Production — Flask Documentation (1.">
 <meta name="author" content="">
 <link rel="canonical" href="https://inten.kro1lsec.com/post/ctfd%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css" integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.fe63ae84f306727c713665eb03a6c71ec6c611434c8182ba17ba7e7d26a979e9.css" integrity="sha256-/mOuhPMGcnxxNmXrA6bHHsbGEUNMgYK6F7p&#43;fSapeek=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
@@ -79,7 +79,7 @@ $ flask init-db #初始化数据库 Initialized the database. $ export FLASK_APP
   "name": "CTFD源码简析",
   "description": "源地址：CTFd\n框架：Flask\nFLASK 安装与快速启动\nhttps://flask.palletsprojects.com/en/1.1.x/\nhelloword测试 创建hello.py\nfrom flask import Flask app = Flask(__name__) @app.route(\u0026#39;/\u0026#39;) def hello_world(): return \u0026#39;Hello, World!\u0026#39; $ export FLASK_APP=hello.py $ export FLASK_ENV=development #调试模式 $ python3 -m flask run 官方文档博客 运行 新建项目flaskr\n$ flask init-db #初始化数据库 Initialized the database. $ export FLASK_APP=flaskr #linux $ export FLASK_ENV=development $ flask run # cmd \u0026gt; set FLASK_APP=flaskr \u0026gt; set FLASK_ENV=development \u0026gt; flask run #PowerShell \u0026gt; $env:FLASK_APP = \u0026#34;flaskr\u0026#34; \u0026gt; $env:FLASK_ENV = \u0026#34;development\u0026#34; \u0026gt; flask run 测试 pytest tests 构建和安装 Deploy to Production — Flask Documentation (1.",
   "keywords": [
-    
+    "Python", "FLASK"
   ],
   "articleBody": "源地址：CTFd\n框架：Flask\nFLASK 安装与快速启动\nhttps://flask.palletsprojects.com/en/1.1.x/\nhelloword测试 创建hello.py\nfrom flask import Flask app = Flask(__name__) @app.route('/') def hello_world(): return 'Hello, World!' $ export FLASK_APP=hello.py $ export FLASK_ENV=development #调试模式 $ python3 -m flask run 官方文档博客 运行 新建项目flaskr\n$ flask init-db #初始化数据库 Initialized the database. $ export FLASK_APP=flaskr #linux $ export FLASK_ENV=development $ flask run # cmd  set FLASK_APP=flaskr  set FLASK_ENV=development  flask run #PowerShell  $env:FLASK_APP = \"flaskr\"  $env:FLASK_ENV = \"development\"  flask run 测试 pytest tests 构建和安装 Deploy to Production — Flask Documentation (1.1.x) (palletsprojects.com)\n源码路由简析 尝试用flask搭建CTF训练平台，先参照CTFD整理了路由，具体功能的实现还没有分析（在看了在看了\n根目录： __init__.py class CTFdRequest(Request):劫持原始的Flask请求路径 class CTFdFlask(Flask):覆盖的Jinja构造函数设置一个自定义的jinja_environment class SandboxedBaseEnvironment(SandboxedEnvironment):模仿Flask BaseEnvironment的SandboxEnvironment。 class ThemeLoader(FileSystemLoader):主题结构和配置 #小收获 #关于import numpy 和 from numpy import * #不推荐使用import \\*，其没有明确地指出你使用了模块中的哪些类。 #并且，如果导入了一个与程序文件中其他东西同名的类，会引发难以发现的错误。 auth.py #确认配置模块 @auth.route(\"/confirm\", methods=[\"POST\", \"GET\"]) #注册模块 @auth.route(\"/register\", methods=[\"POST\", \"GET\"]) #登录模块 @auth.route(\"/login\", methods=[\"POST\", \"GET\"]) #注销模块 @auth.route(\"/logout\") #修改密码模块 @auth.route(\"/reset_password\", methods=[\"POST\", \"GET\"]) #配置 @auth.route(\"/oauth\") challenges.py #题目信息页 @challenges.route(\"/challenges\", methods=[\"GET\"]) config.py #具体配置信息 error.py #意外报错信息 scoreboard.py #计分板 @scoreboard.route(\"/scoreboard\") teams.py #队伍创建，加入，邀请等细节处理 @teams.route(\"/teams\") user.py #用户信息 @users.route(\"/users\") views.py #项目部署时比赛信息的设置 @views.route(\"/setup\", methods=[\"GET\", \"POST\"]) config.ini #配置文件，自带完整的注释 /admin： __init__.py #验证管理员身份 @admin.route(\"/admin\", methods=[\"GET\"]) #配置config.html @admin.route(\"/admin/plugins/\", methods=[\"GET\", \"POST\"]) #导入admin配置 @admin.route(\"/admin/import\", methods=[\"POST\"]) #导出admin配置 @admin.route(\"/admin/export\", methods=[\"GET\", \"POST\"]): #重置CTFD实例 @admin.route(\"/admin/reset\", methods=[\"GET\", \"POST\"]) challenges.py #challenges管理 @admin.route(\"/admin/challenges\") notifications.py # 公告管理 @admin.route(\"/admin/notifications\") pages.py #新建页面 scoreboard.py # 记分牌页面 @admin.route(\"/admin/scoreboard\") statistics.py # 后台统计数据 @admin.route(\"/admin/statistics\", methods=[\"GET\"]) submissions.py # 队伍提交记录的页面 @admin.route(\"/admin/submissions\", defaults={\"submission_type\": None}) teams.py #队伍信息详情 @admin.route(\"/admin/teams\") users.py #用户信息界面 @admin.route(\"/admin/users\") /admin 管理员路由实现 /api 函数功能实现 __init__.py # 添加命名空间 /cache 缓存清理 /constants ",
   "wordCount" : "216",
@@ -178,7 +178,7 @@ $ flask init-db #初始化数据库 Initialized the database. $ export FLASK_APP
                 </button>
             </span>
         </div>
-        <ul id="menu" onscroll="menu_on_scroll()">
+        <ul id="menu">
             <li>
                 <a href="https://inten.kro1lsec.com/archives" title="Archive">
                     <span>Archive</span>
@@ -207,7 +207,44 @@ $ flask init-db #初始化数据库 Initialized the database. $ export FLASK_APP
     </h1>
     <div class="post-meta">2 min
 </div>
-  </header> 
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <div class="details">Table of Contents</div>
+        </summary>
+        <div class="inner"><ul><ul>
+                <li>
+                    <a href="#flask" aria-label="FLASK">FLASK</a><ul>
+                        
+                <li>
+                    <a href="#helloword%e6%b5%8b%e8%af%95" aria-label="helloword测试">helloword测试</a></li>
+                <li>
+                    <a href="#%e5%ae%98%e6%96%b9%e6%96%87%e6%a1%a3%e5%8d%9a%e5%ae%a2" aria-label="官方文档博客">官方文档博客</a><ul>
+                        
+                <li>
+                    <a href="#%e8%bf%90%e8%a1%8c" aria-label="运行">运行</a></li>
+                <li>
+                    <a href="#%e6%b5%8b%e8%af%95" aria-label="测试">测试</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%9e%84%e5%bb%ba%e5%92%8c%e5%ae%89%e8%a3%85" aria-label="构建和安装">构建和安装</a></li></ul>
+                </li></ul>
+                    
+                <li>
+                    <a href="#%e6%ba%90%e7%a0%81%e8%b7%af%e7%94%b1%e7%ae%80%e6%9e%90" aria-label="源码路由简析">源码路由简析</a><ul>
+                        
+                <li>
+                    <a href="#%e6%a0%b9%e7%9b%ae%e5%bd%95" aria-label="根目录：">根目录：</a></li>
+                <li>
+                    <a href="#admin" aria-label="/admin：">/admin：</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
   <div class="post-content"><p>源地址：<a href="https://github.com/CTFd/CTFd">CTFd</a></p>
 <p>框架：<a href="https://flask.palletsprojects.com/en/1.1.x/">Flask</a></p>
 <h3 id="flask">FLASK<a hidden class="anchor" aria-hidden="true" href="#flask">#</a></h3>
@@ -354,10 +391,16 @@ __init__<span style="color:#f92672">.</span>py
 <span style="color:#f92672">/</span>cache <span style="color:#960050;background-color:#1e0010">缓存清理</span>
 <span style="color:#f92672">/</span>constants
 </code></pre></div>
-</div>
-  <footer class="post-footer"><div class="share-buttons">
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://inten.kro1lsec.com/tags/python/">Python</a></li>
+      <li><a href="https://inten.kro1lsec.com/tags/flask/">FLASK</a></li>
+    </ul>
+<div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share CTFD源码简析 on twitter"
-        href="https://twitter.com/intent/tweet/?text=CTFD%e6%ba%90%e7%a0%81%e7%ae%80%e6%9e%90&amp;url=https%3a%2f%2finten.kro1lsec.com%2fpost%2fctfd%25E6%25BA%2590%25E7%25A0%2581%25E7%25AE%2580%25E6%259E%2590%2f&amp;hashtags=">
+        href="https://twitter.com/intent/tweet/?text=CTFD%e6%ba%90%e7%a0%81%e7%ae%80%e6%9e%90&amp;url=https%3a%2f%2finten.kro1lsec.com%2fpost%2fctfd%25E6%25BA%2590%25E7%25A0%2581%25E7%25AE%2580%25E6%259E%2590%2f&amp;hashtags=Python%2cFLASK">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
@@ -405,7 +448,6 @@ __init__<span style="color:#f92672">.</span>py
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
-    <span>&middot;</span>
     
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
@@ -417,14 +459,10 @@ __init__<span style="color:#f92672">.</span>py
 </a>
 
 <script>
-    window.onload = function () {
-        if (localStorage.getItem("menu-scroll-position")) {
-            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
-        }
-    }
-
-    function menu_on_scroll() {
-        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -471,43 +509,6 @@ __init__<span style="color:#f92672">.</span>py
         }
     })
 
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerText = 'copy';
-
-        function copyingDone() {
-            copybutton.innerText = 'copied!';
-            setTimeout(() => {
-                copybutton.innerText = 'copy';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        container.appendChild(copybutton);
-    });
 </script>
 </body>
 

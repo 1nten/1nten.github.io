@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>[CSAPPLAB]Bomb Lab | intenのblog🍦</title>
-<meta name="keywords" content="" />
+<meta name="keywords" content="CSAPPLAB" />
 <meta name="description" content="总体感觉考查对汇编的理解和熟练度
 phase_1 400e37: 48 89 c7 mov %rax,%rdi //第一个参数 400e3a: e8 a1 00 00 00 callq 400ee0 &lt;phase_1&gt;...0x0000000000400ee0 &lt;&#43;0&gt;: sub $0x8,%rsp 0x0000000000400ee4 &lt;&#43;4&gt;: mov $0x402400,%esi //第二个参数0x0000000000400ee9 &lt;&#43;9&gt;: callq 0x401338 &lt;strings_not_equal&gt;让参数一，二相等即可
 Border relations with Canada have never been better.
@@ -17,7 +17,7 @@ phase_3 尝试分析时，发现jcc指令经常弄混，又回去复习了一遍
 cmp oprd1,oprd2 &#43; JNBE/JA 无符号cmp oprd1,oprd2 &#43; JNLE/JG 有符号oprd1&gt;oprd2时跳转JZ/JE 相等则跳转代码中0x402470&#43;8*第一参数打印内存信息，可以看到相应的跳转地址，已经对应的eax值应该是多少，也就是第二数字的应该的取值。打印内存信息的命令行为jmp QWORD PTR [rax*8&#43;0x402470]">
 <meta name="author" content="">
 <link rel="canonical" href="https://inten.kro1lsec.com/post/csapplabbomb-lab/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css" integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.fe63ae84f306727c713665eb03a6c71ec6c611434c8182ba17ba7e7d26a979e9.css" integrity="sha256-/mOuhPMGcnxxNmXrA6bHHsbGEUNMgYK6F7p&#43;fSapeek=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
@@ -82,7 +82,7 @@ cmp oprd1,oprd2 &#43; JNBE/JA 无符号cmp oprd1,oprd2 &#43; JNLE/JG 有符号
   "name": "[CSAPPLAB]Bomb Lab",
   "description": "总体感觉考查对汇编的理解和熟练度\nphase_1 400e37: 48 89 c7 mov %rax,%rdi //第一个参数 400e3a: e8 a1 00 00 00 callq 400ee0 \u0026lt;phase_1\u0026gt;\r...\r0x0000000000400ee0 \u0026lt;+0\u0026gt;: sub $0x8,%rsp 0x0000000000400ee4 \u0026lt;+4\u0026gt;: mov $0x402400,%esi //第二个参数\r0x0000000000400ee9 \u0026lt;+9\u0026gt;: callq 0x401338 \u0026lt;strings_not_equal\u0026gt;\r让参数一，二相等即可\nBorder relations with Canada have never been better.\nphase_2 利用callq 0x40145c \u0026lt;read_six_numbers\u0026gt;确定字符串格式，\n利用0000000000400F1A add eax, eax让后边的数翻倍\n字符串为“1 2 4 8 16 32”\nphase_3 尝试分析时，发现jcc指令经常弄混，又回去复习了一遍\ncmp oprd1,oprd2 + JNBE/JA 无符号\rcmp oprd1,oprd2 + JNLE/JG 有符号\roprd1\u0026gt;oprd2时跳转\rJZ/JE 相等则跳转\r代码中0x402470+8*第一参数打印内存信息，可以看到相应的跳转地址，已经对应的eax值应该是多少，也就是第二数字的应该的取值。打印内存信息的命令行为jmp QWORD PTR [rax*8+0x402470]",
   "keywords": [
-    
+    "CSAPPLAB"
   ],
   "articleBody": "总体感觉考查对汇编的理解和熟练度\nphase_1 400e37: 48 89 c7 mov %rax,%rdi //第一个参数 400e3a: e8 a1 00 00 00 callq 400ee0 \r...\r0x0000000000400ee0 : sub $0x8,%rsp 0x0000000000400ee4 : mov $0x402400,%esi //第二个参数\r0x0000000000400ee9 : callq 0x401338 \r让参数一，二相等即可\nBorder relations with Canada have never been better.\nphase_2 利用callq 0x40145c 确定字符串格式，\n利用0000000000400F1A add eax, eax让后边的数翻倍\n字符串为“1 2 4 8 16 32”\nphase_3 尝试分析时，发现jcc指令经常弄混，又回去复习了一遍\ncmp oprd1,oprd2 + JNBE/JA 无符号\rcmp oprd1,oprd2 + JNLE/JG 有符号\roprd1oprd2时跳转\rJZ/JE 相等则跳转\r代码中0x402470+8*第一参数打印内存信息，可以看到相应的跳转地址，已经对应的eax值应该是多少，也就是第二数字的应该的取值。打印内存信息的命令行为jmp QWORD PTR [rax*8+0x402470]\n0 207 ===》x/x (int *)0x402470 打印得到地址400f7c\r1 311 ===》x/x (int *)0x402478 打印得到地址400fb9\r2 707 ===》x/x (int *)0x402480 打印得到地址400f83\r3 256 ===》x/x (int *)0x402488 打印得到地址400f8a\r4 389 ===》x/x (int *)0x402490 打印得到地址400f91\r5 206 ===》x/x (int *)0x402498 打印得到地址400f98\r6 682 ===》x/x (int *)0x4024a0 打印得到地址400f9f\r7 327 ===》x/x (int *)0x4024a8 打印得到地址400fa6\r phase_4 ; __unwind {\rsub rsp, 18h\rlea rcx, [rsp+18h+var_C]\rlea rdx, [rsp+18h+var_10]\rmov esi, offset aDD ; \"%d %d\"\rmov eax, 0\rcall ___isoc99_sscanf\rcmp eax, 2 //需要输入2个数字\rjnz short loc_401035 //JNZ/JNE 不为0跳转,不相等跳转 if (i != j);if (i != 0);\rcmp [rsp+18h+var_10], 0Eh\rjbe short loc_40103A\r//JBE/JNA if (i 分析函数可知第二个参数的为0\n密码为0 0\nphase_5 两种不同的汇编看得还不习惯，贴了ida中的写法\n401089: eb 47 jmp 4010d2 \r000000000040108B movzx ecx, byte ptr [rbx+rax]\r40108b: 0f b6 0c 03 movzbl (%rbx,%rax,1),%ecx //将输入字符串的第一个字符给ecx\r40108f: 88 0c 24 mov %cl,(%rsp)\r401092: 48 8b 14 24 mov (%rsp),%rdx\r401096: 83 e2 0f and $0xf,%edx //取字符的最低4位到edx，大小从0~15\r0000000000401099 movzx edx, ds:array_3449[rdx]\r401099: 0f b6 92 b0 24 40 00 movzbl 0x4024b0(%rdx),%edx //根据rdx中的数字，从0x4024b0(%rdx)中取字符\r//maduiersnfotvbylSo you think you can stop the bomb with ctrl-c, do you?\r4010a0: 88 54 04 10 mov %dl,0x10(%rsp,%rax,1) //存储取出的字符\r4010a4: 48 83 c0 01 add $0x1,%rax //处理次数+1\r4010a8: 48 83 f8 06 cmp $0x6,%rax //判断处理次数是否到6次\r4010ac: 75 dd jne 40108b \r4010ae: c6 44 24 16 00 movb $0x0,0x16(%rsp) //为新创建的字符串添加结尾符“/0”\r4010b3: be 5e 24 40 00 mov $0x40245e,%esi // flyers\r4010b8: 48 8d 7c 24 10 lea 0x10(%rsp),%rdi //比较新创建的字符串与flyers是否相等\r4010bd: e8 76 02 00 00 callq 401338 \r4010c2: 85 c0 test %eax,%eax\r4010c4: 74 13 je 4010d9 \r4010c6: e8 6f 03 00 00 callq 40143a \r00000000004010CB align 10h\r4010cb: 0f 1f 44 00 00 nopl 0x0(%rax,%rax,1)\r4010d0: eb 07 jmp 4010d9 \r4010d2: b8 00 00 00 00 mov $0x0,%eax\r4010d7: eb b2 jmp 40108b \rpwndbg p/s (char*)0x4024b0 $1 = 0x4024b0  \"maduiersnfotvbylSo you think you can stop the bomb with ctrl-c, do you?\" f（9），l（15），y（14），e（5），r（6），s（7）\n答案为：\nionefg（0x49，0x4f,0x4E,0x45,0x46,0x47）\rphase_6 callq 40145c \n我们需要输入的6位数字，且都小于6\nwhile循环\n401128: 41 83 c4 01 add $0x1,%r12d //r12d计数\r40112c: 41 83 fc 06 cmp $0x6,%r12d //计数小于6\r401130: 74 21 je 401153 \r401132: 44 89 e3 mov %r12d,%ebx\r401135: 48 63 c3 movslq %ebx,%rax\r401138: 8b 04 84 mov (%rsp,%rax,4),%eax\r40113b: 39 45 00 cmp %eax,0x0(%rbp) //==判断每个数字都不等于 0\r40113e: 75 05 jne 401145 \r401140: e8 f5 02 00 00 callq 40143a \r401145: 83 c3 01 add $0x1,%ebx\r401148: 83 fb 05 cmp $0x5,%ebx\r40114b: 7e e8 jle 401135 \r要用7减完的序列做索引从链表取数，比较大小。从大到小排序。\n3 4 5 6 1 2\n用7减完\n4 3 2 1 6 5\nsecret_phase 递归调用人逆傻了，参考丛丛的脚本爆破\n大致思路是定位到if语句中参数的地址6030F0，再照着原函数的逻辑爆破。\ndata = '''0x6030f0,0x0000000000000024,0x0000000000603110 0x603100,0x0000000000603130,0x0000000000000000 0x603110,0x0000000000000008,0x0000000000603190 0x603120,0x0000000000603150,0x0000000000000000 0x603130,0x0000000000000032,0x0000000000603170 0x603140,0x00000000006031b0,0x0000000000000000 0x603150,0x0000000000000016,0x0000000000603270 0x603160,0x0000000000603230,0x0000000000000000 0x603170,0x000000000000002d,0x00000000006031d0 0x603180,0x0000000000603290,0x0000000000000000 0x603190,0x0000000000000006,0x00000000006031f0 0x6031a0,0x0000000000603250,0x0000000000000000 0x6031b0,0x000000000000006b,0x0000000000603210 0x6031c0,0x00000000006032b0,0x0000000000000000 0x6031d0,0x0000000000000028,0x0000000000000000 0x6031e0,0x0000000000000000,0x0000000000000000 0x6031f0,0x0000000000000001,0x0000000000000000 0x603200,0x0000000000000000,0x0000000000000000 0x603210,0x0000000000000063,0x0000000000000000 0x603220,0x0000000000000000,0x0000000000000000 0x603230,0x0000000000000023,0x0000000000000000 0x603240,0x0000000000000000,0x0000000000000000 0x603250,0x0000000000000007,0x0000000000000000 0x603260,0x0000000000000000,0x0000000000000000 0x603270,0x0000000000000014,0x0000000000000000 0x603280,0x0000000000000000,0x0000000000000000 0x603290,0x000000000000002f,0x0000000000000000 0x6032a0,0x0000000000000000,0x0000000000000000 0x6032b0,0x00000000000003e9,0x0000000000000000 0x6032c0,0x0000000000000000,0x0000000000000000''' data_dict = {} fin_dict = {} def data_collect(): data_list = data.split(\"\\n\") last_try = 0 for i in data_list: #print i x = i.split(\",\") x = [int(i,16) for i in x] if x[1]0x600000 and x[1]0: data_dict[x[0]] = [x[1],x[2],0] last_try = x[0] else: data_dict[last_try][2] = x[1] for k in data_dict.values(): if k[1] == 0: if k[2] == 0: fin_dict[k[0]] = [0,0] else: fin_dict[k[0]] = [0,data_dict[k[2]][0]] else: if k[2] == 0: fin_dict[k[0]] = [data_dict[k[1]][0],0] else: fin_dict[k[0]] = [data_dict[k[1]][0],data_dict[k[2]][0]] data_collect() def func(num,i): if num == 0: return -1 if i == num: result = 0 return result if inum: next_num = fin_dict[num][1] result = func(next_num,i) result = result+result+1 return result if inum: next_num = fin_dict[num][0] result = func(next_num,i) result *= 2 return result for i in range(1000): if func(0x24,i) == 2: print i ",
   "wordCount" : "660",
@@ -181,7 +181,7 @@ cmp oprd1,oprd2 &#43; JNBE/JA 无符号cmp oprd1,oprd2 &#43; JNLE/JG 有符号
                 </button>
             </span>
         </div>
-        <ul id="menu" onscroll="menu_on_scroll()">
+        <ul id="menu">
             <li>
                 <a href="https://inten.kro1lsec.com/archives" title="Archive">
                     <span>Archive</span>
@@ -210,7 +210,32 @@ cmp oprd1,oprd2 &#43; JNBE/JA 无符号cmp oprd1,oprd2 &#43; JNLE/JG 有符号
     </h1>
     <div class="post-meta">April 15, 2021&nbsp;·&nbsp;4 min
 </div>
-  </header> 
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <div class="details">Table of Contents</div>
+        </summary>
+        <div class="inner"><ul>
+                <li>
+                    <a href="#phase_1" aria-label="phase_1">phase_1</a></li>
+                <li>
+                    <a href="#phase_2" aria-label="phase_2">phase_2</a></li>
+                <li>
+                    <a href="#phase_3" aria-label="phase_3">phase_3</a></li>
+                <li>
+                    <a href="#phase_4" aria-label="phase_4">phase_4</a></li>
+                <li>
+                    <a href="#phase_5" aria-label="phase_5">phase_5</a></li>
+                <li>
+                    <a href="#phase_6" aria-label="phase_6">phase_6</a></li>
+                <li>
+                    <a href="#secret_phase" aria-label="secret_phase">secret_phase</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
   <div class="post-content"><p><img loading="lazy" src="https://www.kro1lsec.com:442/images/2021/05/26/20210526141822.png" alt="image-20210321154547297"  />
 </p>
 <p>总体感觉考查对汇编的理解和熟练度</p>
@@ -404,10 +429,15 @@ data_collect()
 	<span style="color:#66d9ef">if</span> func(<span style="color:#ae81ff">0x24</span>,i) <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>:
 		<span style="color:#66d9ef">print</span> i
 </code></pre></div>
-</div>
-  <footer class="post-footer"><div class="share-buttons">
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://inten.kro1lsec.com/tags/csapplab/">CSAPPLAB</a></li>
+    </ul>
+<div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share [CSAPPLAB]Bomb Lab on twitter"
-        href="https://twitter.com/intent/tweet/?text=%5bCSAPPLAB%5dBomb%20Lab&amp;url=https%3a%2f%2finten.kro1lsec.com%2fpost%2fcsapplabbomb-lab%2f&amp;hashtags=">
+        href="https://twitter.com/intent/tweet/?text=%5bCSAPPLAB%5dBomb%20Lab&amp;url=https%3a%2f%2finten.kro1lsec.com%2fpost%2fcsapplabbomb-lab%2f&amp;hashtags=CSAPPLAB">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
@@ -455,7 +485,6 @@ data_collect()
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
-    <span>&middot;</span>
     
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
@@ -467,14 +496,10 @@ data_collect()
 </a>
 
 <script>
-    window.onload = function () {
-        if (localStorage.getItem("menu-scroll-position")) {
-            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
-        }
-    }
-
-    function menu_on_scroll() {
-        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -521,43 +546,6 @@ data_collect()
         }
     })
 
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerText = 'copy';
-
-        function copyingDone() {
-            copybutton.innerText = 'copied!';
-            setTimeout(() => {
-                copybutton.innerText = 'copy';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        container.appendChild(copybutton);
-    });
 </script>
 </body>
 

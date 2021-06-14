@@ -1,18 +1,65 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>intenのblog🍦</title>
     <link>https://inten.kro1lsec.com/</link>
     <description>Recent content on intenのblog🍦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Jun 2021 15:07:34 +0800</lastBuildDate><atom:link href="https://inten.kro1lsec.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 13 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://inten.kro1lsec.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[TinyKernel]Lab0</title>
-      <link>https://inten.kro1lsec.com/post/tinykernellab0/</link>
+      <title>[uCore]Lab1</title>
+      <link>https://inten.kro1lsec.com/post/ucorelab1/</link>
+      <pubDate>Sun, 13 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/ucorelab1/</guid>
+      <description>[练习1] 练习 操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
+ 设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，
+lab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试
+debug-mon: 使用qemu的monitor和gdb配合调试
+qemu: 使用qemu混合模式
+qemu-mon:使用qemu monitor模式
+qemu-nox:使用qemu 命令行模式
+一个被系统认为是符合规范的硬盘主引导扇区的特征是什么?
+从/tool/sign.c的代码来看，一个磁盘主引导扇区只有512字节。且 第510个（倒数第二个）字节是0x55， 第511个（倒数第一个）字节是0xAA。
+[练习2] 使用qemu执行并调试lab1中的软件。
+单步调试和查看BIOS代码
+修改tools/gdbinit为
+file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue   gdb脚本中的define hook-stop .</description>
+    </item>
+    
+    <item>
+      <title>[IOT]简易毫米波雷达开发小记</title>
+      <link>https://inten.kro1lsec.com/post/iot%E7%AE%80%E6%98%93%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/iot%E7%AE%80%E6%98%93%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/</guid>
+      <description>[IOT]简易毫米波雷达开发小记 开发环境 软件
+Visual Studio 2019
+EasyX_2018春分版
+FlyMcu.exe
+Windows串口调试工具.exe
+硬件
+电脑（Windows）
+定制的毫米波雷达电路板
+Micro USB数据线
+线路连接 用Micro USB数据线连接电路板和电脑即可
+电路板背面黑黑的正方形是主要的传感器
+部分电脑会缺少CP210x_USB.exe驱动,下载安装即可
+安装成功后，设备管理器就能识别出接上的电路板
+串口烧写 打开FlyMcu.exe按照下图配置开始编程，等待几分钟后完成。
+然后再打开Windows串口调试工具，将电路板背面的传感器朝上，将手机之类的物品放置到上方15cm处。下图中绿色的数字即为雷达检测到的信息。但是这种显示方式很不直观，接下来我们编写可视化窗口。
+可视化窗口编写 先配置VS2019+EasyX的开发环境VS2019安装EasyX详细过程
+如果缺少SDK，按照提示下载安装即可
+#include &amp;#34;pch.h&amp;#34;#include &amp;lt;Windows.h&amp;gt;#include &amp;lt;memory.h&amp;gt;#include &amp;lt;string.h&amp;gt;#include &amp;lt;winsock.h&amp;gt;#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;stdint.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;#include &amp;lt;windows.h&amp;gt; #include&amp;lt;graphics.h&amp;gt; //如果您需要在vc及vs环境中使用graphics.h的功能 您可以下载EasyX图形库#include &amp;lt;conio.h&amp;gt;#define X0 10 #define Y0 860 #define BUFSIZE 512 #pragma comment(lib,&amp;#34;ws2_32.lib&amp;#34;)  using namespace std; int port_setting(); HANDLE hCom; //将一个任务切换到指定的线程中去执行  int main(void) { if (!(port_setting())) { printf(&amp;#34;串口初始化异常&amp;#34;); } DWORD wCount; //定义一个32位的无符号整数，用到头文件#include &amp;lt;windows.</description>
+    </item>
+    
+    <item>
+      <title>[uCore]Lab0</title>
+      <link>https://inten.kro1lsec.com/post/ucorelab0/</link>
       <pubDate>Sun, 06 Jun 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/tinykernellab0/</guid>
+      <guid>https://inten.kro1lsec.com/post/ucorelab0/</guid>
       <description>gcc #安装sudo apt-get install build-essential#编译$ gcc -Wall hello.c -o hello该命令将文件‘hello.c’中的代码编译为机器码并存储在可执行文件 ‘hello’中。机器码的文件名是通过 -o 选项指定的。该选项通常作为命令行中的最后一个参数。如果被省略，输出文件默认为 ‘a.out’。
 选项 -Wall 开启编译器几乎所有常用的警告，默认情况下GCC 不会产生任何警告信息。
 AT&amp;amp;T汇编基本语法 Ucore中用到的是AT&amp;amp;T格式的汇编，与Intel格式的汇编有一些不同。二者语法上主要有以下几个不同：
@@ -169,18 +216,12 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
     </item>
     
     <item>
-      <title>[工具]Github初入</title>
-      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7github%E5%88%9D%E5%85%A5/</link>
-      <pubDate>Wed, 10 Mar 2021 15:07:34 +0800</pubDate>
+      <title>[工具]Ollydbg</title>
+      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ollydbg/</link>
+      <pubDate>Thu, 11 Mar 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7github%E5%88%9D%E5%85%A5/</guid>
-      <description>Git基本操作 初次使用需要配置好邮箱用户名，ssh或token
-https://docs.github.com/cn/github/getting-started-with-github/quickstart
-大致流程 1.链接
-2.增删改查
-3.提交更改
-4.提交分支
-echo &amp;#34;# KroCTF&amp;#34; &amp;gt;&amp;gt; README.md git init git add README.md git commit -m &amp;#34;first commit&amp;#34; git branch -M main git remote add origin https://github.com/1nten/KroCTF.git git push -u origin main 配置 $ git config --global user.email &amp;#34;email@example.com&amp;#34; $ git config --global user.name &amp;#34;Mona Lisa&amp;#34; $ git config --global user.name $ git config --global user.email 基础信息 //显示工作目录和暂存区的状态 $ git status //显示日志（项目历史的信息） $ git log //将分支new1同步到云端GitHub $ git push origin new1 //克隆 $ git clone https://github.</description>
+      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ollydbg/</guid>
+      <description>简介 快捷键  Ctrl+F1：打开与所选行内符号相关的 API 帮助文档。 F2：在光标选定位置按 F2 键设置或取消断点。 Shift+F2：在首个选择命令设置条件断点。 Ctrl+F2：重新启动被调试程序。 F4：运行到光标选定位置处暂停。 Shift+F4：设置记录断点。 F5：最大化当前窗口。 Ctrl+F5：打开与首个选择的命令相对应的源文件。 Alt+F5：让 OllyDbg 窗口总在最前面。 F6：切换到下一个窗口。 Shift+F6：切换到前一个窗口。 F7：单步步入：每次执行一条指令，遇到 call 等子程序时进入其中。 Shift+F7：与 F7 相同，但当被调试程序发生异常而中止时，调试器首先尝试步入被调试程序指定的异常处理。 Ctrl+F7：自动步入，在所有的函数调用中一条一条地执行命令。 Alt+F7：转到上一个找到的参考。 F8：单步步过，每次执行一条指令，遇到 call 等子程序时不进入其中。 Shift+F8：与 F8 相同，但当被调试程序发生异常而中止时，调试器首先尝试步过被调试程序指定的异常处理。 Ctrl+F8：自动步过，一条一条执行命令，但不进入函数内部调用。 Alt+F8：转到下一个找到的参考。 F9：运行，被调试软件继续运行，直到遇到下一个断点。 Shift+F9：与 F9 相同，但当被调试程序发生异常而中止时，调试器首先尝试执行被调试程序指定的异常处理。 Ctrl+F9：执行到返回，在执行到一个 ret 指令时暂停，常用于从当前函数快速返回到上一个函数。 Alt+F9：执行到用户代码，可用于从系统部分快速返回到被调试程序部分。 F10：打开与当前窗口或面板相关的快捷菜单。 Ctrl+F11：Run 跟踪步入，一条一条执行命令，进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 F12：停止执行，暂停所有线程。 Ctrl+F12：Run 跟踪步过，一条一条执行命令，不进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 Alt+F3：关闭当前窗口。 Alt+B：显示断点窗口。 Alt+C：显示 CPU 窗口。 Alt+E：显示模块列表。 Alt+K：显示调用栈。 Alt+L：显示日志窗口。 Alt+M：显示内存窗口。 Alt+O：显示选项对话框。 Alt+Backspace：撤销对所选部分的修改。 Ctrl+A：分析当前模块的代码段。 Ctrl+B：开始二进制搜索。 Ctrl+E：以十六进制格式编辑所选内容。 Ctrl+F：开始命令搜索。 Ctrl+G：转到某地址。 Ctrl+J：列出所有的涉及到该位置的调用和跳转。 Ctrl+K：查看与当前函数相关的调用树。 Ctrl+L：搜索下一个。 Ctrl+N：打开当前模块的名称列表。 Ctrl+O：扫描对象文件。 Ctrl+P：显示补丁窗口。 Ctrl+R：搜索所选命令的参考。 Ctrl+S：命令搜索。 Ctrl+T：打开“暂停Run跟踪”对话框。 Esc：停止自动执行或跟踪。 Enter：将选中的命令添加到命令历史，如果当前命令是一个跳转或者函数，则进入到目的地址。 Backspace：如果分析器将代码误识为数据，可以将选中部分的自动分析信息移除。 *：转到原始位置 Ctrl+*：指定新的起始位置。 +：如果 Run 跟踪没有激活，则根据历史命令跳到下一条运行过命令的地方；否则跳到 Run 跟踪的下一个记录。 Ctrl++：跳到前一个函数的开始处。 -：如果 Run 跟踪没有激活，则根据历史命令跳到前一条运行过命令的地方；否则跳到 Run 跟踪的前一个记录。 Ctrl+-：跳到下一个函数的开始处。 Space：修改命令。 :：添加标签。 ;：添加注释。  -（减号）：回看之前单步跟踪的代码</description>
     </item>
     
     <item>
@@ -216,18 +257,24 @@ d 添加成员
     </item>
     
     <item>
-      <title>[工具]Ollydbg</title>
-      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ollydbg/</link>
-      <pubDate>Wed, 10 Mar 2021 15:07:34 +0800</pubDate>
+      <title>[工具]Github初入</title>
+      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7github%E5%88%9D%E5%85%A5/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ollydbg/</guid>
-      <description>简介 快捷键  Ctrl+F1：打开与所选行内符号相关的 API 帮助文档。 F2：在光标选定位置按 F2 键设置或取消断点。 Shift+F2：在首个选择命令设置条件断点。 Ctrl+F2：重新启动被调试程序。 F4：运行到光标选定位置处暂停。 Shift+F4：设置记录断点。 F5：最大化当前窗口。 Ctrl+F5：打开与首个选择的命令相对应的源文件。 Alt+F5：让 OllyDbg 窗口总在最前面。 F6：切换到下一个窗口。 Shift+F6：切换到前一个窗口。 F7：单步步入：每次执行一条指令，遇到 call 等子程序时进入其中。 Shift+F7：与 F7 相同，但当被调试程序发生异常而中止时，调试器首先尝试步入被调试程序指定的异常处理。 Ctrl+F7：自动步入，在所有的函数调用中一条一条地执行命令。 Alt+F7：转到上一个找到的参考。 F8：单步步过，每次执行一条指令，遇到 call 等子程序时不进入其中。 Shift+F8：与 F8 相同，但当被调试程序发生异常而中止时，调试器首先尝试步过被调试程序指定的异常处理。 Ctrl+F8：自动步过，一条一条执行命令，但不进入函数内部调用。 Alt+F8：转到下一个找到的参考。 F9：运行，被调试软件继续运行，直到遇到下一个断点。 Shift+F9：与 F9 相同，但当被调试程序发生异常而中止时，调试器首先尝试执行被调试程序指定的异常处理。 Ctrl+F9：执行到返回，在执行到一个 ret 指令时暂停，常用于从当前函数快速返回到上一个函数。 Alt+F9：执行到用户代码，可用于从系统部分快速返回到被调试程序部分。 F10：打开与当前窗口或面板相关的快捷菜单。 Ctrl+F11：Run 跟踪步入，一条一条执行命令，进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 F12：停止执行，暂停所有线程。 Ctrl+F12：Run 跟踪步过，一条一条执行命令，不进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 Alt+F3：关闭当前窗口。 Alt+B：显示断点窗口。 Alt+C：显示 CPU 窗口。 Alt+E：显示模块列表。 Alt+K：显示调用栈。 Alt+L：显示日志窗口。 Alt+M：显示内存窗口。 Alt+O：显示选项对话框。 Alt+Backspace：撤销对所选部分的修改。 Ctrl+A：分析当前模块的代码段。 Ctrl+B：开始二进制搜索。 Ctrl+E：以十六进制格式编辑所选内容。 Ctrl+F：开始命令搜索。 Ctrl+G：转到某地址。 Ctrl+J：列出所有的涉及到该位置的调用和跳转。 Ctrl+K：查看与当前函数相关的调用树。 Ctrl+L：搜索下一个。 Ctrl+N：打开当前模块的名称列表。 Ctrl+O：扫描对象文件。 Ctrl+P：显示补丁窗口。 Ctrl+R：搜索所选命令的参考。 Ctrl+S：命令搜索。 Ctrl+T：打开“暂停Run跟踪”对话框。 Esc：停止自动执行或跟踪。 Enter：将选中的命令添加到命令历史，如果当前命令是一个跳转或者函数，则进入到目的地址。 Backspace：如果分析器将代码误识为数据，可以将选中部分的自动分析信息移除。 *：转到原始位置 Ctrl+*：指定新的起始位置。 +：如果 Run 跟踪没有激活，则根据历史命令跳到下一条运行过命令的地方；否则跳到 Run 跟踪的下一个记录。 Ctrl++：跳到前一个函数的开始处。 -：如果 Run 跟踪没有激活，则根据历史命令跳到前一条运行过命令的地方；否则跳到 Run 跟踪的前一个记录。 Ctrl+-：跳到下一个函数的开始处。 Space：修改命令。 :：添加标签。 ;：添加注释。  -（减号）：回看之前单步跟踪的代码</description>
+      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7github%E5%88%9D%E5%85%A5/</guid>
+      <description>Git基本操作 初次使用需要配置好邮箱用户名，ssh或token
+https://docs.github.com/cn/github/getting-started-with-github/quickstart
+大致流程 1.链接
+2.增删改查
+3.提交更改
+4.提交分支
+echo &amp;#34;# KroCTF&amp;#34; &amp;gt;&amp;gt; README.md git init git add README.md git commit -m &amp;#34;first commit&amp;#34; git branch -M main git remote add origin https://github.com/1nten/KroCTF.git git push -u origin main 配置 $ git config --global user.email &amp;#34;email@example.com&amp;#34; $ git config --global user.name &amp;#34;Mona Lisa&amp;#34; $ git config --global user.name $ git config --global user.email 基础信息 //显示工作目录和暂存区的状态 $ git status //显示日志（项目历史的信息） $ git log //将分支new1同步到云端GitHub $ git push origin new1 //克隆 $ git clone https://github.</description>
     </item>
     
     <item>
-      <title>[基础]C/C&#43;&#43;</title>
+      <title>C/C&#43;&#43;基础</title>
       <link>https://inten.kro1lsec.com/post/%E5%9F%BA%E7%A1%80c/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
       
       <guid>https://inten.kro1lsec.com/post/%E5%9F%BA%E7%A1%80c/</guid>
       <description>裸函数 void __declspec(naked) Function() //编译器不执行格外操作{__asm //在c中调用汇编格式__asm{}{ret } //需要手动写ret才能正常运行}常见的几种调用约定：
@@ -246,27 +293,9 @@ __fastcall:2个参数以内时，直接用寄存器存取数据，提高执行�
     </item>
     
     <item>
-      <title>[工具]Docker</title>
-      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7docker/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7docker/</guid>
-      <description>Docker
-基本概念 Docker 包括三个基本概念
- 镜像（Image） 容器（Container） 仓库（Repository）  简单理解：
-镜像（Image）和容器（Container）== 面向对象中的 类 和 实例 。
-镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。
-镜像 导入镜像 先变成管理员再导入
-$sudo su $cat ubuntu17.04x86.tar | docker import - ubuntu17.04x86 获取镜像 docker pull。其命令格式为：
-$ docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签] 比如：省略了仓库地址，默认从官网获取
-$ docker pull ubuntu:18.04 列出镜像 docker image ls
-$ docker image ls REPOSITORY TAG IMAGE ID CREATED SIZE redis latest 5f515359c7f8 5 days ago 183 MB nginx latest 05a60462f8ba 5 days ago 181 MB mongo 3.</description>
-    </item>
-    
-    <item>
       <title>[工具]GDB</title>
       <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7gdb/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 05 Mar 2021 00:00:00 +0000</pubDate>
       
       <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7gdb/</guid>
       <description>小记 GDB&amp;amp;Pwndbg run：r 开始执行 continue：c 继续执行，到下一个断点 stack 24 查看栈中24个单位的数据 vmmap 虚拟内存的空间分布 gdb link plt 查看plt表 got 查看got表 x/20 gxb info b 查看断点 start 停留在main函数的第一行，如果没有，则停留在入口 backtrace 显示函数调用栈 return 跳出当前函数 gdb 里面 单步调试分两种一种是C语言级别的单步n一种是汇编指令级别的单步nini按一次 之后直接回车就好了gdb自动重复指令的 next：n 单步步过 ni： 汇编指令级别的单步步过
@@ -283,6 +312,23 @@ pwndbg&amp;gt; vmmap
 简单的偏移计算示例 推断为esp寻址</description>
     </item>
     
+    <item>
+      <title>[工具]Docker</title>
+      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7docker/</link>
+      <pubDate>Tue, 02 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7docker/</guid>
+      <description>Docker
+基本概念 Docker 包括三个基本概念
+ 镜像（Image） 容器（Container） 仓库（Repository）  简单理解：
+镜像（Image）和容器（Container）== 面向对象中的 类 和 实例 。
+镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。
+镜像 导入镜像 先变成管理员再导入
+$sudo su $cat ubuntu17.04x86.tar | docker import - ubuntu17.04x86 获取镜像 docker pull。其命令格式为：
+$ docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签] 比如：省略了仓库地址，默认从官网获取
+$ docker pull ubuntu:18.04 列出镜像 docker image ls
+$ docker image ls REPOSITORY TAG IMAGE ID CREATED SIZE redis latest 5f515359c7f8 5 days ago 183 MB nginx latest 05a60462f8ba 5 days ago 181 MB mongo 3.</description>
+    </item>
     
     
     <item>
@@ -299,7 +345,6 @@ helloword测试 创建hello.py
 from flask import Flask app = Flask(__name__) @app.route(&amp;#39;/&amp;#39;) def hello_world(): return &amp;#39;Hello, World!&amp;#39; $ export FLASK_APP=hello.py $ export FLASK_ENV=development #调试模式 $ python3 -m flask run 官方文档博客 运行 新建项目flaskr
 $ flask init-db #初始化数据库 Initialized the database. $ export FLASK_APP=flaskr #linux $ export FLASK_ENV=development $ flask run # cmd &amp;gt; set FLASK_APP=flaskr &amp;gt; set FLASK_ENV=development &amp;gt; flask run #PowerShell &amp;gt; $env:FLASK_APP = &amp;#34;flaskr&amp;#34; &amp;gt; $env:FLASK_ENV = &amp;#34;development&amp;#34; &amp;gt; flask run 测试 pytest tests 构建和安装 Deploy to Production — Flask Documentation (1.</description>
     </item>
-    
     
     
   </channel>

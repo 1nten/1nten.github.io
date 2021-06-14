@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>FLASK on intenのblog🍦</title>
+    <link>https://inten.kro1lsec.com/tags/flask/</link>
+    <description>Recent content in FLASK on intenのblog🍦</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://inten.kro1lsec.com/tags/flask/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CTFD源码简析</title>
+      <link>https://inten.kro1lsec.com/post/ctfd%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/ctfd%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90/</guid>
+      <description>源地址：CTFd
+框架：Flask
+FLASK 安装与快速启动
+https://flask.palletsprojects.com/en/1.1.x/
+helloword测试 创建hello.py
+from flask import Flask app = Flask(__name__) @app.route(&amp;#39;/&amp;#39;) def hello_world(): return &amp;#39;Hello, World!&amp;#39; $ export FLASK_APP=hello.py $ export FLASK_ENV=development #调试模式 $ python3 -m flask run 官方文档博客 运行 新建项目flaskr
+$ flask init-db #初始化数据库 Initialized the database. $ export FLASK_APP=flaskr #linux $ export FLASK_ENV=development $ flask run # cmd &amp;gt; set FLASK_APP=flaskr &amp;gt; set FLASK_ENV=development &amp;gt; flask run #PowerShell &amp;gt; $env:FLASK_APP = &amp;#34;flaskr&amp;#34; &amp;gt; $env:FLASK_ENV = &amp;#34;development&amp;#34; &amp;gt; flask run 测试 pytest tests 构建和安装 Deploy to Production — Flask Documentation (1.</description>
+    </item>
+    
+  </channel>
+</rss>

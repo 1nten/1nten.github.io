@@ -1,6 +1,9 @@
 ---
 title: "Typora + PicGo+ Chevereto踩坑指南"
 date: 2021-03-13T15:07:34+08:00
+tags: ["工具"]
+ShowToc: true
+TocOpen: true
 draft: false
 ---
 
