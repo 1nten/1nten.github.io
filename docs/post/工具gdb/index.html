@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>[工具]GDB | intenのblog🍦</title>
+<meta name="keywords" content="工具, 二进制" />
+<meta name="description" content="小记 GDB&amp;Pwndbg run：r 开始执行 continue：c 继续执行，到下一个断点 stack 24 查看栈中24个单位的数据 vmmap 虚拟内存的空间分布 gdb link plt 查看plt表 got 查看got表 x/20 gxb info b 查看断点 start 停留在main函数的第一行，如果没有，则停留在入口 backtrace 显示函数调用栈 return 跳出当前函数 gdb 里面 单步调试分两种一种是C语言级别的单步n一种是汇编指令级别的单步nini按一次 之后直接回车就好了gdb自动重复指令的 next：n 单步步过 ni： 汇编指令级别的单步步过
+step：s 单步步入
+si：汇编指令级别的 单步步入
+dissa addr： 对函数或地址处的指令进行反汇编
+b *addr：下断点
+x addr：查看地址addr处存储的数据值
+info function/ b：查看函数/ 断点
+x/ nfu &lt;addr&gt;查看内存： n：要显示内存单元的个数 f：显示方式 u：一个地址单元的长度 gdb.attach() 连到第一次输入之后 断点下到 gets 之后那一句
+pwndbg&gt; vmmap
+查看地址是否可读可写
+使用方法:x先 r ,然后Ctrl C暂停,缓存不会清空.再vmmap
+简单的偏移计算示例 推断为esp寻址">
+<meta name="author" content="">
+<link rel="canonical" href="https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7gdb/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.fe63ae84f306727c713665eb03a6c71ec6c611434c8182ba17ba7e7d26a979e9.css" integrity="sha256-/mOuhPMGcnxxNmXrA6bHHsbGEUNMgYK6F7p&#43;fSapeek=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://inten.kro1lsec.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://inten.kro1lsec.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://inten.kro1lsec.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://inten.kro1lsec.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.82.0" />
+<meta property="og:title" content="[工具]GDB" />
+<meta property="og:description" content="小记 GDB&amp;Pwndbg run：r 开始执行 continue：c 继续执行，到下一个断点 stack 24 查看栈中24个单位的数据 vmmap 虚拟内存的空间分布 gdb link plt 查看plt表 got 查看got表 x/20 gxb info b 查看断点 start 停留在main函数的第一行，如果没有，则停留在入口 backtrace 显示函数调用栈 return 跳出当前函数 gdb 里面 单步调试分两种一种是C语言级别的单步n一种是汇编指令级别的单步nini按一次 之后直接回车就好了gdb自动重复指令的 next：n 单步步过 ni： 汇编指令级别的单步步过
+step：s 单步步入
+si：汇编指令级别的 单步步入
+dissa addr： 对函数或地址处的指令进行反汇编
+b *addr：下断点
+x addr：查看地址addr处存储的数据值
+info function/ b：查看函数/ 断点
+x/ nfu &lt;addr&gt;查看内存： n：要显示内存单元的个数 f：显示方式 u：一个地址单元的长度 gdb.attach() 连到第一次输入之后 断点下到 gets 之后那一句
+pwndbg&gt; vmmap
+查看地址是否可读可写
+使用方法:x先 r ,然后Ctrl C暂停,缓存不会清空.再vmmap
+简单的偏移计算示例 推断为esp寻址" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7gdb/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-03-05T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-03-05T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[工具]GDB"/>
+<meta name="twitter:description" content="小记 GDB&amp;Pwndbg run：r 开始执行 continue：c 继续执行，到下一个断点 stack 24 查看栈中24个单位的数据 vmmap 虚拟内存的空间分布 gdb link plt 查看plt表 got 查看got表 x/20 gxb info b 查看断点 start 停留在main函数的第一行，如果没有，则停留在入口 backtrace 显示函数调用栈 return 跳出当前函数 gdb 里面 单步调试分两种一种是C语言级别的单步n一种是汇编指令级别的单步nini按一次 之后直接回车就好了gdb自动重复指令的 next：n 单步步过 ni： 汇编指令级别的单步步过
+step：s 单步步入
+si：汇编指令级别的 单步步入
+dissa addr： 对函数或地址处的指令进行反汇编
+b *addr：下断点
+x addr：查看地址addr处存储的数据值
+info function/ b：查看函数/ 断点
+x/ nfu &lt;addr&gt;查看内存： n：要显示内存单元的个数 f：显示方式 u：一个地址单元的长度 gdb.attach() 连到第一次输入之后 断点下到 gets 之后那一句
+pwndbg&gt; vmmap
+查看地址是否可读可写
+使用方法:x先 r ,然后Ctrl C暂停,缓存不会清空.再vmmap
+简单的偏移计算示例 推断为esp寻址"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://inten.kro1lsec.com/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "[工具]GDB",
+      "item": "https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7gdb/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "[工具]GDB",
+  "name": "[工具]GDB",
+  "description": "小记 GDB\u0026amp;Pwndbg run：r 开始执行 continue：c 继续执行，到下一个断点 stack 24 查看栈中24个单位的数据 vmmap 虚拟内存的空间分布 gdb link plt 查看plt表 got 查看got表 x/20 gxb info b 查看断点 start 停留在main函数的第一行，如果没有，则停留在入口 backtrace 显示函数调用栈 return 跳出当前函数 gdb 里面 单步调试分两种一种是C语言级别的单步n一种是汇编指令级别的单步nini按一次 之后直接回车就好了gdb自动重复指令的 next：n 单步步过 ni： 汇编指令级别的单步步过\nstep：s 单步步入\nsi：汇编指令级别的 单步步入\ndissa addr： 对函数或地址处的指令进行反汇编\nb *addr：下断点\nx addr：查看地址addr处存储的数据值\ninfo function/ b：查看函数/ 断点\nx/ nfu \u0026lt;addr\u0026gt;查看内存： n：要显示内存单元的个数 f：显示方式 u：一个地址单元的长度 gdb.attach() 连到第一次输入之后 断点下到 gets 之后那一句\npwndbg\u0026gt; vmmap\n查看地址是否可读可写\n使用方法:x先 r ,然后Ctrl C暂停,缓存不会清空.再vmmap\n简单的偏移计算示例 推断为esp寻址",
+  "keywords": [
+    "工具", "二进制"
+  ],
+  "articleBody": "小记 GDB\u0026Pwndbg run：r 开始执行 continue：c 继续执行，到下一个断点 stack 24 查看栈中24个单位的数据 vmmap 虚拟内存的空间分布 gdb link plt 查看plt表 got 查看got表 x/20 gxb info b 查看断点 start 停留在main函数的第一行，如果没有，则停留在入口 backtrace 显示函数调用栈 return 跳出当前函数 gdb 里面 单步调试分两种一种是C语言级别的单步n一种是汇编指令级别的单步nini按一次 之后直接回车就好了gdb自动重复指令的 next：n 单步步过 ni： 汇编指令级别的单步步过\nstep：s 单步步入\nsi：汇编指令级别的 单步步入\ndissa addr： 对函数或地址处的指令进行反汇编\nb *addr：下断点\nx addr：查看地址addr处存储的数据值\ninfo function/ b：查看函数/ 断点\nx/ nfu 查看内存： n：要显示内存单元的个数 f：显示方式 u：一个地址单元的长度 gdb.attach() 连到第一次输入之后 断点下到 gets 之后那一句\npwndbg vmmap\n查看地址是否可读可写\n使用方法:x先 r ,然后Ctrl C暂停,缓存不会清空.再vmmap\n简单的偏移计算示例 推断为esp寻址\nfrom pwn import * p = process(\"./ret2.text\") #esp寻址，编译器会优化。需要+8个字节 esp_padding = \"junkjunk\" #32位为+4，64位+8 ebp_fake = \"junk\" #定义char s 分配了64的空间 padding = \"a\"*0x64 #call system 函数 上一行 mov... 传入参数的地址 ret_addr = 0x0804863A payload = padding + ebp_fake + esp_padding + p32(ret_addr) p.sendlineafter(\"There is something amazing here,do you know any thing?\\n\"，payload) p.interactive() 组成架构 基本工作原理 gdb 通过系统调用 ptrace 来接管一个进程的执行。ptrace 系统调用提供了一种方法使得父进程可以观察和控制其它进程的执行，检查和改变其核心映像以及寄存器。它主要用来实现断点调试和系统调用跟踪。ptrace 系统调用的原型如下：\n#include  long ptrace(enum __ptrace_request request, pid_t pid, void *addr, void *data);  pid_t pid：指示 ptrace 要跟踪的进程。 void *addr：指示要监控的内存地址。 void *data：存放读取出的或者要写入的数据。 enum __ptrace_request request：决定了系统调用的功能，几个主要的选项：  PTRACE_TRACEME：表示此进程将被父进程跟踪，任何信号（除了 SIGKILL）都会暂停子进程，接着阻塞于 wait() 等待的父进程被唤醒。子进程内部对 exec() 的调用将发出 SIGTRAP 信号，这可以让父进程在子进程新程序开始运行之前就完全控制它。 PTRACE_ATTACH：attach 到一个指定的进程，使其成为当前进程跟踪的子进程，而子进程的行为等同于它进行了一次 PTRACE_TRACEME 操作。但需要注意的是，虽然当前进程成为被跟踪进程的父进程，但是子进程使用 getppid() 的到的仍将是其原始父进程的 pid。 PTRACE_CONT：继续运行之前停止的子进程。可同时向子进程交付指定的信号。    三种调试方式  运行并调试一个新进程  运行 gdb，通过命令行或 file 命令指定目标程序。 输入 run 命令， gdb 执行下面的操作：  通过 fork() 系统调用创建一个新进程 在新创建的子进程中执行操作：ptrace(PTRACE_TRACEME, 0, 0, 0) 在子进程中通过 execv() 系统调用加载用户指定的可执行文件     attach 并调试一个已经运行的进程  用户确定需要进行调试的进程 PID 运行 gdb，输入 attach ，gdb 将对指定进程执行操作：ptrace(PTRACE_ATTACH, pid, 0, 0)   远程调试目标机上新创建的进程  gdb 运行在调试机上，gdbserver 运行在目标机上，两者之间的通信数据格式由 gdb 远程串行协议（Remote Serial Protocol）定义 RSP 协议数据的基本格式为： $..........#xx gdbserver 的启动方式相当于运行并调试一个新创建的进程    注意，在你将 gdb attach 到一个进程时，可能会出现这样的问题：\ngdb-peda$ attach 9091 Attaching to process 9091 ptrace: Operation not permitted. 这是因为开启了内核参数 ptrace_scope：\n$ cat /proc/sys/kernel/yama/ptrace_scope 1 1 表示 True，此时普通用户进程是不能对其他进程进行 attach 操作的，当然你可以用 root 权限启动 gdb，但最好的办法还是关掉它：\n# echo 0  /proc/sys/kernel/yama/ptrace_scope 断点的实现 断点的功能是通过内核信号实现的，在 x86 架构上，内核向某个地址打入断点，实际上就是往该地址写入断点指令 INT 3，即 0xCC。目标程序运行到这条指令之后会触发 SIGTRAP 信号，gdb 捕获这个信号，并根据目标程序当前停止的位置查询 gdb 维护的断点链表，若发现在该地址确实存在断点，则可判定为断点命中。\ngdb 基本操作 使用 -tui 选项可以将代码显示在一个漂亮的交互式窗口中。\n调试中可用Ctrl+X+A切换\nbreak – b  break 当不带参数时，在所选栈帧中执行的下一条指令处设置断点。 break  在函数体入口处打断点。 break  在当前源码文件指定行的开始处打断点。 break -N break +N 在当前源码行前面或后面的 N 行开始处打断点，N 为正整数。 break  在源码文件 filename 的 line 行处打断点。 break  在源码文件 filename 的 function 函数入口处打断点。 break  在程序指令的地址处打断点。 break ... if  设置条件断点，... 代表上述参数之一（或无参数），cond 为条件表达式，仅在 cond 值非零时停住程序。  info  info breakpoints -- i b 查看断点，观察点和捕获点的列表。  info breakpoints [list…] info break [list…] list… 用来指定若干个断点的编号（可省略），可以是 2， 1-3， 2 5 等。   info display 打印自动显示的表达式列表，每个表达式都带有项目编号，但不显示其值。 info reg 显示当前寄存器信息。 info threads 打印出所有线程的信息，包含 Thread ID、Target ID 和 Frame。 info frame 打印出指定栈帧的详细信息。 info proc 查看 proc 里的进程信息。  disable – dis 禁用断点，参数使用空格分隔。不带参数时禁用所有断点。\n disable [breakpoints] [list…] breakpoints 是 disable 的子命令（可省略），list… 同 info breakpoints 中的描述。  enable 启用断点，参数使用空格分隔。不带参数时启用所有断点。\n enable [breakpoints] [list…] 启用指定的断点（或所有定义的断点）。 enable [breakpoints] once list… 临时启用指定的断点。GDB 在停止您的程序后立即禁用这些断点。 enable [breakpoints] delete list… 使指定的断点启用一次，然后删除。一旦您的程序停止，GDB 就会删除这些断点。等效于用 tbreak 设置的断点。  breakpoints 同 disable 中的描述。\nclear 在指定行或函数处清除断点。参数可以是行号，函数名称或 * 跟一个地址。\n clear 当不带参数时，清除所选栈帧在执行的源码行中的所有断点。 clear , clear  删除在命名函数的入口处设置的任何断点。 clear , clear  删除在指定的文件指定的行号的代码中设置的任何断点。 clear  清除指定程序指令的地址处的断点。  delete – d 删除断点。参数使用空格分隔。不带参数时删除所有断点。\n delete [breakpoints] [list…]  tbreak 设置临时断点。参数形式同 break 一样。当第一次命中时被删除。\nwatch 为表达式设置观察点。每当一个表达式的值改变时，观察点就会停止执行您的程序。\n watch [-l|-location]  如果给出了 -l 或者 -location，则它会对 expr 求值并观察它所指向的内存。  另外 rwatch 表示在访问时停止，awatch 表示在访问和改变时都停止。\nstep – s 单步执行程序，直到到达不同的源码行。\n step [N] 参数 N 表示执行 N 次（或由于另一个原因直到程序停止）。  reverse-step 反向步进程序，直到到达另一个源码行的开头。\n reverse-step [N] 参数 N 表示执行 N 次（或由于另一个原因直到程序停止）。  next – n 单步执行程序，执行完子程序调用。\n next [N]  与 step 不同，如果当前的源代码行调用子程序，则此命令不会进入子程序，而是继续执行，将其视为单个源代码行。\nreverse-next 反向步进程序，执行完子程序调用。\n reverse-next [N]  如果要执行的源代码行调用子程序，则此命令不会进入子程序，调用被视为一个指令。\nreturn 您可以使用 return 命令取消函数调用的执行。如果你给出一个表达式参数，它的值被用作函数的返回值。\n return  将 expression 的值作为函数的返回值并使函数直接返回。  finish – fin 执行直到选定的栈帧返回。\n finish  until – u 执行程序直到大于当前栈帧或当前栈帧中的指定位置（与 break 命令相同的参数）的源码行。此命令常用于通过一个循环，以避免单步执行。\n until  继续运行程序，直到达到指定的位置，或者当前栈帧返回。  continue – c 在信号或断点之后，继续运行被调试的程序。\n continue [N]  如果从断点开始，可以使用数字 N 作为参数，这意味着将该断点的忽略计数设置为 N - 1(以便断点在第 N 次到达之前不会中断)。\nprint – p 求表达式 expr 的值并打印。可访问的变量是所选栈帧的词法环境，以及范围为全局或整个文件的所有变量。\n print [expr] print /f [expr] 通过指定 /f 来选择不同的打印格式，其中 f 是一个指定格式的字母  x 检查内存。\n x/nfu  x   n, f, 和 u 都是可选参数，用于指定要显示的内存以及如何格式化。 addr 是要开始显示内存的地址的表达式。 n 重复次数（默认值是 1），指定要显示多少个单位（由 u 指定）的内存值。 f 显示格式（初始默认值是 x），显示格式是 print('x'，'d'，'u'，'o'，'t'，'a'，'c'，'f'，'s') 使用的格式之一，再加 i（机器指令）。 u 单位大小，b 表示单字节，h 表示双字节，w 表示四字节，g 表示八字节。    display 每次程序停止时打印表达式 expr 的值。\n display  display/fmt  display/fmt   fmt 用于指定显示格式。对于格式 i 或 s，或者包括单位大小或单位数量，将表达式 addr 添加为每次程序停止时要检查的内存地址。\ndisassemble – disas 反汇编命令。\n disas  反汇编指定函数 disas  反汇编某地址所在函数 disas   反汇编从开始地址到结束地址的部分  undisplay 取消某些表达式在程序停止时自动显示。参数是表达式的编号（使用 info display 查询编号）。不带参数表示取消所有自动显示表达式。\ndisable display 禁用某些表达式在程序停止时自动显示。禁用的显示项目被再次启用。参数是表达式的编号（使用 info display 查询编号）。不带参数表示禁用所有自动显示表达式。\nenable display 启用某些表达式在程序停止时自动显示。参数是重新显示的表达式的编号（使用 info display 查询编号）。不带参数表示启用所有自动显示表达式。\nhelp – h 打印命令列表。\n help  您可以获取该类中各个命令的列表。 help  显示如何使用该命令的简述。  attach 挂接到 GDB 之外的进程或文件。将进程 ID 或设备文件作为参数。\n attach   run – r 启动被调试的程序。可以直接指定参数，也可以用 set args 设置（启动所需的）参数。还允许使用 , , 或  进行输入和输出重定向。\n甚至可以运行一个脚本，如：\nrun `python2 -c 'print \"A\"*100'` backtrace – bt 打印整个栈的回溯。\n bt 打印整个栈的回溯，每个栈帧一行。 bt n 类似于上，但只打印最内层的 n 个栈帧。 bt -n 类似于上，但只打印最外层的 n 个栈帧。 bt full n 类似于 bt n，还打印局部变量的值。   注意：使用 gdb 调试时，会自动关闭 ASLR，所以可能每次看到的栈地址都不变。\n ptype 打印类型 TYPE 的定义。\n ptype[/FLAGS] TYPE-NAME | EXPRESSION  参数可以是由 typedef 定义的类型名， 或者 struct STRUCT-TAG 或者 class CLASS-NAME 或者 union UNION-TAG 或者 enum ENUM-TAG。\nset follow-fork-mode 当程序 fork 出一个子进程的时候，gdb 默认会追踪父进程（set follow-fork-mode parent），但也可以使用命令 set follow-fork-mode child 让其追踪子进程。\n另外，如果想要同时追踪父进程和子进程，可以使用命令 set detach-on-fork off（默认为on），这样就可以同时调试父子进程，在调试其中一个进程时，另一个进程被挂起。如果想让父子进程同时运行，可以使用 set schedule-multiple on（默认为off）。\n但如果程序是使用 exec 来启动了一个新的程序，可以使用 set follow-exec-mode new（默认为same） 来新建一个 inferior 给新程序，而父进程的 inferior 仍然保留。\nthread apply all bt 打印出所有线程的堆栈信息。\ngenerate-core-file 将调试中的进程生成内核转储文件。\ndirectory – dir 设置查找源文件的路径。\n或者使用 gdb 的 -d 参数，例如：gdb a.out -d /search/code/\ngdb-peda 当 gdb 启动时，它会在当前用户的主目录中寻找一个名为 .gdbinit 的文件；如果该文件存在，则 gdb 就执行该文件中的所有命令。通常，该文件用于简单的配置命令。但是 .gdbinit 的配置十分繁琐，因此对 gdb 的扩展通常用插件的方式来实现，通过 python 的脚本可以很方便的实现需要的功能。\nPEDA（Python Exploit Development Assistance for GDB）是一个强大的 gdb 插件。它提供了高亮显示反汇编代码、寄存器、内存信息等人性化的功能。同时，PEDA 还有一些实用的新命令，比如 checksec 可以查看程序开启了哪些安全机制等等。\n安装 安装 peda 需要的软件包：\n$ sudo apt-get install nasm micro-inetd $ sudo apt-get install libc6-dbg vim ssh 安装 peda：\n$ git clone https://github.com/longld/peda.git ~/peda $ echo \"source ~/peda/peda.py\"  ~/.gdbinit $ echo \"DONE! debug your program with gdb and enjoy\" 如果系统为 Arch Linux，则可以直接安装：\n$ yaourt -S peda peda命令   aslr – 显示/设置 gdb 的 ASLR\n  asmsearch – Search for ASM instructions in memory\n asmsearch \"int 0x80\" asmsearch \"add esp, ?\" libc    assemble – On the fly assemble and execute instructions using NASM\n  assemble\nassemble $pc  mov al, 0xb  int 0x80  end     checksec – 检查二进制文件的安全选项\n  cmpmem – Compare content of a memory region with a file\n cmpmem 0x08049000 0x0804a000 data.mem    context – Display various information of current execution context\n context_code – Display nearby disassembly at $PC of current execution context context_register – Display register information of current execution context context_stack – Display stack of current execution context  context reg context code context stack      crashdump – Display crashdump info and save to file\n  deactive – Bypass a function by ignoring its execution (eg sleep/alarm)\n deactive setresuid deactive chdir    distance – Calculate distance between two addresses\n  dumpargs – 在调用指令停止时显示传递给函数的参数\n  dumpmem – Dump content of a memory region to raw binary file\n dumpmem libc.mem libc    dumprop – 在特定的内存范围显示 ROP gadgets\n dumprop dumprop binary \"pop\"    eflags – Display/set/clear/toggle value of eflags register\n  elfheader – 获取正在调试的 ELF 文件的头信息\n elfheader elfheader .got    elfsymbol – 从 ELF 文件中获取没有调试信息的符号信息\n elfsymbol elfsymbol printf    gennop – Generate abitrary length NOP sled using given characters\n gennop 500 gennop 500 \"\\x90\"    getfile – Get exec filename of current debugged process\n  getpid – Get PID of current debugged process\n  goto – Continue execution at an address\n  help – Print the usage manual for PEDA commands\n  hexdump – Display hex/ascii dump of data in memory\n hexdump $sp 64 hexdump $sp /20    hexprint – Display hexified of data in memory\n hexprint $sp 64 hexprint $sp /20    jmpcall – Search for JMP/CALL instructions in memory\n jmpcall jmpcall eax jmpcall esp libc    loadmem – Load contents of a raw binary file to memory\n loadmem stack.mem 0xbffdf000    lookup – 搜索属于内存范围的地址的所有地址/引用\n lookup address stack libc lookup pointer stack ld-2    nearpc – Disassemble instructions nearby current PC or given address\n nearpc 20 nearpc 0x08048484    nextcall – Step until next ‘call’ instruction in specific memory range\n nextcall cpy    nextjmp – Step until next ‘j*’ instruction in specific memory range\n nextjmp    nxtest – Perform real NX test to see if it is enabled/supported by OS\n  patch – 使用字符串/十六进制字符串/整形数\n patch $esp 0xdeadbeef patch $eax \"the long string\" patch (multiple lines)    pattern – 生成，搜索或写入循环 pattern 到内存\n pattern_arg – Set argument list with cyclic pattern pattern_create – Generate a cyclic pattern pattern_env – Set environment variable with a cyclic pattern pattern_offset – Search for offset of a value in cyclic pattern pattern_patch – Write a cyclic pattern to memory pattern_search – Search a cyclic pattern in registers and memory  pattern create 2000 pattern create 2000 input pattern offset $pc pattern search pattern patch 0xdeadbeef 100      payload – Generate various type of ROP payload using ret2plt\n payload copybytes payload copybytes target \"/bin/sh\" payload copybytes 0x0804a010 offset    pdisass – Format output of gdb disassemble command with colors\n pdisass $pc /20    pltbreak – Set breakpoint at PLT functions match name regex\n pltbreak cpy    procinfo – 显示调试进程的 /proc/pid/\n procinfo procinfo fd    profile – Simple profiling to count executed instructions in the program\n  pyhelp – Wrapper for python built-in help\n pyhelp peda pyhelp hex2str    pshow – 显示各种 PEDA 选项和其他设置\n pshow pshow option context    pset – 设置各种 PEDA 选项和其他设置\n pset arg '\"A\"*200' pset arg 'cyclic_pattern(200)' pset env EGG 'cyclic_pattern(200)' pset option context \"code,stack\" pset option badchars \"\\r\\n\"    readelf – 获取 ELF 的文件头信息\n readelf libc .text    refsearch – Search for all references to a value in memory ranges\n refsearch \"/bin/sh\" refsearch 0xdeadbeef    reload – Reload PEDA sources, keep current options untouch\n  ropgadget – 获取二进制或库的常见 ROP gadgets\n ropgadget ropgadget libc    ropsearch – 搜索内存中的 ROP gadgets\n ropsearch \"pop eax\" ropsearch \"xchg eax, esp\" libc    searchmem|find – 搜索内存中的 pattern; 支持正则表达式搜索\n find \"/bin/sh\" libc find 0xdeadbeef all find \"..\\x04\\x08\" 0x08048000 0x08049000    searchmem – Search for a pattern in memory; support regex search\n  session – Save/restore a working gdb session to file as a script\n  set – Set various PEDA options and other settings\n set exec-wrapper ./exploit.py    sgrep – Search for full strings contain the given pattern\n  shellcode – 生成或下载常见的 shellcode\n shellcode x86/linux exec    show – Show various PEDA options and other settings\n  skeleton – 生成 python exploit 代码模板\n skeleton argv exploit.py    skipi – Skip execution of next count instructions\n  snapshot – Save/restore process’s snapshot to/from file\n snapshot save snapshot restore    start – Start debugged program and stop at most convenient entry\n  stepuntil – Step until a desired instruction in specific memory range\n stepuntil cmp stepuntil xor    strings – Display printable strings in memory\n strings strings binary 4    substr – Search for substrings of a given string/number in memory\n  telescope – Display memory content at an address with smart dereferences\n telescope 40 telescope 0xb7d88000 40    tracecall – Trace function calls made by the program\n tracecall tracecall \"cpy,printf\" tracecall \"-puts,fflush\"    traceinst – Trace specific instructions executed by the program\n traceinst 20 traceinst \"cmp,xor\"    unptrace – Disable anti-ptrace detection\n unptrace    utils – Miscelaneous utilities from utils module\n  vmmap – 在调试过程中获取段的虚拟映射地址范围\n cmmap vmmap binary / libc vmmap 0xb7d88000    waitfor – Try to attach to new forked process; mimic “attach -waitfor”\n waitfor waitfor myprog -c    xinfo – Display detail information of address/registers\n xinfo register eax xinfo 0xb7d88000    xormem – 用一个 key 来对一个内存区域执行 XOR 操作\n xormem 0x08049000 0x0804a000 “thekey”    xprint – Extra support to GDB’s print command\n  xrefs – Search for all call/data access references to a function/variable\n  xuntil – Continue execution until an address or function\n  使用 PEDA 和 Python 编写 gdb 脚本   全局类\n pedacmd：  交互式命令 没有返回值 例如：pedacmd.context_register()   peda：  与 gdb 交互的后端功能 有返回值 例如：peda.getreg(\"eax\")      小工具\n 例如：to_int()、format_address() 获得帮助  pyhelp peda pyhelp hex2str      单行／交互式使用\n  gdb-peda$ python print peda.get_vmmap()\n  gdb-peda$ python  status = peda.get_status()  while status == \"BREAKPOINT\":  peda.execute(\"continue\")  end     外部脚本\n# myscript.py def myrun(size): argv = cyclic_pattern(size) peda.execute(\"set arg %s\" % argv) peda.execute(\"run\") gdb-peda$ source myscript.py gdb-peda$ python myrun(100)   pwndbg\u0026\u0026peda pwndbg在调试堆的数据结构时候很方便\npeda在查找字符串等功能时方便\npwndbg和peda不能同时使用\n切换方法\n默认在home中打开终端: sudo nano ./.gdbinit\n想启用某一个时，注释掉另一个就行。\n参考资料 Debugging with GDB\n100个gdb小技巧\npwndbg+pwndbg联合使用\nPwngdb\nGEF\npwndbg\npeda\n",
+  "wordCount" : "1781",
+  "inLanguage": "en",
+  "datePublished": "2021-03-05T00:00:00Z",
+  "dateModified": "2021-03-05T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7gdb/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "intenのblog🍦",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://inten.kro1lsec.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://inten.kro1lsec.com/" accesskey="h" title="intenのblog🍦 (Alt + H)">intenのblog🍦</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://inten.kro1lsec.com/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://inten.kro1lsec.com/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://inten.kro1lsec.com/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      [工具]GDB
+    </h1>
+    <div class="post-meta">March 5, 2021&nbsp;·&nbsp;9 min
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <div class="details">Table of Contents</div>
+        </summary>
+        <div class="inner"><ul><ul>
+                <li>
+                    <a href="#%e5%b0%8f%e8%ae%b0" aria-label="小记">小记</a><ul>
+                        
+                <li>
+                    <a href="#gdbpwndbg" aria-label="GDB&amp;amp;Pwndbg">GDB&amp;Pwndbg</a><ul>
+                        
+                <li>
+                    <a href="#%e7%ae%80%e5%8d%95%e7%9a%84%e5%81%8f%e7%a7%bb%e8%ae%a1%e7%ae%97%e7%a4%ba%e4%be%8b" aria-label="简单的偏移计算示例">简单的偏移计算示例</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%bb%84%e6%88%90%e6%9e%b6%e6%9e%84" aria-label="组成架构">组成架构</a></li>
+                <li>
+                    <a href="#%e5%9f%ba%e6%9c%ac%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="基本工作原理"><strong>基本工作原理</strong></a></li>
+                <li>
+                    <a href="#%e4%b8%89%e7%a7%8d%e8%b0%83%e8%af%95%e6%96%b9%e5%bc%8f" aria-label="三种调试方式">三种调试方式</a></li>
+                <li>
+                    <a href="#%e6%96%ad%e7%82%b9%e7%9a%84%e5%ae%9e%e7%8e%b0" aria-label="断点的实现"><strong>断点的实现</strong></a></li></ul>
+                </li></ul>
+                    
+                <li>
+                    <a href="#gdb-%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c" aria-label="gdb 基本操作"><strong>gdb 基本操作</strong></a><ul>
+                        
+                <li>
+                    <a href="#break----b" aria-label="break &amp;ndash; b"><strong>break &ndash; b</strong></a></li>
+                <li>
+                    <a href="#info" aria-label="info"><strong>info</strong></a></li>
+                <li>
+                    <a href="#disable----dis" aria-label="disable &amp;ndash; dis"><strong>disable &ndash; dis</strong></a></li>
+                <li>
+                    <a href="#enable" aria-label="enable"><strong>enable</strong></a></li>
+                <li>
+                    <a href="#clear" aria-label="clear"><strong>clear</strong></a></li>
+                <li>
+                    <a href="#delete----d" aria-label="delete &amp;ndash; d"><strong>delete &ndash; d</strong></a></li>
+                <li>
+                    <a href="#tbreak" aria-label="tbreak"><strong>tbreak</strong></a></li>
+                <li>
+                    <a href="#watch" aria-label="watch"><strong>watch</strong></a></li>
+                <li>
+                    <a href="#step----s" aria-label="step &amp;ndash; s"><strong>step &ndash; s</strong></a></li>
+                <li>
+                    <a href="#reverse-step" aria-label="reverse-step"><strong>reverse-step</strong></a></li>
+                <li>
+                    <a href="#next----n" aria-label="next &amp;ndash; n"><strong>next &ndash; n</strong></a></li>
+                <li>
+                    <a href="#reverse-next" aria-label="reverse-next"><strong>reverse-next</strong></a></li>
+                <li>
+                    <a href="#return" aria-label="return"><strong>return</strong></a></li>
+                <li>
+                    <a href="#finish----fin" aria-label="finish &amp;ndash; fin"><strong>finish &ndash; fin</strong></a></li>
+                <li>
+                    <a href="#until----u" aria-label="until &amp;ndash; u"><strong>until &ndash; u</strong></a></li>
+                <li>
+                    <a href="#continue----c" aria-label="continue &amp;ndash; c"><strong>continue &ndash; c</strong></a></li>
+                <li>
+                    <a href="#print----p" aria-label="print &amp;ndash; p"><strong>print &ndash; p</strong></a></li>
+                <li>
+                    <a href="#x" aria-label="x"><strong>x</strong></a></li>
+                <li>
+                    <a href="#display" aria-label="display"><strong>display</strong></a></li>
+                <li>
+                    <a href="#disassemble----disas" aria-label="disassemble &amp;ndash; disas"><strong>disassemble &ndash; disas</strong></a></li>
+                <li>
+                    <a href="#undisplay" aria-label="undisplay"><strong>undisplay</strong></a></li>
+                <li>
+                    <a href="#disable-display" aria-label="disable display"><strong>disable display</strong></a></li>
+                <li>
+                    <a href="#enable-display" aria-label="enable display"><strong>enable display</strong></a></li>
+                <li>
+                    <a href="#help----h" aria-label="help &amp;ndash; h"><strong>help &ndash; h</strong></a></li>
+                <li>
+                    <a href="#attach" aria-label="attach"><strong>attach</strong></a></li>
+                <li>
+                    <a href="#run----r" aria-label="run &amp;ndash; r"><strong>run &ndash; r</strong></a></li>
+                <li>
+                    <a href="#backtrace----bt" aria-label="backtrace &amp;ndash; bt"><strong>backtrace &ndash; bt</strong></a></li>
+                <li>
+                    <a href="#ptype" aria-label="ptype"><strong>ptype</strong></a></li>
+                <li>
+                    <a href="#set-follow-fork-mode" aria-label="set follow-fork-mode"><strong>set follow-fork-mode</strong></a></li>
+                <li>
+                    <a href="#thread-apply-all-bt" aria-label="thread apply all bt"><strong>thread apply all bt</strong></a></li>
+                <li>
+                    <a href="#generate-core-file" aria-label="generate-core-file"><strong>generate-core-file</strong></a></li>
+                <li>
+                    <a href="#directory----dir" aria-label="directory &amp;ndash; dir"><strong>directory &ndash; dir</strong></a></li></ul>
+                </li>
+                <li>
+                    <a href="#gdb-peda" aria-label="gdb-peda"><strong>gdb-peda</strong></a><ul>
+                        
+                <li>
+                    <a href="#%e5%ae%89%e8%a3%85" aria-label="安装"><strong>安装</strong></a></li>
+                <li>
+                    <a href="#peda%e5%91%bd%e4%bb%a4" aria-label="peda命令"><strong>peda命令</strong></a></li>
+                <li>
+                    <a href="#%e4%bd%bf%e7%94%a8-peda-%e5%92%8c-python-%e7%bc%96%e5%86%99-gdb-%e8%84%9a%e6%9c%ac" aria-label="使用 PEDA 和 Python 编写 gdb 脚本"><strong>使用 PEDA 和 Python 编写 gdb 脚本</strong></a></li>
+                <li>
+                    <a href="#pwndbgpeda" aria-label="pwndbg&amp;amp;&amp;amp;peda">pwndbg&amp;&amp;peda</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" aria-label="参考资料"><strong>参考资料</strong></a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="小记">小记<a hidden class="anchor" aria-hidden="true" href="#小记">#</a></h2>
+<h3 id="gdbpwndbg">GDB&amp;Pwndbg<a hidden class="anchor" aria-hidden="true" href="#gdbpwndbg">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">run：r 开始执行
+<span style="color:#66d9ef">continue</span>：c 继续执行，到下一个断点
+stack <span style="color:#ae81ff">24</span> 查看栈中24个单位的数据
+vmmap 虚拟内存的空间分布
+gdb link
+plt 查看plt表
+got 查看got表
+x/20 gxb
+info b 查看断点
+start 停留在main函数的第一行，如果没有，则停留在入口
+backtrace 显示函数调用栈
+<span style="color:#66d9ef">return</span> 跳出当前函数
+</code></pre></div><pre><code>gdb 里面 单步调试分两种一种是C语言级别的单步n一种是汇编指令级别的单步nini按一次 之后直接回车就好了gdb自动重复指令的 
+</code></pre><p>next：n 单步步过
+ni： 汇编指令级别的<strong>单步步过</strong></p>
+<p>step：s 单步步入</p>
+<p>si：汇编指令级别的 <strong>单步步入</strong></p>
+<p>dissa addr： 对函数或地址处的指令进行反汇编</p>
+<p>b *addr：下断点</p>
+<p>x addr：查看地址addr处存储的数据值</p>
+<p>info function/ b：查看函数/ 断点</p>
+<pre><code>x/ nfu &lt;addr&gt;查看内存：
+	n：要显示内存单元的个数
+	f：显示方式
+	u：一个地址单元的长度
+</code></pre><p>gdb.attach()  连到第一次输入之后 断点下到 gets 之后那一句</p>
+<p>pwndbg&gt; vmmap</p>
+<p>查看地址是否可读可写</p>
+<p>使用方法:x先 r ,然后Ctrl C暂停,缓存不会清空.再vmmap</p>
+<h4 id="简单的偏移计算示例">简单的偏移计算示例<a hidden class="anchor" aria-hidden="true" href="#简单的偏移计算示例">#</a></h4>
+<p><img loading="lazy" src="https://www.kro1lsec.com:442/images/2021/05/28/20210528160327.png" alt="img"  />
+</p>
+<p><img loading="lazy" src="https://www.kro1lsec.com:442/images/2021/05/28/20210528160149.png" alt="img"  />
+推断为esp寻址</p>
+<pre><code>from pwn import *
+
+p = process(&quot;./ret2.text&quot;)
+#esp寻址，编译器会优化。需要+8个字节
+
+esp_padding = &quot;junkjunk&quot;
+#32位为+4，64位+8
+ebp_fake = &quot;junk&quot;
+#定义char s 分配了64的空间
+padding = &quot;a&quot;*0x64
+#call system 函数 上一行 mov... 传入参数的地址
+ret_addr = 0x0804863A
+payload = padding + ebp_fake + esp_padding + p32(ret_addr)
+p.sendlineafter(&quot;There is something amazing here,do you know any thing?\n&quot;，payload)
+p.interactive() 
+</code></pre><h3 id="组成架构">组成架构<a hidden class="anchor" aria-hidden="true" href="#组成架构">#</a></h3>
+<p><img loading="lazy" src="https://www.kro1lsec.com:442/images/2021/05/28/20210528160151.png" alt="img"  />
+</p>
+<h3 id="基本工作原理"><strong>基本工作原理</strong><a hidden class="anchor" aria-hidden="true" href="#基本工作原理">#</a></h3>
+<p>gdb 通过系统调用 <code>ptrace</code> 来接管一个进程的执行。ptrace 系统调用提供了一种方法使得父进程可以观察和控制其它进程的执行，检查和改变其核心映像以及寄存器。它主要用来实现断点调试和系统调用跟踪。ptrace 系统调用的原型如下：</p>
+<pre><code>#include &lt;sys/ptrace.h&gt;
+long ptrace(enum __ptrace_request request, pid_t pid, void *addr, void *data);
+</code></pre><ul>
+<li><strong>pid_t pid</strong>：指示 ptrace 要跟踪的进程。</li>
+<li><strong>void *addr</strong>：指示要监控的内存地址。</li>
+<li><strong>void *data</strong>：存放读取出的或者要写入的数据。</li>
+<li><strong>enum __ptrace_request request</strong>：决定了系统调用的功能，几个主要的选项：
+<ul>
+<li><em>PTRACE_TRACEME</em>：表示此进程将被父进程跟踪，任何信号（除了 <code>SIGKILL</code>）都会暂停子进程，接着阻塞于 <code>wait()</code> 等待的父进程被唤醒。子进程内部对 <code>exec()</code> 的调用将发出 <code>SIGTRAP</code> 信号，这可以让父进程在子进程新程序开始运行之前就完全控制它。</li>
+<li><em>PTRACE_ATTACH</em>：attach 到一个指定的进程，使其成为当前进程跟踪的子进程，而子进程的行为等同于它进行了一次 PTRACE_TRACEME 操作。但需要注意的是，虽然当前进程成为被跟踪进程的父进程，但是子进程使用 <code>getppid()</code> 的到的仍将是其原始父进程的 pid。</li>
+<li><em>PTRACE_CONT</em>：继续运行之前停止的子进程。可同时向子进程交付指定的信号。</li>
+</ul>
+</li>
+</ul>
+<h3 id="三种调试方式">三种调试方式<a hidden class="anchor" aria-hidden="true" href="#三种调试方式">#</a></h3>
+<ul>
+<li>运行并调试一个新进程
+<ul>
+<li>运行 gdb，通过命令行或 <code>file</code> 命令指定目标程序。</li>
+<li>输入 <code>run</code> 命令， gdb 执行下面的操作：
+<ul>
+<li>通过 <code>fork()</code> 系统调用创建一个新进程</li>
+<li>在新创建的子进程中执行操作：<code>ptrace(PTRACE_TRACEME, 0, 0, 0)</code></li>
+<li>在子进程中通过 <code>execv()</code> 系统调用加载用户指定的可执行文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>attach 并调试一个已经运行的进程
+<ul>
+<li>用户确定需要进行调试的进程 PID</li>
+<li>运行 gdb，输入 <code>attach &lt;pid&gt;</code>，gdb 将对指定进程执行操作：<code>ptrace(PTRACE_ATTACH, pid, 0, 0)</code></li>
+</ul>
+</li>
+<li>远程调试目标机上新创建的进程
+<ul>
+<li>gdb 运行在调试机上，gdbserver 运行在目标机上，两者之间的通信数据格式由 gdb 远程串行协议（Remote Serial Protocol）定义</li>
+<li>RSP 协议数据的基本格式为： <code>$..........#xx</code></li>
+<li>gdbserver 的启动方式相当于运行并调试一个新创建的进程</li>
+</ul>
+</li>
+</ul>
+<p>注意，在你将 gdb attach 到一个进程时，可能会出现这样的问题：</p>
+<pre><code>gdb-peda$ attach 9091
+Attaching to process 9091
+ptrace: Operation not permitted.
+</code></pre><p>这是因为开启了内核参数 <code>ptrace_scope</code>：</p>
+<pre><code>$ cat /proc/sys/kernel/yama/ptrace_scope
+1
+</code></pre><p>1 表示 True，此时普通用户进程是不能对其他进程进行 attach 操作的，当然你可以用 root 权限启动 gdb，但最好的办法还是关掉它：</p>
+<pre><code># echo 0 &gt; /proc/sys/kernel/yama/ptrace_scope
+</code></pre><h3 id="断点的实现"><strong>断点的实现</strong><a hidden class="anchor" aria-hidden="true" href="#断点的实现">#</a></h3>
+<p>断点的功能是通过内核信号实现的，在 x86 架构上，内核向某个地址打入断点，实际上就是往该地址写入断点指令 <code>INT 3</code>，即 <code>0xCC</code>。目标程序运行到这条指令之后会触发 <code>SIGTRAP</code> 信号，gdb 捕获这个信号，并根据目标程序当前停止的位置查询 gdb 维护的断点链表，若发现在该地址确实存在断点，则可判定为断点命中。</p>
+<h1 id="gdb-基本操作"><strong>gdb 基本操作</strong><a hidden class="anchor" aria-hidden="true" href="#gdb-基本操作">#</a></h1>
+<p>使用 <code>-tui</code> 选项可以将代码显示在一个漂亮的交互式窗口中。</p>
+<p>调试中可用Ctrl+X+A切换</p>
+<h2 id="break----b"><strong>break &ndash; b</strong><a hidden class="anchor" aria-hidden="true" href="#break----b">#</a></h2>
+<ul>
+<li><code>break</code> 当不带参数时，在所选栈帧中执行的下一条指令处设置断点。</li>
+<li><code>break &lt;function&gt;</code> 在函数体入口处打断点。</li>
+<li><code>break &lt;line&gt;</code> 在当前源码文件指定行的开始处打断点。</li>
+<li><code>break -N</code> <code>break +N</code> 在当前源码行前面或后面的 <code>N</code> 行开始处打断点，<code>N</code> 为正整数。</li>
+<li><code>break &lt;filename:line&gt;</code> 在源码文件 <code>filename</code> 的 <code>line</code> 行处打断点。</li>
+<li><code>break &lt;filename:function&gt;</code> 在源码文件 <code>filename</code> 的 <code>function</code> 函数入口处打断点。</li>
+<li><code>break &lt;address&gt;</code> 在程序指令的地址处打断点。</li>
+<li><code>break ... if &lt;cond&gt;</code> 设置条件断点，<code>...</code> 代表上述参数之一（或无参数），<code>cond</code> 为条件表达式，仅在 <code>cond</code> 值非零时停住程序。</li>
+</ul>
+<h2 id="info"><strong>info</strong><a hidden class="anchor" aria-hidden="true" href="#info">#</a></h2>
+<ul>
+<li><code>info breakpoints -- i b</code> 查看断点，观察点和捕获点的列表。
+<ul>
+<li><code>info breakpoints [list…]</code></li>
+<li><code>info break [list…]</code></li>
+<li><code>list…</code> 用来指定若干个断点的编号（可省略），可以是 <code>2</code>， <code>1-3</code>， <code>2 5</code> 等。</li>
+</ul>
+</li>
+<li><code>info display</code> 打印自动显示的表达式列表，每个表达式都带有项目编号，但不显示其值。</li>
+<li><code>info reg</code> 显示当前寄存器信息。</li>
+<li><code>info threads</code> 打印出所有线程的信息，包含 Thread ID、Target ID 和 Frame。</li>
+<li><code>info frame</code> 打印出指定栈帧的详细信息。</li>
+<li><code>info proc</code> 查看 proc 里的进程信息。</li>
+</ul>
+<h2 id="disable----dis"><strong>disable &ndash; dis</strong><a hidden class="anchor" aria-hidden="true" href="#disable----dis">#</a></h2>
+<p>禁用断点，参数使用空格分隔。不带参数时禁用所有断点。</p>
+<ul>
+<li><code>disable [breakpoints] [list…]</code> <code>breakpoints</code> 是 <code>disable</code> 的子命令（可省略），<code>list…</code> 同 <code>info breakpoints</code> 中的描述。</li>
+</ul>
+<h2 id="enable"><strong>enable</strong><a hidden class="anchor" aria-hidden="true" href="#enable">#</a></h2>
+<p>启用断点，参数使用空格分隔。不带参数时启用所有断点。</p>
+<ul>
+<li><code>enable [breakpoints] [list…]</code> 启用指定的断点（或所有定义的断点）。</li>
+<li><code>enable [breakpoints] once list…</code> 临时启用指定的断点。GDB 在停止您的程序后立即禁用这些断点。</li>
+<li><code>enable [breakpoints] delete list…</code> 使指定的断点启用一次，然后删除。一旦您的程序停止，GDB 就会删除这些断点。等效于用 <code>tbreak</code> 设置的断点。</li>
+</ul>
+<p><code>breakpoints</code> 同 <code>disable</code> 中的描述。</p>
+<h2 id="clear"><strong>clear</strong><a hidden class="anchor" aria-hidden="true" href="#clear">#</a></h2>
+<p>在指定行或函数处清除断点。参数可以是行号，函数名称或 <code>*</code> 跟一个地址。</p>
+<ul>
+<li><code>clear</code> 当不带参数时，清除所选栈帧在执行的源码行中的所有断点。</li>
+<li><code>clear &lt;function&gt;</code>, <code>clear &lt;filename:function&gt;</code> 删除在命名函数的入口处设置的任何断点。</li>
+<li><code>clear &lt;line&gt;</code>, <code>clear &lt;filename:line&gt;</code> 删除在指定的文件指定的行号的代码中设置的任何断点。</li>
+<li><code>clear &lt;address&gt;</code> 清除指定程序指令的地址处的断点。</li>
+</ul>
+<h2 id="delete----d"><strong>delete &ndash; d</strong><a hidden class="anchor" aria-hidden="true" href="#delete----d">#</a></h2>
+<p>删除断点。参数使用空格分隔。不带参数时删除所有断点。</p>
+<ul>
+<li><code>delete [breakpoints] [list…]</code></li>
+</ul>
+<h2 id="tbreak"><strong>tbreak</strong><a hidden class="anchor" aria-hidden="true" href="#tbreak">#</a></h2>
+<p>设置临时断点。参数形式同 <code>break</code> 一样。当第一次命中时被删除。</p>
+<h2 id="watch"><strong>watch</strong><a hidden class="anchor" aria-hidden="true" href="#watch">#</a></h2>
+<p>为表达式设置观察点。每当一个表达式的值改变时，观察点就会停止执行您的程序。</p>
+<ul>
+<li><code>watch [-l|-location] &lt;expr&gt;</code> 如果给出了 <code>-l</code> 或者 <code>-location</code>，则它会对 <code>expr</code> 求值并观察它所指向的内存。</li>
+</ul>
+<p>另外 <code>rwatch</code> 表示在访问时停止，<code>awatch</code> 表示在访问和改变时都停止。</p>
+<h2 id="step----s"><strong>step &ndash; s</strong><a hidden class="anchor" aria-hidden="true" href="#step----s">#</a></h2>
+<p>单步执行程序，直到到达不同的源码行。</p>
+<ul>
+<li><code>step [N]</code> 参数 <code>N</code> 表示执行 N 次（或由于另一个原因直到程序停止）。</li>
+</ul>
+<h2 id="reverse-step"><strong>reverse-step</strong><a hidden class="anchor" aria-hidden="true" href="#reverse-step">#</a></h2>
+<p>反向步进程序，直到到达另一个源码行的开头。</p>
+<ul>
+<li><code>reverse-step [N]</code> 参数 <code>N</code> 表示执行 N 次（或由于另一个原因直到程序停止）。</li>
+</ul>
+<h2 id="next----n"><strong>next &ndash; n</strong><a hidden class="anchor" aria-hidden="true" href="#next----n">#</a></h2>
+<p>单步执行程序，执行完子程序调用。</p>
+<ul>
+<li><code>next [N]</code></li>
+</ul>
+<p>与 <code>step</code> 不同，如果当前的源代码行调用子程序，则此命令不会进入子程序，而是继续执行，将其视为单个源代码行。</p>
+<h2 id="reverse-next"><strong>reverse-next</strong><a hidden class="anchor" aria-hidden="true" href="#reverse-next">#</a></h2>
+<p>反向步进程序，执行完子程序调用。</p>
+<ul>
+<li><code>reverse-next [N]</code></li>
+</ul>
+<p>如果要执行的源代码行调用子程序，则此命令不会进入子程序，调用被视为一个指令。</p>
+<h2 id="return"><strong>return</strong><a hidden class="anchor" aria-hidden="true" href="#return">#</a></h2>
+<p>您可以使用 <code>return</code> 命令取消函数调用的执行。如果你给出一个表达式参数，它的值被用作函数的返回值。</p>
+<ul>
+<li><code>return &lt;expression&gt;</code> 将 <code>expression</code> 的值作为函数的返回值并使函数直接返回。</li>
+</ul>
+<h2 id="finish----fin"><strong>finish &ndash; fin</strong><a hidden class="anchor" aria-hidden="true" href="#finish----fin">#</a></h2>
+<p>执行直到选定的栈帧返回。</p>
+<ul>
+<li><code>finish</code></li>
+</ul>
+<h2 id="until----u"><strong>until &ndash; u</strong><a hidden class="anchor" aria-hidden="true" href="#until----u">#</a></h2>
+<p>执行程序直到大于当前栈帧或当前栈帧中的指定位置（与 <code>break</code> 命令相同的参数）的源码行。此命令常用于通过一个循环，以避免单步执行。</p>
+<ul>
+<li><code>until &lt;location&gt;</code> 继续运行程序，直到达到指定的位置，或者当前栈帧返回。</li>
+</ul>
+<h2 id="continue----c"><strong>continue &ndash; c</strong><a hidden class="anchor" aria-hidden="true" href="#continue----c">#</a></h2>
+<p>在信号或断点之后，继续运行被调试的程序。</p>
+<ul>
+<li><code>continue [N]</code></li>
+</ul>
+<p>如果从断点开始，可以使用数字 <code>N</code> 作为参数，这意味着将该断点的忽略计数设置为 <code>N - 1</code>(以便断点在第 N 次到达之前不会中断)。</p>
+<h2 id="print----p"><strong>print &ndash; p</strong><a hidden class="anchor" aria-hidden="true" href="#print----p">#</a></h2>
+<p>求表达式 expr 的值并打印。可访问的变量是所选栈帧的词法环境，以及范围为全局或整个文件的所有变量。</p>
+<ul>
+<li><code>print [expr]</code></li>
+<li><code>print /f [expr]</code> 通过指定 <code>/f</code> 来选择不同的打印格式，其中 <code>f</code> 是一个指定格式的字母</li>
+</ul>
+<h2 id="x"><strong>x</strong><a hidden class="anchor" aria-hidden="true" href="#x">#</a></h2>
+<p>检查内存。</p>
+<ul>
+<li><code>x/nfu &lt;addr&gt;</code></li>
+<li><code>x &lt;addr&gt;</code>
+<ul>
+<li><code>n</code>, <code>f</code>, 和 <code>u</code> 都是可选参数，用于指定要显示的内存以及如何格式化。</li>
+<li><code>addr</code> 是要开始显示内存的地址的表达式。</li>
+<li><code>n</code> 重复次数（默认值是 1），指定要显示多少个单位（由 <code>u</code> 指定）的内存值。</li>
+<li><code>f</code> 显示格式（初始默认值是 <code>x</code>），显示格式是 <code>print('x'，'d'，'u'，'o'，'t'，'a'，'c'，'f'，'s')</code> 使用的格式之一，再加 <code>i</code>（机器指令）。</li>
+<li><code>u</code> 单位大小，<code>b</code> 表示单字节，<code>h</code> 表示双字节，<code>w</code> 表示四字节，<code>g</code> 表示八字节。</li>
+</ul>
+</li>
+</ul>
+<h2 id="display"><strong>display</strong><a hidden class="anchor" aria-hidden="true" href="#display">#</a></h2>
+<p>每次程序停止时打印表达式 expr 的值。</p>
+<ul>
+<li><code>display &lt;expr&gt;</code></li>
+<li><code>display/fmt &lt;expr&gt;</code></li>
+<li><code>display/fmt &lt;addr&gt;</code></li>
+</ul>
+<p><code>fmt</code> 用于指定显示格式。对于格式 <code>i</code> 或 <code>s</code>，或者包括单位大小或单位数量，将表达式 <code>addr</code> 添加为每次程序停止时要检查的内存地址。</p>
+<h2 id="disassemble----disas"><strong>disassemble &ndash; disas</strong><a hidden class="anchor" aria-hidden="true" href="#disassemble----disas">#</a></h2>
+<p>反汇编命令。</p>
+<ul>
+<li><code>disas &lt;func&gt;</code> 反汇编指定函数</li>
+<li><code>disas &lt;addr&gt;</code> 反汇编某地址所在函数</li>
+<li><code>disas &lt;begin_addr&gt; &lt;end_addr&gt;</code> 反汇编从开始地址到结束地址的部分</li>
+</ul>
+<h2 id="undisplay"><strong>undisplay</strong><a hidden class="anchor" aria-hidden="true" href="#undisplay">#</a></h2>
+<p>取消某些表达式在程序停止时自动显示。参数是表达式的编号（使用 <code>info display</code> 查询编号）。不带参数表示取消所有自动显示表达式。</p>
+<h2 id="disable-display"><strong>disable display</strong><a hidden class="anchor" aria-hidden="true" href="#disable-display">#</a></h2>
+<p>禁用某些表达式在程序停止时自动显示。禁用的显示项目被再次启用。参数是表达式的编号（使用 <code>info display</code> 查询编号）。不带参数表示禁用所有自动显示表达式。</p>
+<h2 id="enable-display"><strong>enable display</strong><a hidden class="anchor" aria-hidden="true" href="#enable-display">#</a></h2>
+<p>启用某些表达式在程序停止时自动显示。参数是重新显示的表达式的编号（使用 <code>info display</code> 查询编号）。不带参数表示启用所有自动显示表达式。</p>
+<h2 id="help----h"><strong>help &ndash; h</strong><a hidden class="anchor" aria-hidden="true" href="#help----h">#</a></h2>
+<p>打印命令列表。</p>
+<ul>
+<li><code>help &lt;class&gt;</code> 您可以获取该类中各个命令的列表。</li>
+<li><code>help &lt;command&gt;</code> 显示如何使用该命令的简述。</li>
+</ul>
+<h2 id="attach"><strong>attach</strong><a hidden class="anchor" aria-hidden="true" href="#attach">#</a></h2>
+<p>挂接到 GDB 之外的进程或文件。将进程 ID 或设备文件作为参数。</p>
+<ul>
+<li><code>attach &lt;process-id&gt;</code></li>
+</ul>
+<h2 id="run----r"><strong>run &ndash; r</strong><a hidden class="anchor" aria-hidden="true" href="#run----r">#</a></h2>
+<p>启动被调试的程序。可以直接指定参数，也可以用 <code>set args</code> 设置（启动所需的）参数。还允许使用 <code>&gt;</code>, <code>&lt;</code>, 或 <code>&gt;&gt;</code> 进行输入和输出重定向。</p>
+<p>甚至可以运行一个脚本，如：</p>
+<pre><code>run `python2 -c 'print &quot;A&quot;*100'`
+</code></pre><h2 id="backtrace----bt"><strong>backtrace &ndash; bt</strong><a hidden class="anchor" aria-hidden="true" href="#backtrace----bt">#</a></h2>
+<p>打印整个栈的回溯。</p>
+<ul>
+<li><code>bt</code> 打印整个栈的回溯，每个栈帧一行。</li>
+<li><code>bt n</code> 类似于上，但只打印最内层的 n 个栈帧。</li>
+<li><code>bt -n</code> 类似于上，但只打印最外层的 n 个栈帧。</li>
+<li><code>bt full n</code> 类似于 <code>bt n</code>，还打印局部变量的值。</li>
+</ul>
+<blockquote>
+<p>注意：使用 gdb 调试时，会自动关闭 ASLR，所以可能每次看到的栈地址都不变。</p>
+</blockquote>
+<h2 id="ptype"><strong>ptype</strong><a hidden class="anchor" aria-hidden="true" href="#ptype">#</a></h2>
+<p>打印类型 TYPE 的定义。</p>
+<ul>
+<li><code>ptype[/FLAGS] TYPE-NAME | EXPRESSION</code></li>
+</ul>
+<p>参数可以是由 <code>typedef</code> 定义的类型名， 或者 <code>struct STRUCT-TAG</code> 或者 <code>class CLASS-NAME</code> 或者 <code>union UNION-TAG</code> 或者 <code>enum ENUM-TAG</code>。</p>
+<h2 id="set-follow-fork-mode"><strong>set follow-fork-mode</strong><a hidden class="anchor" aria-hidden="true" href="#set-follow-fork-mode">#</a></h2>
+<p>当程序 fork 出一个子进程的时候，gdb 默认会追踪父进程（<code>set follow-fork-mode parent</code>），但也可以使用命令 <code>set follow-fork-mode child</code> 让其追踪子进程。</p>
+<p>另外，如果想要同时追踪父进程和子进程，可以使用命令 <code>set detach-on-fork off</code>（默认为<code>on</code>），这样就可以同时调试父子进程，在调试其中一个进程时，另一个进程被挂起。如果想让父子进程同时运行，可以使用 <code>set schedule-multiple on</code>（默认为<code>off</code>）。</p>
+<p>但如果程序是使用 exec 来启动了一个新的程序，可以使用 <code>set follow-exec-mode new</code>（默认为<code>same</code>） 来新建一个 inferior 给新程序，而父进程的 inferior 仍然保留。</p>
+<h2 id="thread-apply-all-bt"><strong>thread apply all bt</strong><a hidden class="anchor" aria-hidden="true" href="#thread-apply-all-bt">#</a></h2>
+<p>打印出所有线程的堆栈信息。</p>
+<h2 id="generate-core-file"><strong>generate-core-file</strong><a hidden class="anchor" aria-hidden="true" href="#generate-core-file">#</a></h2>
+<p>将调试中的进程生成内核转储文件。</p>
+<h2 id="directory----dir"><strong>directory &ndash; dir</strong><a hidden class="anchor" aria-hidden="true" href="#directory----dir">#</a></h2>
+<p>设置查找源文件的路径。</p>
+<p>或者使用 gdb 的 <code>-d</code> 参数，例如：<code>gdb a.out -d /search/code/</code></p>
+<h1 id="gdb-peda"><strong>gdb-peda</strong><a hidden class="anchor" aria-hidden="true" href="#gdb-peda">#</a></h1>
+<p>当 gdb 启动时，它会在当前用户的主目录中寻找一个名为 <code>.gdbinit</code> 的文件；如果该文件存在，则 gdb 就执行该文件中的所有命令。通常，该文件用于简单的配置命令。但是 <code>.gdbinit</code> 的配置十分繁琐，因此对 gdb 的扩展通常用插件的方式来实现，通过 python 的脚本可以很方便的实现需要的功能。</p>
+<p>PEDA（Python Exploit Development Assistance for GDB）是一个强大的 gdb 插件。它提供了高亮显示反汇编代码、寄存器、内存信息等人性化的功能。同时，PEDA 还有一些实用的新命令，比如 checksec 可以查看程序开启了哪些安全机制等等。</p>
+<h2 id="安装"><strong>安装</strong><a hidden class="anchor" aria-hidden="true" href="#安装">#</a></h2>
+<p>安装 peda 需要的软件包：</p>
+<pre><code>$ sudo apt-get install nasm micro-inetd
+$ sudo apt-get install libc6-dbg vim ssh
+</code></pre><p>安装 peda：</p>
+<pre><code>$ git clone https://github.com/longld/peda.git ~/peda
+$ echo &quot;source ~/peda/peda.py&quot; &gt;&gt; ~/.gdbinit
+$ echo &quot;DONE! debug your program with gdb and enjoy&quot;
+</code></pre><p>如果系统为 Arch Linux，则可以直接安装：</p>
+<pre><code>$ yaourt -S peda
+</code></pre><h2 id="peda命令"><strong>peda命令</strong><a hidden class="anchor" aria-hidden="true" href="#peda命令">#</a></h2>
+<ul>
+<li>
+<p><strong><code>aslr</code></strong> &ndash; 显示/设置 gdb 的 ASLR</p>
+</li>
+<li>
+<p><code>asmsearch</code> &ndash; Search for ASM instructions in memory</p>
+<ul>
+<li><code>asmsearch &quot;int 0x80&quot;</code></li>
+<li><code>asmsearch &quot;add esp, ?&quot; libc</code></li>
+</ul>
+</li>
+<li>
+<p><code>assemble</code> &ndash; On the fly assemble and execute instructions using NASM</p>
+<ul>
+<li>
+<p><code>assemble</code></p>
+<pre><code>assemble $pc
+&gt; mov al, 0xb
+&gt; int 0x80
+&gt; end
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p><strong><code>checksec</code></strong> &ndash; 检查二进制文件的安全选项</p>
+</li>
+<li>
+<p><code>cmpmem</code> &ndash; Compare content of a memory region with a file</p>
+<ul>
+<li><code>cmpmem 0x08049000 0x0804a000 data.mem</code></li>
+</ul>
+</li>
+<li>
+<p><code>context</code> &ndash; Display various information of current execution context</p>
+<ul>
+<li><code>context_code</code> &ndash; Display nearby disassembly at $PC of current execution context</li>
+<li><code>context_register</code> &ndash; Display register information of current execution context</li>
+<li><code>context_stack</code> &ndash; Display stack of current execution context
+<ul>
+<li><code>context reg</code></li>
+<li><code>context code</code></li>
+<li><code>context stack</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>crashdump</code> &ndash; Display crashdump info and save to file</p>
+</li>
+<li>
+<p><code>deactive</code> &ndash; Bypass a function by ignoring its execution (eg sleep/alarm)</p>
+<ul>
+<li><code>deactive setresuid</code></li>
+<li><code>deactive chdir</code></li>
+</ul>
+</li>
+<li>
+<p><code>distance</code> &ndash; Calculate distance between two addresses</p>
+</li>
+<li>
+<p><strong><code>dumpargs</code></strong> &ndash; 在调用指令停止时显示传递给函数的参数</p>
+</li>
+<li>
+<p><code>dumpmem</code> &ndash; Dump content of a memory region to raw binary file</p>
+<ul>
+<li><code>dumpmem libc.mem libc</code></li>
+</ul>
+</li>
+<li>
+<p><strong><code>dumprop</code></strong> &ndash; 在特定的内存范围显示 ROP gadgets</p>
+<ul>
+<li><code>dumprop</code></li>
+<li><code>dumprop binary &quot;pop&quot;</code></li>
+</ul>
+</li>
+<li>
+<p><code>eflags</code> &ndash; Display/set/clear/toggle value of eflags register</p>
+</li>
+<li>
+<p><strong><code>elfheader</code></strong> &ndash; 获取正在调试的 ELF 文件的头信息</p>
+<ul>
+<li><code>elfheader</code></li>
+<li><code>elfheader .got</code></li>
+</ul>
+</li>
+<li>
+<p><strong><code>elfsymbol</code></strong> &ndash; 从 ELF 文件中获取没有调试信息的符号信息</p>
+<ul>
+<li><code>elfsymbol</code></li>
+<li><code>elfsymbol printf</code></li>
+</ul>
+</li>
+<li>
+<p><code>gennop</code> &ndash; Generate abitrary length NOP sled using given characters</p>
+<ul>
+<li><code>gennop 500</code></li>
+<li><code>gennop 500 &quot;\x90&quot;</code></li>
+</ul>
+</li>
+<li>
+<p><code>getfile</code> &ndash; Get exec filename of current debugged process</p>
+</li>
+<li>
+<p><code>getpid</code> &ndash; Get PID of current debugged process</p>
+</li>
+<li>
+<p><code>goto</code> &ndash; Continue execution at an address</p>
+</li>
+<li>
+<p><code>help</code> &ndash; Print the usage manual for PEDA commands</p>
+</li>
+<li>
+<p><code>hexdump</code> &ndash; Display hex/ascii dump of data in memory</p>
+<ul>
+<li><code>hexdump $sp 64</code></li>
+<li><code>hexdump $sp /20</code></li>
+</ul>
+</li>
+<li>
+<p><code>hexprint</code> &ndash; Display hexified of data in memory</p>
+<ul>
+<li><code>hexprint $sp 64</code></li>
+<li><code>hexprint $sp /20</code></li>
+</ul>
+</li>
+<li>
+<p><code>jmpcall</code> &ndash; Search for JMP/CALL instructions in memory</p>
+<ul>
+<li><code>jmpcall</code></li>
+<li><code>jmpcall eax</code></li>
+<li><code>jmpcall esp libc</code></li>
+</ul>
+</li>
+<li>
+<p><code>loadmem</code> &ndash; Load contents of a raw binary file to memory</p>
+<ul>
+<li><code>loadmem stack.mem 0xbffdf000</code></li>
+</ul>
+</li>
+<li>
+<p><strong><code>lookup</code></strong> &ndash; 搜索属于内存范围的地址的所有地址/引用</p>
+<ul>
+<li><code>lookup address stack libc</code></li>
+<li><code>lookup pointer stack ld-2</code></li>
+</ul>
+</li>
+<li>
+<p><code>nearpc</code> &ndash; Disassemble instructions nearby current PC or given address</p>
+<ul>
+<li><code>nearpc 20</code></li>
+<li><code>nearpc 0x08048484</code></li>
+</ul>
+</li>
+<li>
+<p><code>nextcall</code> &ndash; Step until next &lsquo;call&rsquo; instruction in specific memory range</p>
+<ul>
+<li><code>nextcall cpy</code></li>
+</ul>
+</li>
+<li>
+<p><code>nextjmp</code> &ndash; Step until next &lsquo;j*&rsquo; instruction in specific memory range</p>
+<ul>
+<li><code>nextjmp</code></li>
+</ul>
+</li>
+<li>
+<p><code>nxtest</code> &ndash; Perform real NX test to see if it is enabled/supported by OS</p>
+</li>
+<li>
+<p><strong><code>patch</code></strong> &ndash; 使用字符串/十六进制字符串/整形数</p>
+<ul>
+<li><code>patch $esp 0xdeadbeef</code></li>
+<li><code>patch $eax &quot;the long string&quot;</code></li>
+<li><code>patch (multiple lines)</code></li>
+</ul>
+</li>
+<li>
+<p><strong><code>pattern</code></strong> &ndash; 生成，搜索或写入循环 pattern 到内存</p>
+<ul>
+<li><code>pattern_arg</code> &ndash; Set argument list with cyclic pattern</li>
+<li><code>pattern_create</code> &ndash; Generate a cyclic pattern</li>
+<li><code>pattern_env</code> &ndash; Set environment variable with a cyclic pattern</li>
+<li><code>pattern_offset</code> &ndash; Search for offset of a value in cyclic pattern</li>
+<li><code>pattern_patch</code> &ndash; Write a cyclic pattern to memory</li>
+<li><code>pattern_search</code> &ndash; Search a cyclic pattern in registers and memory
+<ul>
+<li><code>pattern create 2000</code></li>
+<li><code>pattern create 2000 input</code></li>
+<li><code>pattern offset $pc</code></li>
+<li><code>pattern search</code></li>
+<li><code>pattern patch 0xdeadbeef 100</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>payload</code> &ndash; Generate various type of ROP payload using ret2plt</p>
+<ul>
+<li><code>payload copybytes</code></li>
+<li><code>payload copybytes target &quot;/bin/sh&quot;</code></li>
+<li><code>payload copybytes 0x0804a010 offset</code></li>
+</ul>
+</li>
+<li>
+<p><code>pdisass</code> &ndash; Format output of gdb disassemble command with colors</p>
+<ul>
+<li><code>pdisass $pc /20</code></li>
+</ul>
+</li>
+<li>
+<p><code>pltbreak</code> &ndash; Set breakpoint at PLT functions match name regex</p>
+<ul>
+<li><code>pltbreak cpy</code></li>
+</ul>
+</li>
+<li>
+<p><strong><code>procinfo</code></strong>  &ndash; 显示调试进程的 /proc/pid/</p>
+<ul>
+<li><code>procinfo</code></li>
+<li><code>procinfo fd</code></li>
+</ul>
+</li>
+<li>
+<p><code>profile</code> &ndash; Simple profiling to count executed instructions in the program</p>
+</li>
+<li>
+<p><code>pyhelp</code> &ndash; Wrapper for python built-in help</p>
+<ul>
+<li><code>pyhelp peda</code></li>
+<li><code>pyhelp hex2str</code></li>
+</ul>
+</li>
+<li>
+<p><strong><code>pshow</code></strong> &ndash; 显示各种 PEDA 选项和其他设置</p>
+<ul>
+<li><code>pshow</code></li>
+<li><code>pshow option context</code></li>
+</ul>
+</li>
+<li>
+<p><strong><code>pset</code></strong> &ndash; 设置各种 PEDA 选项和其他设置</p>
+<ul>
+<li><code>pset arg '&quot;A&quot;*200'</code></li>
+<li><code>pset arg 'cyclic_pattern(200)'</code></li>
+<li><code>pset env EGG 'cyclic_pattern(200)'</code></li>
+<li><code>pset option context &quot;code,stack&quot;</code></li>
+<li><code>pset option badchars &quot;\r\n&quot;</code></li>
+</ul>
+</li>
+<li>
+<p><strong><code>readelf</code></strong> &ndash; 获取 ELF 的文件头信息</p>
+<ul>
+<li><code>readelf libc .text</code></li>
+</ul>
+</li>
+<li>
+<p><code>refsearch</code> &ndash; Search for all references to a value in memory ranges</p>
+<ul>
+<li><code>refsearch &quot;/bin/sh&quot;</code></li>
+<li><code>refsearch 0xdeadbeef</code></li>
+</ul>
+</li>
+<li>
+<p><code>reload</code> &ndash; Reload PEDA sources, keep current options untouch</p>
+</li>
+<li>
+<p><strong><code>ropgadget</code></strong> &ndash; 获取二进制或库的常见 ROP gadgets</p>
+<ul>
+<li><code>ropgadget</code></li>
+<li><code>ropgadget libc</code></li>
+</ul>
+</li>
+<li>
+<p><strong><code>ropsearch</code></strong> &ndash; 搜索内存中的 ROP gadgets</p>
+<ul>
+<li><code>ropsearch &quot;pop eax&quot;</code></li>
+<li><code>ropsearch &quot;xchg eax, esp&quot; libc</code></li>
+</ul>
+</li>
+<li>
+<p><strong><code>searchmem|find</code></strong> &ndash; 搜索内存中的 pattern; 支持正则表达式搜索</p>
+<ul>
+<li><code>find &quot;/bin/sh&quot; libc</code></li>
+<li><code>find 0xdeadbeef all</code></li>
+<li><code>find &quot;..\x04\x08&quot; 0x08048000 0x08049000</code></li>
+</ul>
+</li>
+<li>
+<p><code>searchmem</code> &ndash; Search for a pattern in memory; support regex search</p>
+</li>
+<li>
+<p><code>session</code> &ndash; Save/restore a working gdb session to file as a script</p>
+</li>
+<li>
+<p><code>set</code> &ndash; Set various PEDA options and other settings</p>
+<ul>
+<li><code>set exec-wrapper ./exploit.py</code></li>
+</ul>
+</li>
+<li>
+<p><code>sgrep</code> &ndash; Search for full strings contain the given pattern</p>
+</li>
+<li>
+<p><strong><code>shellcode</code></strong> &ndash; 生成或下载常见的 shellcode</p>
+<ul>
+<li><code>shellcode x86/linux exec</code></li>
+</ul>
+</li>
+<li>
+<p><code>show</code> &ndash; Show various PEDA options and other settings</p>
+</li>
+<li>
+<p><strong><code>skeleton</code></strong> &ndash; 生成 python exploit 代码模板</p>
+<ul>
+<li><code>skeleton argv exploit.py</code></li>
+</ul>
+</li>
+<li>
+<p><code>skipi</code> &ndash; Skip execution of next count instructions</p>
+</li>
+<li>
+<p><code>snapshot</code> &ndash; Save/restore process&rsquo;s snapshot to/from file</p>
+<ul>
+<li><code>snapshot save</code></li>
+<li><code>snapshot restore</code></li>
+</ul>
+</li>
+<li>
+<p><code>start</code> &ndash; Start debugged program and stop at most convenient entry</p>
+</li>
+<li>
+<p><code>stepuntil</code> &ndash; Step until a desired instruction in specific memory range</p>
+<ul>
+<li><code>stepuntil cmp</code></li>
+<li><code>stepuntil xor</code></li>
+</ul>
+</li>
+<li>
+<p><code>strings</code> &ndash; Display printable strings in memory</p>
+<ul>
+<li><code>strings</code></li>
+<li><code>strings binary 4</code></li>
+</ul>
+</li>
+<li>
+<p><code>substr</code> &ndash; Search for substrings of a given string/number in memory</p>
+</li>
+<li>
+<p><code>telescope</code> &ndash; Display memory content at an address with smart dereferences</p>
+<ul>
+<li><code>telescope 40</code></li>
+<li><code>telescope 0xb7d88000 40</code></li>
+</ul>
+</li>
+<li>
+<p><code>tracecall</code> &ndash; Trace function calls made by the program</p>
+<ul>
+<li><code>tracecall</code></li>
+<li><code>tracecall &quot;cpy,printf&quot;</code></li>
+<li><code>tracecall &quot;-puts,fflush&quot;</code></li>
+</ul>
+</li>
+<li>
+<p><code>traceinst</code> &ndash; Trace specific instructions executed by the program</p>
+<ul>
+<li><code>traceinst 20</code></li>
+<li><code>traceinst &quot;cmp,xor&quot;</code></li>
+</ul>
+</li>
+<li>
+<p><code>unptrace</code> &ndash; Disable anti-ptrace detection</p>
+<ul>
+<li><code>unptrace</code></li>
+</ul>
+</li>
+<li>
+<p><code>utils</code> &ndash; Miscelaneous utilities from utils module</p>
+</li>
+<li>
+<p><strong><code>vmmap</code></strong> &ndash; 在调试过程中获取段的虚拟映射地址范围</p>
+<ul>
+<li><code>cmmap</code></li>
+<li><code>vmmap binary / libc</code></li>
+<li><code>vmmap 0xb7d88000</code></li>
+</ul>
+</li>
+<li>
+<p><code>waitfor</code> &ndash; Try to attach to new forked process; mimic &ldquo;attach -waitfor&rdquo;</p>
+<ul>
+<li><code>waitfor</code></li>
+<li><code>waitfor myprog -c</code></li>
+</ul>
+</li>
+<li>
+<p><code>xinfo</code> &ndash; Display detail information of address/registers</p>
+<ul>
+<li><code>xinfo register eax</code></li>
+<li><code>xinfo 0xb7d88000</code></li>
+</ul>
+</li>
+<li>
+<p><strong><code>xormem</code></strong> &ndash; 用一个 key 来对一个内存区域执行 XOR 操作</p>
+<ul>
+<li><code>xormem 0x08049000 0x0804a000 “thekey”</code></li>
+</ul>
+</li>
+<li>
+<p><code>xprint</code> &ndash; Extra support to GDB&rsquo;s print command</p>
+</li>
+<li>
+<p><code>xrefs</code> &ndash; Search for all call/data access references to a function/variable</p>
+</li>
+<li>
+<p><code>xuntil</code> &ndash; Continue execution until an address or function</p>
+</li>
+</ul>
+<h2 id="使用-peda-和-python-编写-gdb-脚本"><strong>使用 PEDA 和 Python 编写 gdb 脚本</strong><a hidden class="anchor" aria-hidden="true" href="#使用-peda-和-python-编写-gdb-脚本">#</a></h2>
+<ul>
+<li>
+<p>全局类</p>
+<ul>
+<li><code>pedacmd</code>：
+<ul>
+<li>交互式命令</li>
+<li>没有返回值</li>
+<li>例如：<code>pedacmd.context_register()</code></li>
+</ul>
+</li>
+<li><code>peda</code>：
+<ul>
+<li>与 gdb 交互的后端功能</li>
+<li>有返回值</li>
+<li>例如：<code>peda.getreg(&quot;eax&quot;)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>小工具</p>
+<ul>
+<li>例如：<code>to_int()</code>、<code>format_address()</code></li>
+<li>获得帮助
+<ul>
+<li><code>pyhelp peda</code></li>
+<li><code>pyhelp hex2str</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>单行／交互式使用</p>
+<ul>
+<li>
+<p><code>gdb-peda$ python print peda.get_vmmap()</code></p>
+</li>
+<li>
+<pre><code>gdb-peda$ python
+&gt; status = peda.get_status()
+&gt; while status == &quot;BREAKPOINT&quot;:
+&gt;    peda.execute(&quot;continue&quot;)
+&gt; end
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>外部脚本</p>
+<pre><code># myscript.py
+def myrun(size):
+    argv = cyclic_pattern(size)
+    peda.execute(&quot;set arg %s&quot; % argv)
+    peda.execute(&quot;run&quot;)
+</code></pre><pre><code>gdb-peda$ source myscript.py
+gdb-peda$ python myrun(100)
+</code></pre></li>
+</ul>
+<h2 id="pwndbgpeda">pwndbg&amp;&amp;peda<a hidden class="anchor" aria-hidden="true" href="#pwndbgpeda">#</a></h2>
+<p>pwndbg在调试堆的数据结构时候很方便</p>
+<p>peda在查找字符串等功能时方便</p>
+<p>pwndbg和peda不能同时使用</p>
+<p>切换方法</p>
+<p>默认在<code>home</code>中打开终端:
+<code>sudo nano ./.gdbinit</code></p>
+<p><img loading="lazy" src="https://www.kro1lsec.com:442/images/2021/05/28/20210528160205.png" alt="img"  />
+</p>
+<p>想启用某一个时，注释掉另一个就行。</p>
+<p><img loading="lazy" src="https://www.kro1lsec.com:442/images/2021/05/28/20210528160208.png" alt="img"  />
+</p>
+<h1 id="参考资料"><strong>参考资料</strong><a hidden class="anchor" aria-hidden="true" href="#参考资料">#</a></h1>
+<p><a href="https://sourceware.org/gdb/onlinedocs/gdb/">Debugging with GDB</a></p>
+<p><a href="https://github.com/hellogcc/100-gdb-tips">100个gdb小技巧</a></p>
+<p><a href="https://blog.csdn.net/weixin_43092232/article/details/105648769">pwndbg+pwndbg联合使用</a></p>
+<p><a href="https://github.com/scwuaptx/Pwngdb">Pwngdb</a></p>
+<p><a href="https://github.com/hugsy/gef">GEF</a></p>
+<p><a href="https://github.com/pwndbg/pwndbg">pwndbg</a></p>
+<p><a href="http://ropshell.com/peda/">peda</a></p>
+
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://inten.kro1lsec.com/tags/%E5%B7%A5%E5%85%B7/">工具</a></li>
+      <li><a href="https://inten.kro1lsec.com/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/">二进制</a></li>
+    </ul>
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share [工具]GDB on twitter"
+        href="https://twitter.com/intent/tweet/?text=%5b%e5%b7%a5%e5%85%b7%5dGDB&amp;url=https%3a%2f%2finten.kro1lsec.com%2fpost%2f%25E5%25B7%25A5%25E5%2585%25B7gdb%2f&amp;hashtags=%e5%b7%a5%e5%85%b7%2c%e4%ba%8c%e8%bf%9b%e5%88%b6">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share [工具]GDB on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2finten.kro1lsec.com%2fpost%2f%25E5%25B7%25A5%25E5%2585%25B7gdb%2f&amp;title=%5b%e5%b7%a5%e5%85%b7%5dGDB&amp;summary=%5b%e5%b7%a5%e5%85%b7%5dGDB&amp;source=https%3a%2f%2finten.kro1lsec.com%2fpost%2f%25E5%25B7%25A5%25E5%2585%25B7gdb%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share [工具]GDB on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2finten.kro1lsec.com%2fpost%2f%25E5%25B7%25A5%25E5%2585%25B7gdb%2f&title=%5b%e5%b7%a5%e5%85%b7%5dGDB">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share [工具]GDB on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2finten.kro1lsec.com%2fpost%2f%25E5%25B7%25A5%25E5%2585%25B7gdb%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share [工具]GDB on whatsapp"
+        href="https://api.whatsapp.com/send?text=%5b%e5%b7%a5%e5%85%b7%5dGDB%20-%20https%3a%2f%2finten.kro1lsec.com%2fpost%2f%25E5%25B7%25A5%25E5%2585%25B7gdb%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share [工具]GDB on telegram"
+        href="https://telegram.me/share/url?text=%5b%e5%b7%a5%e5%85%b7%5dGDB&amp;url=https%3a%2f%2finten.kro1lsec.com%2fpost%2f%25E5%25B7%25A5%25E5%2585%25B7gdb%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
+    
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
