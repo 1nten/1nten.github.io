@@ -1,209 +1,43 @@
-<!DOCTYPE html>
-<html lang="en" dir="auto">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>intenのblog🍦</title>
-
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="canonical" href="https://inten.kro1lsec.com/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css" integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://inten.kro1lsec.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://inten.kro1lsec.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://inten.kro1lsec.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://inten.kro1lsec.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.82.0" />
-<link rel="alternate" type="application/rss&#43;xml" href="https://inten.kro1lsec.com/index.xml">
-<link rel="alternate" type="application/json" href="https://inten.kro1lsec.com/index.json">
-<meta property="og:title" content="intenのblog🍦" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://inten.kro1lsec.com/" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="intenのblog🍦"/>
-<meta name="twitter:description" content=""/>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "intenのblog🍦",
-  "url": "https://inten.kro1lsec.com/",
-  "description": "",
-  "thumbnailUrl": "https://inten.kro1lsec.com/favicon.ico",
-  "sameAs": [
-      "#", "#", "#", "#", "https://github.com/1nten"
-  ]
-}
-</script>
-</head>
-
-<body class="list" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-<noscript>
-    <style type="text/css">
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: #1d1e20;
-                --entry: #2e2e33;
-                --primary: rgba(255, 255, 255, 0.84);
-                --secondary: rgba(255, 255, 255, 0.56);
-                --tertiary: rgba(255, 255, 255, 0.16);
-                --content: rgba(255, 255, 255, 0.74);
-                --hljs-bg: #2e2e33;
-                --code-bg: #37383e;
-                --border: #333;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript>
-
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://inten.kro1lsec.com/" accesskey="h" title="intenのblog🍦 (Alt + H)">intenのblog🍦</a>
-            <span class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </span>
-        </div>
-        <ul id="menu" onscroll="menu_on_scroll()">
-            <li>
-                <a href="https://inten.kro1lsec.com/archives" title="Archive">
-                    <span>Archive</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://inten.kro1lsec.com/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://inten.kro1lsec.com/tags/" title="Tags">
-                    <span>Tags</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main"> 
-<article class="first-entry home-info">
-    <header class="entry-header">
-        <h1>intenのblog🍦</h1>
-    </header>
-    <section class="entry-content">
-        <p></p>
-    </section>
-    <footer class="entry-footer">
-        <div class="social-icons">
-    <a href="#" target="_blank" rel="noopener noreferrer me" title="Twitter">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path
-        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-    </path>
-</svg>
-    </a>
-    <a href="#" target="_blank" rel="noopener noreferrer me" title="Stackoverflow">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path
-        d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162" />
-</svg>
-    </a>
-    <a href="#" target="_blank" rel="noopener noreferrer me" title="Codepen">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon>
-    <line x1="12" y1="22" x2="12" y2="15.5"></line>
-    <polyline points="22 8.5 12 15.5 2 8.5"></polyline>
-    <polyline points="2 15.5 12 8.5 22 15.5"></polyline>
-    <line x1="12" y1="2" x2="12" y2="8.5"></line>
-</svg>
-    </a>
-    <a href="#" target="_blank" rel="noopener noreferrer me" title="Linkedin">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-    <rect x="2" y="9" width="4" height="12"></rect>
-    <circle cx="4" cy="4" r="2"></circle>
-</svg>
-    </a>
-    <a href="https://github.com/1nten" target="_blank" rel="noopener noreferrer me" title="Github">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path
-        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-    </path>
-</svg>
-    </a>
-</div>
-
-    </footer>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>[uCore]Lab1</h2>
-  </header>
-  <section class="entry-content">
-    <p>[练习1] 练习指南
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>intenのblog🍦</title><meta name=description content><meta name=author content><link rel=canonical href=https://inten.kro1lsec.com/><link crossorigin=anonymous href=/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as=style><link rel=icon href=https://inten.kro1lsec.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://inten.kro1lsec.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://inten.kro1lsec.com/favicon-32x32.png><link rel=apple-touch-icon href=https://inten.kro1lsec.com/apple-touch-icon.png><link rel=mask-icon href=https://inten.kro1lsec.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><meta name=generator content="Hugo 0.82.0"><link rel=alternate type=application/rss+xml href=https://inten.kro1lsec.com/index.xml><link rel=alternate type=application/json href=https://inten.kro1lsec.com/index.json><meta property="og:title" content="intenのblog🍦"><meta property="og:description" content><meta property="og:type" content="website"><meta property="og:url" content="https://inten.kro1lsec.com/"><meta name=twitter:card content="summary"><meta name=twitter:title content="intenのblog🍦"><meta name=twitter:description content><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"intenのblog🍦","url":"https://inten.kro1lsec.com/","description":"","thumbnailUrl":"https://inten.kro1lsec.com/favicon.ico","sameAs":["https://github.com/1nten"]}</script></head><body class=list id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script><noscript><style type=text/css>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:#1d1e20;--entry:#2e2e33;--primary:rgba(255, 255, 255, 0.84);--secondary:rgba(255, 255, 255, 0.56);--tertiary:rgba(255, 255, 255, 0.16);--content:rgba(255, 255, 255, 0.74);--hljs-bg:#2e2e33;--code-bg:#37383e;--border:#333}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><header class=header><nav class=nav><div class=logo><a href=https://inten.kro1lsec.com/ accesskey=h title="intenのblog🍦 (Alt + H)">intenのblog🍦</a>
+<span class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></span></div><ul id=menu onscroll=menu_on_scroll()><li><a href=https://inten.kro1lsec.com/archives title=Archive><span>Archive</span></a></li><li><a href=https://inten.kro1lsec.com/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://inten.kro1lsec.com/tags/ title=Tags><span>Tags</span></a></li></ul></nav></header><main class=main><article class="first-entry home-info"><header class=entry-header><h1>intenのblog🍦</h1></header><section class=entry-content><p></p></section><footer class=entry-footer><div class=social-icons><a href=https://github.com/1nten target=_blank rel="noopener noreferrer me" title=Github><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></footer></article><article class=post-entry><header class=entry-header><h2>周报</h2></header><section class=entry-content><p>这里定期记录天问之路和日常的学习内容。
+[WEEK 12] Tiny Kernel (6.14~6.20) 日均学习时间6~9小时
+天问：
+学习lab2的基础知识，前面lab1的补充，操作系统真象还原
+琐事：
+在肝基于树莓派的硬件plc
+了解plc，st，梯形图
+学会了剪视频，加字幕
+下周计划：
+期末复习
+[WEEK 11] Tiny Kernel (6.7~6.13) 日均学习时间4~8小时
+天问：
+一直肝lab1，属实有点慢了，踩了点坑，熟悉了gdb+qemu调试
+琐事：
+准备安恒的面试，改简历，算是不错的结果，继续努力。1day
+优化了博客，新加了目录和tag很舒服，0.5day
+答辩0.5day,学英语 2day。
+下周计划：
+做完2个实验，
+go的语法预计要整好，每天2小时吧，gin框架也看下。
+[WEEK 10] Tiny Kernel (6.1~6.6) 日均学习时间4~6小时
+天问：
+天问的作业今天抱佛脚，只完成了LAB0环境的搭建。
+datalab 2天完成，最后的浮点数偷懒了
+cssapp看完了3~6章， 事后做笔记不太行啊，之后直接写
+琐事：
+flask框架开发告一段落，接下来尝试用gin框架
+但golang还在学语法，叶师傅推荐用go改写python的exp检验自己的水平。
+下周计划：
+准备答辩，预计学习时间6-8小时。
+[WEEK 9] Continue (4.19-5.30) 南京大学MOOC
+程序员的自我修养
+CVE-2017-11882漏洞分析
+博客搭建
+[WEEK 8] 网络编程（4.5-4.18） 学习 网络编程
+[WEEK 7] codeql（3.22-4.4） 准备hvv，整理应急响应相关
+[WEEK 6] IDAPython（3....</p></section><footer class=entry-footer>June 21, 2021&nbsp;·&nbsp;1 min</footer><a class=entry-link aria-label="post link to 周报" href=https://inten.kro1lsec.com/post/%E5%91%A8%E6%8A%A5/></a></article><article class=post-entry><header class=entry-header><h2>[uCore]Lab1</h2></header><section class=entry-content><p>练习1 练习指南
 操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
- 设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，
+设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target all: 对应直接使用make的时候，就是编译出ucore.img，
 lab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试
 debug-mon: 使用qemu的monitor和gdb配合调试
 qemu: 使用qemu混合模式
@@ -211,21 +45,18 @@ qemu-mon:使用qemu monitor模式
 qemu-nox:使用qemu 命令行模式
 一个被系统认为是符合规范的硬盘主引导扇区的特征是什么?
 从/tool/sign.c的代码来看，一个磁盘主引导扇区只有512字节。且 第510个（倒数第二个）字节是0x55， 第511个（倒数第一个）字节是0xAA。
-[练习2] 使用qemu执行并调试lab1中的软件。
+练习2 使用qemu执行并调试lab1中的软件。
 单步调试和查看BIOS代码
 修改tools/gdbinit为
-file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue   gdb脚本中的define hook-stop ....</p>
-  </section>
-  <footer class="entry-footer">June 13, 2021&nbsp;·&nbsp;6 min</footer>
-  <a class="entry-link" aria-label="post link to [uCore]Lab1" href="https://inten.kro1lsec.com/post/ucorelab1/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>[IOT]简易毫米波雷达开发小记</h2>
-  </header>
-  <section class="entry-content">
-    <p>开发环境 软件
+file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue gdb脚本中的define hook-stop ....</p></section><footer class=entry-footer>June 20, 2021&nbsp;·&nbsp;9 min</footer><a class=entry-link aria-label="post link to [uCore]Lab1" href=https://inten.kro1lsec.com/post/ucorelab1/></a></article><article class=post-entry><header class=entry-header><h2>操作系统真象还原笔记</h2></header><section class=entry-content><p>01操作系统是是什么 社会组织和人们之间的关系，正是操作系统和用户进程的关系
+当人们想和远方的朋友说话时，虽然可以徒步走到亲朋好友身边再对其表达想说的话，但社会组织 已经给提供了邮局和电话，何必自己再大老远跑一趟呢。这就是操作系统（社会组织）提供的资源。两 个人想在一起生活，要不要一定先结婚呢？完全不用，领不领证都不会阻碍人们在一起生活，但是社会 组织为了方便人口管理做了额外约束。不领证的话，至少社会组织无法预测未来人口数量趋势，无法做 出宏观调控，甚至这是找到你家人的一种方法。这就如 Linux 系统中的内存管理，分别要记录哪些页是 Active，哪些是“脏页“。不记录不会影响程序执行，记录这些状态还不是为了更好地管理 内存。
+03写操作系统，哪些需要我来做 操作系统是管理资源的软件，操作系统能做什么，取决于主机上硬件的功能。
+写操作系统需要了解硬件，这些硬件提供了软件方面的接口，这样我们的操作系统通过软件（计算机指令〉就能够控制硬件。我们需要做的就是知道如何通过计算机指令来控制硬件，参考硬件手册这下少不了啦。
+04软件是如何访问硬件的 各种硬件适配设备，这就是 IO 接口。接口其实就是标准，大家生产出来的硬件按照这个标准工作就实现了通用。
+访问外部硬件有两个方式。
+（1）将某个外设的内存映射到一定范围的地址空间中， CPU 通过地址总线访问该内存区域时会落到外设的内存中，这种映射让 CPU 访问外设的内存就如同访问主板上的物理内存一样。有的设备是这样做的，比如显卡，显卡是显示器的适配器， CPU 不直接和显示器交互，它只和显卡通信。显卡上有片内存叫显存，它被映射到主机物理内存上的低端 lMB 的0xB8000～0xBFFFF。CPU 访问这片内存就是访问显存，住这片内存上写字节便是往屏幕上打印内容。
+(2)外设是通过 IO 接口与 CPU 通信的， CPU 访问外设，就是访问 IO 接口，由 IO 接口将信息传递 给另一端的外设，也就是说， CPU 从来不知道有这些设备的存在，它只知道自己操作的 IO 接口，你看， 处处体现着分层。 于是问题来了，如何访问到 IO 接口呢，答案就是 IO 接口上面有一些寄存器，访问 IO 接口本质上就是 访问这些寄存器，这些寄存器就是人们常说的端口。这些端口是人家 IO 接口给咱们提供的接口 。 人家接口 电路也有自己的思维（系统），看到寄存器中写了什么就做出相应的反应。接口提供接口，哈哈，有意思。 不过这是人家的约定，没有约定就乱了，各干各的，大家都累，咱们只要遵循人家的规定就能访问成功。
+05应用程序是什么，和操作系统是如何配合到一起的 应用程序和操作系统都是软件。 CPU 会将它们一视同仁，甚至， CPU 不知道自己在执行的程序是操作系统，还是一般应用软件， CPU 只知道去 CS: ip 寄存器中指向的内 存取指令井执行，它不知道什么是操作系统，也无需知道。...</p></section><footer class=entry-footer>June 20, 2021&nbsp;·&nbsp;3 min</footer><a class=entry-link aria-label="post link to 操作系统真象还原笔记" href=https://inten.kro1lsec.com/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9C%9F%E8%B1%A1%E8%BF%98%E5%8E%9F%E7%AC%94%E8%AE%B0/></a></article><article class=post-entry><header class=entry-header><h2>[IOT]简易毫米波雷达开发小记</h2></header><section class=entry-content><p>开发环境 软件
 Visual Studio 2019
 EasyX_2018春分版
 FlyMcu.exe
@@ -240,222 +71,70 @@ Micro USB数据线
 安装成功后，设备管理器就能识别出接上的电路板
 串口烧写 打开FlyMcu.exe按照下图配置开始编程，等待几分钟后完成。
 然后再打开Windows串口调试工具，将电路板背面的传感器朝上，将手机之类的物品放置到上方15cm处。下图中绿色的数字即为雷达检测到的信息。但是这种显示方式很不直观，接下来我们编写可视化窗口。
-可视化窗口编写 先配置VS2019&#43;EasyX的开发环境VS2019安装EasyX详细过程
+可视化窗口编写 先配置VS2019+EasyX的开发环境VS2019安装EasyX详细过程
 如果缺少SDK，按照提示下载安装即可
-#include &#34;pch.h&#34;#include &lt;Windows.h&gt;#include &lt;memory.h&gt;#include &lt;string.h&gt;#include &lt;winsock.h&gt;#include &lt;stdio.h&gt;#include &lt;stdint.h&gt;#include &lt;stdlib.h&gt;#include &lt;windows.h&gt; #include&lt;graphics.h&gt; //如果您需要在vc及vs环境中使用graphics.h的功能 您可以下载EasyX图形库#include &lt;conio.h&gt;#define X0 10 #define Y0 860 #define BUFSIZE 512 #pragma comment(lib,&#34;ws2_32.lib&#34;)  using namespace std; int port_setting(); HANDLE hCom; //将一个任务切换到指定的线程中去执行  int main(void) { if (!(port_setting())) { printf(&#34;串口初始化异常&#34;); } DWORD wCount; //定义一个32位的无符号整数，用到头文件#include &lt;windows....</p>
-  </section>
-  <footer class="entry-footer">June 8, 2021&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to [IOT]简易毫米波雷达开发小记" href="https://inten.kro1lsec.com/post/iot%E7%AE%80%E6%98%93%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>[uCore]Lab0</h2>
-  </header>
-  <section class="entry-content">
-    <p>gcc #安装sudo apt-get install build-essential#编译$ gcc -Wall hello.c -o hello该命令将文件‘hello.c’中的代码编译为机器码并存储在可执行文件 ‘hello’中。机器码的文件名是通过 -o 选项指定的。该选项通常作为命令行中的最后一个参数。如果被省略，输出文件默认为 ‘a.out’。
+#include "pch.h"#include &lt;Windows.h>#include &lt;memory.h>#include &lt;string.h>#include &lt;winsock.h>#include &lt;stdio.h>#include &lt;stdint.h>#include &lt;stdlib.h>#include &lt;windows.h> #include&lt;graphics.h> //如果您需要在vc及vs环境中使用graphics.h的功能 您可以下载EasyX图形库#include &lt;conio.h>#define X0 10 #define Y0 860 #define BUFSIZE 512 #pragma comment(lib,"ws2_32.lib") using namespace std; int port_setting(); HANDLE hCom; //将一个任务切换到指定的线程中去执行 int main(void) { if (!(port_setting())) { printf("串口初始化异常"); } DWORD wCount; //定义一个32位的无符号整数，用到头文件#include &lt;windows....</p></section><footer class=entry-footer>June 8, 2021&nbsp;·&nbsp;2 min</footer><a class=entry-link aria-label="post link to [IOT]简易毫米波雷达开发小记" href=https://inten.kro1lsec.com/post/iot%E7%AE%80%E6%98%93%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/></a></article><article class=post-entry><header class=entry-header><h2>[uCore]Lab0</h2></header><section class=entry-content><p>gcc #安装
+sudo apt-get install build-essential
+#编译
+$ gcc -Wall hello.c -o hello
+该命令将文件‘hello.c’中的代码编译为机器码并存储在可执行文件 ‘hello’中。机器码的文件名是通过 -o 选项指定的。该选项通常作为命令行中的最后一个参数。如果被省略，输出文件默认为 ‘a.out’。
 选项 -Wall 开启编译器几乎所有常用的警告，默认情况下GCC 不会产生任何警告信息。
-AT&amp;T汇编基本语法 Ucore中用到的是AT&amp;T格式的汇编，与Intel格式的汇编有一些不同。二者语法上主要有以下几个不同：
-* 寄存器命名原则AT&amp;T: %eax Intel: eax* 源/目的操作数顺序 AT&amp;T: movl %eax, %ebx Intel: mov ebx, eax* 常数/立即数的格式　AT&amp;T: movl $_value, %ebx Intel: mov eax, _value把value的地址放入eax寄存器AT&amp;T: movl $0xd00d, %ebx Intel: mov ebx, 0xd00d* 操作数长度标识 AT&amp;T: movw %ax, %bx Intel: mov bx, ax* 寻址方式 AT&amp;T: immed32(basepointer, indexpointer, indexscale)Intel: [basepointer &#43; indexpointer × indexscale &#43; imm32)如果操作系统工作于保护模式下，用的是32位线性地址，所以在计算地址时不用考虑segment:offset的问题。上式中的地址应为：...</p>
-  </section>
-  <footer class="entry-footer">June 6, 2021&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to [uCore]Lab0" href="https://inten.kro1lsec.com/post/ucorelab0/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>[CSAPPLAB]Attack Lab</h2>
-  </header>
-  <section class="entry-content">
-    <p>ctarget 首先执行getbuf函数，读取标准输入。
+AT&T汇编基本语法 Ucore中用到的是AT&T格式的汇编，与Intel格式的汇编有一些不同。二者语法上主要有以下几个不同：
+* 寄存器命名原则
+AT&T: %eax Intel: eax
+* 源/目的操作数顺序 AT&T: movl %eax, %ebx Intel: mov ebx, eax
+* 常数/立即数的格式　AT&T: movl $_value, %ebx Intel: mov eax, _value
+把value的地址放入eax寄存器
+AT&T: movl $0xd00d, %ebx Intel: mov ebx, 0xd00d
+* 操作数长度标识 AT&T: movw %ax, %bx Intel: mov bx, ax
+* 寻址方式 AT&T: immed32(basepointer, indexpointer, indexscale)
+Intel: [basepointer + indexpointer × indexscale + imm32)
+如果操作系统工作于保护模式下，用的是32位线性地址，所以在计算地址时不用考虑segment:offset的问题。上式中的地址应为：...</p></section><footer class=entry-footer>June 6, 2021&nbsp;·&nbsp;2 min</footer><a class=entry-link aria-label="post link to [uCore]Lab0" href=https://inten.kro1lsec.com/post/ucorelab0/></a></article><article class=post-entry><header class=entry-header><h2>[CSAPPLAB]Attack Lab</h2></header><section class=entry-content><p>ctarget 首先执行getbuf函数，读取标准输入。
 unsigned getbuf() { char buf[BUFFER_SIZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现
 FAILED: Initialization error: Running on an illegal host [localhost.localdomain] 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。
 1.1level 1 观察test，getbuf和touch1
 目的：将getbuf的返回地址由test改为touch1
 小建议
- 利用objdump -d ./ctarget&gt;&gt;ctarget.s得到汇编代码 思路是将touch1的开始地址，放在某个位置，以实现当ret指令被getbuf执行后会将控制权转移给touch1 一定要注意字节序 你可以使用gdb设置断点来进行调试。并且gcc会影响栈帧中buf存放的位置。需要注意  思路：getbuf函数执行ret指令后，就会从%rsp&#43;40处获取返回地址，只要我们修改这个返回地址，改为touch1的地址，就能使程序返回touch1，而不是test。
-(gdb) p (char*)0x403188 #p(print) 0x403188上存的值 $1 = 0x403188 &#34;No exploit. Getbuf returned 0x%x\n&#34; stack : padding(00..) &#43; touch1(0x4017c0)
+利用objdump -d ./ctarget>>ctarget.s得到汇编代码 思路是将touch1的开始地址，放在某个位置，以实现当ret指令被getbuf执行后会将控制权转移给touch1 一定要注意字节序 你可以使用gdb设置断点来进行调试。并且gcc会影响栈帧中buf存放的位置。需要注意 思路：getbuf函数执行ret指令后，就会从%rsp+40处获取返回地址，只要我们修改这个返回地址，改为touch1的地址，就能使程序返回touch1，而不是test。
+(gdb) p (char*)0x403188 #p(print) 0x403188上存的值 $1 = 0x403188 "No exploit. Getbuf returned 0x%x\n" stack : padding(00..) + touch1(0x4017c0)
 攻击序列touch1.txt
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 17 40 00 00 00 00 00 保存在touch1....</p>
-  </section>
-  <footer class="entry-footer">May 20, 2021&nbsp;·&nbsp;5 min</footer>
-  <a class="entry-link" aria-label="post link to [CSAPPLAB]Attack Lab" href="https://inten.kro1lsec.com/post/csapplabattack-lab/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>CVE-2017-11882漏洞分析</h2>
-  </header>
-  <section class="entry-content">
-    <p>漏洞描述  成因：Office的公式编辑器EQNEDT32.EXE读入包含MathType的OLE数据，在拷贝公式字体名称前没有对名称长度进行校验，当EQNEDT32.EXE尝试将字体名称复制到本地创建的缓冲区时，攻击者可以通过刻意构造的数据内容覆盖栈上的函数返回地址，从而劫持程序流程。 影响版本：Office 2003到2016的所有版本 POC：https://github.com/Ridter/CVE-2017-11882  漏洞复现   环境
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 17 40 00 00 00 00 00 保存在touch1....</p></section><footer class=entry-footer>May 20, 2021&nbsp;·&nbsp;5 min</footer><a class=entry-link aria-label="post link to [CSAPPLAB]Attack Lab" href=https://inten.kro1lsec.com/post/csapplabattack-lab/></a></article><article class=post-entry><header class=entry-header><h2>CVE-2017-11882漏洞分析</h2></header><section class=entry-content><p>漏洞描述 成因：Office的公式编辑器EQNEDT32.EXE读入包含MathType的OLE数据，在拷贝公式字体名称前没有对名称长度进行校验，当EQNEDT32.EXE尝试将字体名称复制到本地创建的缓冲区时，攻击者可以通过刻意构造的数据内容覆盖栈上的函数返回地址，从而劫持程序流程。 影响版本：Office 2003到2016的所有版本 POC：https://github.com/Ridter/CVE-2017-11882 漏洞复现 环境
 Microsoft Windows XPProfessional版本2002 Service Fack 3
 Office2003SP3
-  复现过程
+复现过程
 下载poc，输出test.doc，将test.doc复制到相应环境下，双击打开即可。
-漏洞分析  环境 Winxp x32 Office2003 工具 windbg IDA Pro  漏洞发生点如下图所示：
+漏洞分析 环境 Winxp x32 Office2003 工具 windbg IDA Pro 漏洞发生点如下图所示：
 可以看到，函数给SrcStr变量分配的大小是0x24个字节，长度超过该大小就会造成栈溢出。微软后续的补丁将大小限制为0x20可能是为了安全起见。
 触发逻辑
 构造POC 由于该漏洞涉及到MathType公式数据在OLE中的结构，所以我们需要熟悉其结构分布。整个“Equation Native”的数据构成为：
-Equation Native Stream Data = EQNOLEFILEHDR &#43; MTEFData，其中
-MTEFData = MTEF header &#43; MTEF Byte Stream
+Equation Native Stream Data = EQNOLEFILEHDR + MTEFData，其中
+MTEFData = MTEF header + MTEF Byte Stream
 EQNOLEFILEHDR 头的结构
-struct EQNOLEFILEHDR {WORD cCBHdr; // 格式头长度,大小为0x1CDWORD nVersion; // 固定为0×00020000。WORD nCf; // 该公式对象的剪贴板格式DWORD cbObject; // MTEF数据的长度，不包括头部DWORD nReserved1; // 未使用DWORD nReserved2; // 未使用DWORD nReserved3; // 未使用DWORD nReserved4; // 未使用};MTEF header 的结构，里面存放一些版本信息...</p>
-  </section>
-  <footer class="entry-footer">May 11, 2021&nbsp;·&nbsp;4 min</footer>
-  <a class="entry-link" aria-label="post link to CVE-2017-11882漏洞分析" href="https://inten.kro1lsec.com/post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>[CSAPPLAB]Bomb Lab</h2>
-  </header>
-  <section class="entry-content">
-    <p>总体感觉考查对汇编的理解和熟练度
-phase_1 400e37: 48 89 c7 mov %rax,%rdi //第一个参数 400e3a: e8 a1 00 00 00 callq 400ee0 &lt;phase_1&gt;...0x0000000000400ee0 &lt;&#43;0&gt;: sub $0x8,%rsp 0x0000000000400ee4 &lt;&#43;4&gt;: mov $0x402400,%esi //第二个参数0x0000000000400ee9 &lt;&#43;9&gt;: callq 0x401338 &lt;strings_not_equal&gt;让参数一，二相等即可
+struct EQNOLEFILEHDR {
+WORD cCBHdr; // 格式头长度,大小为0x1C
+DWORD nVersion; // 固定为0×00020000。
+WORD nCf; // 该公式对象的剪贴板格式
+DWORD cbObject; // MTEF数据的长度，不包括头部
+DWORD nReserved1; // 未使用
+DWORD nReserved2; // 未使用
+DWORD nReserved3; // 未使用
+DWORD nReserved4; // 未使用
+};
+MTEF header 的结构，里面存放一些版本信息...</p></section><footer class=entry-footer>May 11, 2021&nbsp;·&nbsp;4 min</footer><a class=entry-link aria-label="post link to CVE-2017-11882漏洞分析" href=https://inten.kro1lsec.com/post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/></a></article><article class=post-entry><header class=entry-header><h2>[CSAPPLAB]Bomb Lab</h2></header><section class=entry-content><p>总体感觉考查对汇编的理解和熟练度
+phase_1 400e37: 48 89 c7 mov %rax,%rdi //第一个参数 400e3a: e8 a1 00 00 00 callq 400ee0 &lt;phase_1>
+...
+0x0000000000400ee0 &lt;+0>: sub $0x8,%rsp 0x0000000000400ee4 &lt;+4>: mov $0x402400,%esi //第二个参数
+0x0000000000400ee9 &lt;+9>: callq 0x401338 &lt;strings_not_equal>
+让参数一，二相等即可
 Border relations with Canada have never been better.
-phase_2 利用callq 0x40145c &lt;read_six_numbers&gt;确定字符串格式，
+phase_2 利用callq 0x40145c &lt;read_six_numbers>确定字符串格式，
 利用0000000000400F1A add eax, eax让后边的数翻倍
 字符串为“1 2 4 8 16 32”
 phase_3 尝试分析时，发现jcc指令经常弄混，又回去复习了一遍
-cmp oprd1,oprd2 &#43; JNBE/JA 无符号cmp oprd1,oprd2 &#43; JNLE/JG 有符号oprd1&gt;oprd2时跳转JZ/JE 相等则跳转代码中0x402470&#43;8*第一参数打印内存信息，可以看到相应的跳转地址，已经对应的eax值应该是多少，也就是第二数字的应该的取值。打印内存信息的命令行为jmp QWORD PTR [rax*8&#43;0x402470]...</p>
-  </section>
-  <footer class="entry-footer">April 15, 2021&nbsp;·&nbsp;4 min</footer>
-  <a class="entry-link" aria-label="post link to [CSAPPLAB]Bomb Lab" href="https://inten.kro1lsec.com/post/csapplabbomb-lab/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>应急响应</h2>
-  </header>
-  <section class="entry-content">
-    <p>https://bypass007.github.io/Emergency-Response-Notes/ 应急响应笔记
-https://www.cnblogs.com/H4ck3R-XiX/p/12234762.html Nmap使用教程（进阶篇）
-方法论 浅谈我所理解的应急响应流程
-https://www.freebuf.com/column/193690.html应急响应的整体思路和基本流程
-https://www.freebuf.com/articles/terminal/192859.html应急响应方式 现场应急响应：通常是要到客户突发现场进行应急处置。需注意相关操作必须获得用户授权，并对操作过程进行记录。 远程应急响应：远程通过电话、邮件等方式指导用户进行应急处置。
-应急响应流程 业内通常使用的
-PDCERF方法学 准备阶段——&gt;检测阶段——&gt;抑制阶段——&gt;根除阶段——&gt;恢复阶段——&gt;跟踪总结
-准备阶段 准备阶段需要及时和客户确认事件背景、相关负责人联系方式、确定参与此次应急响应人员、根据客户描述，初步判定事件响应策略，携带应急响应工具包前往客户现场。
-准备阶段主要包括：事件背景、响应人员确定、事件响应策略、相关负责人联系方式、应急响应相关授权、应急响应工具包、应急响应手册等。
-检测阶段 检测阶段确认入侵事件是否发生，如真发生了入侵事件，评估造成的危害、范围以及发展的速度，事件会不会进一步升级。然后根据评估结果通知相关的人员进入应急的流程。
-检测阶段主要包括：事件类型、事件影响范围、受影响系统、事件发展趋势、安全设备等。
-备注：事件类型分类
-安全事件分类主要参考中央网信办发布《国家网络安全事件应急预案》，网络安全事件分为有害程序事件、网络攻击事件、信息破坏事件、信息内容安全事件、设备设施故障、灾害性事件和其他网络安全事件等。 （1）有害程序事件分为计算机病毒事件、蠕虫事件、特洛伊木马事件、僵尸网络事件、混合程序攻击事件、网页内嵌恶意代码事件和其他有害程序事件。 （2）网络攻击事件分为拒绝服务攻击事件、后门攻击事件、漏洞攻击事件、网络扫描窃听事件、网络钓鱼事件、干扰事件和其他网络攻击事件。 （3）信息破坏事件分为信息篡改事件、信息假冒事件、信息泄露事件、信息窃取事件、信息丢失事件和其他信息破坏事件。 （4）信息内容安全事件是指通过网络传播法律法规禁止信息，组织非法串联、煽动集会游行或炒作敏感问题并危害国家安全、社会稳定和公众利益的事件。 （5）设备设施故障分为软硬件自身故障、外围保障设施故障、人为破坏事故和其他设备设施故障。 （6）灾害性事件是指由自然灾害等其他突发事件导致的网络安全事件。 （7）其他事件是指不能归为以上分类的网络安全事件
-抑制阶段 采用针对性的安全措施降低事件损失、避免安全事件的扩散和安全事件对受害系统的持续性破坏。主要分为：物理遏制、网络遏制、主机遏制、应用遏制等。常见手段：断网、降权、网络封堵等。
-根除阶段 本阶段主要任务是通过事件分析查明事件危害的方式，并且给出清除危害的解决方案。个人认为可以从以下几个方面入手：系统基本信息、网络排查、进程排查、注册表排查、计划任务排查、服务排查、关键目录排查、用户组排查、事件日志排查、webshell排查、中间件日志排查、安全设备日志排查等。
-恢复阶段 恢复系统的运行过程，就是把受影响系统、设备、软件和应用服务还原到正常的工作状态；系统恢复、网络恢复、用户恢复、数据恢复以及重新部署。常见手段：系统重装、补丁加固、网络恢复、密码重置、木马清除等。
-跟踪阶段 在业务系统恢复后，需要整理一份详细的事件总结报告，包括事件发生及各部门介入处理的时间线，事件可能造成的损失，为客户提供安全加固优化建议。
-跟踪阶段主要包括：调查事件原因，输出应急响应报告，提供安全建议、加强安全教育、避免同类事件再次发生。
-常规流程 **收集信息：**收集客户信息和中毒主机信息，包括样本。
-**判断类型：**判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DoS等等。
-**深入分析：**日志分析、进程分析、启动项分析、样本分析。
-**清理处置：**直接杀掉进程，删除文件，打补丁，抑或是修复文件。
-**产出报告：**整理并输出完整的安全事件报告。
-系统日志及日志分析 日志类型  **Windows系统日志：**Windows系统自带的审计日志、操作日志、故障日志。
-**Linux系统日志：**Linux系统自带的审计日志、操作日志、故障日志。
-**应用日志：**包括但不限于Web应用等众多繁杂的日志。
- Windows系统日志
- 日志路径：C:\Windows\System32\winevt\Logs
-必看日志：Security.evtx、System.evtx、Application.evtx
- Linux系统日志
- 日志路径：/var/log
-必看日志：secure、history
- 威胁情报的作用 威胁情报有时候会给我们提供大量有用的信息，甚至直接推动了安全事件的快速响应。
-威胁情报的元素，包括但不限于域名、URL、IP、文件Hash、文件路径、文件名、数字签名、备案信息、排名信息。
-域名 威胁情报中，域名扮演着极为基础和关键的角色，URL也是以域名为基础的。这里列举若干类域名，是属于黑客常用（偏爱）的域名，取证过程中需要重点关注这类域名的信息。
-随机域名（DGA）： 动态域名： 动态域名是子域名开放给其他人使用，并且子域名绑定的IP是可以动态获取的，大多数是免费的，因此常被黑客所使用，如 abc....</p>
-  </section>
-  <footer class="entry-footer">April 15, 2021&nbsp;·&nbsp;3 min</footer>
-  <a class="entry-link" aria-label="post link to 应急响应" href="https://inten.kro1lsec.com/post/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>[CSAPPLAB]Data lab</h2>
-  </header>
-  <section class="entry-content">
-    <p>前置知识 csapp第二章
-位运算符
-   运算符 描述 实例     &amp; 按位与操作，按二进制位进行&#34;与&#34;运算。运算规则：0&amp;0=0; 0&amp;1=0; 1&amp;0=0; 1&amp;1=1; (A &amp; B) 将得到 12，即为 0000 1100   | 按位或运算符，按二进制位进行&#34;或&#34;运算。运算规则：`0 0=0; 0   ^ 异或运算符，按二进制位进行&#34;异或&#34;运算。运算规则：0^0=0; 0^1=1; 1^0=1; 1^1=0; (A ^ B) 将得到 49，即为 0011 0001   ~ 取反运算符，按二进制位进行&#34;取反&#34;运算。运算规则：~1=-2; ~0=-1; (~A ) 将得到 -61，即为 1100 0011，一个有符号二进制数的补码形式。   « 二进制左移运算符。将一个运算对象的各二进制位全部左移若干位（左边的二进制位丢弃，右边补0）。 A « 2 将得到 240，即为 1111 0000   » 二进制右移运算符。将一个数的各二进制位全部右移若干位，正数左补0，负数左补1，右边丢弃。 A » 2 将得到 15，即为 0000 1111    运算符的优先级...</p>
-  </section>
-  <footer class="entry-footer">April 11, 2021&nbsp;·&nbsp;4 min</footer>
-  <a class="entry-link" aria-label="post link to [CSAPPLAB]Data lab" href="https://inten.kro1lsec.com/post/csapplabdata-lab/"></a>
-</article>
-<footer class="page-footer">
-  <nav class="pagination">
-    <a class="next" href="https://inten.kro1lsec.com/page/2/">Next Page »</a>
-  </nav>
-</footer>
-    </main>
-    <footer class="footer">
-    <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
-    <span>&middot;</span>
-    
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
-    <button class="top-link" id="top-link" type="button" accesskey="g">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-            <path d="M12 6H0l6-6z" />
-        </svg>
-    </button>
-</a>
-
-<script>
-    window.onload = function () {
-        if (localStorage.getItem("menu-scroll-position")) {
-            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
-        }
-    }
-
-    function menu_on_scroll() {
-        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-</body>
-
-</html>
+cmp oprd1,oprd2 + JNBE/JA 无符号
+cmp oprd1,oprd2 + JNLE/JG 有符号
+oprd1>oprd2时跳转
+JZ/JE 相等则跳转
+代码中0x402470+8*第一参数打印内存信息，可以看到相应的跳转地址，已经对应的eax值应该是多少，也就是第二数字的应该的取值。打印内存信息的命令行为jmp QWORD PTR [rax*8+0x402470]...</p></section><footer class=entry-footer>April 15, 2021&nbsp;·&nbsp;4 min</footer><a class=entry-link aria-label="post link to [CSAPPLAB]Bomb Lab" href=https://inten.kro1lsec.com/post/csapplabbomb-lab/></a></article><footer class=page-footer><nav class=pagination><a class=next href=https://inten.kro1lsec.com/page/2/>Next Page »</a></nav></footer></main><footer class=footer><span>&copy; 2021 <a href=https://inten.kro1lsec.com/>intenのblog🍦</a></span>
+<span>&#183;</span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)"><button class=top-link id=top-link type=button accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></button></a>
+<script>window.onload=function(){localStorage.getItem("menu-scroll-position")&&(document.getElementById('menu').scrollLeft=localStorage.getItem("menu-scroll-position"))};function menu_on_scroll(){localStorage.setItem("menu-scroll-position",document.getElementById('menu').scrollLeft)}document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script></body></html>

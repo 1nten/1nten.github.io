@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" dir="auto">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>[uCore]Lab1 | intenのblog🍦</title>
-<meta name="keywords" content="uCore" />
-<meta name="description" content="[练习1] 练习指南
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>[uCore]Lab1 | intenのblog🍦</title><meta name=keywords content="uCore,天问之路"><meta name=description content="练习1 练习指南
 操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
  设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，
 lab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试
@@ -17,25 +8,10 @@ qemu-mon:使用qemu monitor模式
 qemu-nox:使用qemu 命令行模式
 一个被系统认为是符合规范的硬盘主引导扇区的特征是什么?
 从/tool/sign.c的代码来看，一个磁盘主引导扇区只有512字节。且 第510个（倒数第二个）字节是0x55， 第511个（倒数第一个）字节是0xAA。
-[练习2] 使用qemu执行并调试lab1中的软件。
+练习2 使用qemu执行并调试lab1中的软件。
 单步调试和查看BIOS代码
 修改tools/gdbinit为
-file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue   gdb脚本中的define hook-stop .">
-<meta name="author" content="">
-<link rel="canonical" href="https://inten.kro1lsec.com/post/ucorelab1/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css" integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
-    onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://inten.kro1lsec.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://inten.kro1lsec.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://inten.kro1lsec.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://inten.kro1lsec.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.82.0" />
-<meta property="og:title" content="[uCore]Lab1" />
-<meta property="og:description" content="[练习1] 练习指南
+file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue   gdb脚本中的define hook-stop ."><meta name=author content><link rel=canonical href=https://inten.kro1lsec.com/post/ucorelab1/><link crossorigin=anonymous href=/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as=style><script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script><link rel=icon href=https://inten.kro1lsec.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://inten.kro1lsec.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://inten.kro1lsec.com/favicon-32x32.png><link rel=apple-touch-icon href=https://inten.kro1lsec.com/apple-touch-icon.png><link rel=mask-icon href=https://inten.kro1lsec.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><meta name=generator content="Hugo 0.82.0"><meta property="og:title" content="[uCore]Lab1"><meta property="og:description" content="练习1 练习指南
 操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
  设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，
 lab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试
@@ -45,18 +21,10 @@ qemu-mon:使用qemu monitor模式
 qemu-nox:使用qemu 命令行模式
 一个被系统认为是符合规范的硬盘主引导扇区的特征是什么?
 从/tool/sign.c的代码来看，一个磁盘主引导扇区只有512字节。且 第510个（倒数第二个）字节是0x55， 第511个（倒数第一个）字节是0xAA。
-[练习2] 使用qemu执行并调试lab1中的软件。
+练习2 使用qemu执行并调试lab1中的软件。
 单步调试和查看BIOS代码
 修改tools/gdbinit为
-file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue   gdb脚本中的define hook-stop ." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://inten.kro1lsec.com/post/ucorelab1/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-06-13T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-06-13T00:00:00&#43;00:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[uCore]Lab1"/>
-<meta name="twitter:description" content="[练习1] 练习指南
+file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue   gdb脚本中的define hook-stop ."><meta property="og:type" content="article"><meta property="og:url" content="https://inten.kro1lsec.com/post/ucorelab1/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-06-20T00:00:00+00:00"><meta property="article:modified_time" content="2021-06-20T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="[uCore]Lab1"><meta name=twitter:description content="练习1 练习指南
 操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
  设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，
 lab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试
@@ -66,305 +34,49 @@ qemu-mon:使用qemu monitor模式
 qemu-nox:使用qemu 命令行模式
 一个被系统认为是符合规范的硬盘主引导扇区的特征是什么?
 从/tool/sign.c的代码来看，一个磁盘主引导扇区只有512字节。且 第510个（倒数第二个）字节是0x55， 第511个（倒数第一个）字节是0xAA。
-[练习2] 使用qemu执行并调试lab1中的软件。
+练习2 使用qemu执行并调试lab1中的软件。
 单步调试和查看BIOS代码
 修改tools/gdbinit为
-file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue   gdb脚本中的define hook-stop ."/>
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://inten.kro1lsec.com/post/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "[uCore]Lab1",
-      "item": "https://inten.kro1lsec.com/post/ucorelab1/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "[uCore]Lab1",
-  "name": "[uCore]Lab1",
-  "description": "[练习1] 练习指南\n操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)\n 设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，\nlab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试\ndebug-mon: 使用qemu的monitor和gdb配合调试\nqemu: 使用qemu混合模式\nqemu-mon:使用qemu monitor模式\nqemu-nox:使用qemu 命令行模式\n一个被系统认为是符合规范的硬盘主引导扇区的特征是什么?\n从/tool/sign.c的代码来看，一个磁盘主引导扇区只有512字节。且 第510个（倒数第二个）字节是0x55， 第511个（倒数第一个）字节是0xAA。\n[练习2] 使用qemu执行并调试lab1中的软件。\n单步调试和查看BIOS代码\n修改tools/gdbinit为\nfile obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue   gdb脚本中的define hook-stop .",
-  "keywords": [
-    "uCore"
-  ],
-  "articleBody": "[练习1] 练习指南\n操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)\n 设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，\nlab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试\ndebug-mon: 使用qemu的monitor和gdb配合调试\nqemu: 使用qemu混合模式\nqemu-mon:使用qemu monitor模式\nqemu-nox:使用qemu 命令行模式\n一个被系统认为是符合规范的硬盘主引导扇区的特征是什么?\n从/tool/sign.c的代码来看，一个磁盘主引导扇区只有512字节。且 第510个（倒数第二个）字节是0x55， 第511个（倒数第一个）字节是0xAA。\n[练习2] 使用qemu执行并调试lab1中的软件。\n单步调试和查看BIOS代码\n修改tools/gdbinit为\nfile obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue   gdb脚本中的define hook-stop ... end，可以在每次gdb断下时自动执行内部的指令。上面gdb脚本中的define .. end告诉gdb在每次断下时输出下一条指令，方便调试。\n如果想单步调试BIOS，则可以删除continue。这样gdb就会在0xfff0处断下，然后我们就可以自由的单步跟踪。\n  之后执行make debug命令，即可自动打开qemu与已经连接完成的gdb。\n  坑！（排查了好久）：远程连接qemu时，不要使用pwndbg插件。因为使用该插件会导致连接到qemu后无法操作gdb。\n peda插件可以正常使用。谢kiprey师傅!\n   切换GitHub插件 vim ~/.gdbinit\nsource ~/peda/peda.py #注释掉pwndbg即可  #source ~/pwndbg/gdbinit.py #source ~/Pwngdb/pwngdb.py #source ~/Pwngdb/angelheap/gdbinit.py define hook-run python import angelheap angelheap.init_angelheap() end end x/5i (($cs )+ $eip) 注意：BIOS的前几条指令在GDB中都需要手动加上段寄存器的值，否则会显示错误，因为cs寄存器初始时非零；同时gdb默认只输出$ip 所指向地址的指针，而不是cs:ip。\n#错误 (gdb) si = 0xe05b: add %al,(%eax) 0x0000e05b in ?? () #正确 (gdb) x/5i (($cs 0xfe05b: cmpw $0xffc8,%cs:(%esi) 0xfe060: bound %eax,(%eax) 0xfe062: jne 0xd241d0b2 0xfe068: mov %edx,%ss 0xfe06a: mov $0x7000,%sp [练习3] 分析bootloader进入保护模式的过程.\n  为何开启A20，以及如何开启A20?关于A20 Gate\n为何：为了向下兼容\n如何：打开A20 Gate的步骤如下（参考lab1/boot/bootasm.S）：\n   等待8042 Input buffer为空； 发送Write 8042 Output Port （P2）命令到8042 Input buffer； 等待8042 Input buffer为空； 将8042 Output Port（P2）得到字节的第2位置1，然后写入8042 Input buffer；  # 启用A20。通过将键盘控制器上的A20线置于高电位，全部32条地址线可用，可以访问4G的内存空间。\r# 为了向后兼容最早的PC，物理地址线20被绑在低位，所以默认情况下，高于1MB的地址会环绕到0。这段代码取消了这一点。\rseta20.1:\rinb $0x64, %al # Wait for not busy(8042 input buffer empty).\rtestb $0x2, %al\t# 读取到2则表明缓冲区中没有数据\rjnz seta20.1\rmovb $0xd1, %al # 0xd1 - port(端口) 0x64\routb %al, $0x64 # 0xd1 means: write data to 8042's P2 port\rseta20.2:\rinb $0x64, %al # Wait for not busy(8042 input buffer(缓冲区) empty).\rtestb $0x2, %al\rjnz seta20.2\rmovb $0xdf, %al # 打开A20\routb %al, $0x60 #   如何初始化GDT表\n 设置GDT中的第一项描述符为空。 设置GDT中的第二项描述符为代码段使用，其属性为可读写可执行。 设置GDT中的第三项描述符为数据段使用，其属性为可读写。  #初始化GDT表：一个简单的GDT表和其描述符已经静态储存在引导区中，载入即可:lgdt gdtdesc\r.p2align 2 # force 4 byte alignment\rgdt:\rSEG_NULLASM # null seg\rSEG_ASM(STA_X|STA_R, 0x0, 0xffffffff) # code seg for bootloader and kernel\rSEG_ASM(STA_W, 0x0, 0xffffffff) # data seg for bootloader and kernel\rgdtdesc:\r.word 0x17 # sizeof(gdt) - 1\r.long gdt # address gdt\r进入保护模式：通过将cr0寄存器PE位置1便开启了保护模式\nmovl %cr0, %eax orl $CR0_PE_ON, %eax movl %eax, %cr0 通过长跳转更新cs的基地址\nljmp $PROT_MODE_CSEG, $protcseg .code32 protcseg: 设置段寄存器，并建立堆栈\nmovw $PROT_MODE_DSEG, %ax movw %ax, %ds movw %ax, %es movw %ax, %fs movw %ax, %gs movw %ax, %ss movl $0x0, %ebp movl $start, %esp 转到保护模式完成，进入boot主方法\n call bootmain\r  [练习4] 硬盘访问概述\nELF执行文件格式概述\nbootloader加载ELF格式的OS的过程： readsect从设备的第secno扇区读取数据到dst位置，实现磁盘访问，然后包装为readseg函数，实现内存读取。在bootmain函数中首先读取elf头进来，并获取到程序头表，然后吧elf中的每个段依次读取进来。\nbootloader如何读取硬盘扇区的？\n/* waitdisk - wait for disk ready */ static void waitdisk(void) { while ((inb(0x1F7) \u0026 0xC0) != 0x40) /* do nothing */; } static void readsect(void *dst, uint32_t secno) { waitdisk(); outb(0x1F2, 1); // 设置读取扇区的数目为1 \toutb(0x1F3, secno \u0026 0xFF); outb(0x1F4, (secno  8) \u0026 0xFF); outb(0x1F5, (secno  16) \u0026 0xFF); outb(0x1F6, ((secno  24) \u0026 0xF) | 0xE0); // 上面四条指令联合制定了扇区号 \t// 在这4个字节线联合构成的32位参数中 \t// 29-31位强制设为1 \t// 28位(=0)表示访问\"Disk 0\" \t// 0-27位是28位的偏移量 \toutb(0x1F7, 0x20); // 0x20命令，读取扇区 \twaitdisk(); insl(0x1F0, dst, SECTSIZE / 4); // 读取到dst位置， \t// 幻数4因为这里以DW为单位 \t} readseg简单包装了readsect，可以从设备读取任意长度的内容。\nstatic void readseg(uintptr_t va, uint32_t count, uint32_t offset) { uintptr_t end_va = va + count; va -= offset % SECTSIZE; uint32_t secno = (offset / SECTSIZE) + 1; // 加1因为0扇区被引导占用 \t// ELF文件从1扇区开始 \tfor (; va  end_va; va += SECTSIZE, secno ++) { readsect((void *)va, secno); } } bootloader是如何加载ELF格式的OS？\nvoid bootmain(void) { // 首先读取ELF的头部 \treadseg((uintptr_t)ELFHDR, SECTSIZE * 8, 0); // 通过储存在头部的幻数判断是否是合法的ELF文件 \tif (ELFHDR-e_magic != ELF_MAGIC) { goto bad; } struct proghdr *ph, *eph; // ELF头部有描述ELF文件应加载到内存什么位置的描述表， \t// 先将描述表的头地址存在ph \tph = (struct proghdr *)((uintptr_t)ELFHDR + ELFHDR-e_phoff); eph = ph + ELFHDR-e_phnum; // 按照描述表将ELF文件中数据载入内存 \tfor (; ph  eph; ph ++) { readseg(ph-p_va \u0026 0xFFFFFF, ph-p_memsz, ph-p_offset); } // ELF文件0x1000位置后面的0xd1ec比特被载入内存0x00100000 \t// ELF文件0xf000位置后面的0x1d20比特被载入内存0x0010e000  // 根据ELF头部储存的入口信息，找到内核的入口 \t((void (*)(void))(ELFHDR-e_entry \u0026 0xFFFFFF))(); bad: outw(0x8A00, 0x8A00); outw( 0x8A00, 0x8E00); while (1); } [练习5] /* LAB1 YOUR CODE : STEP 1 * (1) call read_ebp() to get the value of ebp. the type is (uint32_t); * (2) call read_eip() to get the value of eip. the type is (uint32_t); * (3) from 0 .. STACKFRAME_DEPTH * (3.1) printf value of ebp, eip * (3.2) (uint32_t)calling arguments [0..4] = the contents in address (uint32_t)ebp +2 [0..4] * (3.3) cprintf(\"\\n\"); * (3.4) call print_debuginfo(eip-1) to print the C calling function name and line number, etc. * (3.5) popup a calling stackframe * NOTICE: the calling funciton's return addr eip = ss:[ebp+4] * the calling funciton's ebp = ss:[ebp] +| 栈底方向 | 高位地址 | ... | | ... | | 参数3 | | 参数2 | | 参数1 | | 返回地址 | | 上一层[ebp] | | 局部变量 | 低位地址 */ void print_stackframe(void){ //读取当前栈帧的ebp和eip  uint32_t ebp = read_eip(); uint32_t eip = read_eip(); //(3) from 0 .. STACKFRAME_DEPTH  for(uint32_t i = 0 ; ebp != 0 \u0026\u0026 i STACKFRAME_DEPTH;i++) { //读取  cprintf(\"ebp:0x%08x eip:0x%08x args:\", ebp, eip); //args[0]为参数1  uint32_t* args = (uint32_t*)ebp +2; //the calling funciton's return addr eip = ss:[ebp+4]  for(uint32_t j = 0; j4;j++) cprintf(\"0x%0x8x \", args[j]); cprintf(\"\\n\"); //eip指向异常指令的下一条指令，所以要减一  print_debuginfo(eip-1); //将ebp 和eip设置为上一个栈帧的ebp和eip  // 注意要先设置eip后设置ebp，否则当ebp被修改后，eip就无法找到正确的位置  eip = *((uint32_t*)ebp+ 1); ebp = *(uint32_t*)ebp; } } [练习6]   **中断描述符表（也可简称为保护模式下的中断向量表）中一个表项占多少字节？**其中哪几位代表中断处理代码的入口？\n一个表项的结构如下\n中断向量表一个表项占用8字节，其中2-3字节是段选择子，0-1字节和6-7字节拼成位移， 两者联合便是中断处理程序的入口地址。\n/* Gate descriptors for interrupts and traps */ struct gatedesc { unsigned gd_off_15_0 : 16; // low 16 bits of offset in segment  unsigned gd_ss : 16; // segment selector  unsigned gd_args : 5; // # args, 0 for interrupt/trap gates  unsigned gd_rsv1 : 3; // reserved(should be zero I guess)  unsigned gd_type : 4; // type(STS_{TG,IG32,TG32})  unsigned gd_s : 1; // must be 0 (system)  unsigned gd_dpl : 2; // descriptor(meaning new) privilege level  unsigned gd_p : 1; // Present  unsigned gd_off_31_16 : 16; // high bits of offset in segment };   该表项的大小为16+16+5+3+4+1+2+1+16 == 8*8bit，即8字节。\n根据IDT表项的结构，我们可以得知，IDT表项的第二个成员gd_ss为段选择子，第一个成员gd_off_15_0和最后一个成员gd_off_31_16共同组成一个段内偏移地址。根据段选择子和段内偏移地址就可以得出中断处理程序的地址。 编程完善kern/trap/trap.c中对中断向量表进行初始化的函数idt_init.\n  具体实现如下，详细信息以注释的形式写入代码中。\nvoid idt_init(void) { // __vectors定义于vector.s中  extern uintptr_t __vectors[]; int i; for (i = 0; i  sizeof(idt) / sizeof(struct gatedesc); i ++) // 目标idt项为idt[i]  // 该idt项为内核代码，所以使用GD_KTEXT段选择子  // 中断处理程序的入口地址存放于__vectors[i]  // 特权级为DPL_KERNEL  SETGATE(idt[i], 0, GD_KTEXT, __vectors[i], DPL_KERNEL); // 设置从用户态转为内核态的中断的特权级为DPL_USER  SETGATE(idt[T_SWITCH_TOK], 0, GD_KTEXT, __vectors[T_SWITCH_TOK], DPL_USER); // 加载该IDT  lidt(\u0026idt_pd); }   编程完善trap.c中的中断处理函数trap，在对时钟中断进行处理的部分填写trap函数中处理时钟中断的部分，使操作系统每遇到100次时钟中断后，调用print_ticks子程序，向屏幕上打印一行文字”100 ticks”。\ntrap_dispatch(struct trapframe *tf) { char c; switch (tf-tf_trapno) { case IRQ_OFFSET + IRQ_TIMER: /* LAB1 YOUR CODE : STEP 3 */ /* handle the timer interrupt */ /* (1) After a timer interrupt, you should record this event using a global variable (increase it), such as ticks in kern/driver/clock.c * (2) Every TICK_NUM cycle, you can print some info using a funciton, such as print_ticks(). * (3) Too Simple? Yes, I think so! */ ticks ++;// 全局变量ticks定义于kern/driver/clock.c  if (ticks % TICK_NUM == 0) { print_ticks(); } break; 附录 环境配置  执行sudo apt-get install qemu-system，安装qemu程序，为执行uCore做准备 下载该github上的master分支（注意默认分支不是master分支）的uCore代码，解压使用。  BIOS中断、DOS中断、Linux中断的区别 (操作系统真相还原0.20)\nBIOS 和 DOS 都是存在于实模式下的程序，由它们建立的中断调用都是建立在中断向量表（ Interrupt Vector Table, IVT ）中的。它们都是通过软中断指令 int 中断号来调用的。\nBIOS 中断调用的主要功能是提供了硬件访问的方法，该方法使对硬件的操作变得简单易行。不通过 BIOS 调用也是可以访问硬件。操作硬件是通过 in/out 指令来读写外设的端口， BIOS中断程序处理是用来操作硬件的，故该处理程序中一定到处都是 in/out 指令。\nDOS 其中断向量号和BIOS的不能冲突。\nLinux 内核是在进入保护模式后才建立中断例程的，不过在保护模式下，中断向量表已经不存在了，取而代之的是中断描述符表（Interrupt Descriptor Table，IDT）。Linux 的系统调用和DOS中断调用类似，不过Linux是通过int 0x80指令进入一个中断程序后再根据eax寄存器的值来调用不同的子功能函数的\n操作系统如何识别文件系统 各分区都有超级块，一般位于本分区的第2个扇区。超级块里面记录了此分区的信息，其中就有文件系统的魔数，一种文件系统对应一个魔数，通过比较即可得知文件系统类型。\n单步调试和查看BIOS代码 如果你是想看BIOS的汇编，可试试如下方法： 练习2可以单步跟踪，方法如下：\n1 修改 lab1/tools/gdbinit,\nset architecture i8086\rtarget remote :1234\r2 在 lab1目录下，执行\nmake debug\r这时gdb停在BIOS的第一条指令处：\n0xffff0: ljmp $0xf000,$0xe05b\r3 在看到gdb的调试界面(gdb)后，执行如下命令，就可以看到BIOS在执行了\nsi\rsi\r...\r4 此时的CS=0xf000, EIP=0xfff0，如果想看BIOS的代码\nx /2i 0xffff0\r应该可以看到\n0xffff0: ljmp $0xf000,$0xe05b\r0xffff5: xor %dh,0x322f\r进一步可以执行\nx /10i 0xfe05b\r可以看到后续的BIOS代码。\nCPU的实模式   CPU大体上可分为控制单元、运算单元、存储单元\n 控制单元是CPU的控制中心，大致由指令寄存器(IR, Instruction Register)、指令译码器(ID, Instruction Decoder)和操作控制器(OC, Operation Controller)组成。以下是一般的指令格式  运算单元根据控制单元的信号，进行运算。 存储单元CPU内部的L1、L2缓存及寄存器。这部分缓存采用SRAM存储器。SRAM不需要刷新电路即可保存内部存储的数据，但因为体积较大，集成度较低。    CPU中的寄存器分为两大类：程序可见寄存器（例如通用寄存器、段寄存器）和程序不可见寄存器（例如中断描述符寄存器IDTR）。   实模式的主要特性是：程序用到的地址都是真实的物理地址。同时，实模式下的地址寻址空间只有1MB(20bit)\n 从intel 80386开始的CPU，只要进入实模式，地址寻址空间就限制在1MB。\n   实模式下的地址计算方式为16*段寄存器值+段内偏移地址，其CPU寻址方式为\n 寄存器寻址 立即数寻址 内存寻址  直接寻址。例如mov ax, [0x1234] 基址寻址 变址寻址 基址变址寻址      ",
-  "wordCount" : "1103",
-  "inLanguage": "en",
-  "datePublished": "2021-06-13T00:00:00Z",
-  "dateModified": "2021-06-13T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://inten.kro1lsec.com/post/ucorelab1/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "intenのblog🍦",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://inten.kro1lsec.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-<noscript>
-    <style type="text/css">
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: #1d1e20;
-                --entry: #2e2e33;
-                --primary: rgba(255, 255, 255, 0.84);
-                --secondary: rgba(255, 255, 255, 0.56);
-                --tertiary: rgba(255, 255, 255, 0.16);
-                --content: rgba(255, 255, 255, 0.74);
-                --hljs-bg: #2e2e33;
-                --code-bg: #37383e;
-                --border: #333;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript>
-
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://inten.kro1lsec.com/" accesskey="h" title="intenのblog🍦 (Alt + H)">intenのblog🍦</a>
-            <span class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </span>
-        </div>
-        <ul id="menu" onscroll="menu_on_scroll()">
-            <li>
-                <a href="https://inten.kro1lsec.com/archives" title="Archive">
-                    <span>Archive</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://inten.kro1lsec.com/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://inten.kro1lsec.com/tags/" title="Tags">
-                    <span>Tags</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    
-    <h1 class="post-title">
-      [uCore]Lab1
-    </h1>
-    <div class="post-meta">June 13, 2021&nbsp;·&nbsp;6 min
-</div>
-  </header> <div class="toc">
-    <details  open>
-        <summary accesskey="c" title="(Alt + C)">
-            <div class="details">Table of Contents</div>
-        </summary>
-        <div class="inner"><ul>
-                <li>
-                    <a href="#%e7%bb%83%e4%b9%a01" aria-label="[练习1]">[练习1]</a></li>
-                <li>
-                    <a href="#%e7%bb%83%e4%b9%a02" aria-label="[练习2]">[练习2]</a></li>
-                <li>
-                    <a href="#%e7%bb%83%e4%b9%a03" aria-label="[练习3]">[练习3]</a></li>
-                <li>
-                    <a href="#%e7%bb%83%e4%b9%a04" aria-label="[练习4]">[练习4]</a></li>
-                <li>
-                    <a href="#%e7%bb%83%e4%b9%a05" aria-label="[练习5]">[练习5]</a></li>
-                <li>
-                    <a href="#%e7%bb%83%e4%b9%a06" aria-label="[练习6]">[练习6]</a></li>
-                <li>
-                    <a href="#%e9%99%84%e5%bd%95" aria-label="附录">附录</a><ul>
-                        
-                <li>
-                    <a href="#%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae" aria-label="环境配置">环境配置</a></li>
-                <li>
-                    <a href="#bios%e4%b8%ad%e6%96%addos%e4%b8%ad%e6%96%adlinux%e4%b8%ad%e6%96%ad%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="BIOS中断、DOS中断、Linux中断的区别">BIOS中断、DOS中断、Linux中断的区别</a></li>
-                <li>
-                    <a href="#%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e5%a6%82%e4%bd%95%e8%af%86%e5%88%ab%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" aria-label="操作系统如何识别文件系统">操作系统如何识别文件系统</a></li>
-                <li>
-                    <a href="#%e5%8d%95%e6%ad%a5%e8%b0%83%e8%af%95%e5%92%8c%e6%9f%a5%e7%9c%8bbios%e4%bb%a3%e7%a0%81" aria-label="单步调试和查看BIOS代码">单步调试和查看BIOS代码</a></li>
-                <li>
-                    <a href="#cpu%e7%9a%84%e5%ae%9e%e6%a8%a1%e5%bc%8f" aria-label="CPU的实模式">CPU的实模式</a>
-                </li>
-            </ul>
-            </li>
-            </ul>
-        </div>
-    </details>
-</div>
-
-  <div class="post-content"><h2 id="练习1">[练习1]<a hidden class="anchor" aria-hidden="true" href="#练习1">#</a></h2>
-<p><a href="https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_2_1_1_ex1.html">练习指南</a></p>
-<p><strong>操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)</strong></p>
-<ul>
-<li>设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印.</li>
-<li>设置<code>GCCPRETIX</code>和<code>QEMU</code>，检查是否支持32位的elf文件。</li>
-<li>配置 USELLVM</li>
-<li>include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。</li>
-<li>为了生成ucore.img，首先需要生成kernel、bootblock</li>
-<li>为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o  printfmt.o string.o</li>
-<li>为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign</li>
-<li>sign的作用是先检测bootblock的大小要小于500，然后在最后增加<code>0x55, 0xaa</code>的标识位， 然后复制到对应目录。</li>
-<li>ucore.img使用dd指令将对应的文件合并</li>
-<li>最后配置target</li>
-</ul>
-<p>all: 对应直接使用make的时候，就是编译出<code>ucore.img</code>，</p>
-<p>lab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试</p>
-<p>debug-mon: 使用qemu的monitor和gdb配合调试</p>
-<p>qemu: 使用qemu混合模式</p>
-<p>qemu-mon:使用qemu monitor模式</p>
-<p>qemu-nox:使用qemu 命令行模式</p>
-<p><strong>一个被系统认为是符合规范的硬盘主引导扇区的特征是什么?</strong></p>
-<p>从/tool/sign.c的代码来看，一个磁盘主引导扇区只有512字节。且
+file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue   gdb脚本中的define hook-stop ."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://inten.kro1lsec.com/post/"},{"@type":"ListItem","position":2,"name":"[uCore]Lab1","item":"https://inten.kro1lsec.com/post/ucorelab1/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"[uCore]Lab1","name":"[uCore]Lab1","description":"练习1 练习指南\n操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)\n 设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，\nlab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试\ndebug-mon: 使用qemu的monitor和gdb配合调试\nqemu: 使用qemu混合模式\nqemu-mon:使用qemu monitor模式\nqemu-nox:使用qemu 命令行模式\n一个被系统认为是符合规范的硬盘主引导扇区的特征是什么?\n从/tool/sign.c的代码来看，一个磁盘主引导扇区只有512字节。且 第510个（倒数第二个）字节是0x55， 第511个（倒数第一个）字节是0xAA。\n练习2 使用qemu执行并调试lab1中的软件。\n单步调试和查看BIOS代码\n修改tools/gdbinit为\nfile obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue   gdb脚本中的define hook-stop .","keywords":["uCore","天问之路"],"articleBody":"练习1 练习指南\n操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)\n 设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，\nlab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试\ndebug-mon: 使用qemu的monitor和gdb配合调试\nqemu: 使用qemu混合模式\nqemu-mon:使用qemu monitor模式\nqemu-nox:使用qemu 命令行模式\n一个被系统认为是符合规范的硬盘主引导扇区的特征是什么?\n从/tool/sign.c的代码来看，一个磁盘主引导扇区只有512字节。且 第510个（倒数第二个）字节是0x55， 第511个（倒数第一个）字节是0xAA。\n练习2 使用qemu执行并调试lab1中的软件。\n单步调试和查看BIOS代码\n修改tools/gdbinit为\nfile obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强制反汇编当前的指令 define hook-stop x/i $eip end continue   gdb脚本中的define hook-stop ... end，可以在每次gdb断下时自动执行内部的指令。上面gdb脚本中的define .. end告诉gdb在每次断下时输出下一条指令，方便调试。\n如果想单步调试BIOS，则可以删除continue。这样gdb就会在0xfff0处断下，然后我们就可以自由的单步跟踪。\n  之后执行make debug命令，即可自动打开qemu与已经连接完成的gdb。\n  坑！（排查了好久）：远程连接qemu时，不要使用pwndbg插件。因为使用该插件会导致连接到qemu后无法操作gdb。\n peda插件可以正常使用。谢kiprey师傅!\n   切换GitHub插件 vim ~/.gdbinit\nsource ~/peda/peda.py #注释掉pwndbg即可  #source ~/pwndbg/gdbinit.py #source ~/Pwngdb/pwngdb.py #source ~/Pwngdb/angelheap/gdbinit.py define hook-run python import angelheap angelheap.init_angelheap() end end x/5i (($cs )+ $eip) 注意：BIOS的前几条指令在GDB中都需要手动加上段寄存器的值，否则会显示错误，因为cs寄存器初始时非零；同时gdb默认只输出$ip 所指向地址的指针，而不是cs:ip。\n#错误 (gdb) si = 0xe05b: add %al,(%eax) 0x0000e05b in ?? () #正确 (gdb) x/5i (($cs 0xfe05b: cmpw $0xffc8,%cs:(%esi) 0xfe060: bound %eax,(%eax) 0xfe062: jne 0xd241d0b2 0xfe068: mov %edx,%ss 0xfe06a: mov $0x7000,%sp 练习3 分析bootloader进入保护模式的过程.\n  为何开启A20，以及如何开启A20?关于A20 Gate\n为何：为了向下兼容\n如何：打开A20 Gate的步骤如下（参考lab1/boot/bootasm.S）：\n   等待8042 Input buffer为空； 发送Write 8042 Output Port （P2）命令到8042 Input buffer； 等待8042 Input buffer为空； 将8042 Output Port（P2）得到字节的第2位置1，然后写入8042 Input buffer；  # 启用A20。通过将键盘控制器上的A20线置于高电位，全部32条地址线可用，可以访问4G的内存空间。\r# 为了向后兼容最早的PC，物理地址线20被绑在低位，所以默认情况下，高于1MB的地址会环绕到0。这段代码取消了这一点。\rseta20.1:\rinb $0x64, %al # Wait for not busy(8042 input buffer empty).\rtestb $0x2, %al\t# 读取到2则表明缓冲区中没有数据\rjnz seta20.1\rmovb $0xd1, %al # 0xd1 - port(端口) 0x64\routb %al, $0x64 # 0xd1 means: write data to 8042's P2 port\rseta20.2:\rinb $0x64, %al # Wait for not busy(8042 input buffer(缓冲区) empty).\rtestb $0x2, %al\rjnz seta20.2\rmovb $0xdf, %al # 打开A20\routb %al, $0x60 #   如何初始化GDT表\n 设置GDT中的第一项描述符为空。 设置GDT中的第二项描述符为代码段使用，其属性为可读写可执行。 设置GDT中的第三项描述符为数据段使用，其属性为可读写。  #初始化GDT表：一个简单的GDT表和其描述符已经静态储存在引导区中，载入即可:lgdt gdtdesc\r.p2align 2 # force 4 byte alignment\rgdt:\rSEG_NULLASM # null seg\rSEG_ASM(STA_X|STA_R, 0x0, 0xffffffff) # code seg for bootloader and kernel\rSEG_ASM(STA_W, 0x0, 0xffffffff) # data seg for bootloader and kernel\rgdtdesc:\r.word 0x17 # sizeof(gdt) - 1\r.long gdt # address gdt\r进入保护模式：通过将cr0寄存器PE位置1便开启了保护模式\nmovl %cr0, %eax orl $CR0_PE_ON, %eax movl %eax, %cr0 通过长跳转更新cs的基地址\nljmp $PROT_MODE_CSEG, $protcseg .code32 protcseg: 设置段寄存器，并建立堆栈\nmovw $PROT_MODE_DSEG, %ax movw %ax, %ds movw %ax, %es movw %ax, %fs movw %ax, %gs movw %ax, %ss movl $0x0, %ebp movl $start, %esp 转到保护模式完成，进入boot主方法\n call bootmain\r  练习4 硬盘访问概述\nELF执行文件格式概述\nbootloader加载ELF格式的OS的过程： readsect从设备的第secno扇区读取数据到dst位置，实现磁盘访问，然后包装为readseg函数，实现内存读取。在bootmain函数中首先读取elf头进来，并获取到程序头表，然后吧elf中的每个段依次读取进来。\nbootloader如何读取硬盘扇区的？\n/* waitdisk - wait for disk ready */ static void waitdisk(void) { while ((inb(0x1F7) \u0026 0xC0) != 0x40) /* do nothing */; } static void readsect(void *dst, uint32_t secno) { waitdisk(); outb(0x1F2, 1); // 设置读取扇区的数目为1 \toutb(0x1F3, secno \u0026 0xFF); outb(0x1F4, (secno  8) \u0026 0xFF); outb(0x1F5, (secno  16) \u0026 0xFF); outb(0x1F6, ((secno  24) \u0026 0xF) | 0xE0); // 上面四条指令联合制定了扇区号 \t// 在这4个字节线联合构成的32位参数中 \t// 29-31位强制设为1 \t// 28位(=0)表示访问\"Disk 0\" \t// 0-27位是28位的偏移量 \toutb(0x1F7, 0x20); // 0x20命令，读取扇区 \twaitdisk(); insl(0x1F0, dst, SECTSIZE / 4); // 读取到dst位置， \t// 幻数4因为这里以DW为单位 \t} readseg简单包装了readsect，可以从设备读取任意长度的内容。\nstatic void readseg(uintptr_t va, uint32_t count, uint32_t offset) { uintptr_t end_va = va + count; va -= offset % SECTSIZE; uint32_t secno = (offset / SECTSIZE) + 1; // 加1因为0扇区被引导占用 \t// ELF文件从1扇区开始 \tfor (; va  end_va; va += SECTSIZE, secno ++) { readsect((void *)va, secno); } } bootloader是如何加载ELF格式的OS？\nvoid bootmain(void) { // 首先读取ELF的头部 \treadseg((uintptr_t)ELFHDR, SECTSIZE * 8, 0); // 通过储存在头部的幻数判断是否是合法的ELF文件 \tif (ELFHDR-e_magic != ELF_MAGIC) { goto bad; } struct proghdr *ph, *eph; // ELF头部有描述ELF文件应加载到内存什么位置的描述表， \t// 先将描述表的头地址存在ph \tph = (struct proghdr *)((uintptr_t)ELFHDR + ELFHDR-e_phoff); eph = ph + ELFHDR-e_phnum; // 按照描述表将ELF文件中数据载入内存 \tfor (; ph  eph; ph ++) { readseg(ph-p_va \u0026 0xFFFFFF, ph-p_memsz, ph-p_offset); } // ELF文件0x1000位置后面的0xd1ec比特被载入内存0x00100000 \t// ELF文件0xf000位置后面的0x1d20比特被载入内存0x0010e000  // 根据ELF头部储存的入口信息，找到内核的入口 \t((void (*)(void))(ELFHDR-e_entry \u0026 0xFFFFFF))(); bad: outw(0x8A00, 0x8A00); outw( 0x8A00, 0x8E00); while (1); } 练习5 /* LAB1 YOUR CODE : STEP 1 * (1) call read_ebp() to get the value of ebp. the type is (uint32_t); * (2) call read_eip() to get the value of eip. the type is (uint32_t); * (3) from 0 .. STACKFRAME_DEPTH * (3.1) printf value of ebp, eip * (3.2) (uint32_t)calling arguments [0..4] = the contents in address (uint32_t)ebp +2 [0..4] * (3.3) cprintf(\"\\n\"); * (3.4) call print_debuginfo(eip-1) to print the C calling function name and line number, etc. * (3.5) popup a calling stackframe * NOTICE: the calling funciton's return addr eip = ss:[ebp+4] * the calling funciton's ebp = ss:[ebp] +| 栈底方向 | 高位地址 | ... | | ... | | 参数3 | | 参数2 | | 参数1 | | 返回地址 | | 上一层[ebp] | | 局部变量 | 低位地址 */ void print_stackframe(void){ //读取当前栈帧的ebp和eip  uint32_t ebp = read_eip(); uint32_t eip = read_eip(); //(3) from 0 .. STACKFRAME_DEPTH  for(uint32_t i = 0 ; ebp != 0 \u0026\u0026 i STACKFRAME_DEPTH;i++) { //读取  cprintf(\"ebp:0x%08x eip:0x%08x args:\", ebp, eip); //args[0]为参数1  uint32_t* args = (uint32_t*)ebp +2; //the calling funciton's return addr eip = ss:[ebp+4]  for(uint32_t j = 0; j4;j++) cprintf(\"0x%0x8x \", args[j]); cprintf(\"\\n\"); //eip指向异常指令的下一条指令，所以要减一  print_debuginfo(eip-1); //将ebp 和eip设置为上一个栈帧的ebp和eip  // 注意要先设置eip后设置ebp，否则当ebp被修改后，eip就无法找到正确的位置  eip = *((uint32_t*)ebp+ 1); ebp = *(uint32_t*)ebp; } } 练习6   **中断描述符表（也可简称为保护模式下的中断向量表）中一个表项占多少字节？**其中哪几位代表中断处理代码的入口？\n一个表项的结构如下\n中断向量表一个表项占用8字节，其中2-3字节是段选择子，0-1字节和6-7字节拼成位移， 两者联合便是中断处理程序的入口地址。\n/* Gate descriptors for interrupts and traps */ struct gatedesc { unsigned gd_off_15_0 : 16; // low 16 bits of offset in segment  unsigned gd_ss : 16; // segment selector  unsigned gd_args : 5; // # args, 0 for interrupt/trap gates  unsigned gd_rsv1 : 3; // reserved(should be zero I guess)  unsigned gd_type : 4; // type(STS_{TG,IG32,TG32})  unsigned gd_s : 1; // must be 0 (system)  unsigned gd_dpl : 2; // descriptor(meaning new) privilege level  unsigned gd_p : 1; // Present  unsigned gd_off_31_16 : 16; // high bits of offset in segment };   该表项的大小为16+16+5+3+4+1+2+1+16 == 8*8bit，即8字节。\n根据IDT表项的结构，我们可以得知，IDT表项的第二个成员gd_ss为段选择子，第一个成员gd_off_15_0和最后一个成员gd_off_31_16共同组成一个段内偏移地址。根据段选择子和段内偏移地址就可以得出中断处理程序的地址。 编程完善kern/trap/trap.c中对中断向量表进行初始化的函数idt_init.\n  具体实现如下，详细信息以注释的形式写入代码中。\nvoid idt_init(void) { // __vectors定义于vector.s中  extern uintptr_t __vectors[]; int i; for (i = 0; i  sizeof(idt) / sizeof(struct gatedesc); i ++) // 目标idt项为idt[i]  // 该idt项为内核代码，所以使用GD_KTEXT段选择子  // 中断处理程序的入口地址存放于__vectors[i]  // 特权级为DPL_KERNEL  SETGATE(idt[i], 0, GD_KTEXT, __vectors[i], DPL_KERNEL); // 设置从用户态转为内核态的中断的特权级为DPL_USER  SETGATE(idt[T_SWITCH_TOK], 0, GD_KTEXT, __vectors[T_SWITCH_TOK], DPL_USER); // 加载该IDT  lidt(\u0026idt_pd); }   编程完善trap.c中的中断处理函数trap，在对时钟中断进行处理的部分填写trap函数中处理时钟中断的部分，使操作系统每遇到100次时钟中断后，调用print_ticks子程序，向屏幕上打印一行文字”100 ticks”。\ntrap_dispatch(struct trapframe *tf) { char c; switch (tf-tf_trapno) { case IRQ_OFFSET + IRQ_TIMER: /* LAB1 YOUR CODE : STEP 3 */ /* handle the timer interrupt */ /* (1) After a timer interrupt, you should record this event using a global variable (increase it), such as ticks in kern/driver/clock.c * (2) Every TICK_NUM cycle, you can print some info using a funciton, such as print_ticks(). * (3) Too Simple? Yes, I think so! */ ticks ++;// 全局变量ticks定义于kern/driver/clock.c  if (ticks % TICK_NUM == 0) { print_ticks(); } break; 附录 环境配置  执行sudo apt-get install qemu-system，安装qemu程序，为执行uCore做准备 下载该github上的master分支（注意默认分支不是master分支）的uCore代码，解压使用。  BIOS中断、DOS中断、Linux中断的区别 (操作系统真相还原0.20)\nBIOS 和 DOS 都是存在于实模式下的程序，由它们建立的中断调用都是建立在中断向量表（ Interrupt Vector Table, IVT ）中的。它们都是通过软中断指令 int 中断号来调用的。\nBIOS 中断调用的主要功能是提供了硬件访问的方法，该方法使对硬件的操作变得简单易行。不通过 BIOS 调用也是可以访问硬件。操作硬件是通过 in/out 指令来读写外设的端口， BIOS中断程序处理是用来操作硬件的，故该处理程序中一定到处都是 in/out 指令。\nDOS 其中断向量号和BIOS的不能冲突。\nLinux 内核是在进入保护模式后才建立中断例程的，在保护模式下，中断向量表已经不存在了，取而代之的是中断描述符表（Interrupt Descriptor Table，IDT）。Linux 的系统调用和DOS中断调用类似，不过Linux是通过int 0x80指令进入一个中断程序后再根据eax寄存器的值来调用不同的子功能函数的\n操作系统如何识别文件系统 依靠分区中超级块记录的魔数\n各分区都有超级块，一般位于本分区的第2个扇区。超级块里面记录了此分区的信息，其中就有文件系统的魔数，一种文件系统对应一个魔数，通过比较即可得知文件系统类型。\n单步调试和查看BIOS代码 如果你是想看BIOS的汇编，可试试如下方法： 练习2可以单步跟踪，方法如下：\n1 修改 lab1/tools/gdbinit,\nset architecture i8086\rtarget remote :1234\r2 在 lab1目录下，执行\nmake debug\r这时gdb停在BIOS的第一条指令处：\n0xffff0: ljmp $0xf000,$0xe05b\r3 在看到gdb的调试界面(gdb)后，执行如下命令，就可以看到BIOS在执行了\nsi\rsi\r...\r4 此时的CS=0xf000, EIP=0xfff0，如果想看BIOS的代码\nx /2i 0xffff0\r应该可以看到\n0xffff0: ljmp $0xf000,$0xe05b\r0xffff5: xor %dh,0x322f\r进一步可以执行\nx /10i 0xfe05b\r可以看到后续的BIOS代码。\nCPU的实模式   CPU大体上可分为控制单元、运算单元、存储单元\n 控制单元是CPU的控制中心，大致由指令寄存器(IR, Instruction Register)、指令译码器(ID, Instruction Decoder)和操作控制器(OC, Operation Controller)组成。以下是一般的指令格式  运算单元根据控制单元的信号，进行运算。 存储单元CPU内部的L1、L2缓存及寄存器。这部分缓存采用SRAM存储器。SRAM不需要刷新电路即可保存内部存储的数据，但因为体积较大，集成度较低。    CPU中的寄存器分为两大类：程序可见寄存器（例如通用寄存器、段寄存器）和程序不可见寄存器（例如中断描述符寄存器IDTR）。   实模式的主要特性是：程序用到的地址都是真实的物理地址。同时，实模式下的地址寻址空间只有1MB(20bit)\n 从intel 80386开始的CPU，只要进入实模式，地址寻址空间就限制在1MB。\n   实模式下的地址计算方式为16*段寄存器值+段内偏移地址，其CPU寻址方式为\n 寄存器寻址 立即数寻址 内存寻址  直接寻址。例如mov ax, [0x1234] 基址寻址 变址寻址 基址变址寻址      a. CPU实模式下的1MB内存   CPU初始状态为16位实模式，在实模式下只能访问1MB(20bits)内存。而硬件工程师将1MB的内存空间分成多个部分。   其中地址0-0x9ffff的640KB内存是DRAM，即插在主板上的内存条。 顶部0xf0000-0xfffff的64KB内存是ROM，存放BIOS代码。\n BIOS检测并初始化硬件，同时建立中断向量表，并保证能运行一些基本硬件的IO操作\n   CPU中，插在主板上的物理内存并不是眼中“全部的内存”。地址总线宽度决定可以访问的内存空间大小。 并不是只有插在主板上的内存条需要通过地址总线访问，还有一些外设同样是需要通过地址总线来访问。 故地址总线上会提前预留出来一些地址空间给这些外设，其余的可用地址再指向DRAM。\n  CPU的分段机制（重要） a. 内存访问为什么要分段  以前程序都是直接访问物理内存，编译出的两个程序如果内存冲突，则无法同时运行。 CPU采用“段基址+段内偏移地址”的方式来访问任意内存。好处是程序可以重定位，可以执行多个程序。 段基址不需要得是65536的倍数。 加载用户程序时，只要将整个段的内容复制到新的位置，再将段基址寄存器中的地址改成该地址，程序便可准确无误地运行，因为程序中用的是段内偏移地址。 改变段基址，通过在内存中一个段来回挪位置的方式可以访问到任意内存位置。程序分段可以将大内存分成可以访问的小段，访问到所有内存。 通过分段，在早期CPU实模式16位寄存器的情况下，计算段基址 « 4 + 段内偏移地址，即可访问到20位地址空间。   代码中的分段与CPU的分段不同。编译器负责挑选出数据具备的属性，从而根据属性将程序片段分类，比如划分出了只读属性的代码段和可写属性的数据段。编译器并没有让段具备某种属性，对于代码段，编译器只是将代码归类到一起，并没有为代码段添加额外的信息。\n  在实模式下，段基址直接写在段寄存器中；而在保护模式下，段寄存器中的不再是段基址，而是段选择子。 分段机涉及4个关键内容：逻辑地址、段描述符（描述段的属性）、段描述符表（包含多个段描述符的“数组”）、段选择子（段寄存器，用于定位段描述符表中表项的索引）。只有在保护模式下才能使用分段存储管理机制。  b. 将逻辑地址（虚拟地址）转换为物理地址的两步操作  分段地址转换：CPU把逻辑地址（由段选择子selector和段偏移offset组成）中的段选择子的内容作为段描述符表的索引，找到表中对应的段描述符，然后把段描述符中保存的段基址加上段偏移值，形成线性地址（Linear Address）。 分页地址转换，这一步中把线性地址转换为物理地址。   c. 段描述符   在分段存储管理机制的保护模式下，每个段由如下三个参数进行定义：段基地址(Base Address)、段界限(Limit)和段属性(Attributes)\n 段基地址：规定线性地址空间中段的起始地址。任何一个段都可以从32位线性地址空间中的任何一个字节开始，不用像实模式下规定边界必须被16整除。 段界限：规定段的大小。可以以字节为单位或以4K字节为单位。 段属性：确定段的各种性质。  段属性中的粒度位（Granularity），用符号G标记。G=0表示段界限以字节位位单位，20位的界限可表示的范围是1字节至1M字节，增量为1字节；G=1表示段界限以4K字节为单位，于是20位的界限可表示的范围是4K字节至4G字节，增量为4K字节。 类型（TYPE）：用于区别不同类型的描述符。可表示所描述的段是代码段还是数据段，所描述的段是否可读/写/执行，段的扩展方向等。其4bit从左到右分别是  执行位：置1时表示可执行，置0时表示不可执行； 一致位：置1时表示一致码段，置0时表示非一致码段； 读写位：置1时表示可读可写，置0时表示只读； 访问位：置1时表示已访问，置0时表示未访问。   描述符特权级（Descriptor Privilege Level）（DPL）：用来实现保护机制。 段存在位（Segment-Present bit）：如果这一位为0，则此描述符为非法的，不能被用来实现地址转换。如果一个非法描述符被加载进一个段寄存器，处理器会立即产生异常。操作系统可以任意的使用被标识为可用（AVAILABLE）的位。 已访问位（Accessed bit）：当处理器访问该段（当一个指向该段描述符的选择子被加载进一个段寄存器）时，将自动设置访问位。操作系统可清除该位。      段描述符的格式   段描述符的结构\n/* segment descriptors */ struct segdesc { unsigned sd_lim_15_0 : 16; // low bits of segment limit  unsigned sd_base_15_0 : 16; // low bits of segment base address  unsigned sd_base_23_16 : 8; // middle bits of segment base address  unsigned sd_type : 4; // segment type (see STS_ constants)  unsigned sd_s : 1; // 0 = system, 1 = application  unsigned sd_dpl : 2; // descriptor Privilege Level  unsigned sd_p : 1; // present  unsigned sd_lim_19_16 : 4; // high bits of segment limit  unsigned sd_avl : 1; // unused (available for software use)  unsigned sd_rsv1 : 1; // reserved  unsigned sd_db : 1; // 0 = 16-bit segment, 1 = 32-bit segment  unsigned sd_g : 1; // granularity: limit scaled by 4K when set  unsigned sd_base_31_24 : 8; // high bits of segment base address };   d. 全局描述符表  全局描述符表（GDT）是一个保存多个段描述符的“数组”，其起始地址保存在全局描述符表寄存器GDTR中。GDTR长48位，其中高32位为基地址，低16位为段界限。 全局描述符表的一个demo  #define SEG(type, base, lim, dpl) \\ (struct segdesc){ \\ ((lim)  12) \u0026 0xffff, (base) \u0026 0xffff, \\ ((base)  16) \u0026 0xff, type, 1, dpl, 1, \\ (unsigned)(lim)  28, 0, 0, 1, 1, \\ (unsigned) (base)  24 \\ } /* * * 全局描述符表。 * * 内核和用户段是相同的（除了DPL）。要加载 * %ss寄存器，CPL必须等于DPL。因此，我们必须复制 * 用户和内核的段。定义如下。 * - 0x0 : 未使用(总是故障 -- 用于捕获NULL远指针) * - 0x8 : 内核代码段 * - 0x10: 内核数据段 * - 0x18: 用户代码段 * - 0x20: 用户数据段 * - 0x28: 为tss定义，在gdt_init中初始化 * */ static struct segdesc gdt[] = { SEG_NULL, [SEG_KTEXT] = SEG(STA_X | STA_R, 0x0, 0xFFFFFFFF, DPL_KERNEL), [SEG_KDATA] = SEG(STA_W, 0x0, 0xFFFFFFFF, DPL_KERNEL), [SEG_UTEXT] = SEG(STA_X | STA_R, 0x0, 0xFFFFFFFF, DPL_USER), [SEG_UDATA] = SEG(STA_W, 0x0, 0xFFFFFFFF, DPL_USER), [SEG_TSS] = SEG_NULL, }; e. 选择子  线性地址部分的选择子是用来选择哪个描述符表和在该表中索引哪个描述符的。选择子可以做为指针变量的一部分，从而对应用程序员是可见的，但是一般是由连接加载器来设置的。 段选择子结构  索引（Index）：在描述符表中从8192个描述符中选择一个描述符。处理器自动将这个索引值乘以8（描述符的长度），再加上描述符表的基址来索引描述符表，从而选出一个合适的描述符。 表指示位（Table Indicator，TI）：选择应该访问哪一个描述符表。0代表应该访问全局描述符表（GDT），1代表应该访问局部描述符表（LDT）。 请求特权级（Requested Privilege Level，RPL）：保护机制。    全局描述符表的第一个描述符无法被CPU使用，所以当一个段选择子的索引（Index）部分和表指示位（Table Indicator）都为0的时（即段选择子指向全局描述符表的第一项时），可以当做一个空的选择子。当一个段寄存器被加载一个空选择子时，处理器并不会产生一个异常。但是，当用一个空选择子去访问内存时，则会产生异常。  BIOS是如何苏醒的（重要）   BIOS代码被写进ROM中，该ROM被映射到低端1M内存的顶部，即地址0xF0000~0xFFFFF。BIOS的入口地址为0xFFFF0。 开机接电的一瞬间，CPU的CS:IP寄存器被强制初始化为0xF000:0xFFF0，即0xFFFF0。 由于实模式下最高寻址1MB，故0xFFFF0处是一条跳转指令jmp far f000:e05b，跳转至BIOS真正的代码。之后便开始检测并初始化外设、与0x000-0x3ff建立数据结构，中断向量表IVT并填写中断例程。\n  BIOS最后校验启动盘中位于0盘0道1扇区(MBR)的内容。如果此扇区末尾两个字节分别是魔数0x55和0xaa，则BIOS认为此扇区中存在可执行的程序，并加载该512字节数据到0x7c00，随后跳转至此继续执行。使用的跳转指令为jmp 0:0x7c00，该指令是jmp指令的直接绝对远转移用法。\n 磁盘与磁道的编号从0开始，扇区编号从1开始。 选择0x7c00是避免覆盖已有的数据以及被其他数据覆盖。\n   MBR/Bootloader   bootloader的作用\n 切换保护模式 \u0026 段机制 从硬盘上读取kernel in ELF格式的ucore kernel（跟在MBR后面的扇区），并放到内存中固定。 跳转到ucoreOS的入口点执行，将控制权移交给ucore OS。    MBR是主引导记录（Master Boot Record），也被称为主引导扇区，是计算机开机以后访问硬盘时所必须要读取的第一个扇区。其内部前446字节存储了bootloader代码，其后是4个16字节的“磁盘分区表”。\n MBR是整个硬盘最重要的区域，一旦MBR物理实体损坏时，则该硬盘基本报废。\n   bootloader的入口点为0x7c00。以下是一个简单的类MBR程序，该程序只会将1 MBR字符串打印到屏幕上并挂起。通过该程序我们可以对MBR结构有了更深的了解。\n;主引导程序\r;------------------------------------------------------------\rSECTION MBR vstart=0x7c00 ; 起始地址编译为0x7c00\rmov ax,cs ; 此时的cs为0，用0来初始化所有的段寄存器\rmov ds,ax\rmov es,ax\rmov ss,ax\rmov fs,ax\rmov sp,0x7c00 ; 0x7c00 以下空间暂时安全，故可用做栈。\r; 清屏 利用0x06号功能，上卷全部行，则可清屏。\r; -----------------------------------------------------------\r;INT 0x10 功能号:0x06 功能描述:上卷窗口\r;------------------------------------------------------\r;输入：\r;AH 功能号= 0x06\r;AL = 上卷的行数(如果为0,表示全部)\r;BH = 上卷行属性\r;(CL,CH) = 窗口左上角的(X,Y)位置\r;(DL,DH) = 窗口右下角的(X,Y)位置\r;无返回值：\rmov ax, 0x600\rmov bx, 0x700\rmov cx, 0 ; 左上角: (0, 0)\rmov dx, 0x184f ; 右下角: (80,25),\r; VGA文本模式中,一行只能容纳80个字符,共25行。\r; 下标从0开始,所以0x18=24,0x4f=79\rint 0x10 ; int 0x10\r;;;;;;;;; 下面这三行代码是获取光标位置 ;;;;;;;;;\r;.get_cursor获取当前光标位置,在光标位置处打印字符.\rmov ah, 3 ; 输入: 3 号子功能是获取光标位置,需要存入ah寄存器\rmov bh, 0 ; bh寄存器存储的是待获取光标的页号\rint 0x10 ; 输出: ch=光标开始行,cl=光标结束行\r; dh=光标所在行号,dl=光标所在列号\r;;;;;;;;; 获取光标位置结束 ;;;;;;;;;;;;;;;;\r;;;;;;;;; 打印字符串 ;;;;;;;;;;;\r;还是用10h中断,不过这次是调用13号子功能打印字符串\rmov ax, message\rmov bp, ax ; es:bp 为串首地址, es此时同cs一致，\r; 开头时已经为sreg初始化\r; 光标位置要用到dx寄存器中内容,cx中的光标位置可忽略\rmov cx, 5 ; cx 为串长度,不包括结束符0的字符个数\rmov ax, 0x1301 ; 子功能号13是显示字符及属性,要存入ah寄存器,\r; al设置写字符方式 ah=01: 显示字符串,光标跟随移动\rmov bx, 0x2 ; bh存储要显示的页号,此处是第0页,\r; bl中是字符属性, 属性黑底绿字(bl = 02h)\rint 0x10 ; 执行BIOS 0x10 号中断\r;;;;;;;;; 打字字符串结束 ;;;;;;;;;;;;;;;\rjmp $ ; 始终跳转到这条代码，为死循环，使程序悬停在此\rmessage db \"1 MBR\"\r; 用\\0 将剩余空间填满\rtimes 510-($-$$) db 0 ; $指代当前指令的地址，$$指代当前section的首地址\r; 最后两位一定是0x55, 0xaa\rdb 0x55,0xaa\r  程序在section处使用了vstart伪指令。该指令只要求编译器将后面的所有数据与变量的地址以0x7c00开始编址，并不负责加载。而加载是由MBR加载器将该程序加载到0x7c00处。\n  执行以下代码，即可看到程序输出\n# 编译汇编代码 nasm mbr.asm -o mbr.bin # 制作img镜像。注意dd指令的复制操作与cp不一样，它是针对磁盘来进行的复制 # 将编译出的mbr.bin写进mbr.img中的第0块 dd if=mbr.bin of=mbr.img bs=512 count=1 conv=notrunc # 使用i386架构启动mbr.img qemu-system-i386 mbr.img   硬件访问   硬件提供了软件方面的接口，操作系统通过软件（计算机指令）就能控制硬件。软件的逻辑需要作用在硬件上才能体现出来。\n  硬件在输出上大体分为串行和并行，相应的接口是串行接口和并行接口。\n  访问外部硬件的两种方式\n  将某个外设的内存映射到一定范围内的地址空间。例如显卡。显卡是显示器的适配器，CPU 不直接和显示器交互，它只和显卡通信。其中的显存被映射到主机物理内存上的低端1MB的0xB8000~0xBFFFF。CPU往显存上写字节便是往屏幕上打印内容。显存地址分布如下   通过IO接口。CPU只访问IO接口，不关心另一边的外设。IO接口上也存在一些寄存器。\n  CPU使用IO接口与外设通信。IO接口是连接CPU与外部设备的逻辑控制部件，可分为硬件软件两部分。\n  计算机与IO接口的通信是通过计算机指令来实现的。通过软件指令选择IO接口上的功能、工作模式的做法，称为“IO接口控制编程”，通常是用端口读写指令in/out实现。端口是IO接口开发给CPU的接口，一般的IO接口都有一组端口，每个端口都有自己的用途。in/out指令使用方式如下。\nin al, dx # al/ax 用于存放从端口读入的数据，dx指端口号\rin ax, dx\rout dx, al\rout dx, ax\rout 立即数, al\rout 立即数, ax\r      例子：直接向显卡中写入数据\n;主引导程序\r;------------------------------------------------------------\rSECTION MBR vstart=0x7c00 ; 起始地址编译为0x7c00\rmov ax,cs ; 此时的cs为0，用0来初始化所有的段寄存器\rmov ds,ax\rmov es,ax\rmov ss,ax\rmov fs,ax\rmov sp,0x7c00 ; 0x7c00 以下空间暂时安全，故可用做栈。\rmov ax,0xb800 ; 0xb800-0xbffff 用于文本模式显示适配器\rmov gs,ax\r; 清屏 利用0x06号功能，上卷全部行，则可清屏。\r; -----------------------------------------------------------\r;INT 0x10 功能号:0x06 功能描述:上卷窗口\r;------------------------------------------------------\r;输入：\r;AH 功能号= 0x06\r;AL = 上卷的行数(如果为0,表示全部)\r;BH = 上卷行属性\r;(CL,CH) = 窗口左上角的(X,Y)位置\r;(DL,DH) = 窗口右下角的(X,Y)位置\r;无返回值：\rmov ax, 0x600\rmov bx, 0x700\rmov cx, 0 ; 左上角: (0, 0)\rmov dx, 0x184f ; 右下角: (80,25),\r; VGA文本模式中,一行只能容纳80个字符,共25行。\r; 下标从0开始,所以0x18=24,0x4f=79\rint 0x10 ; int 0x10\r; 输出背景色绿色，前景色红色，并且跳动的字符串“1 MBR”\rmov byte [gs:0x00], '1'\rmov byte [gs:0x01], 0xa4 ; A表示绿色背景闪烁，4 表示前景色为红色\rmov byte [gs:0x02], ' '\rmov byte [gs:0x03], 0xa4\rmov byte [gs:0x04], 'M'\rmov byte [gs:0x05], 0xa4\rmov byte [gs:0x06], 'B'\rmov byte [gs:0x07], 0xa4\rmov byte [gs:0x08], 'R'\rmov byte [gs:0x09], 0xa4\rjmp $ ; 始终跳转到这条代码，为死循环，使程序悬停在此\r; 用\\0 将剩余空间填满\rtimes 510-($-$$) db 0\r; 最后两位一定是0x55, 0xaa\rdb 0x55,0xaa\r  中断与异常（重要）  在操作系统中，有三种特殊的中断事件：  异步中断(asynchronous interrupt)。这是由CPU外部设备引起的外部事件中断，例如I/O中断、时钟中断、控制台中断等。 同步中断(synchronous interrupt)。这是CPU执行指令期间检测到不正常的或非法的条件(如除零错、地址访问越界)所引起的内部事件。 陷入中断(trap interrupt)。这是在程序中使用请求系统服务的系统调用而引发的事件。   当CPU收到中断或者异常的事件时，它会暂停执行当前的程序或任务，通过一定的机制跳转到负责处理这个信号的相关处理例程中，在完成对这个事件的处理后再跳回到刚才被打断的程序或任务中。 其中，中断向量和中断服务例程的对应关系主要是由IDT（中断描述符表）负责。操作系统在IDT中设置好各种中断向量对应的中断描述符，留待CPU在产生中断后查询对应中断服务例程的起始地址。而IDT本身的起始地址保存在idtr寄存器中。 当CPU进入中断处理例程时，eflags寄存器上的IF标志位将会自动被CPU置为0，待中断处理例程结束后才恢复IF标志。  a. 中断描述符表  中断描述符表（Interrupt Descriptor Table, IDT）把每个中断或异常编号和一个指向中断服务例程的描述符联系起来。同GDT一样，IDT是一个8字节的描述符数组，但IDT的第一项可以包含一个描述符。 IDT可以位于内存的任意位置，CPU通过IDT寄存器（IDTR）的内容来寻址IDT的起始地址。  b. IDT gate descriptors   中断/异常应该使用Interrupt Gate或Trap Gate。唯一区别就是：当调用Interrupt Gate时，Interrupt会被CPU自动禁止；而调用Trap Gate时，CPU则不会去禁止或打开中断，而是保留原样。\n 这其中的原理是当CPU跳转至Interrupt Gate时，其eflag上的IF位会被清除。而Trap Gate则不改变。\n   IDT中包含了3种类型的Descriptor\n Task-gate descriptor Interrupt-gate descriptor （中断方式用到） Trap-gate descriptor（系统调用用到）    c. 中断处理过程 1) 起始阶段  CPU执行完每条指令后，判断中断控制器中是否产生中断。如果存在中断，则取出对应的中断变量。 CPU根据中断变量，到IDT中找到对应的中断描述符。 通过获取到的中断描述符中的段选择子，从GDT中取出对应的段描述符。此时便获取到了中断服务例程的段基址与属性信息，跳转至该地址。 CPU会根据CPL和中断服务例程的段描述符的DPL信息确认是否发生了特权级的转换。若发生了特权级的转换，这时CPU会从当前程序的TSS信息（该信息在内存中的起始地址存在TR寄存器中）里取得该程序的内核栈地址，即包括内核态的ss和esp的值，并立即将系统当前使用的栈切换成新的内核栈。这个栈就是即将运行的中断服务程序要使用的栈。紧接着就将当前程序使用的用户态的ss和esp压到新的内核栈中保存起来； CPU需要开始保存当前被打断的程序的现场（即一些寄存器的值），以便于将来恢复被打断的程序继续执行。这需要利用内核栈来保存相关现场信息，即依次压入当前被打断程序使用的eflags，cs，eip，errorCode（如果是有错误码的异常）信息； CPU利用中断服务例程的段描述符将其第一条指令的地址加载到cs和eip寄存器中，开始执行中断服务例程。这意味着先前的程序被暂停执行，中断服务程序正式开始工作。  2) 终止阶段  每个中断服务例程在有中断处理工作完成后需要通过 iret （或iretd ）指令恢复被打断的程序的执行。CPU执行IRET指令的具体过程如下：  程序执行这条iret指令时，首先会从内核栈里弹出先前保存的被打断的程序的现场信息，即eflags，cs，eip重新开始执行； 如果存在特权级转换（从内核态转换到用户态），则还需要从内核栈中弹出用户态栈的ss和esp，即栈也被切换回原先使用的用户栈。   如果此次处理的是带有错误码（errorCode）的异常，CPU在恢复先前程序的现场时，并不会弹出errorCode，需要要求相关的中断服务例程在调用iret返回之前添加出栈代码主动弹出errorCode。  ","wordCount":"1896","inLanguage":"en","datePublished":"2021-06-20T00:00:00Z","dateModified":"2021-06-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://inten.kro1lsec.com/post/ucorelab1/"},"publisher":{"@type":"Organization","name":"intenのblog🍦","logo":{"@type":"ImageObject","url":"https://inten.kro1lsec.com/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script><noscript><style type=text/css>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:#1d1e20;--entry:#2e2e33;--primary:rgba(255, 255, 255, 0.84);--secondary:rgba(255, 255, 255, 0.56);--tertiary:rgba(255, 255, 255, 0.16);--content:rgba(255, 255, 255, 0.74);--hljs-bg:#2e2e33;--code-bg:#37383e;--border:#333}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><header class=header><nav class=nav><div class=logo><a href=https://inten.kro1lsec.com/ accesskey=h title="intenのblog🍦 (Alt + H)">intenのblog🍦</a>
+<span class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></span></div><ul id=menu onscroll=menu_on_scroll()><li><a href=https://inten.kro1lsec.com/archives title=Archive><span>Archive</span></a></li><li><a href=https://inten.kro1lsec.com/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://inten.kro1lsec.com/tags/ title=Tags><span>Tags</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class=post-title>[uCore]Lab1</h1><div class=post-meta>June 20, 2021&nbsp;·&nbsp;9 min</div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><div class=details>Table of Contents</div></summary><div class=inner><ul><li><a href=#%e7%bb%83%e4%b9%a01 aria-label=练习1>练习1</a></li><li><a href=#%e7%bb%83%e4%b9%a02httpschyyuugitbooksioucore_os_docscontentlab1lab1_2_1_2_ex2html aria-label=练习2><a href=https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_2_1_2_ex2.html>练习2</a></a></li><li><a href=#%e7%bb%83%e4%b9%a03httpschyyuugitbooksioucore_os_docscontentlab1lab1_2_1_3_ex3html aria-label=练习3><a href=https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_2_1_3_ex3.html>练习3</a></a></li><li><a href=#%e7%bb%83%e4%b9%a04httpschyyuugitbooksioucore_os_docscontentlab1lab1_2_1_4_ex4html aria-label=练习4><a href=https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_2_1_4_ex4.html>练习4</a></a></li><li><a href=#%e7%bb%83%e4%b9%a05 aria-label=练习5><a href>练习5</a></a></li><li><a href=#%e7%bb%83%e4%b9%a06 aria-label=练习6><a href>练习6</a></a></li><li><a href=#%e9%99%84%e5%bd%95 aria-label=附录>附录</a><ul><li><a href=#%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae aria-label=环境配置>环境配置</a></li><li><a href=#bios%e4%b8%ad%e6%96%addos%e4%b8%ad%e6%96%adlinux%e4%b8%ad%e6%96%ad%e7%9a%84%e5%8c%ba%e5%88%ab aria-label=BIOS中断、DOS中断、Linux中断的区别>BIOS中断、DOS中断、Linux中断的区别</a></li><li><a href=#%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e5%a6%82%e4%bd%95%e8%af%86%e5%88%ab%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f aria-label=操作系统如何识别文件系统>操作系统如何识别文件系统</a></li><li><a href=#%e5%8d%95%e6%ad%a5%e8%b0%83%e8%af%95%e5%92%8c%e6%9f%a5%e7%9c%8bbios%e4%bb%a3%e7%a0%81 aria-label=单步调试和查看BIOS代码>单步调试和查看BIOS代码</a></li><li><a href=#cpu%e7%9a%84%e5%ae%9e%e6%a8%a1%e5%bc%8f aria-label=CPU的实模式>CPU的实模式</a><ul><li><a href=#a-cpu%e5%ae%9e%e6%a8%a1%e5%bc%8f%e4%b8%8b%e7%9a%841mb%e5%86%85%e5%ad%98 aria-label="a. CPU实模式下的1MB内存">a. CPU实模式下的1MB内存</a></li></ul></li><li><a href=#cpu%e7%9a%84%e5%88%86%e6%ae%b5%e6%9c%ba%e5%88%b6%e9%87%8d%e8%a6%81 aria-label=CPU的分段机制（重要）>CPU的分段机制（重要）</a><ul><li><a href=#a-%e5%86%85%e5%ad%98%e8%ae%bf%e9%97%ae%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e5%88%86%e6%ae%b5 aria-label="a. 内存访问为什么要分段">a. 内存访问为什么要分段</a></li><li><a href=#b-%e5%b0%86%e9%80%bb%e8%be%91%e5%9c%b0%e5%9d%80%e8%99%9a%e6%8b%9f%e5%9c%b0%e5%9d%80%e8%bd%ac%e6%8d%a2%e4%b8%ba%e7%89%a9%e7%90%86%e5%9c%b0%e5%9d%80%e7%9a%84%e4%b8%a4%e6%ad%a5%e6%93%8d%e4%bd%9c aria-label="b. 将逻辑地址（虚拟地址）转换为物理地址的两步操作">b. 将逻辑地址（虚拟地址）转换为物理地址的两步操作</a></li><li><a href=#c-%e6%ae%b5%e6%8f%8f%e8%bf%b0%e7%ac%a6 aria-label="c. 段描述符">c. 段描述符</a></li><li><a href=#d-%e5%85%a8%e5%b1%80%e6%8f%8f%e8%bf%b0%e7%ac%a6%e8%a1%a8 aria-label="d. 全局描述符表">d. 全局描述符表</a></li><li><a href=#e-%e9%80%89%e6%8b%a9%e5%ad%90 aria-label="e. 选择子">e. 选择子</a></li></ul></li><li><a href=#bios%e6%98%af%e5%a6%82%e4%bd%95%e8%8b%8f%e9%86%92%e7%9a%84%e9%87%8d%e8%a6%81 aria-label=BIOS是如何苏醒的（重要）>BIOS是如何苏醒的（重要）</a></li><li><a href=#mbrbootloader aria-label=MBR/Bootloader>MBR/Bootloader</a></li><li><a href=#%e7%a1%ac%e4%bb%b6%e8%ae%bf%e9%97%ae aria-label=硬件访问>硬件访问</a></li><li><a href=#%e4%b8%ad%e6%96%ad%e4%b8%8e%e5%bc%82%e5%b8%b8%e9%87%8d%e8%a6%81 aria-label=中断与异常（重要）>中断与异常（重要）</a><ul><li><a href=#a-%e4%b8%ad%e6%96%ad%e6%8f%8f%e8%bf%b0%e7%ac%a6%e8%a1%a8 aria-label="a. 中断描述符表">a. 中断描述符表</a></li><li><a href=#b-idt-gate-descriptors aria-label="b. IDT gate descriptors">b. IDT gate descriptors</a></li><li><a href=#c-%e4%b8%ad%e6%96%ad%e5%a4%84%e7%90%86%e8%bf%87%e7%a8%8b aria-label="c. 中断处理过程">c. 中断处理过程</a><ul><li><a href=#1-%e8%b5%b7%e5%a7%8b%e9%98%b6%e6%ae%b5 aria-label="1) 起始阶段">1) 起始阶段</a></li><li><a href=#2-%e7%bb%88%e6%ad%a2%e9%98%b6%e6%ae%b5 aria-label="2) 终止阶段">2) 终止阶段</a></li></ul></li></ul></li></ul></li></ul></div></details></div><div class=post-content><h2 id=练习1>练习1<a hidden class=anchor aria-hidden=true href=#练习1>#</a></h2><p><a href=https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_2_1_1_ex1.html>练习指南</a></p><p><strong>操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)</strong></p><ul><li>设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印.</li><li>设置<code>GCCPRETIX</code>和<code>QEMU</code>，检查是否支持32位的elf文件。</li><li>配置 USELLVM</li><li>include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。</li><li>为了生成ucore.img，首先需要生成kernel、bootblock</li><li>为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o</li><li>为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign</li><li>sign的作用是先检测bootblock的大小要小于500，然后在最后增加<code>0x55, 0xaa</code>的标识位， 然后复制到对应目录。</li><li>ucore.img使用dd指令将对应的文件合并</li><li>最后配置target</li></ul><p>all: 对应直接使用make的时候，就是编译出<code>ucore.img</code>，</p><p>lab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试</p><p>debug-mon: 使用qemu的monitor和gdb配合调试</p><p>qemu: 使用qemu混合模式</p><p>qemu-mon:使用qemu monitor模式</p><p>qemu-nox:使用qemu 命令行模式</p><p><strong>一个被系统认为是符合规范的硬盘主引导扇区的特征是什么?</strong></p><p>从/tool/sign.c的代码来看，一个磁盘主引导扇区只有512字节。且
 第510个（倒数第二个）字节是0x55，
-第511个（倒数第一个）字节是0xAA。</p>
-<h2 id="练习2">[练习2]<a hidden class="anchor" aria-hidden="true" href="#练习2">#</a></h2>
-<p>使用qemu执行并调试lab1中的软件。</p>
-<p><a href="https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_5_appendix.html">单步调试和查看BIOS代码</a></p>
-<p>修改<code>tools/gdbinit</code>为</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">file obj/bootblock.o
+第511个（倒数第一个）字节是0xAA。</p><h2 id=练习2httpschyyuugitbooksioucore_os_docscontentlab1lab1_2_1_2_ex2html><a href=https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_2_1_2_ex2.html>练习2</a><a hidden class=anchor aria-hidden=true href=#练习2httpschyyuugitbooksioucore_os_docscontentlab1lab1_2_1_2_ex2html>#</a></h2><p>使用qemu执行并调试lab1中的软件。</p><p><a href=https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_5_appendix.html>单步调试和查看BIOS代码</a></p><p>修改<code>tools/gdbinit</code>为</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>file obj/bootblock.o
 set architecture i8086
 target remote :1234
 b* 0x7c00
 
-<span style="color:#75715e">#强制反汇编当前的指令</span>
+<span style=color:#75715e>#强制反汇编当前的指令</span>
 define hook-stop
 x/i $eip
 end
-<span style="color:#66d9ef">continue</span>
-</code></pre></div><ul>
-<li>
-<p>gdb脚本中的<code>define hook-stop ... end</code>，可以在每次gdb断下时自动执行内部的指令。上面gdb脚本中的<code>define .. end</code>告诉gdb在每次断下时输出下一条指令，方便调试。</p>
-<p>如果想单步调试BIOS，则可以删除<code>continue</code>。这样gdb就会在<code>0xfff0</code>处断下，然后我们就可以自由的单步跟踪。</p>
-</li>
-<li>
-<p>之后执行<code>make debug</code>命令，即可自动打开qemu与已经连接完成的gdb。</p>
-</li>
-<li>
-<p>坑！（排查了好久）：远程连接qemu时，<strong>不要使用pwndbg插件</strong>。因为使用该插件会导致连接到qemu后无法操作gdb。</p>
-<blockquote>
-<p><code>peda</code>插件可以正常使用。<a href="https://kiprey.github.io/">谢kiprey师傅!</a></p>
-</blockquote>
-</li>
-</ul>
-<p><a href="https://blog.csdn.net/weixin_43092232/article/details/105648769">切换GitHub插件</a>  vim ~/.gdbinit</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">source ~/peda/peda.py                                 <span style="color:#75715e">#注释掉pwndbg即可                    </span>
-<span style="color:#75715e">#source ~/pwndbg/gdbinit.py</span>
-<span style="color:#75715e">#source ~/Pwngdb/pwngdb.py</span>
-<span style="color:#75715e">#source ~/Pwngdb/angelheap/gdbinit.py</span>
+<span style=color:#66d9ef>continue</span>
+</code></pre></div><ul><li><p>gdb脚本中的<code>define hook-stop ... end</code>，可以在每次gdb断下时自动执行内部的指令。上面gdb脚本中的<code>define .. end</code>告诉gdb在每次断下时输出下一条指令，方便调试。</p><p>如果想单步调试BIOS，则可以删除<code>continue</code>。这样gdb就会在<code>0xfff0</code>处断下，然后我们就可以自由的单步跟踪。</p></li><li><p>之后执行<code>make debug</code>命令，即可自动打开qemu与已经连接完成的gdb。</p></li><li><p>坑！（排查了好久）：远程连接qemu时，<strong>不要使用pwndbg插件</strong>。因为使用该插件会导致连接到qemu后无法操作gdb。</p><blockquote><p><code>peda</code>插件可以正常使用。<a href=https://kiprey.github.io/>谢kiprey师傅!</a></p></blockquote></li></ul><p><a href=https://blog.csdn.net/weixin_43092232/article/details/105648769>切换GitHub插件</a> vim ~/.gdbinit</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>source ~/peda/peda.py                                 <span style=color:#75715e>#注释掉pwndbg即可                    </span>
+<span style=color:#75715e>#source ~/pwndbg/gdbinit.py</span>
+<span style=color:#75715e>#source ~/Pwngdb/pwngdb.py</span>
+<span style=color:#75715e>#source ~/Pwngdb/angelheap/gdbinit.py</span>
 
 define hook-run
 python
 import angelheap
-angelheap.init_angelheap<span style="color:#f92672">()</span>
+angelheap.init_angelheap<span style=color:#f92672>()</span>
 end
 end
 
-x/5i <span style="color:#f92672">((</span>$cs &lt;&lt; 4<span style="color:#f92672">)</span>+  $eip<span style="color:#f92672">)</span>
-</code></pre></div><p>注意：BIOS的前几条指令在GDB中都需要手动加上段寄存器的值，否则会显示错误，因为<code>cs</code>寄存器<strong>初始时非零</strong>；同时gdb默认只输出<code>$ip</code> 所指向地址的指针，而不是<code>cs:ip</code>。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e">#错误</span>
-<span style="color:#f92672">(</span>gdb<span style="color:#f92672">)</span> si
-<span style="color:#f92672">=</span>&gt; 0xe05b:      add    %al,<span style="color:#f92672">(</span>%eax<span style="color:#f92672">)</span>
-0x0000e05b in ?? <span style="color:#f92672">()</span>
+x/5i <span style=color:#f92672>((</span>$cs &lt;&lt; 4<span style=color:#f92672>)</span>+  $eip<span style=color:#f92672>)</span>
+</code></pre></div><p>注意：BIOS的前几条指令在GDB中都需要手动加上段寄存器的值，否则会显示错误，因为<code>cs</code>寄存器<strong>初始时非零</strong>；同时gdb默认只输出<code>$ip</code> 所指向地址的指针，而不是<code>cs:ip</code>。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e>#错误</span>
+<span style=color:#f92672>(</span>gdb<span style=color:#f92672>)</span> si
+<span style=color:#f92672>=</span>&gt; 0xe05b:      add    %al,<span style=color:#f92672>(</span>%eax<span style=color:#f92672>)</span>
+0x0000e05b in ?? <span style=color:#f92672>()</span>
 
-<span style="color:#75715e">#正确</span>
-<span style="color:#f92672">(</span>gdb<span style="color:#f92672">)</span>  x/5i <span style="color:#f92672">((</span>$cs <span style="color:#e6db74">&lt;&lt; 4)+  $eip)
-</span><span style="color:#e6db74">   0xfe05b:     cmpw   $0xffc8,%cs:(%esi)
-</span><span style="color:#e6db74">   0xfe060:     bound  %eax,(%eax)
-</span><span style="color:#e6db74">   0xfe062:     jne    0xd24</span>1d0b2
+<span style=color:#75715e>#正确</span>
+<span style=color:#f92672>(</span>gdb<span style=color:#f92672>)</span>  x/5i <span style=color:#f92672>((</span>$cs <span style=color:#e6db74>&lt;&lt; 4)+  $eip)
+</span><span style=color:#e6db74>   0xfe05b:     cmpw   $0xffc8,%cs:(%esi)
+</span><span style=color:#e6db74>   0xfe060:     bound  %eax,(%eax)
+</span><span style=color:#e6db74>   0xfe062:     jne    0xd24</span>1d0b2
    0xfe068:     mov    %edx,%ss
    0xfe06a:     mov    $0x7000,%sp
 
-</code></pre></div><h2 id="练习3">[练习3]<a hidden class="anchor" aria-hidden="true" href="#练习3">#</a></h2>
-<p>分析bootloader进入保护模式的过程.</p>
-<ul>
-<li>
-<p>为何开启A20，以及如何开启A20?<a href="https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_appendix_a20.html">关于A20 Gate</a></p>
-<p>为何：为了向下兼容</p>
-<p>如何：打开A20 Gate的步骤如下（参考lab1/boot/bootasm.S）：</p>
-</li>
-</ul>
-<ol>
-<li>等待8042 Input buffer为空；</li>
-<li>发送Write 8042 Output Port （P2）命令到8042 Input buffer；</li>
-<li>等待8042 Input buffer为空；</li>
-<li>将8042 Output Port（P2）得到字节的第2位置1，然后写入8042 Input buffer；</li>
-</ol>
-<pre><code class="language-assembly" data-lang="assembly">    # 启用A20。通过将键盘控制器上的A20线置于高电位，全部32条地址线可用，可以访问4G的内存空间。
+</code></pre></div><h2 id=练习3httpschyyuugitbooksioucore_os_docscontentlab1lab1_2_1_3_ex3html><a href=https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_2_1_3_ex3.html>练习3</a><a hidden class=anchor aria-hidden=true href=#练习3httpschyyuugitbooksioucore_os_docscontentlab1lab1_2_1_3_ex3html>#</a></h2><p>分析bootloader进入保护模式的过程.</p><ul><li><p>为何开启A20，以及如何开启A20?<a href=https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_appendix_a20.html>关于A20 Gate</a></p><p>为何：为了向下兼容</p><p>如何：打开A20 Gate的步骤如下（参考lab1/boot/bootasm.S）：</p></li></ul><ol><li>等待8042 Input buffer为空；</li><li>发送Write 8042 Output Port （P2）命令到8042 Input buffer；</li><li>等待8042 Input buffer为空；</li><li>将8042 Output Port（P2）得到字节的第2位置1，然后写入8042 Input buffer；</li></ol><pre><code class=language-assembly data-lang=assembly>    # 启用A20。通过将键盘控制器上的A20线置于高电位，全部32条地址线可用，可以访问4G的内存空间。
     # 为了向后兼容最早的PC，物理地址线20被绑在低位，所以默认情况下，高于1MB的地址会环绕到0。这段代码取消了这一点。
 seta20.1:
     inb $0x64, %al                   # Wait for not busy(8042 input buffer empty).
@@ -381,15 +93,7 @@ seta20.2:
 
     movb $0xdf, %al     # 打开A20
     outb %al, $0x60     # 
-</code></pre><ul>
-<li>
-<p>如何初始化GDT表</p>
-<ul>
-<li>设置GDT中的第一项描述符为空。</li>
-<li>设置GDT中的第二项描述符为代码段使用，其属性为可读写可执行。</li>
-<li>设置GDT中的第三项描述符为数据段使用，其属性为可读写。</li>
-</ul>
-<pre><code>#初始化GDT表：一个简单的GDT表和其描述符已经静态储存在引导区中，载入即可:lgdt gdtdesc
+</code></pre><ul><li><p>如何初始化GDT表</p><ul><li>设置GDT中的第一项描述符为空。</li><li>设置GDT中的第二项描述符为代码段使用，其属性为可读写可执行。</li><li>设置GDT中的第三项描述符为数据段使用，其属性为可读写。</li></ul><pre><code>#初始化GDT表：一个简单的GDT表和其描述符已经静态储存在引导区中，载入即可:lgdt gdtdesc
 .p2align 2                                          # force 4 byte alignment
 gdt:
     SEG_NULLASM                                     # null seg
@@ -399,448 +103,376 @@ gdt:
 gdtdesc:
     .word 0x17                                      # sizeof(gdt) - 1
     .long gdt                                       # address gdt
-</code></pre><p>进入保护模式：通过将cr0寄存器PE位置1便开启了保护模式</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">      movl <span style="color:#f92672">%</span>cr0, <span style="color:#f92672">%</span>eax
-      orl <span style="color:#960050;background-color:#1e0010">$</span>CR0_PE_ON, <span style="color:#f92672">%</span>eax
-      movl <span style="color:#f92672">%</span>eax, <span style="color:#f92672">%</span>cr0
-</code></pre></div><p>通过长跳转更新cs的基地址</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">   ljmp <span style="color:#960050;background-color:#1e0010">$</span>PROT_MODE_CSEG, <span style="color:#960050;background-color:#1e0010">$</span>protcseg
+</code></pre><p>进入保护模式：通过将cr0寄存器PE位置1便开启了保护模式</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c>      movl <span style=color:#f92672>%</span>cr0, <span style=color:#f92672>%</span>eax
+      orl <span style=color:#960050;background-color:#1e0010>$</span>CR0_PE_ON, <span style=color:#f92672>%</span>eax
+      movl <span style=color:#f92672>%</span>eax, <span style=color:#f92672>%</span>cr0
+</code></pre></div><p>通过长跳转更新cs的基地址</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c>   ljmp <span style=color:#960050;background-color:#1e0010>$</span>PROT_MODE_CSEG, <span style=color:#960050;background-color:#1e0010>$</span>protcseg
 	.code32
 	protcseg:
-</code></pre></div><p>设置段寄存器，并建立堆栈</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">      movw <span style="color:#960050;background-color:#1e0010">$</span>PROT_MODE_DSEG, <span style="color:#f92672">%</span>ax
-      movw <span style="color:#f92672">%</span>ax, <span style="color:#f92672">%</span>ds
-      movw <span style="color:#f92672">%</span>ax, <span style="color:#f92672">%</span>es
-      movw <span style="color:#f92672">%</span>ax, <span style="color:#f92672">%</span>fs
-      movw <span style="color:#f92672">%</span>ax, <span style="color:#f92672">%</span>gs
-      movw <span style="color:#f92672">%</span>ax, <span style="color:#f92672">%</span>ss
-      movl <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">0x0</span>, <span style="color:#f92672">%</span>ebp
-      movl <span style="color:#960050;background-color:#1e0010">$</span>start, <span style="color:#f92672">%</span>esp
-</code></pre></div><p>转到保护模式完成，进入boot主方法</p>
-<pre><code>      call bootmain
-</code></pre></li>
-</ul>
-<h2 id="练习4">[练习4]<a hidden class="anchor" aria-hidden="true" href="#练习4">#</a></h2>
-<p><a href="https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_3_2_3_dist_accessing.html">硬盘访问概述</a></p>
-<p><a href="https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_3_2_4_elf.html">ELF执行文件格式概述</a></p>
-<p><strong>bootloader加载ELF格式的OS的过程：</strong>
-<code>readsect</code>从设备的第secno扇区读取数据到dst位置，实现磁盘访问，然后包装为<code>readseg</code>函数，实现内存读取。在bootmain函数中首先读取elf头进来，并获取到程序头表，然后吧elf中的每个段依次读取进来。</p>
-<p><strong>bootloader如何读取硬盘扇区的？</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">/* waitdisk - wait for disk ready */</span>
-<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">waitdisk</span>(<span style="color:#66d9ef">void</span>) {
-  <span style="color:#66d9ef">while</span> ((inb(<span style="color:#ae81ff">0x1F7</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xC0</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0x40</span>)
-    <span style="color:#75715e">/* do nothing */</span>;
+</code></pre></div><p>设置段寄存器，并建立堆栈</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c>      movw <span style=color:#960050;background-color:#1e0010>$</span>PROT_MODE_DSEG, <span style=color:#f92672>%</span>ax
+      movw <span style=color:#f92672>%</span>ax, <span style=color:#f92672>%</span>ds
+      movw <span style=color:#f92672>%</span>ax, <span style=color:#f92672>%</span>es
+      movw <span style=color:#f92672>%</span>ax, <span style=color:#f92672>%</span>fs
+      movw <span style=color:#f92672>%</span>ax, <span style=color:#f92672>%</span>gs
+      movw <span style=color:#f92672>%</span>ax, <span style=color:#f92672>%</span>ss
+      movl <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>0x0</span>, <span style=color:#f92672>%</span>ebp
+      movl <span style=color:#960050;background-color:#1e0010>$</span>start, <span style=color:#f92672>%</span>esp
+</code></pre></div><p>转到保护模式完成，进入boot主方法</p><pre><code>      call bootmain
+</code></pre></li></ul><h2 id=练习4httpschyyuugitbooksioucore_os_docscontentlab1lab1_2_1_4_ex4html><a href=https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_2_1_4_ex4.html>练习4</a><a hidden class=anchor aria-hidden=true href=#练习4httpschyyuugitbooksioucore_os_docscontentlab1lab1_2_1_4_ex4html>#</a></h2><p><a href=https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_3_2_3_dist_accessing.html>硬盘访问概述</a></p><p><a href=https://chyyuu.gitbooks.io/ucore_os_docs/content/lab1/lab1_3_2_4_elf.html>ELF执行文件格式概述</a></p><p><strong>bootloader加载ELF格式的OS的过程：</strong>
+<code>readsect</code>从设备的第secno扇区读取数据到dst位置，实现磁盘访问，然后包装为<code>readseg</code>函数，实现内存读取。在bootmain函数中首先读取elf头进来，并获取到程序头表，然后吧elf中的每个段依次读取进来。</p><p><strong>bootloader如何读取硬盘扇区的？</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#75715e>/* waitdisk - wait for disk ready */</span>
+<span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>waitdisk</span>(<span style=color:#66d9ef>void</span>) {
+  <span style=color:#66d9ef>while</span> ((inb(<span style=color:#ae81ff>0x1F7</span>) <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xC0</span>) <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0x40</span>)
+    <span style=color:#75715e>/* do nothing */</span>;
 }
 
-<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readsect</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>dst, uint32_t secno) {
+<span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>readsect</span>(<span style=color:#66d9ef>void</span> <span style=color:#f92672>*</span>dst, uint32_t secno) {
 	    waitdisk();
 	
-	    outb(<span style="color:#ae81ff">0x1F2</span>, <span style="color:#ae81ff">1</span>);                         <span style="color:#75715e">// 设置读取扇区的数目为1
-</span><span style="color:#75715e"></span>	    outb(<span style="color:#ae81ff">0x1F3</span>, secno <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFF</span>);
-	    outb(<span style="color:#ae81ff">0x1F4</span>, (secno <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFF</span>);
-	    outb(<span style="color:#ae81ff">0x1F5</span>, (secno <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">16</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFF</span>);
-	    outb(<span style="color:#ae81ff">0x1F6</span>, ((secno <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">24</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xF</span>) <span style="color:#f92672">|</span> <span style="color:#ae81ff">0xE0</span>);
-	        <span style="color:#75715e">// 上面四条指令联合制定了扇区号
-</span><span style="color:#75715e"></span>	        <span style="color:#75715e">// 在这4个字节线联合构成的32位参数中
-</span><span style="color:#75715e"></span>	        <span style="color:#75715e">//   29-31位强制设为1
-</span><span style="color:#75715e"></span>	        <span style="color:#75715e">//   28位(=0)表示访问&#34;Disk 0&#34;
-</span><span style="color:#75715e"></span>	        <span style="color:#75715e">//   0-27位是28位的偏移量
-</span><span style="color:#75715e"></span>	    outb(<span style="color:#ae81ff">0x1F7</span>, <span style="color:#ae81ff">0x20</span>);                      <span style="color:#75715e">// 0x20命令，读取扇区
-</span><span style="color:#75715e"></span>	
+	    outb(<span style=color:#ae81ff>0x1F2</span>, <span style=color:#ae81ff>1</span>);                         <span style=color:#75715e>// 设置读取扇区的数目为1
+</span><span style=color:#75715e></span>	    outb(<span style=color:#ae81ff>0x1F3</span>, secno <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xFF</span>);
+	    outb(<span style=color:#ae81ff>0x1F4</span>, (secno <span style=color:#f92672>&gt;&gt;</span> <span style=color:#ae81ff>8</span>) <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xFF</span>);
+	    outb(<span style=color:#ae81ff>0x1F5</span>, (secno <span style=color:#f92672>&gt;&gt;</span> <span style=color:#ae81ff>16</span>) <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xFF</span>);
+	    outb(<span style=color:#ae81ff>0x1F6</span>, ((secno <span style=color:#f92672>&gt;&gt;</span> <span style=color:#ae81ff>24</span>) <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xF</span>) <span style=color:#f92672>|</span> <span style=color:#ae81ff>0xE0</span>);
+	        <span style=color:#75715e>// 上面四条指令联合制定了扇区号
+</span><span style=color:#75715e></span>	        <span style=color:#75715e>// 在这4个字节线联合构成的32位参数中
+</span><span style=color:#75715e></span>	        <span style=color:#75715e>//   29-31位强制设为1
+</span><span style=color:#75715e></span>	        <span style=color:#75715e>//   28位(=0)表示访问&#34;Disk 0&#34;
+</span><span style=color:#75715e></span>	        <span style=color:#75715e>//   0-27位是28位的偏移量
+</span><span style=color:#75715e></span>	    outb(<span style=color:#ae81ff>0x1F7</span>, <span style=color:#ae81ff>0x20</span>);                      <span style=color:#75715e>// 0x20命令，读取扇区
+</span><span style=color:#75715e></span>	
 	    waitdisk();
 
-	    insl(<span style="color:#ae81ff">0x1F0</span>, dst, SECTSIZE <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span>);         <span style="color:#75715e">// 读取到dst位置，
-</span><span style="color:#75715e"></span>	                                            <span style="color:#75715e">// 幻数4因为这里以DW为单位
-</span><span style="color:#75715e"></span>	}
-</code></pre></div><p>readseg简单包装了readsect，可以从设备读取任意长度的内容。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">	<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span>
-	<span style="color:#a6e22e">readseg</span>(uintptr_t va, uint32_t count, uint32_t offset) {
-	    uintptr_t end_va <span style="color:#f92672">=</span> va <span style="color:#f92672">+</span> count;
+	    insl(<span style=color:#ae81ff>0x1F0</span>, dst, SECTSIZE <span style=color:#f92672>/</span> <span style=color:#ae81ff>4</span>);         <span style=color:#75715e>// 读取到dst位置，
+</span><span style=color:#75715e></span>	                                            <span style=color:#75715e>// 幻数4因为这里以DW为单位
+</span><span style=color:#75715e></span>	}
+</code></pre></div><p>readseg简单包装了readsect，可以从设备读取任意长度的内容。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c>	<span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span>
+	<span style=color:#a6e22e>readseg</span>(uintptr_t va, uint32_t count, uint32_t offset) {
+	    uintptr_t end_va <span style=color:#f92672>=</span> va <span style=color:#f92672>+</span> count;
 	
-	    va <span style="color:#f92672">-=</span> offset <span style="color:#f92672">%</span> SECTSIZE;
+	    va <span style=color:#f92672>-=</span> offset <span style=color:#f92672>%</span> SECTSIZE;
 	
-	    uint32_t secno <span style="color:#f92672">=</span> (offset <span style="color:#f92672">/</span> SECTSIZE) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; 
-	    <span style="color:#75715e">// 加1因为0扇区被引导占用
-</span><span style="color:#75715e"></span>	    <span style="color:#75715e">// ELF文件从1扇区开始
-</span><span style="color:#75715e"></span>	
-	    <span style="color:#66d9ef">for</span> (; va <span style="color:#f92672">&lt;</span> end_va; va <span style="color:#f92672">+=</span> SECTSIZE, secno <span style="color:#f92672">++</span>) {
-	        readsect((<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>)va, secno);
+	    uint32_t secno <span style=color:#f92672>=</span> (offset <span style=color:#f92672>/</span> SECTSIZE) <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>; 
+	    <span style=color:#75715e>// 加1因为0扇区被引导占用
+</span><span style=color:#75715e></span>	    <span style=color:#75715e>// ELF文件从1扇区开始
+</span><span style=color:#75715e></span>	
+	    <span style=color:#66d9ef>for</span> (; va <span style=color:#f92672>&lt;</span> end_va; va <span style=color:#f92672>+=</span> SECTSIZE, secno <span style=color:#f92672>++</span>) {
+	        readsect((<span style=color:#66d9ef>void</span> <span style=color:#f92672>*</span>)va, secno);
 	    }
 	}
-</code></pre></div><p><strong>bootloader是如何加载ELF格式的OS？</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">	<span style="color:#66d9ef">void</span>
-	<span style="color:#a6e22e">bootmain</span>(<span style="color:#66d9ef">void</span>) {
-	    <span style="color:#75715e">// 首先读取ELF的头部
-</span><span style="color:#75715e"></span>	    readseg((uintptr_t)ELFHDR, SECTSIZE <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">0</span>);
+</code></pre></div><p><strong>bootloader是如何加载ELF格式的OS？</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c>	<span style=color:#66d9ef>void</span>
+	<span style=color:#a6e22e>bootmain</span>(<span style=color:#66d9ef>void</span>) {
+	    <span style=color:#75715e>// 首先读取ELF的头部
+</span><span style=color:#75715e></span>	    readseg((uintptr_t)ELFHDR, SECTSIZE <span style=color:#f92672>*</span> <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>0</span>);
 	
-	    <span style="color:#75715e">// 通过储存在头部的幻数判断是否是合法的ELF文件
-</span><span style="color:#75715e"></span>	    <span style="color:#66d9ef">if</span> (ELFHDR<span style="color:#f92672">-&gt;</span>e_magic <span style="color:#f92672">!=</span> ELF_MAGIC) {
-	        <span style="color:#66d9ef">goto</span> bad;
+	    <span style=color:#75715e>// 通过储存在头部的幻数判断是否是合法的ELF文件
+</span><span style=color:#75715e></span>	    <span style=color:#66d9ef>if</span> (ELFHDR<span style=color:#f92672>-&gt;</span>e_magic <span style=color:#f92672>!=</span> ELF_MAGIC) {
+	        <span style=color:#66d9ef>goto</span> bad;
 	    }
 	
-	    <span style="color:#66d9ef">struct</span> proghdr <span style="color:#f92672">*</span>ph, <span style="color:#f92672">*</span>eph;
+	    <span style=color:#66d9ef>struct</span> proghdr <span style=color:#f92672>*</span>ph, <span style=color:#f92672>*</span>eph;
 	
-	    <span style="color:#75715e">// ELF头部有描述ELF文件应加载到内存什么位置的描述表，
-</span><span style="color:#75715e"></span>	    <span style="color:#75715e">// 先将描述表的头地址存在ph
-</span><span style="color:#75715e"></span>	    ph <span style="color:#f92672">=</span> (<span style="color:#66d9ef">struct</span> proghdr <span style="color:#f92672">*</span>)((uintptr_t)ELFHDR <span style="color:#f92672">+</span> ELFHDR<span style="color:#f92672">-&gt;</span>e_phoff);
-	    eph <span style="color:#f92672">=</span> ph <span style="color:#f92672">+</span> ELFHDR<span style="color:#f92672">-&gt;</span>e_phnum;
+	    <span style=color:#75715e>// ELF头部有描述ELF文件应加载到内存什么位置的描述表，
+</span><span style=color:#75715e></span>	    <span style=color:#75715e>// 先将描述表的头地址存在ph
+</span><span style=color:#75715e></span>	    ph <span style=color:#f92672>=</span> (<span style=color:#66d9ef>struct</span> proghdr <span style=color:#f92672>*</span>)((uintptr_t)ELFHDR <span style=color:#f92672>+</span> ELFHDR<span style=color:#f92672>-&gt;</span>e_phoff);
+	    eph <span style=color:#f92672>=</span> ph <span style=color:#f92672>+</span> ELFHDR<span style=color:#f92672>-&gt;</span>e_phnum;
 	
-	    <span style="color:#75715e">// 按照描述表将ELF文件中数据载入内存
-</span><span style="color:#75715e"></span>	    <span style="color:#66d9ef">for</span> (; ph <span style="color:#f92672">&lt;</span> eph; ph <span style="color:#f92672">++</span>) {
-	        readseg(ph<span style="color:#f92672">-&gt;</span>p_va <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFFFFFF</span>, ph<span style="color:#f92672">-&gt;</span>p_memsz, ph<span style="color:#f92672">-&gt;</span>p_offset);
+	    <span style=color:#75715e>// 按照描述表将ELF文件中数据载入内存
+</span><span style=color:#75715e></span>	    <span style=color:#66d9ef>for</span> (; ph <span style=color:#f92672>&lt;</span> eph; ph <span style=color:#f92672>++</span>) {
+	        readseg(ph<span style=color:#f92672>-&gt;</span>p_va <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xFFFFFF</span>, ph<span style=color:#f92672>-&gt;</span>p_memsz, ph<span style=color:#f92672>-&gt;</span>p_offset);
 	    }
-	    <span style="color:#75715e">// ELF文件0x1000位置后面的0xd1ec比特被载入内存0x00100000
-</span><span style="color:#75715e"></span>	    <span style="color:#75715e">// ELF文件0xf000位置后面的0x1d20比特被载入内存0x0010e000
-</span><span style="color:#75715e"></span>
-	    <span style="color:#75715e">// 根据ELF头部储存的入口信息，找到内核的入口
-</span><span style="color:#75715e"></span>	    ((<span style="color:#66d9ef">void</span> (<span style="color:#f92672">*</span>)(<span style="color:#66d9ef">void</span>))(ELFHDR<span style="color:#f92672">-&gt;</span>e_entry <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFFFFFF</span>))();
+	    <span style=color:#75715e>// ELF文件0x1000位置后面的0xd1ec比特被载入内存0x00100000
+</span><span style=color:#75715e></span>	    <span style=color:#75715e>// ELF文件0xf000位置后面的0x1d20比特被载入内存0x0010e000
+</span><span style=color:#75715e></span>
+	    <span style=color:#75715e>// 根据ELF头部储存的入口信息，找到内核的入口
+</span><span style=color:#75715e></span>	    ((<span style=color:#66d9ef>void</span> (<span style=color:#f92672>*</span>)(<span style=color:#66d9ef>void</span>))(ELFHDR<span style=color:#f92672>-&gt;</span>e_entry <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xFFFFFF</span>))();
 	
 	bad:
-	    outw(<span style="color:#ae81ff">0x8A00</span>, <span style="color:#ae81ff">0x8A00</span>);
-	    outw( <span style="color:#ae81ff">0x8A00</span>, <span style="color:#ae81ff">0x8E00</span>);
-	    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>);
+	    outw(<span style=color:#ae81ff>0x8A00</span>, <span style=color:#ae81ff>0x8A00</span>);
+	    outw( <span style=color:#ae81ff>0x8A00</span>, <span style=color:#ae81ff>0x8E00</span>);
+	    <span style=color:#66d9ef>while</span> (<span style=color:#ae81ff>1</span>);
 	}
-</code></pre></div><h2 id="练习5">[练习5]<a hidden class="anchor" aria-hidden="true" href="#练习5">#</a></h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">/* LAB1 YOUR CODE : STEP 1 
-</span><span style="color:#75715e">* (1) call read_ebp() to get the value of ebp. the type is (uint32_t);
-</span><span style="color:#75715e">* (2) call read_eip() to get the value of eip. the type is (uint32_t);
-</span><span style="color:#75715e">* (3) from 0 .. STACKFRAME_DEPTH
-</span><span style="color:#75715e">*    (3.1) printf value of ebp, eip
-</span><span style="color:#75715e">*    (3.2) (uint32_t)calling arguments [0..4] = the contents in address (uint32_t)ebp +2 [0..4]
-</span><span style="color:#75715e">*    (3.3) cprintf(&#34;\n&#34;);
-</span><span style="color:#75715e">*    (3.4) call print_debuginfo(eip-1) to print the C calling function name and line number, etc.
-</span><span style="color:#75715e">*    (3.5) popup a calling stackframe
-</span><span style="color:#75715e">*           NOTICE: the calling funciton&#39;s return addr eip  = ss:[ebp+4]
-</span><span style="color:#75715e">*                   the calling funciton&#39;s ebp = ss:[ebp]
-</span><span style="color:#75715e">
-</span><span style="color:#75715e">+|  栈底方向     | 高位地址
-</span><span style="color:#75715e"> |    ...       |
-</span><span style="color:#75715e"> |    ...       |
-</span><span style="color:#75715e"> |  参数3       |
-</span><span style="color:#75715e"> |  参数2       |
-</span><span style="color:#75715e"> |  参数1       |
-</span><span style="color:#75715e"> |  返回地址     |
-</span><span style="color:#75715e"> |  上一层[ebp]  | &lt;-------- [ebp]
-</span><span style="color:#75715e"> |  局部变量     |  低位地址
-</span><span style="color:#75715e">*/</span>
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print_stackframe</span>(<span style="color:#66d9ef">void</span>){
-    <span style="color:#75715e">//读取当前栈帧的ebp和eip
-</span><span style="color:#75715e"></span>    uint32_t ebp <span style="color:#f92672">=</span> read_eip();
-    uint32_t eip <span style="color:#f92672">=</span> read_eip();
-    <span style="color:#75715e">//(3) from 0 .. STACKFRAME_DEPTH
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(uint32_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; ebp <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> i <span style="color:#f92672">&lt;</span>STACKFRAME_DEPTH;i<span style="color:#f92672">++</span>)
+</code></pre></div><h2 id=练习5><a href>练习5</a><a hidden class=anchor aria-hidden=true href=#练习5>#</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#75715e>/* LAB1 YOUR CODE : STEP 1 
+</span><span style=color:#75715e>* (1) call read_ebp() to get the value of ebp. the type is (uint32_t);
+</span><span style=color:#75715e>* (2) call read_eip() to get the value of eip. the type is (uint32_t);
+</span><span style=color:#75715e>* (3) from 0 .. STACKFRAME_DEPTH
+</span><span style=color:#75715e>*    (3.1) printf value of ebp, eip
+</span><span style=color:#75715e>*    (3.2) (uint32_t)calling arguments [0..4] = the contents in address (uint32_t)ebp +2 [0..4]
+</span><span style=color:#75715e>*    (3.3) cprintf(&#34;\n&#34;);
+</span><span style=color:#75715e>*    (3.4) call print_debuginfo(eip-1) to print the C calling function name and line number, etc.
+</span><span style=color:#75715e>*    (3.5) popup a calling stackframe
+</span><span style=color:#75715e>*           NOTICE: the calling funciton&#39;s return addr eip  = ss:[ebp+4]
+</span><span style=color:#75715e>*                   the calling funciton&#39;s ebp = ss:[ebp]
+</span><span style=color:#75715e>
+</span><span style=color:#75715e>+|  栈底方向     | 高位地址
+</span><span style=color:#75715e> |    ...       |
+</span><span style=color:#75715e> |    ...       |
+</span><span style=color:#75715e> |  参数3       |
+</span><span style=color:#75715e> |  参数2       |
+</span><span style=color:#75715e> |  参数1       |
+</span><span style=color:#75715e> |  返回地址     |
+</span><span style=color:#75715e> |  上一层[ebp]  | &lt;-------- [ebp]
+</span><span style=color:#75715e> |  局部变量     |  低位地址
+</span><span style=color:#75715e>*/</span>
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>print_stackframe</span>(<span style=color:#66d9ef>void</span>){
+    <span style=color:#75715e>//读取当前栈帧的ebp和eip
+</span><span style=color:#75715e></span>    uint32_t ebp <span style=color:#f92672>=</span> read_eip();
+    uint32_t eip <span style=color:#f92672>=</span> read_eip();
+    <span style=color:#75715e>//(3) from 0 .. STACKFRAME_DEPTH
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>for</span>(uint32_t i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> ; ebp <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&amp;&amp;</span> i <span style=color:#f92672>&lt;</span>STACKFRAME_DEPTH;i<span style=color:#f92672>++</span>)
     {
-        <span style="color:#75715e">//读取
-</span><span style="color:#75715e"></span>        cprintf(<span style="color:#e6db74">&#34;ebp:0x%08x eip:0x%08x args:&#34;</span>, ebp, eip);
-        <span style="color:#75715e">//args[0]为参数1
-</span><span style="color:#75715e"></span>        uint32_t<span style="color:#f92672">*</span> args <span style="color:#f92672">=</span> (uint32_t<span style="color:#f92672">*</span>)ebp <span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>;
-        <span style="color:#75715e">//the calling funciton&#39;s return addr eip  = ss:[ebp+4]
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(uint32_t j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;j<span style="color:#f92672">++</span>)
-            cprintf(<span style="color:#e6db74">&#34;0x%0x8x &#34;</span>, args[j]);
-        cprintf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-        <span style="color:#75715e">//eip指向异常指令的下一条指令，所以要减一
-</span><span style="color:#75715e"></span>        print_debuginfo(eip<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
-        <span style="color:#75715e">//将ebp 和eip设置为上一个栈帧的ebp和eip
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 注意要先设置eip后设置ebp，否则当ebp被修改后，eip就无法找到正确的位置
-</span><span style="color:#75715e"></span>        eip <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>((uint32_t<span style="color:#f92672">*</span>)ebp<span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
-        ebp <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(uint32_t<span style="color:#f92672">*</span>)ebp;
+        <span style=color:#75715e>//读取
+</span><span style=color:#75715e></span>        cprintf(<span style=color:#e6db74>&#34;ebp:0x%08x eip:0x%08x args:&#34;</span>, ebp, eip);
+        <span style=color:#75715e>//args[0]为参数1
+</span><span style=color:#75715e></span>        uint32_t<span style=color:#f92672>*</span> args <span style=color:#f92672>=</span> (uint32_t<span style=color:#f92672>*</span>)ebp <span style=color:#f92672>+</span><span style=color:#ae81ff>2</span>;
+        <span style=color:#75715e>//the calling funciton&#39;s return addr eip  = ss:[ebp+4]
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>for</span>(uint32_t j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; j<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>4</span>;j<span style=color:#f92672>++</span>)
+            cprintf(<span style=color:#e6db74>&#34;0x%0x8x &#34;</span>, args[j]);
+        cprintf(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+        <span style=color:#75715e>//eip指向异常指令的下一条指令，所以要减一
+</span><span style=color:#75715e></span>        print_debuginfo(eip<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+        <span style=color:#75715e>//将ebp 和eip设置为上一个栈帧的ebp和eip
+</span><span style=color:#75715e></span>        <span style=color:#75715e>// 注意要先设置eip后设置ebp，否则当ebp被修改后，eip就无法找到正确的位置
+</span><span style=color:#75715e></span>        eip <span style=color:#f92672>=</span> <span style=color:#f92672>*</span>((uint32_t<span style=color:#f92672>*</span>)ebp<span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>);
+        ebp <span style=color:#f92672>=</span> <span style=color:#f92672>*</span>(uint32_t<span style=color:#f92672>*</span>)ebp;
             }
 }
-</code></pre></div><h2 id="练习6">[练习6]<a hidden class="anchor" aria-hidden="true" href="#练习6">#</a></h2>
-<ul>
-<li>
-<p>**中断描述符表（也可简称为保护模式下的中断向量表）中一个表项占多少字节？**其中哪几位代表中断处理代码的入口？</p>
-<p>一个表项的结构如下</p>
-<p>中断向量表一个表项占用8字节，其中2-3字节是段选择子，0-1字节和6-7字节拼成位移， 
-两者联合便是中断处理程序的入口地址。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">/* Gate descriptors for interrupts and traps */</span>
-<span style="color:#66d9ef">struct</span> gatedesc {
-    <span style="color:#66d9ef">unsigned</span> gd_off_15_0 : <span style="color:#ae81ff">16</span>;        <span style="color:#75715e">// low 16 bits of offset in segment
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">unsigned</span> gd_ss : <span style="color:#ae81ff">16</span>;            <span style="color:#75715e">// segment selector
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">unsigned</span> gd_args : <span style="color:#ae81ff">5</span>;            <span style="color:#75715e">// # args, 0 for interrupt/trap gates
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">unsigned</span> gd_rsv1 : <span style="color:#ae81ff">3</span>;            <span style="color:#75715e">// reserved(should be zero I guess)
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">unsigned</span> gd_type : <span style="color:#ae81ff">4</span>;            <span style="color:#75715e">// type(STS_{TG,IG32,TG32})
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">unsigned</span> gd_s : <span style="color:#ae81ff">1</span>;                <span style="color:#75715e">// must be 0 (system)
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">unsigned</span> gd_dpl : <span style="color:#ae81ff">2</span>;            <span style="color:#75715e">// descriptor(meaning new) privilege level
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">unsigned</span> gd_p : <span style="color:#ae81ff">1</span>;                <span style="color:#75715e">// Present
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">unsigned</span> gd_off_31_16 : <span style="color:#ae81ff">16</span>;        <span style="color:#75715e">// high bits of offset in segment
-</span><span style="color:#75715e"></span>};
-</code></pre></div></li>
-</ul>
-<p>该表项的大小为<code>16+16+5+3+4+1+2+1+16 == 8*8</code>bit，即<strong>8字节</strong>。</p>
-<p>根据IDT表项的结构，我们可以得知，IDT表项的第二个成员<code>gd_ss</code>为段选择子，第一个成员<code>gd_off_15_0</code>和最后一个成员<code>gd_off_31_16</code>共同组成一个段内偏移地址。根据段选择子和段内偏移地址就可以得出中断处理程序的地址。
-编程完善kern/trap/trap.c中对中断向量表进行初始化的函数idt_init.</p>
-<ul>
-<li>
-<p>具体实现如下，详细信息以注释的形式写入代码中。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">idt_init</span>(<span style="color:#66d9ef">void</span>) {
-  <span style="color:#75715e">// __vectors定义于vector.s中
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">extern</span> uintptr_t __vectors[];
-  <span style="color:#66d9ef">int</span> i;
-  <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">sizeof</span>(idt) <span style="color:#f92672">/</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">struct</span> gatedesc); i <span style="color:#f92672">++</span>)
-      <span style="color:#75715e">// 目标idt项为idt[i]
-</span><span style="color:#75715e"></span>      <span style="color:#75715e">// 该idt项为内核代码，所以使用GD_KTEXT段选择子
-</span><span style="color:#75715e"></span>      <span style="color:#75715e">// 中断处理程序的入口地址存放于__vectors[i]
-</span><span style="color:#75715e"></span>      <span style="color:#75715e">// 特权级为DPL_KERNEL
-</span><span style="color:#75715e"></span>      SETGATE(idt[i], <span style="color:#ae81ff">0</span>, GD_KTEXT, __vectors[i], DPL_KERNEL);
-  <span style="color:#75715e">// 设置从用户态转为内核态的中断的特权级为DPL_USER
-</span><span style="color:#75715e"></span>  SETGATE(idt[T_SWITCH_TOK], <span style="color:#ae81ff">0</span>, GD_KTEXT, __vectors[T_SWITCH_TOK], DPL_USER);
-  <span style="color:#75715e">// 加载该IDT
-</span><span style="color:#75715e"></span>  lidt(<span style="color:#f92672">&amp;</span>idt_pd);
+</code></pre></div><h2 id=练习6><a href>练习6</a><a hidden class=anchor aria-hidden=true href=#练习6>#</a></h2><ul><li><p>**中断描述符表（也可简称为保护模式下的中断向量表）中一个表项占多少字节？**其中哪几位代表中断处理代码的入口？</p><p>一个表项的结构如下</p><p>中断向量表一个表项占用8字节，其中2-3字节是段选择子，0-1字节和6-7字节拼成位移，
+两者联合便是中断处理程序的入口地址。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#75715e>/* Gate descriptors for interrupts and traps */</span>
+<span style=color:#66d9ef>struct</span> gatedesc {
+    <span style=color:#66d9ef>unsigned</span> gd_off_15_0 : <span style=color:#ae81ff>16</span>;        <span style=color:#75715e>// low 16 bits of offset in segment
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> gd_ss : <span style=color:#ae81ff>16</span>;            <span style=color:#75715e>// segment selector
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> gd_args : <span style=color:#ae81ff>5</span>;            <span style=color:#75715e>// # args, 0 for interrupt/trap gates
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> gd_rsv1 : <span style=color:#ae81ff>3</span>;            <span style=color:#75715e>// reserved(should be zero I guess)
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> gd_type : <span style=color:#ae81ff>4</span>;            <span style=color:#75715e>// type(STS_{TG,IG32,TG32})
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> gd_s : <span style=color:#ae81ff>1</span>;                <span style=color:#75715e>// must be 0 (system)
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> gd_dpl : <span style=color:#ae81ff>2</span>;            <span style=color:#75715e>// descriptor(meaning new) privilege level
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> gd_p : <span style=color:#ae81ff>1</span>;                <span style=color:#75715e>// Present
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> gd_off_31_16 : <span style=color:#ae81ff>16</span>;        <span style=color:#75715e>// high bits of offset in segment
+</span><span style=color:#75715e></span>};
+</code></pre></div></li></ul><p>该表项的大小为<code>16+16+5+3+4+1+2+1+16 == 8*8</code>bit，即<strong>8字节</strong>。</p><p>根据IDT表项的结构，我们可以得知，IDT表项的第二个成员<code>gd_ss</code>为段选择子，第一个成员<code>gd_off_15_0</code>和最后一个成员<code>gd_off_31_16</code>共同组成一个段内偏移地址。根据段选择子和段内偏移地址就可以得出中断处理程序的地址。
+编程完善kern/trap/trap.c中对中断向量表进行初始化的函数idt_init.</p><ul><li><p>具体实现如下，详细信息以注释的形式写入代码中。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>idt_init</span>(<span style=color:#66d9ef>void</span>) {
+  <span style=color:#75715e>// __vectors定义于vector.s中
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>extern</span> uintptr_t __vectors[];
+  <span style=color:#66d9ef>int</span> i;
+  <span style=color:#66d9ef>for</span> (i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> <span style=color:#66d9ef>sizeof</span>(idt) <span style=color:#f92672>/</span> <span style=color:#66d9ef>sizeof</span>(<span style=color:#66d9ef>struct</span> gatedesc); i <span style=color:#f92672>++</span>)
+      <span style=color:#75715e>// 目标idt项为idt[i]
+</span><span style=color:#75715e></span>      <span style=color:#75715e>// 该idt项为内核代码，所以使用GD_KTEXT段选择子
+</span><span style=color:#75715e></span>      <span style=color:#75715e>// 中断处理程序的入口地址存放于__vectors[i]
+</span><span style=color:#75715e></span>      <span style=color:#75715e>// 特权级为DPL_KERNEL
+</span><span style=color:#75715e></span>      SETGATE(idt[i], <span style=color:#ae81ff>0</span>, GD_KTEXT, __vectors[i], DPL_KERNEL);
+  <span style=color:#75715e>// 设置从用户态转为内核态的中断的特权级为DPL_USER
+</span><span style=color:#75715e></span>  SETGATE(idt[T_SWITCH_TOK], <span style=color:#ae81ff>0</span>, GD_KTEXT, __vectors[T_SWITCH_TOK], DPL_USER);
+  <span style=color:#75715e>// 加载该IDT
+</span><span style=color:#75715e></span>  lidt(<span style=color:#f92672>&amp;</span>idt_pd);
 }
-</code></pre></div></li>
-</ul>
-<p>编程完善trap.c中的中断处理函数trap，在对时钟中断进行处理的部分填写trap函数中处理时钟中断的部分，使操作系统每遇到100次时钟中断后，调用print_ticks子程序，向屏幕上打印一行文字”100 ticks”。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">trap_dispatch(<span style="color:#66d9ef">struct</span> trapframe <span style="color:#f92672">*</span>tf) {
-    <span style="color:#66d9ef">char</span> c;
+</code></pre></div></li></ul><p>编程完善trap.c中的中断处理函数trap，在对时钟中断进行处理的部分填写trap函数中处理时钟中断的部分，使操作系统每遇到100次时钟中断后，调用print_ticks子程序，向屏幕上打印一行文字”100 ticks”。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c>trap_dispatch(<span style=color:#66d9ef>struct</span> trapframe <span style=color:#f92672>*</span>tf) {
+    <span style=color:#66d9ef>char</span> c;
 
-    <span style="color:#66d9ef">switch</span> (tf<span style="color:#f92672">-&gt;</span>tf_trapno) {
-    <span style="color:#66d9ef">case</span> IRQ_OFFSET <span style="color:#f92672">+</span> IRQ_TIMER:
-        <span style="color:#75715e">/* LAB1 YOUR CODE : STEP 3 */</span>
-        <span style="color:#75715e">/* handle the timer interrupt */</span>
-        <span style="color:#75715e">/* (1) After a timer interrupt, you should record this event using a global variable (increase it), such as ticks in kern/driver/clock.c
-</span><span style="color:#75715e">         * (2) Every TICK_NUM cycle, you can print some info using a funciton, such as print_ticks().
-</span><span style="color:#75715e">         * (3) Too Simple? Yes, I think so!
-</span><span style="color:#75715e">         */</span>
-        ticks <span style="color:#f92672">++</span>;<span style="color:#75715e">// 全局变量ticks定义于kern/driver/clock.c
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (ticks <span style="color:#f92672">%</span> TICK_NUM <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+    <span style=color:#66d9ef>switch</span> (tf<span style=color:#f92672>-&gt;</span>tf_trapno) {
+    <span style=color:#66d9ef>case</span> IRQ_OFFSET <span style=color:#f92672>+</span> IRQ_TIMER:
+        <span style=color:#75715e>/* LAB1 YOUR CODE : STEP 3 */</span>
+        <span style=color:#75715e>/* handle the timer interrupt */</span>
+        <span style=color:#75715e>/* (1) After a timer interrupt, you should record this event using a global variable (increase it), such as ticks in kern/driver/clock.c
+</span><span style=color:#75715e>         * (2) Every TICK_NUM cycle, you can print some info using a funciton, such as print_ticks().
+</span><span style=color:#75715e>         * (3) Too Simple? Yes, I think so!
+</span><span style=color:#75715e>         */</span>
+        ticks <span style=color:#f92672>++</span>;<span style=color:#75715e>// 全局变量ticks定义于kern/driver/clock.c
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>if</span> (ticks <span style=color:#f92672>%</span> TICK_NUM <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) {
             print_ticks();
         }
-        <span style="color:#66d9ef">break</span>;
-</code></pre></div><h2 id="附录">附录<a hidden class="anchor" aria-hidden="true" href="#附录">#</a></h2>
-<h3 id="环境配置">环境配置<a hidden class="anchor" aria-hidden="true" href="#环境配置">#</a></h3>
-<ul>
-<li>执行<code>sudo apt-get install qemu-system</code>，安装qemu程序，为执行uCore做准备</li>
-<li>下载该<a href="https://github.com/chyyuu/os_kernel_lab">github</a>上的<strong>master</strong>分支（注意默认分支不是master分支）的uCore代码，解压使用。</li>
-</ul>
-<h3 id="bios中断dos中断linux中断的区别">BIOS中断、DOS中断、Linux中断的区别<a hidden class="anchor" aria-hidden="true" href="#bios中断dos中断linux中断的区别">#</a></h3>
-<p>(操作系统真相还原0.20)</p>
-<p>BIOS 和 DOS 都是存在于实模式下的程序，由它们建立的中断调用都是建立在中断向量表（ Interrupt Vector Table, IVT ）中的。它们都是通过软中断指令 int 中断号来调用的。</p>
-<p>BIOS 中断调用的主要功能是提供了硬件访问的方法，该方法使对硬件的操作变得简单易行。不通过 BIOS 调用也是可以访问硬件。操作硬件是通过 in/out 指令来读写外设的端口， BIOS中断程序处理是用来操作硬件的，故该处理程序中一定到处都是 in/out 指令。</p>
-<p>DOS 其中断向量号和BIOS的不能冲突。</p>
-<p>Linux 内核是在进入保护模式后才建立中断例程的，不过在保护模式下，中断向量表已经不存在了，取而代之的是中断描述符表（Interrupt Descriptor Table，IDT）。Linux 的系统调用和DOS中断调用类似，不过Linux是通过<code>int 0x80</code>指令进入一个中断程序后再根据eax寄存器的值来调用不同的子功能函数的</p>
-<h3 id="操作系统如何识别文件系统">操作系统如何识别文件系统<a hidden class="anchor" aria-hidden="true" href="#操作系统如何识别文件系统">#</a></h3>
-<p>各分区都有超级块，一般位于本分区的第2个扇区。超级块里面记录了此分区的信息，其中就有文件系统的魔数，一种文件系统对应一个魔数，通过比较即可得知文件系统类型。</p>
-<h3 id="单步调试和查看bios代码">单步调试和查看BIOS代码<a hidden class="anchor" aria-hidden="true" href="#单步调试和查看bios代码">#</a></h3>
-<p>如果你是想看BIOS的汇编，可试试如下方法： 练习2可以单步跟踪，方法如下：</p>
-<p>1 修改 lab1/tools/gdbinit,</p>
-<pre><code>set architecture i8086
+        <span style=color:#66d9ef>break</span>;
+</code></pre></div><h2 id=附录>附录<a hidden class=anchor aria-hidden=true href=#附录>#</a></h2><h3 id=环境配置>环境配置<a hidden class=anchor aria-hidden=true href=#环境配置>#</a></h3><ul><li>执行<code>sudo apt-get install qemu-system</code>，安装qemu程序，为执行uCore做准备</li><li>下载该<a href=https://github.com/chyyuu/os_kernel_lab>github</a>上的<strong>master</strong>分支（注意默认分支不是master分支）的uCore代码，解压使用。</li></ul><h3 id=bios中断dos中断linux中断的区别>BIOS中断、DOS中断、Linux中断的区别<a hidden class=anchor aria-hidden=true href=#bios中断dos中断linux中断的区别>#</a></h3><p>(操作系统真相还原0.20)</p><p>BIOS 和 DOS 都是存在于实模式下的程序，由它们建立的中断调用都是建立在中断向量表（ Interrupt Vector Table, IVT ）中的。它们都是通过软中断指令 int 中断号来调用的。</p><p>BIOS 中断调用的主要功能是提供了硬件访问的方法，该方法使对硬件的操作变得简单易行。不通过 BIOS 调用也是可以访问硬件。操作硬件是通过 in/out 指令来读写外设的端口， BIOS中断程序处理是用来操作硬件的，故该处理程序中一定到处都是 in/out 指令。</p><p>DOS 其中断向量号和BIOS的不能冲突。</p><p><strong>Linux 内核是在进入保护模式后才建立中断例程的，在保护模式下，中断向量表已经不存在了，取而代之的是中断描述符表</strong>（Interrupt Descriptor Table，IDT）。Linux 的系统调用和DOS中断调用类似，不过Linux是通过<code>int 0x80</code>指令进入一个中断程序后再根据eax寄存器的值来调用不同的子功能函数的</p><h3 id=操作系统如何识别文件系统>操作系统如何识别文件系统<a hidden class=anchor aria-hidden=true href=#操作系统如何识别文件系统>#</a></h3><p><strong>依靠分区中超级块记录的魔数</strong></p><p>各分区都有超级块，一般位于本分区的第2个扇区。超级块里面记录了此分区的信息，其中就有文件系统的魔数，一种文件系统对应一个魔数，通过比较即可得知文件系统类型。</p><h3 id=单步调试和查看bios代码>单步调试和查看BIOS代码<a hidden class=anchor aria-hidden=true href=#单步调试和查看bios代码>#</a></h3><p>如果你是想看BIOS的汇编，可试试如下方法： 练习2可以单步跟踪，方法如下：</p><p>1 修改 lab1/tools/gdbinit,</p><pre><code>set architecture i8086
 target remote :1234
-</code></pre><p>2 在 lab1目录下，执行</p>
-<pre><code>make debug
-</code></pre><p>这时gdb停在BIOS的第一条指令处：</p>
-<pre><code>0xffff0: ljmp $0xf000,$0xe05b
-</code></pre><p>3 在看到gdb的调试界面(gdb)后，执行如下命令，就可以看到BIOS在执行了</p>
-<pre><code>si
+</code></pre><p>2 在 lab1目录下，执行</p><pre><code>make debug
+</code></pre><p>这时gdb停在BIOS的第一条指令处：</p><pre><code>0xffff0: ljmp $0xf000,$0xe05b
+</code></pre><p>3 在看到gdb的调试界面(gdb)后，执行如下命令，就可以看到BIOS在执行了</p><pre><code>si
 si
 ...
-</code></pre><p>4 此时的<code>CS=0xf000, EIP=0xfff0</code>，如果想看BIOS的代码</p>
-<pre><code>x /2i 0xffff0
-</code></pre><p>应该可以看到</p>
-<pre><code>0xffff0: ljmp $0xf000,$0xe05b
+</code></pre><p>4 此时的<code>CS=0xf000, EIP=0xfff0</code>，如果想看BIOS的代码</p><pre><code>x /2i 0xffff0
+</code></pre><p>应该可以看到</p><pre><code>0xffff0: ljmp $0xf000,$0xe05b
 0xffff5: xor %dh,0x322f
-</code></pre><p>进一步可以执行</p>
-<pre><code>x /10i 0xfe05b
-</code></pre><p>可以看到后续的BIOS代码。</p>
-<h3 id="cpu的实模式">CPU的实模式<a hidden class="anchor" aria-hidden="true" href="#cpu的实模式">#</a></h3>
-<ul>
-<li>
-<p>CPU大体上可分为控制单元、运算单元、存储单元</p>
-<ul>
-<li>控制单元是CPU的控制中心，大致由指令寄存器(IR, Instruction Register)、指令译码器(ID, Instruction Decoder)和操作控制器(OC, Operation Controller)组成。以下是一般的指令格式
-<img loading="lazy" src="https://www.kro1lsec.com:442/images/2021/06/14/20210614153109.png" alt="img"  />
-</li>
-<li>运算单元根据控制单元的信号，进行运算。</li>
-<li>存储单元CPU内部的L1、L2缓存及寄存器。这部分缓存采用SRAM存储器。SRAM不需要刷新电路即可保存内部存储的数据，但因为体积较大，集成度较低。</li>
-</ul>
-</li>
-<li>
-<p>CPU中的寄存器分为两大类：程序可见寄存器（例如通用寄存器、段寄存器）和程序不可见寄存器（例如中断描述符寄存器IDTR）。
-<img loading="lazy" src="https://www.kro1lsec.com:442/images/2021/06/14/20210614153044.png" alt="img"  />
-</p>
-</li>
-<li>
-<p>实模式的主要特性是：<strong>程序用到的地址都是真实的物理地址</strong>。同时，实模式下的地址寻址空间只有1MB(20bit)</p>
-<blockquote>
-<p>从intel 80386开始的CPU，只要进入实模式，地址寻址空间就限制在1MB。</p>
-</blockquote>
-</li>
-<li>
-<p>实模式下的地址计算方式为<strong>16*段寄存器值+段内偏移地址</strong>，其CPU寻址方式为</p>
-<ul>
-<li>寄存器寻址</li>
-<li>立即数寻址</li>
-<li>内存寻址
-<ul>
-<li>直接寻址。例如<code>mov ax, [0x1234]</code></li>
-<li>基址寻址</li>
-<li>变址寻址</li>
-<li>基址变址寻址</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-</div>
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://inten.kro1lsec.com/tags/ucore/">uCore</a></li>
-    </ul>
-<div class="share-buttons">
-    <a target="_blank" rel="noopener noreferrer" aria-label="share [uCore]Lab1 on twitter"
-        href="https://twitter.com/intent/tweet/?text=%5buCore%5dLab1&amp;url=https%3a%2f%2finten.kro1lsec.com%2fpost%2fucorelab1%2f&amp;hashtags=uCore">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share [uCore]Lab1 on linkedin"
-        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2finten.kro1lsec.com%2fpost%2fucorelab1%2f&amp;title=%5buCore%5dLab1&amp;summary=%5buCore%5dLab1&amp;source=https%3a%2f%2finten.kro1lsec.com%2fpost%2fucorelab1%2f">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share [uCore]Lab1 on reddit"
-        href="https://reddit.com/submit?url=https%3a%2f%2finten.kro1lsec.com%2fpost%2fucorelab1%2f&title=%5buCore%5dLab1">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share [uCore]Lab1 on facebook"
-        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2finten.kro1lsec.com%2fpost%2fucorelab1%2f">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share [uCore]Lab1 on whatsapp"
-        href="https://api.whatsapp.com/send?text=%5buCore%5dLab1%20-%20https%3a%2f%2finten.kro1lsec.com%2fpost%2fucorelab1%2f">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share [uCore]Lab1 on telegram"
-        href="https://telegram.me/share/url?text=%5buCore%5dLab1&amp;url=https%3a%2f%2finten.kro1lsec.com%2fpost%2fucorelab1%2f">
-        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
-            <path
-                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
-        </svg>
-    </a>
-</div>
-
-  </footer>
-</article>
-    </main>
-    <footer class="footer">
-    <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
-    <span>&middot;</span>
-    
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
-    <button class="top-link" id="top-link" type="button" accesskey="g">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-            <path d="M12 6H0l6-6z" />
-        </svg>
-    </button>
-</a>
-
-<script>
-    window.onload = function () {
-        if (localStorage.getItem("menu-scroll-position")) {
-            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
-        }
-    }
-
-    function menu_on_scroll() {
-        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerText = 'copy';
-
-        function copyingDone() {
-            copybutton.innerText = 'copied!';
-            setTimeout(() => {
-                copybutton.innerText = 'copy';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        container.appendChild(copybutton);
-    });
-</script>
-</body>
-
-</html>
+</code></pre><p>进一步可以执行</p><pre><code>x /10i 0xfe05b
+</code></pre><p>可以看到后续的BIOS代码。</p><h3 id=cpu的实模式>CPU的实模式<a hidden class=anchor aria-hidden=true href=#cpu的实模式>#</a></h3><ul><li><p>CPU大体上可分为控制单元、运算单元、存储单元</p><ul><li>控制单元是CPU的控制中心，大致由指令寄存器(IR, Instruction Register)、指令译码器(ID, Instruction Decoder)和操作控制器(OC, Operation Controller)组成。以下是一般的指令格式
+<img loading=lazy src=https://www.kro1lsec.com:442/images/2021/06/21/20210621151233.png alt=img></li><li>运算单元根据控制单元的信号，进行运算。</li><li>存储单元CPU内部的L1、L2缓存及寄存器。这部分缓存采用SRAM存储器。SRAM不需要刷新电路即可保存内部存储的数据，但因为体积较大，集成度较低。</li></ul></li><li><p>CPU中的寄存器分为两大类：程序可见寄存器（例如通用寄存器、段寄存器）和程序不可见寄存器（例如中断描述符寄存器IDTR）。
+<img loading=lazy src=https://www.kro1lsec.com:442/images/2021/06/21/20210621151413.png alt=img></p></li><li><p>实模式的主要特性是：<strong>程序用到的地址都是真实的物理地址</strong>。同时，实模式下的地址寻址空间只有1MB(20bit)</p><blockquote><p>从intel 80386开始的CPU，只要进入实模式，地址寻址空间就限制在1MB。</p></blockquote></li><li><p>实模式下的地址计算方式为<strong>16*段寄存器值+段内偏移地址</strong>，其CPU寻址方式为</p><ul><li>寄存器寻址</li><li>立即数寻址</li><li>内存寻址<ul><li>直接寻址。例如<code>mov ax, [0x1234]</code></li><li>基址寻址</li><li>变址寻址</li><li>基址变址寻址</li></ul></li></ul></li></ul><h4 id=a-cpu实模式下的1mb内存>a. CPU实模式下的1MB内存<a hidden class=anchor aria-hidden=true href=#a-cpu实模式下的1mb内存>#</a></h4><ul><li><p>CPU初始状态为16位实模式，在实模式下只能访问1MB(20bits)内存。而硬件工程师将1MB的内存空间分成多个部分。
+<img loading=lazy src=https://www.kro1lsec.com:442/images/2021/06/21/20210621151424.png alt=img></p></li><li><p>其中地址<code>0-0x9ffff</code>的640KB内存是DRAM，即插在主板上的内存条。
+顶部<code>0xf0000-0xfffff</code>的64KB内存是ROM，存放BIOS代码。</p><blockquote><p>BIOS检测并初始化硬件，同时建立中断向量表，并保证能运行一些基本硬件的IO操作</p></blockquote></li><li><p>CPU中，插在主板上的物理内存并不是眼中“全部的内存”。地址总线宽度决定可以访问的内存空间大小。
+并不是只有插在主板上的内存条需要通过地址总线访问，还有一些外设同样是需要通过地址总线来访问。
+故地址总线上会提前预留出来一些地址空间给这些外设，其余的可用地址再指向DRAM。</p></li></ul><h3 id=cpu的分段机制重要>CPU的分段机制（重要）<a hidden class=anchor aria-hidden=true href=#cpu的分段机制重要>#</a></h3><h4 id=a-内存访问为什么要分段>a. 内存访问为什么要分段<a hidden class=anchor aria-hidden=true href=#a-内存访问为什么要分段>#</a></h4><ul><li>以前程序都是直接访问物理内存，编译出的两个程序如果内存冲突，则无法同时运行。</li><li>CPU采用“段基址+段内偏移地址”的方式来访问任意内存。好处是程序可以重定位，可以执行多个程序。</li><li>段基址不需要得是65536的倍数。</li><li>加载用户程序时，只要将整个段的内容复制到新的位置，再将段基址寄存器中的地址改成该地址，程序便可准确无误地运行，因为程序中用的是段内偏移地址。</li><li>改变段基址，通过在内存中一个段来回挪位置的方式可以访问到任意内存位置。程序分段可以将大内存分成可以访问的小段，访问到所有内存。</li><li>通过分段，在早期CPU实模式16位寄存器的情况下，计算<strong>段基址 &#171; 4 + 段内偏移地址</strong>，即可访问到20位地址空间。</li></ul><blockquote><p>代码中的分段与CPU的分段不同。编译器负责挑选出数据具备的属性，从而根据属性将程序片段分类，比如划分出了只读属性的代码段和可写属性的数据段。编译器并没有让段具备某种属性，对于代码段，编译器只是将代码归类到一起，并没有为代码段添加额外的信息。</p></blockquote><ul><li><strong>在实模式下，段基址直接写在段寄存器中；而在保护模式下，段寄存器中的不再是段基址，而是段选择子。</strong></li><li>分段机涉及4个关键内容：逻辑地址、段描述符（描述段的属性）、段描述符表（包含多个段描述符的“数组”）、段选择子（段寄存器，用于定位段描述符表中表项的索引）。只有在<strong>保护模式</strong>下才能使用分段存储管理机制。</li></ul><h4 id=b-将逻辑地址虚拟地址转换为物理地址的两步操作>b. 将逻辑地址（虚拟地址）转换为物理地址的两步操作<a hidden class=anchor aria-hidden=true href=#b-将逻辑地址虚拟地址转换为物理地址的两步操作>#</a></h4><ul><li>分段地址转换：CPU把逻辑地址（由段选择子selector和段偏移offset组成）中的段选择子的内容作为段描述符表的索引，找到表中对应的段描述符，然后把段描述符中保存的段基址加上段偏移值，形成线性地址（Linear Address）。</li><li>分页地址转换，这一步中把线性地址转换为物理地址。
+<img loading=lazy src=https://www.kro1lsec.com:442/images/2021/06/21/20210621151428.png alt=img></li></ul><h4 id=c-段描述符>c. 段描述符<a hidden class=anchor aria-hidden=true href=#c-段描述符>#</a></h4><ul><li><p>在分段存储管理机制的保护模式下，每个段由如下三个参数进行定义：段基地址(Base Address)、段界限(Limit)和段属性(Attributes)</p><ul><li>段基地址：规定线性地址空间中段的起始地址。任何一个段都可以从32位线性地址空间中的任何一个字节开始，不用像实模式下规定边界必须被16整除。</li><li>段界限：规定段的大小。可以以字节为单位或以4K字节为单位。</li><li>段属性：确定段的各种性质。<ul><li>段属性中的粒度位（Granularity），用符号G标记。G=0表示段界限以字节位位单位，20位的界限可表示的范围是1字节至1M字节，增量为1字节；G=1表示段界限以4K字节为单位，于是20位的界限可表示的范围是4K字节至4G字节，增量为4K字节。</li><li>类型（TYPE）：用于区别不同类型的描述符。可表示所描述的段是代码段还是数据段，所描述的段是否可读/写/执行，段的扩展方向等。其4bit从左到右分别是<ul><li>执行位：置1时表示可执行，置0时表示不可执行；</li><li>一致位：置1时表示一致码段，置0时表示非一致码段；</li><li>读写位：置1时表示可读可写，置0时表示只读；</li><li>访问位：置1时表示已访问，置0时表示未访问。</li></ul></li><li>描述符特权级（Descriptor Privilege Level）（DPL）：用来实现保护机制。</li><li>段存在位（Segment-Present bit）：如果这一位为0，则此描述符为非法的，不能被用来实现地址转换。如果一个非法描述符被加载进一个段寄存器，处理器会立即产生异常。操作系统可以任意的使用被标识为可用（AVAILABLE）的位。</li><li>已访问位（Accessed bit）：当处理器访问该段（当一个指向该段描述符的选择子被加载进一个段寄存器）时，将自动设置访问位。操作系统可清除该位。</li></ul></li></ul></li><li><p>段描述符的格式
+<img loading=lazy src=https://www.kro1lsec.com:442/images/2021/06/21/20210621151431.png alt=img></p></li><li><p>段描述符的结构</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#75715e>/* segment descriptors */</span>
+<span style=color:#66d9ef>struct</span> segdesc {
+    <span style=color:#66d9ef>unsigned</span> sd_lim_15_0 : <span style=color:#ae81ff>16</span>;        <span style=color:#75715e>// low bits of segment limit
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> sd_base_15_0 : <span style=color:#ae81ff>16</span>;        <span style=color:#75715e>// low bits of segment base address
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> sd_base_23_16 : <span style=color:#ae81ff>8</span>;        <span style=color:#75715e>// middle bits of segment base address
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> sd_type : <span style=color:#ae81ff>4</span>;            <span style=color:#75715e>// segment type (see STS_ constants)
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> sd_s : <span style=color:#ae81ff>1</span>;                <span style=color:#75715e>// 0 = system, 1 = application
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> sd_dpl : <span style=color:#ae81ff>2</span>;            <span style=color:#75715e>// descriptor Privilege Level
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> sd_p : <span style=color:#ae81ff>1</span>;                <span style=color:#75715e>// present
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> sd_lim_19_16 : <span style=color:#ae81ff>4</span>;        <span style=color:#75715e>// high bits of segment limit
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> sd_avl : <span style=color:#ae81ff>1</span>;            <span style=color:#75715e>// unused (available for software use)
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> sd_rsv1 : <span style=color:#ae81ff>1</span>;            <span style=color:#75715e>// reserved
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> sd_db : <span style=color:#ae81ff>1</span>;                <span style=color:#75715e>// 0 = 16-bit segment, 1 = 32-bit segment
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> sd_g : <span style=color:#ae81ff>1</span>;                <span style=color:#75715e>// granularity: limit scaled by 4K when set
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>unsigned</span> sd_base_31_24 : <span style=color:#ae81ff>8</span>;        <span style=color:#75715e>// high bits of segment base address
+</span><span style=color:#75715e></span>};
+</code></pre></div></li></ul><h4 id=d-全局描述符表>d. 全局描述符表<a hidden class=anchor aria-hidden=true href=#d-全局描述符表>#</a></h4><ul><li>全局描述符表（GDT）是一个保存多个段描述符的“数组”，其起始地址保存在全局描述符表寄存器GDTR中。GDTR长48位，其中高32位为基地址，低16位为段界限。</li><li>全局描述符表的一个demo</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#75715e>#define SEG(type, base, lim, dpl)                        \
+</span><span style=color:#75715e>    (struct segdesc){                                    \
+</span><span style=color:#75715e>        ((lim) &gt;&gt; 12) &amp; 0xffff, (base) &amp; 0xffff,        \
+</span><span style=color:#75715e>        ((base) &gt;&gt; 16) &amp; 0xff, type, 1, dpl, 1,            \
+</span><span style=color:#75715e>        (unsigned)(lim) &gt;&gt; 28, 0, 0, 1, 1,                \
+</span><span style=color:#75715e>        (unsigned) (base) &gt;&gt; 24                            \
+</span><span style=color:#75715e>    }
+</span><span style=color:#75715e></span><span style=color:#75715e>/* *
+</span><span style=color:#75715e> * 全局描述符表。
+</span><span style=color:#75715e> *
+</span><span style=color:#75715e> * 内核和用户段是相同的（除了DPL）。要加载
+</span><span style=color:#75715e> * %ss寄存器，CPL必须等于DPL。因此，我们必须复制
+</span><span style=color:#75715e> * 用户和内核的段。定义如下。
+</span><span style=color:#75715e> * - 0x0 : 未使用(总是故障 -- 用于捕获NULL远指针)
+</span><span style=color:#75715e> * - 0x8 : 内核代码段
+</span><span style=color:#75715e> * - 0x10: 内核数据段
+</span><span style=color:#75715e> * - 0x18: 用户代码段
+</span><span style=color:#75715e> * - 0x20: 用户数据段
+</span><span style=color:#75715e> * - 0x28: 为tss定义，在gdt_init中初始化
+</span><span style=color:#75715e> * */</span>
+<span style=color:#66d9ef>static</span> <span style=color:#66d9ef>struct</span> segdesc gdt[] <span style=color:#f92672>=</span> {
+    SEG_NULL,
+    [SEG_KTEXT] <span style=color:#f92672>=</span> SEG(STA_X <span style=color:#f92672>|</span> STA_R, <span style=color:#ae81ff>0x0</span>, <span style=color:#ae81ff>0xFFFFFFFF</span>, DPL_KERNEL),
+    [SEG_KDATA] <span style=color:#f92672>=</span> SEG(STA_W, <span style=color:#ae81ff>0x0</span>, <span style=color:#ae81ff>0xFFFFFFFF</span>, DPL_KERNEL),
+    [SEG_UTEXT] <span style=color:#f92672>=</span> SEG(STA_X <span style=color:#f92672>|</span> STA_R, <span style=color:#ae81ff>0x0</span>, <span style=color:#ae81ff>0xFFFFFFFF</span>, DPL_USER),
+    [SEG_UDATA] <span style=color:#f92672>=</span> SEG(STA_W, <span style=color:#ae81ff>0x0</span>, <span style=color:#ae81ff>0xFFFFFFFF</span>, DPL_USER),
+    [SEG_TSS]    <span style=color:#f92672>=</span> SEG_NULL,
+};
+</code></pre></div><h4 id=e-选择子>e. 选择子<a hidden class=anchor aria-hidden=true href=#e-选择子>#</a></h4><ul><li>线性地址部分的<strong>选择子是用来选择哪个描述符表和在该表中索引哪个描述符的</strong>。选择子可以做为指针变量的一部分，从而对应用程序员是可见的，但是一般是由连接加载器来设置的。</li><li>段选择子结构<ul><li>索引（Index）：在描述符表中从8192个描述符中选择一个描述符。处理器自动将这个索引值乘以8（描述符的长度），再加上描述符表的基址来索引描述符表，从而选出一个合适的描述符。</li><li>表指示位（Table Indicator，TI）：选择应该访问哪一个描述符表。0代表应该访问全局描述符表（GDT），1代表应该访问局部描述符表（LDT）。</li><li>请求特权级（Requested Privilege Level，RPL）：保护机制。
+<img loading=lazy src=https://www.kro1lsec.com:442/images/2021/06/21/20210621151436.png alt=img></li></ul></li><li>全局描述符表的第一个描述符无法被CPU使用，所以当一个段选择子的索引（Index）部分和表指示位（Table Indicator）都为0的时（即段选择子指向全局描述符表的第一项时），可以当做一个空的选择子。当一个段寄存器被加载一个空选择子时，处理器并不会产生一个异常。但是，当用一个空选择子去访问内存时，则会产生异常。</li></ul><h3 id=bios是如何苏醒的重要>BIOS是如何苏醒的（重要）<a hidden class=anchor aria-hidden=true href=#bios是如何苏醒的重要>#</a></h3><ul><li><p>BIOS代码被写进ROM中，该ROM被映射到低端1M内存的顶部，即地址<code>0xF0000~0xFFFFF</code>。BIOS的入口地址为<code>0xFFFF0</code>。
+开机接电的一瞬间，CPU的CS:IP寄存器被强制初始化为<code>0xF000:0xFFF0</code>，即<code>0xFFFF0</code>。
+由于实模式下最高寻址1MB，故<code>0xFFFF0</code>处是一条跳转指令<code>jmp far f000:e05b</code>，跳转至BIOS真正的代码。之后便开始检测并初始化外设、与<code>0x000-0x3ff</code>建立数据结构，中断向量表IVT并填写中断例程。</p></li><li><p>BIOS最后校验启动盘中位于0盘0道1扇区(MBR)的内容。如果此扇区末尾两个字节分别是魔数0x55和0xaa，则BIOS认为此扇区中存在可执行的程序，并加载该512字节数据到0x7c00，随后跳转至此继续执行。使用的跳转指令为jmp 0:0x7c00，该指令是jmp指令的直接绝对远转移用法。</p><blockquote><p>磁盘与磁道的编号从0开始，扇区编号从1开始。
+选择<code>0x7c00</code>是避免覆盖已有的数据以及被其他数据覆盖。</p></blockquote></li></ul><h3 id=mbrbootloader>MBR/Bootloader<a hidden class=anchor aria-hidden=true href=#mbrbootloader>#</a></h3><ul><li><p>bootloader的作用</p><ul><li>切换保护模式 & 段机制</li><li>从硬盘上读取kernel in ELF格式的ucore kernel（跟在MBR后面的扇区），并放到内存中固定。</li><li>跳转到ucoreOS的入口点执行，将控制权移交给ucore OS。</li></ul></li><li><p>MBR是主引导记录（Master Boot Record），也被称为主引导扇区，是计算机开机以后访问硬盘时所必须要读取的第一个扇区。其内部前446字节存储了bootloader代码，其后是4个16字节的“磁盘分区表”。</p><blockquote><p>MBR是整个硬盘最重要的区域，一旦MBR物理实体损坏时，则该硬盘基本报废。</p></blockquote></li><li><p>bootloader的入口点为<code>0x7c00</code>。以下是一个简单的类MBR程序，该程序只会将<code>1 MBR</code>字符串打印到屏幕上并挂起。通过该程序我们可以对MBR结构有了更深的了解。</p><pre><code class=language-assembly data-lang=assembly>;主引导程序
+;------------------------------------------------------------
+SECTION MBR vstart=0x7c00 ; 起始地址编译为0x7c00
+  mov ax,cs   ; 此时的cs为0，用0来初始化所有的段寄存器
+  mov ds,ax
+  mov es,ax
+  mov ss,ax
+  mov fs,ax
+  mov sp,0x7c00 ; 0x7c00 以下空间暂时安全，故可用做栈。
+  
+; 清屏 利用0x06号功能，上卷全部行，则可清屏。
+; -----------------------------------------------------------
+;INT 0x10   功能号:0x06   功能描述:上卷窗口
+;------------------------------------------------------
+;输入：
+;AH 功能号= 0x06
+;AL = 上卷的行数(如果为0,表示全部)
+;BH = 上卷行属性
+;(CL,CH) = 窗口左上角的(X,Y)位置
+;(DL,DH) = 窗口右下角的(X,Y)位置
+;无返回值：
+  mov     ax, 0x600
+  mov     bx, 0x700
+  mov     cx, 0          ; 左上角: (0, 0)
+  mov     dx, 0x184f     ; 右下角: (80,25),
+        ; VGA文本模式中,一行只能容纳80个字符,共25行。
+        ; 下标从0开始,所以0x18=24,0x4f=79
+  int     0x10            ; int 0x10
+  
+;;;;;;;;;    下面这三行代码是获取光标位置    ;;;;;;;;;
+;.get_cursor获取当前光标位置,在光标位置处打印字符.
+  mov ah, 3   ; 输入: 3 号子功能是获取光标位置,需要存入ah寄存器
+  mov bh, 0   ; bh寄存器存储的是待获取光标的页号
+  
+  int 0x10    ; 输出: ch=光标开始行,cl=光标结束行
+      ; dh=光标所在行号,dl=光标所在列号
+  
+;;;;;;;;;    获取光标位置结束    ;;;;;;;;;;;;;;;;
+  
+;;;;;;;;;     打印字符串    ;;;;;;;;;;;
+  ;还是用10h中断,不过这次是调用13号子功能打印字符串
+  mov ax, message
+  mov bp, ax    ; es:bp 为串首地址, es此时同cs一致，
+      ; 开头时已经为sreg初始化
+  
+  ; 光标位置要用到dx寄存器中内容,cx中的光标位置可忽略
+  mov cx, 5   ; cx 为串长度,不包括结束符0的字符个数
+  mov ax, 0x1301  ; 子功能号13是显示字符及属性,要存入ah寄存器,
+      ; al设置写字符方式 ah=01: 显示字符串,光标跟随移动
+  mov bx, 0x2 ; bh存储要显示的页号,此处是第0页,
+      ; bl中是字符属性, 属性黑底绿字(bl = 02h)
+  int 0x10    ; 执行BIOS 0x10 号中断
+;;;;;;;;;      打字字符串结束 ;;;;;;;;;;;;;;;
+  
+  jmp $   ; 始终跳转到这条代码，为死循环，使程序悬停在此
+  
+  message db &quot;1 MBR&quot;
+  ; 用\0 将剩余空间填满
+  times 510-($-$$) db 0 ; $指代当前指令的地址，$$指代当前section的首地址
+  ; 最后两位一定是0x55, 0xaa
+  db 0x55,0xaa
+</code></pre></li><li><p>程序在section处使用了<code>vstart</code>伪指令。该指令只要求编译器将后面的所有数据与变量的地址以0x7c00开始编址，并不负责加载。而加载是由MBR加载器将该程序加载到0x7c00处。</p></li><li><p>执行以下代码，即可看到程序输出</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># 编译汇编代码</span>
+nasm mbr.asm -o mbr.bin
+<span style=color:#75715e># 制作img镜像。注意dd指令的复制操作与cp不一样，它是针对磁盘来进行的复制</span>
+<span style=color:#75715e>#   将编译出的mbr.bin写进mbr.img中的第0块</span>
+dd <span style=color:#66d9ef>if</span><span style=color:#f92672>=</span>mbr.bin of<span style=color:#f92672>=</span>mbr.img bs<span style=color:#f92672>=</span><span style=color:#ae81ff>512</span> count<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> conv<span style=color:#f92672>=</span>notrunc
+<span style=color:#75715e># 使用i386架构启动mbr.img</span>
+qemu-system-i386 mbr.img
+</code></pre></div></li></ul><h3 id=硬件访问>硬件访问<a hidden class=anchor aria-hidden=true href=#硬件访问>#</a></h3><ul><li><p>硬件提供了软件方面的接口，操作系统通过软件（计算机指令）就能控制硬件。软件的逻辑需要作用在硬件上才能体现出来。</p></li><li><p>硬件在输出上大体分为串行和并行，相应的接口是串行接口和并行接口。</p></li><li><p>访问外部硬件的两种方式</p><ul><li><p>将某个外设的内存映射到一定范围内的地址空间。例如显卡。显卡是显示器的适配器，CPU 不直接和显示器交互，它只和显卡通信。其中的显存被映射到主机物理内存上的低端1MB的<code>0xB8000~0xBFFFF</code>。CPU往显存上写字节便是往屏幕上打印内容。显存地址分布如下
+<img loading=lazy src=https://www.kro1lsec.com:442/images/2021/06/21/20210621151509.png alt=img></p></li><li><p>通过IO接口。CPU只访问IO接口，不关心另一边的外设。IO接口上也存在一些寄存器。</p><ul><li><p>CPU使用IO接口与外设通信。IO接口是连接CPU与外部设备的逻辑控制部件，可分为硬件软件两部分。</p></li><li><p>计算机与IO接口的通信是通过计算机指令来实现的。通过软件指令选择IO接口上的功能、工作模式的做法，称为“IO接口控制编程”，通常是用端口读写指令in/out实现。端口是IO接口开发给CPU的接口，一般的IO接口都有一组端口，每个端口都有自己的用途。<code>in/out</code>指令使用方式如下。</p><pre><code class=language-assembly data-lang=assembly>in al, dx  # al/ax 用于存放从端口读入的数据，dx指端口号
+in ax, dx
+      
+out dx, al
+out dx, ax
+out 立即数, al
+out 立即数, ax
+</code></pre></li></ul></li></ul></li><li><p>例子：直接向显卡中写入数据</p><pre><code class=language-assembly data-lang=assembly>;主引导程序
+;------------------------------------------------------------
+SECTION MBR vstart=0x7c00 ; 起始地址编译为0x7c00
+  mov ax,cs   ; 此时的cs为0，用0来初始化所有的段寄存器
+  mov ds,ax
+  mov es,ax
+  mov ss,ax
+  mov fs,ax
+  mov sp,0x7c00 ; 0x7c00 以下空间暂时安全，故可用做栈。
+  mov ax,0xb800 ; 0xb800-0xbffff 用于文本模式显示适配器
+  mov gs,ax
+  
+; 清屏 利用0x06号功能，上卷全部行，则可清屏。
+; -----------------------------------------------------------
+;INT 0x10   功能号:0x06   功能描述:上卷窗口
+;------------------------------------------------------
+;输入：
+;AH 功能号= 0x06
+;AL = 上卷的行数(如果为0,表示全部)
+;BH = 上卷行属性
+;(CL,CH) = 窗口左上角的(X,Y)位置
+;(DL,DH) = 窗口右下角的(X,Y)位置
+;无返回值：
+  mov     ax, 0x600
+  mov     bx, 0x700
+  mov     cx, 0          ; 左上角: (0, 0)
+  mov     dx, 0x184f     ; 右下角: (80,25),
+        ; VGA文本模式中,一行只能容纳80个字符,共25行。
+        ; 下标从0开始,所以0x18=24,0x4f=79
+  int     0x10            ; int 0x10
+  
+  ; 输出背景色绿色，前景色红色，并且跳动的字符串“1 MBR”
+  mov byte [gs:0x00], '1'
+  mov byte [gs:0x01], 0xa4   ; A表示绿色背景闪烁，4 表示前景色为红色
+  mov byte [gs:0x02], ' '
+  mov byte [gs:0x03], 0xa4
+  mov byte [gs:0x04], 'M'
+  mov byte [gs:0x05], 0xa4
+  mov byte [gs:0x06], 'B'
+  mov byte [gs:0x07], 0xa4
+  mov byte [gs:0x08], 'R'
+  mov byte [gs:0x09], 0xa4
+  jmp $   ; 始终跳转到这条代码，为死循环，使程序悬停在此
+  
+  ; 用\0 将剩余空间填满
+  times 510-($-$$) db 0
+  ; 最后两位一定是0x55, 0xaa
+  db 0x55,0xaa
+</code></pre></li></ul><h3 id=中断与异常重要>中断与异常（重要）<a hidden class=anchor aria-hidden=true href=#中断与异常重要>#</a></h3><ul><li>在操作系统中，有三种特殊的中断事件：<ul><li>异步中断(asynchronous interrupt)。这是由CPU外部设备引起的外部事件中断，例如I/O中断、时钟中断、控制台中断等。</li><li>同步中断(synchronous interrupt)。这是CPU执行指令期间检测到不正常的或非法的条件(如除零错、地址访问越界)所引起的内部事件。</li><li>陷入中断(trap interrupt)。这是在程序中使用请求系统服务的系统调用而引发的事件。</li></ul></li><li>当CPU收到中断或者异常的事件时，它会暂停执行当前的程序或任务，通过一定的机制跳转到负责处理这个信号的相关处理例程中，在完成对这个事件的处理后再跳回到刚才被打断的程序或任务中。</li><li>其中，中断向量和中断服务例程的对应关系主要是由IDT（中断描述符表）负责。操作系统在IDT中设置好各种中断向量对应的中断描述符，留待CPU在产生中断后查询对应中断服务例程的起始地址。而IDT本身的起始地址保存在<code>idtr</code>寄存器中。</li><li>当CPU进入中断处理例程时，<code>eflags</code>寄存器上的<code>IF</code>标志位将会自动被CPU置为0，待中断处理例程结束后才恢复<code>IF</code>标志。</li></ul><h4 id=a-中断描述符表>a. 中断描述符表<a hidden class=anchor aria-hidden=true href=#a-中断描述符表>#</a></h4><ul><li>中断描述符表（Interrupt Descriptor Table, IDT）把每个中断或异常编号和一个指向中断服务例程的描述符联系起来。同GDT一样，IDT是一个8字节的描述符数组，但IDT的第一项可以包含一个描述符。</li><li>IDT可以位于内存的任意位置，CPU通过IDT寄存器（IDTR）的内容来寻址IDT的起始地址。</li></ul><h4 id=b-idt-gate-descriptors>b. IDT gate descriptors<a hidden class=anchor aria-hidden=true href=#b-idt-gate-descriptors>#</a></h4><ul><li><p>中断/异常应该使用<code>Interrupt Gate</code>或<code>Trap Gate</code>。唯一区别就是：当调用<code>Interrupt Gate</code>时，Interrupt会被CPU自动禁止；而调用<code>Trap Gate</code>时，CPU则不会去禁止或打开中断，而是保留原样。</p><blockquote><p>这其中的原理是当CPU跳转至<code>Interrupt Gate</code>时，其eflag上的IF位会被清除。而<code>Trap Gate</code>则不改变。</p></blockquote></li><li><p>IDT中包含了3种类型的Descriptor</p><ul><li>Task-gate descriptor</li><li>Interrupt-gate descriptor （中断方式用到）</li><li>Trap-gate descriptor（系统调用用到）</li></ul></li></ul><h4 id=c-中断处理过程>c. 中断处理过程<a hidden class=anchor aria-hidden=true href=#c-中断处理过程>#</a></h4><h5 id=1-起始阶段>1) 起始阶段<a hidden class=anchor aria-hidden=true href=#1-起始阶段>#</a></h5><ul><li>CPU执行完每条指令后，判断中断控制器中是否产生中断。如果存在中断，则取出对应的中断变量。</li><li>CPU根据中断变量，到IDT中找到对应的中断描述符。</li><li>通过获取到的中断描述符中的段选择子，从GDT中取出对应的段描述符。此时便获取到了中断服务例程的段基址与属性信息，跳转至该地址。</li><li>CPU会根据CPL和中断服务例程的段描述符的DPL信息确认是否发生了特权级的转换。若发生了特权级的转换，这时CPU会从当前程序的TSS信息（该信息在内存中的起始地址存在TR寄存器中）里取得该程序的内核栈地址，即包括内核态的ss和esp的值，并立即将系统当前使用的栈切换成新的内核栈。这个栈就是即将运行的中断服务程序要使用的栈。紧接着就将当前程序使用的用户态的ss和esp压到新的内核栈中保存起来；</li><li>CPU需要<strong>开始保存当前被打断的程序的现场</strong>（即一些寄存器的值），以便于将来恢复被打断的程序继续执行。这需要利用内核栈来保存相关现场信息，即依次压入当前被打断程序使用的eflags，cs，eip，errorCode（如果是有错误码的异常）信息；</li><li>CPU利用中断服务例程的段描述符将其第一条指令的地址加载到cs和eip寄存器中，<strong>开始执行中断服务例程</strong>。这意味着先前的程序被暂停执行，中断服务程序正式开始工作。</li></ul><h5 id=2-终止阶段>2) 终止阶段<a hidden class=anchor aria-hidden=true href=#2-终止阶段>#</a></h5><ul><li>每个中断服务例程在有中断处理工作完成后需要通过
+iret （或iretd ）指令恢复被打断的程序的执行。CPU执行IRET指令的具体过程如下：<ul><li>程序执行这条iret指令时，首先会从内核栈里弹出先前保存的被打断的程序的现场信息，即eflags，cs，eip重新开始执行；</li><li>如果存在特权级转换（从内核态转换到用户态），则还需要从内核栈中弹出用户态栈的ss和esp，即栈也被切换回原先使用的用户栈。</li></ul></li><li>如果此次处理的是带有错误码（errorCode）的异常，CPU在恢复先前程序的现场时，并不会弹出errorCode，需要要求相关的中断服务例程在调用iret返回之前添加出栈代码主动弹出errorCode。</li></ul></div><footer class=post-footer><ul class=post-tags><li><a href=https://inten.kro1lsec.com/tags/ucore/>uCore</a></li><li><a href=https://inten.kro1lsec.com/tags/%E5%A4%A9%E9%97%AE%E4%B9%8B%E8%B7%AF/>天问之路</a></li></ul><div class=share-buttons><a target=_blank rel="noopener noreferrer" aria-label="share [uCore]Lab1 on twitter" href="https://twitter.com/intent/tweet/?text=%5buCore%5dLab1&url=https%3a%2f%2finten.kro1lsec.com%2fpost%2fucorelab1%2f&hashtags=uCore%2c%e5%a4%a9%e9%97%ae%e4%b9%8b%e8%b7%af"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM195.519 424.544c135.939.0 210.268-112.643 210.268-210.268.0-3.218.0-6.437-.153-9.502 14.406-10.421 26.973-23.448 36.935-38.314-13.18 5.824-27.433 9.809-42.452 11.648 15.326-9.196 26.973-23.602 32.49-40.92-14.252 8.429-30.038 14.56-46.896 17.931-13.487-14.406-32.644-23.295-53.946-23.295-40.767.0-73.87 33.104-73.87 73.87.0 5.824.613 11.494 1.992 16.858-61.456-3.065-115.862-32.49-152.337-77.241-6.284 10.881-9.962 23.601-9.962 37.088.0 25.594 13.027 48.276 32.95 61.456-12.107-.307-23.448-3.678-33.41-9.196v.92c0 35.862 25.441 65.594 59.311 72.49-6.13 1.686-12.72 2.606-19.464 2.606-4.751.0-9.348-.46-13.946-1.38 9.349 29.426 36.628 50.728 68.965 51.341-25.287 19.771-57.164 31.571-91.8 31.571-5.977.0-11.801-.306-17.625-1.073 32.337 21.15 71.264 33.41 112.95 33.41z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share [uCore]Lab1 on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2finten.kro1lsec.com%2fpost%2fucorelab1%2f&title=%5buCore%5dLab1&summary=%5buCore%5dLab1&source=https%3a%2f%2finten.kro1lsec.com%2fpost%2fucorelab1%2f"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share [uCore]Lab1 on reddit" href="https://reddit.com/submit?url=https%3a%2f%2finten.kro1lsec.com%2fpost%2fucorelab1%2f&title=%5buCore%5dLab1"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share [uCore]Lab1 on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2finten.kro1lsec.com%2fpost%2fucorelab1%2f"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share [uCore]Lab1 on whatsapp" href="https://api.whatsapp.com/send?text=%5buCore%5dLab1%20-%20https%3a%2f%2finten.kro1lsec.com%2fpost%2fucorelab1%2f"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share [uCore]Lab1 on telegram" href="https://telegram.me/share/url?text=%5buCore%5dLab1&url=https%3a%2f%2finten.kro1lsec.com%2fpost%2fucorelab1%2f"><svg viewBox="2 2 28 28"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></div></footer></article></main><footer class=footer><span>&copy; 2021 <a href=https://inten.kro1lsec.com/>intenのblog🍦</a></span>
+<span>&#183;</span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)"><button class=top-link id=top-link type=button accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></button></a>
+<script>window.onload=function(){localStorage.getItem("menu-scroll-position")&&(document.getElementById('menu').scrollLeft=localStorage.getItem("menu-scroll-position"))};function menu_on_scroll(){localStorage.setItem("menu-scroll-position",document.getElementById('menu').scrollLeft)}document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script><script>document.querySelectorAll('pre > code').forEach(b=>{const d=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function c(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),c();return}const a=document.createRange();a.selectNodeContents(b);const d=window.getSelection();d.removeAllRanges(),d.addRange(a);try{document.execCommand('copy'),c()}catch(a){}d.removeRange(a)}),d.appendChild(a)})</script></body></html>
