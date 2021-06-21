@@ -10,7 +10,7 @@
 <meta name="description" content="简介 快捷键  Ctrl&#43;F1：打开与所选行内符号相关的 API 帮助文档。 F2：在光标选定位置按 F2 键设置或取消断点。 Shift&#43;F2：在首个选择命令设置条件断点。 Ctrl&#43;F2：重新启动被调试程序。 F4：运行到光标选定位置处暂停。 Shift&#43;F4：设置记录断点。 F5：最大化当前窗口。 Ctrl&#43;F5：打开与首个选择的命令相对应的源文件。 Alt&#43;F5：让 OllyDbg 窗口总在最前面。 F6：切换到下一个窗口。 Shift&#43;F6：切换到前一个窗口。 F7：单步步入：每次执行一条指令，遇到 call 等子程序时进入其中。 Shift&#43;F7：与 F7 相同，但当被调试程序发生异常而中止时，调试器首先尝试步入被调试程序指定的异常处理。 Ctrl&#43;F7：自动步入，在所有的函数调用中一条一条地执行命令。 Alt&#43;F7：转到上一个找到的参考。 F8：单步步过，每次执行一条指令，遇到 call 等子程序时不进入其中。 Shift&#43;F8：与 F8 相同，但当被调试程序发生异常而中止时，调试器首先尝试步过被调试程序指定的异常处理。 Ctrl&#43;F8：自动步过，一条一条执行命令，但不进入函数内部调用。 Alt&#43;F8：转到下一个找到的参考。 F9：运行，被调试软件继续运行，直到遇到下一个断点。 Shift&#43;F9：与 F9 相同，但当被调试程序发生异常而中止时，调试器首先尝试执行被调试程序指定的异常处理。 Ctrl&#43;F9：执行到返回，在执行到一个 ret 指令时暂停，常用于从当前函数快速返回到上一个函数。 Alt&#43;F9：执行到用户代码，可用于从系统部分快速返回到被调试程序部分。 F10：打开与当前窗口或面板相关的快捷菜单。 Ctrl&#43;F11：Run 跟踪步入，一条一条执行命令，进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 F12：停止执行，暂停所有线程。 Ctrl&#43;F12：Run 跟踪步过，一条一条执行命令，不进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 Alt&#43;F3：关闭当前窗口。 Alt&#43;B：显示断点窗口。 Alt&#43;C：显示 CPU 窗口。 Alt&#43;E：显示模块列表。 Alt&#43;K：显示调用栈。 Alt&#43;L：显示日志窗口。 Alt&#43;M：显示内存窗口。 Alt&#43;O：显示选项对话框。 Alt&#43;Backspace：撤销对所选部分的修改。 Ctrl&#43;A：分析当前模块的代码段。 Ctrl&#43;B：开始二进制搜索。 Ctrl&#43;E：以十六进制格式编辑所选内容。 Ctrl&#43;F：开始命令搜索。 Ctrl&#43;G：转到某地址。 Ctrl&#43;J：列出所有的涉及到该位置的调用和跳转。 Ctrl&#43;K：查看与当前函数相关的调用树。 Ctrl&#43;L：搜索下一个。 Ctrl&#43;N：打开当前模块的名称列表。 Ctrl&#43;O：扫描对象文件。 Ctrl&#43;P：显示补丁窗口。 Ctrl&#43;R：搜索所选命令的参考。 Ctrl&#43;S：命令搜索。 Ctrl&#43;T：打开“暂停Run跟踪”对话框。 Esc：停止自动执行或跟踪。 Enter：将选中的命令添加到命令历史，如果当前命令是一个跳转或者函数，则进入到目的地址。 Backspace：如果分析器将代码误识为数据，可以将选中部分的自动分析信息移除。 *：转到原始位置 Ctrl&#43;*：指定新的起始位置。 &#43;：如果 Run 跟踪没有激活，则根据历史命令跳到下一条运行过命令的地方；否则跳到 Run 跟踪的下一个记录。 Ctrl&#43;&#43;：跳到前一个函数的开始处。 -：如果 Run 跟踪没有激活，则根据历史命令跳到前一条运行过命令的地方；否则跳到 Run 跟踪的前一个记录。 Ctrl&#43;-：跳到下一个函数的开始处。 Space：修改命令。 :：添加标签。 ;：添加注释。  -（减号）：回看之前单步跟踪的代码">
 <meta name="author" content="">
 <link rel="canonical" href="https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ollydbg/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.fe63ae84f306727c713665eb03a6c71ec6c611434c8182ba17ba7e7d26a979e9.css" integrity="sha256-/mOuhPMGcnxxNmXrA6bHHsbGEUNMgYK6F7p&#43;fSapeek=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css" integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
@@ -160,7 +160,7 @@
                 </button>
             </span>
         </div>
-        <ul id="menu">
+        <ul id="menu" onscroll="menu_on_scroll()">
             <li>
                 <a href="https://inten.kro1lsec.com/archives" title="Archive">
                     <span>Archive</span>
@@ -517,8 +517,7 @@ MSG”花指令已去除完毕! <span style="color:#ae81ff">\r\n</span> Code By:
 </li>
 </ul>
 
-
-  </div>
+</div>
   <footer class="post-footer">
     <ul class="post-tags">
       <li><a href="https://inten.kro1lsec.com/tags/%E5%B7%A5%E5%85%B7/">工具</a></li>
@@ -574,6 +573,7 @@ MSG”花指令已去除完毕! <span style="color:#ae81ff">\r\n</span> Code By:
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
+    <span>&middot;</span>
     
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
@@ -585,10 +585,14 @@ MSG”花指令已去除完毕! <span style="color:#ae81ff">\r\n</span> Code By:
 </a>
 
 <script>
-    let menu = document.getElementById('menu')
-    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-    menu.onscroll = function () {
-        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -635,6 +639,43 @@ MSG”花指令已去除完毕! <span style="color:#ae81ff">\r\n</span> Code By:
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        container.appendChild(copybutton);
+    });
 </script>
 </body>
 

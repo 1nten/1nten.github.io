@@ -13,7 +13,7 @@ AT&amp;T汇编基本语法 Ucore中用到的是AT&amp;T格式的汇编，与Inte
 * 寄存器命名原则AT&amp;T: %eax Intel: eax* 源/目的操作数顺序 AT&amp;T: movl %eax, %ebx Intel: mov ebx, eax* 常数/立即数的格式　AT&amp;T: movl $_value, %ebx Intel: mov eax, _value把value的地址放入eax寄存器AT&amp;T: movl $0xd00d, %ebx Intel: mov ebx, 0xd00d* 操作数长度标识 AT&amp;T: movw %ax, %bx Intel: mov bx, ax* 寻址方式 AT&amp;T: immed32(basepointer, indexpointer, indexscale)Intel: [basepointer &#43; indexpointer × indexscale &#43; imm32)如果操作系统工作于保护模式下，用的是32位线性地址，所以在计算地址时不用考虑segment:offset的问题。上式中的地址应为：">
 <meta name="author" content="">
 <link rel="canonical" href="https://inten.kro1lsec.com/post/ucorelab0/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.fe63ae84f306727c713665eb03a6c71ec6c611434c8182ba17ba7e7d26a979e9.css" integrity="sha256-/mOuhPMGcnxxNmXrA6bHHsbGEUNMgYK6F7p&#43;fSapeek=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css" integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
@@ -169,7 +169,7 @@ AT&amp;T汇编基本语法 Ucore中用到的是AT&amp;T格式的汇编，与Inte
                 </button>
             </span>
         </div>
-        <ul id="menu">
+        <ul id="menu" onscroll="menu_on_scroll()">
             <li>
                 <a href="https://inten.kro1lsec.com/archives" title="Archive">
                     <span>Archive</span>
@@ -420,8 +420,7 @@ stosl
 <p>标识寄存器， efalgs,</p>
 <p>另外是cr0等不能被访问的控制寄存器，</p>
 
-
-  </div>
+</div>
   <footer class="post-footer">
     <ul class="post-tags">
       <li><a href="https://inten.kro1lsec.com/tags/ucore/">uCore</a></li>
@@ -476,6 +475,7 @@ stosl
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
+    <span>&middot;</span>
     
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
@@ -487,10 +487,14 @@ stosl
 </a>
 
 <script>
-    let menu = document.getElementById('menu')
-    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-    menu.onscroll = function () {
-        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -537,6 +541,43 @@ stosl
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        container.appendChild(copybutton);
+    });
 </script>
 </body>
 

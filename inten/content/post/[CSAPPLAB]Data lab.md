@@ -1,7 +1,7 @@
 ---
 title: "[CSAPPLAB]Data lab"
 date: 2021-04-11T15:07:34+08:00
-tags: ["CSAPPLAB"]
+tags: ["CSAPPLAB", "天问之路"]
 ShowToc: true
 TocOpen: true
 draft: false

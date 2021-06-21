@@ -17,7 +17,7 @@ phase_3 尝试分析时，发现jcc指令经常弄混，又回去复习了一遍
 cmp oprd1,oprd2 &#43; JNBE/JA 无符号cmp oprd1,oprd2 &#43; JNLE/JG 有符号oprd1&gt;oprd2时跳转JZ/JE 相等则跳转代码中0x402470&#43;8*第一参数打印内存信息，可以看到相应的跳转地址，已经对应的eax值应该是多少，也就是第二数字的应该的取值。打印内存信息的命令行为jmp QWORD PTR [rax*8&#43;0x402470]">
 <meta name="author" content="">
 <link rel="canonical" href="https://inten.kro1lsec.com/post/csapplabbomb-lab/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.fe63ae84f306727c713665eb03a6c71ec6c611434c8182ba17ba7e7d26a979e9.css" integrity="sha256-/mOuhPMGcnxxNmXrA6bHHsbGEUNMgYK6F7p&#43;fSapeek=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css" integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
@@ -181,7 +181,7 @@ cmp oprd1,oprd2 &#43; JNBE/JA 无符号cmp oprd1,oprd2 &#43; JNLE/JG 有符号
                 </button>
             </span>
         </div>
-        <ul id="menu">
+        <ul id="menu" onscroll="menu_on_scroll()">
             <li>
                 <a href="https://inten.kro1lsec.com/archives" title="Archive">
                     <span>Archive</span>
@@ -429,8 +429,7 @@ data_collect()
 	<span style="color:#66d9ef">if</span> func(<span style="color:#ae81ff">0x24</span>,i) <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>:
 		<span style="color:#66d9ef">print</span> i
 </code></pre></div>
-
-  </div>
+</div>
   <footer class="post-footer">
     <ul class="post-tags">
       <li><a href="https://inten.kro1lsec.com/tags/csapplab/">CSAPPLAB</a></li>
@@ -485,6 +484,7 @@ data_collect()
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
+    <span>&middot;</span>
     
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
@@ -496,10 +496,14 @@ data_collect()
 </a>
 
 <script>
-    let menu = document.getElementById('menu')
-    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-    menu.onscroll = function () {
-        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -546,6 +550,43 @@ data_collect()
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        container.appendChild(copybutton);
+    });
 </script>
 </body>
 

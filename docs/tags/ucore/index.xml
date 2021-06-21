@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>uCore on intenのblog🍦</title>
     <link>https://inten.kro1lsec.com/tags/ucore/</link>
@@ -13,7 +13,8 @@
       <pubDate>Sun, 13 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>https://inten.kro1lsec.com/post/ucorelab1/</guid>
-      <description>[练习1] 练习 操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
+      <description>[练习1] 练习指南
+操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
  设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，
 lab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试
 debug-mon: 使用qemu的monitor和gdb配合调试

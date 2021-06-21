@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="canonical" href="https://inten.kro1lsec.com/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.fe63ae84f306727c713665eb03a6c71ec6c611434c8182ba17ba7e7d26a979e9.css" integrity="sha256-/mOuhPMGcnxxNmXrA6bHHsbGEUNMgYK6F7p&#43;fSapeek=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css" integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://inten.kro1lsec.com/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://inten.kro1lsec.com/favicon-32x32.png">
@@ -19,7 +19,7 @@
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.82.0" />
-<link rel="alternate" type="application/rss+xml" href="https://inten.kro1lsec.com/index.xml">
+<link rel="alternate" type="application/rss&#43;xml" href="https://inten.kro1lsec.com/index.xml">
 <link rel="alternate" type="application/json" href="https://inten.kro1lsec.com/index.json">
 <meta property="og:title" content="intenのblog🍦" />
 <meta property="og:description" content="" />
@@ -121,7 +121,7 @@
                 </button>
             </span>
         </div>
-        <ul id="menu">
+        <ul id="menu" onscroll="menu_on_scroll()">
             <li>
                 <a href="https://inten.kro1lsec.com/archives" title="Archive">
                     <span>Archive</span>
@@ -201,7 +201,8 @@
     <h2>[uCore]Lab1</h2>
   </header>
   <section class="entry-content">
-    <p>[练习1] 练习 操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
+    <p>[练习1] 练习指南
+操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
  设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，
 lab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试
 debug-mon: 使用qemu的monitor和gdb配合调试
@@ -224,7 +225,7 @@ file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强�
     <h2>[IOT]简易毫米波雷达开发小记</h2>
   </header>
   <section class="entry-content">
-    <p>[IOT]简易毫米波雷达开发小记 开发环境 软件
+    <p>开发环境 软件
 Visual Studio 2019
 EasyX_2018春分版
 FlyMcu.exe
@@ -263,6 +264,26 @@ AT&amp;T汇编基本语法 Ucore中用到的是AT&amp;T格式的汇编，与Inte
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>[CSAPPLAB]Attack Lab</h2>
+  </header>
+  <section class="entry-content">
+    <p>ctarget 首先执行getbuf函数，读取标准输入。
+unsigned getbuf() { char buf[BUFFER_SIZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现
+FAILED: Initialization error: Running on an illegal host [localhost.localdomain] 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。
+1.1level 1 观察test，getbuf和touch1
+目的：将getbuf的返回地址由test改为touch1
+小建议
+ 利用objdump -d ./ctarget&gt;&gt;ctarget.s得到汇编代码 思路是将touch1的开始地址，放在某个位置，以实现当ret指令被getbuf执行后会将控制权转移给touch1 一定要注意字节序 你可以使用gdb设置断点来进行调试。并且gcc会影响栈帧中buf存放的位置。需要注意  思路：getbuf函数执行ret指令后，就会从%rsp&#43;40处获取返回地址，只要我们修改这个返回地址，改为touch1的地址，就能使程序返回touch1，而不是test。
+(gdb) p (char*)0x403188 #p(print) 0x403188上存的值 $1 = 0x403188 &#34;No exploit. Getbuf returned 0x%x\n&#34; stack : padding(00..) &#43; touch1(0x4017c0)
+攻击序列touch1.txt
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 17 40 00 00 00 00 00 保存在touch1....</p>
+  </section>
+  <footer class="entry-footer">May 20, 2021&nbsp;·&nbsp;5 min</footer>
+  <a class="entry-link" aria-label="post link to [CSAPPLAB]Attack Lab" href="https://inten.kro1lsec.com/post/csapplabattack-lab/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>CVE-2017-11882漏洞分析</h2>
   </header>
   <section class="entry-content">
@@ -282,26 +303,6 @@ struct EQNOLEFILEHDR {WORD cCBHdr; // 格式头长度,大小为0x1CDWORD nVers
   </section>
   <footer class="entry-footer">May 11, 2021&nbsp;·&nbsp;4 min</footer>
   <a class="entry-link" aria-label="post link to CVE-2017-11882漏洞分析" href="https://inten.kro1lsec.com/post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>[CSAPPLAB]Attack Lab</h2>
-  </header>
-  <section class="entry-content">
-    <p>ctarget 首先执行getbuf函数，读取标准输入。
-unsigned getbuf() { char buf[BUFFER_SIZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现
-FAILED: Initialization error: Running on an illegal host [localhost.localdomain] 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。
-1.1level 1 观察test，getbuf和touch1
-目的：将getbuf的返回地址由test改为touch1
-小建议
- 利用objdump -d ./ctarget&gt;&gt;ctarget.s得到汇编代码 思路是将touch1的开始地址，放在某个位置，以实现当ret指令被getbuf执行后会将控制权转移给touch1 一定要注意字节序 你可以使用gdb设置断点来进行调试。并且gcc会影响栈帧中buf存放的位置。需要注意  思路：getbuf函数执行ret指令后，就会从%rsp&#43;40处获取返回地址，只要我们修改这个返回地址，改为touch1的地址，就能使程序返回touch1，而不是test。
-(gdb) p (char*)0x403188 #p(print) 0x403188上存的值 $1 = 0x403188 &#34;No exploit. Getbuf returned 0x%x\n&#34; stack : padding(00..) &#43; touch1(0x4017c0)
-攻击序列touch1.txt
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 17 40 00 00 00 00 00 保存在touch1....</p>
-  </section>
-  <footer class="entry-footer">April 20, 2021&nbsp;·&nbsp;5 min</footer>
-  <a class="entry-link" aria-label="post link to [CSAPPLAB]Attack Lab" href="https://inten.kro1lsec.com/post/csapplabattack-lab/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -388,6 +389,7 @@ PDCERF方法学 准备阶段——&gt;检测阶段——&gt;抑制阶段——&g
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
+    <span>&middot;</span>
     
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
@@ -399,10 +401,14 @@ PDCERF方法学 准备阶段——&gt;检测阶段——&gt;抑制阶段——&g
 </a>
 
 <script>
-    let menu = document.getElementById('menu')
-    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-    menu.onscroll = function () {
-        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

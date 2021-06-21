@@ -19,7 +19,7 @@ $ docker pull ubuntu:18.04 列出镜像 docker image ls
 $ docker image ls REPOSITORY TAG IMAGE ID CREATED SIZE redis latest 5f515359c7f8 5 days ago 183 MB nginx latest 05a60462f8ba 5 days ago 181 MB mongo 3.">
 <meta name="author" content="">
 <link rel="canonical" href="https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7docker/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.fe63ae84f306727c713665eb03a6c71ec6c611434c8182ba17ba7e7d26a979e9.css" integrity="sha256-/mOuhPMGcnxxNmXrA6bHHsbGEUNMgYK6F7p&#43;fSapeek=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.84cc6e7cd97516a4d4e877c6bebe5a4529afdf61f4d009e2c8bbec3a876fff4e.css" integrity="sha256-hMxufNl1FqTU6HfGvr5aRSmv32H00AniyLvsOodv/04=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://inten.kro1lsec.com/favicon.ico">
@@ -187,7 +187,7 @@ $ docker image ls REPOSITORY TAG IMAGE ID CREATED SIZE redis latest 5f515359c7f8
                 </button>
             </span>
         </div>
-        <ul id="menu">
+        <ul id="menu" onscroll="menu_on_scroll()">
             <li>
                 <a href="https://inten.kro1lsec.com/archives" title="Archive">
                     <span>Archive</span>
@@ -409,8 +409,7 @@ apt-get clean
 apt-get update
 apt-get upgrade
 </code></pre>
-
-  </div>
+</div>
   <footer class="post-footer">
     <ul class="post-tags">
       <li><a href="https://inten.kro1lsec.com/tags/%E5%B7%A5%E5%85%B7/">工具</a></li>
@@ -465,6 +464,7 @@ apt-get upgrade
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://inten.kro1lsec.com/">intenのblog🍦</a></span>
+    <span>&middot;</span>
     
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
@@ -476,10 +476,14 @@ apt-get upgrade
 </a>
 
 <script>
-    let menu = document.getElementById('menu')
-    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-    menu.onscroll = function () {
-        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -526,6 +530,43 @@ apt-get upgrade
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        container.appendChild(copybutton);
+    });
 </script>
 </body>
 

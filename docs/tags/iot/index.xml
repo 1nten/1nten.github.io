@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>IOT on intenのblog🍦</title>
     <link>https://inten.kro1lsec.com/tags/iot/</link>
@@ -13,7 +13,7 @@
       <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>https://inten.kro1lsec.com/post/iot%E7%AE%80%E6%98%93%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/</guid>
-      <description>[IOT]简易毫米波雷达开发小记 开发环境 软件
+      <description>开发环境 软件
 Visual Studio 2019
 EasyX_2018春分版
 FlyMcu.exe

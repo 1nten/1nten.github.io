@@ -1,7 +1,7 @@
 ---
 title: "[uCore]Lab0"
 date: 2021-06-06T15:07:34+08:00
-tags: ["uCore"]
+tags: ["uCore", "天问之路"]
 ShowToc: true
 TocOpen: true
 draft: false

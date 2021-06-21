@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CSAPPLAB on intenのblog🍦</title>
     <link>https://inten.kro1lsec.com/tags/csapplab/</link>
     <description>Recent content in CSAPPLAB on intenのblog🍦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Apr 2021 15:07:34 +0800</lastBuildDate><atom:link href="https://inten.kro1lsec.com/tags/csapplab/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 May 2021 15:07:34 +0800</lastBuildDate><atom:link href="https://inten.kro1lsec.com/tags/csapplab/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[CSAPPLAB]Attack Lab</title>
       <link>https://inten.kro1lsec.com/post/csapplabattack-lab/</link>
-      <pubDate>Tue, 20 Apr 2021 15:07:34 +0800</pubDate>
+      <pubDate>Thu, 20 May 2021 15:07:34 +0800</pubDate>
       
       <guid>https://inten.kro1lsec.com/post/csapplabattack-lab/</guid>
       <description>ctarget 首先执行getbuf函数，读取标准输入。

