@@ -2,22 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>应急响应 on intenのblog🍦</title>
-    <link>https://inten.kro1lsec.com/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</link>
+    <link>https://1nten.github.io//tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</link>
     <description>Recent content in 应急响应 on intenのblog🍦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 15 Apr 2021 15:07:34 +0800</lastBuildDate><atom:link href="https://inten.kro1lsec.com/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 15 Apr 2021 15:07:34 +0800</lastBuildDate><atom:link href="https://1nten.github.io//tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>应急响应</title>
-      <link>https://inten.kro1lsec.com/post/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</link>
+      <link>https://1nten.github.io//post/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</link>
       <pubDate>Thu, 15 Apr 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</guid>
+      <guid>https://1nten.github.io//post/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</guid>
       <description>https://bypass007.github.io/Emergency-Response-Notes/ 应急响应笔记
 https://www.cnblogs.com/H4ck3R-XiX/p/12234762.html Nmap使用教程（进阶篇）
 方法论 浅谈我所理解的应急响应流程
-https://www.freebuf.com/column/193690.html应急响应的整体思路和基本流程
-https://www.freebuf.com/articles/terminal/192859.html应急响应方式 现场应急响应：通常是要到客户突发现场进行应急处置。需注意相关操作必须获得用户授权，并对操作过程进行记录。 远程应急响应：远程通过电话、邮件等方式指导用户进行应急处置。
+https://www.freebuf.com/column/193690.html
+应急响应的整体思路和基本流程
+https://www.freebuf.com/articles/terminal/192859.html
+应急响应方式 现场应急响应：通常是要到客户突发现场进行应急处置。需注意相关操作必须获得用户授权，并对操作过程进行记录。 远程应急响应：远程通过电话、邮件等方式指导用户进行应急处置。
 应急响应流程 业内通常使用的
 PDCERF方法学 准备阶段——&amp;gt;检测阶段——&amp;gt;抑制阶段——&amp;gt;根除阶段——&amp;gt;恢复阶段——&amp;gt;跟踪总结
 准备阶段 准备阶段需要及时和客户确认事件背景、相关负责人联系方式、确定参与此次应急响应人员、根据客户描述，初步判定事件响应策略，携带应急响应工具包前往客户现场。

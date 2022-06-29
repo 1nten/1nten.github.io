@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CVE on intenのblog🍦</title>
-    <link>https://inten.kro1lsec.com/tags/cve/</link>
+    <link>https://1nten.github.io//tags/cve/</link>
     <description>Recent content in CVE on intenのblog🍦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 May 2021 15:07:34 +0800</lastBuildDate><atom:link href="https://inten.kro1lsec.com/tags/cve/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 May 2021 15:07:34 +0800</lastBuildDate><atom:link href="https://1nten.github.io//tags/cve/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CVE-2017-11882漏洞分析</title>
-      <link>https://inten.kro1lsec.com/post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
+      <link>https://1nten.github.io//post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
       <pubDate>Tue, 11 May 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
+      <guid>https://1nten.github.io//post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
       <description>漏洞描述  成因：Office的公式编辑器EQNEDT32.EXE读入包含MathType的OLE数据，在拷贝公式字体名称前没有对名称长度进行校验，当EQNEDT32.EXE尝试将字体名称复制到本地创建的缓冲区时，攻击者可以通过刻意构造的数据内容覆盖栈上的函数返回地址，从而劫持程序流程。 影响版本：Office 2003到2016的所有版本 POC：https://github.com/Ridter/CVE-2017-11882  漏洞复现   环境
 Microsoft Windows XPProfessional版本2002 Service Fack 3
 Office2003SP3
@@ -25,7 +25,17 @@ Office2003SP3
 Equation Native Stream Data = EQNOLEFILEHDR + MTEFData，其中
 MTEFData = MTEF header + MTEF Byte Stream
 EQNOLEFILEHDR 头的结构
-struct EQNOLEFILEHDR {WORD cCBHdr; // 格式头长度,大小为0x1CDWORD nVersion; // 固定为0×00020000。WORD nCf; // 该公式对象的剪贴板格式DWORD cbObject; // MTEF数据的长度，不包括头部DWORD nReserved1; // 未使用DWORD nReserved2; // 未使用DWORD nReserved3; // 未使用DWORD nReserved4; // 未使用};MTEF header 的结构，里面存放一些版本信息</description>
+struct EQNOLEFILEHDR {
+WORD cCBHdr; // 格式头长度,大小为0x1C
+DWORD nVersion; // 固定为0×00020000。
+WORD nCf; // 该公式对象的剪贴板格式
+DWORD cbObject; // MTEF数据的长度，不包括头部
+DWORD nReserved1; // 未使用
+DWORD nReserved2; // 未使用
+DWORD nReserved3; // 未使用
+DWORD nReserved4; // 未使用
+};
+MTEF header 的结构，里面存放一些版本信息</description>
     </item>
     
   </channel>

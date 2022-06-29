@@ -2,76 +2,76 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://inten.kro1lsec.com/l2/archives/</loc>
+    <loc>https://1nten.github.io//l2/archives/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://inten.kro1lsec.com/archives/"
+                href="https://1nten.github.io//archives/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="l2"
-                href="https://inten.kro1lsec.com/l2/archives/"
+                href="https://1nten.github.io//l2/archives/"
                 />
   </url><url>
-    <loc>https://inten.kro1lsec.com/l2/categories/</loc>
+    <loc>https://1nten.github.io//l2/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://inten.kro1lsec.com/categories/"
+                href="https://1nten.github.io//categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="l2"
-                href="https://inten.kro1lsec.com/l2/categories/"
+                href="https://1nten.github.io//l2/categories/"
                 />
   </url><url>
-    <loc>https://inten.kro1lsec.com/l2/</loc>
+    <loc>https://1nten.github.io//l2/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://inten.kro1lsec.com/"
+                href="https://1nten.github.io//"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="l2"
-                href="https://inten.kro1lsec.com/l2/"
+                href="https://1nten.github.io//l2/"
                 />
   </url><url>
-    <loc>https://inten.kro1lsec.com/l2/search/</loc>
+    <loc>https://1nten.github.io//l2/search/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://inten.kro1lsec.com/search/"
+                href="https://1nten.github.io//search/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="l2"
-                href="https://inten.kro1lsec.com/l2/search/"
+                href="https://1nten.github.io//l2/search/"
                 />
   </url><url>
-    <loc>https://inten.kro1lsec.com/l2/series/</loc>
+    <loc>https://1nten.github.io//l2/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://inten.kro1lsec.com/series/"
+                href="https://1nten.github.io//series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="l2"
-                href="https://inten.kro1lsec.com/l2/series/"
+                href="https://1nten.github.io//l2/series/"
                 />
   </url><url>
-    <loc>https://inten.kro1lsec.com/l2/tags/</loc>
+    <loc>https://1nten.github.io//l2/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://inten.kro1lsec.com/tags/"
+                href="https://1nten.github.io//tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="l2"
-                href="https://inten.kro1lsec.com/l2/tags/"
+                href="https://1nten.github.io//l2/tags/"
                 />
   </url>
 </urlset>

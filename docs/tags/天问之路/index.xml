@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>天问之路 on intenのblog🍦</title>
-    <link>https://inten.kro1lsec.com/tags/%E5%A4%A9%E9%97%AE%E4%B9%8B%E8%B7%AF/</link>
+    <link>https://1nten.github.io//tags/%E5%A4%A9%E9%97%AE%E4%B9%8B%E8%B7%AF/</link>
     <description>Recent content in 天问之路 on intenのblog🍦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://inten.kro1lsec.com/tags/%E5%A4%A9%E9%97%AE%E4%B9%8B%E8%B7%AF/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://1nten.github.io//tags/%E5%A4%A9%E9%97%AE%E4%B9%8B%E8%B7%AF/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>周报</title>
-      <link>https://inten.kro1lsec.com/post/%E5%91%A8%E6%8A%A5/</link>
+      <link>https://1nten.github.io//post/%E5%91%A8%E6%8A%A5/</link>
       <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E5%91%A8%E6%8A%A5/</guid>
+      <guid>https://1nten.github.io//post/%E5%91%A8%E6%8A%A5/</guid>
       <description>这里定期记录天问之路和日常的学习内容。
  [WEEK 12] Tiny Kernel (6.14~6.20) 日均学习时间6~9小时
 天问：
@@ -54,10 +54,10 @@ CVE-2017-11882漏洞分析
     
     <item>
       <title>[uCore]Lab1</title>
-      <link>https://inten.kro1lsec.com/post/ucorelab1/</link>
+      <link>https://1nten.github.io//post/ucorelab1/</link>
       <pubDate>Sun, 20 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/ucorelab1/</guid>
+      <guid>https://1nten.github.io//post/ucorelab1/</guid>
       <description>练习1 练习指南
 操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
  设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，
@@ -76,10 +76,10 @@ file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强�
     
     <item>
       <title>操作系统真象还原笔记</title>
-      <link>https://inten.kro1lsec.com/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9C%9F%E8%B1%A1%E8%BF%98%E5%8E%9F%E7%AC%94%E8%AE%B0/</link>
+      <link>https://1nten.github.io//post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9C%9F%E8%B1%A1%E8%BF%98%E5%8E%9F%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Sun, 20 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9C%9F%E8%B1%A1%E8%BF%98%E5%8E%9F%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://1nten.github.io//post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9C%9F%E8%B1%A1%E8%BF%98%E5%8E%9F%E7%AC%94%E8%AE%B0/</guid>
       <description>01操作系统是是什么 社会组织和人们之间的关系，正是操作系统和用户进程的关系
 当人们想和远方的朋友说话时，虽然可以徒步走到亲朋好友身边再对其表达想说的话，但社会组织 已经给提供了邮局和电话，何必自己再大老远跑一趟呢。这就是操作系统（社会组织）提供的资源。两 个人想在一起生活，要不要一定先结婚呢？完全不用，领不领证都不会阻碍人们在一起生活，但是社会 组织为了方便人口管理做了额外约束。不领证的话，至少社会组织无法预测未来人口数量趋势，无法做 出宏观调控，甚至这是找到你家人的一种方法。这就如 Linux 系统中的内存管理，分别要记录哪些页是 Active，哪些是“脏页“。不记录不会影响程序执行，记录这些状态还不是为了更好地管理 内存。
 03写操作系统，哪些需要我来做 操作系统是管理资源的软件，操作系统能做什么，取决于主机上硬件的功能。
@@ -93,27 +93,40 @@ file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强�
     
     <item>
       <title>[uCore]Lab0</title>
-      <link>https://inten.kro1lsec.com/post/ucorelab0/</link>
+      <link>https://1nten.github.io//post/ucorelab0/</link>
       <pubDate>Sun, 06 Jun 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/ucorelab0/</guid>
-      <description>gcc #安装sudo apt-get install build-essential#编译$ gcc -Wall hello.c -o hello该命令将文件‘hello.c’中的代码编译为机器码并存储在可执行文件 ‘hello’中。机器码的文件名是通过 -o 选项指定的。该选项通常作为命令行中的最后一个参数。如果被省略，输出文件默认为 ‘a.out’。
+      <guid>https://1nten.github.io//post/ucorelab0/</guid>
+      <description>gcc #安装
+sudo apt-get install build-essential
+#编译
+$ gcc -Wall hello.c -o hello
+该命令将文件‘hello.c’中的代码编译为机器码并存储在可执行文件 ‘hello’中。机器码的文件名是通过 -o 选项指定的。该选项通常作为命令行中的最后一个参数。如果被省略，输出文件默认为 ‘a.out’。
 选项 -Wall 开启编译器几乎所有常用的警告，默认情况下GCC 不会产生任何警告信息。
 AT&amp;amp;T汇编基本语法 Ucore中用到的是AT&amp;amp;T格式的汇编，与Intel格式的汇编有一些不同。二者语法上主要有以下几个不同：
-* 寄存器命名原则AT&amp;amp;T: %eax Intel: eax* 源/目的操作数顺序 AT&amp;amp;T: movl %eax, %ebx Intel: mov ebx, eax* 常数/立即数的格式　AT&amp;amp;T: movl $_value, %ebx Intel: mov eax, _value把value的地址放入eax寄存器AT&amp;amp;T: movl $0xd00d, %ebx Intel: mov ebx, 0xd00d* 操作数长度标识 AT&amp;amp;T: movw %ax, %bx Intel: mov bx, ax* 寻址方式 AT&amp;amp;T: immed32(basepointer, indexpointer, indexscale)Intel: [basepointer + indexpointer × indexscale + imm32)如果操作系统工作于保护模式下，用的是32位线性地址，所以在计算地址时不用考虑segment:offset的问题。上式中的地址应为：</description>
+* 寄存器命名原则
+AT&amp;amp;Thttps://1nten.github.io/
+* 源/目的操作数顺序 AT&amp;amp;T: movl %eax, %ebx Intel: mov ebx, eax
+* 常数/立即数的格式　AT&amp;amp;T: movl $_value, %ebx Intel: mov eax, _value
+把value的地址放入ehttps://1nten.github.io/
+AT&amp;amp;T: movl $0xd00d, %ebx Intel: mov ebx, 0xd00d
+* 操作数长度标识 AT&amp;amp;T: movw %ax, %bx Intel: mov bx, ax
+* 寻址方式 AT&amp;amp;T: immed32(basepointer, indexpointer, indexscale)
+Intel: [basepointer + indexpointer × indexscale + imm32)
+如果操作系统工作于保护模式下，用的是32位线性地址，所以在计算地址时不用考虑segment:offset的问题。上式中的地址应为：</description>
     </item>
     
     <item>
       <title>[CSAPPLAB]Attack Lab</title>
-      <link>https://inten.kro1lsec.com/post/csapplabattack-lab/</link>
+      <link>https://1nten.github.io//post/csapplabattack-lab/</link>
       <pubDate>Thu, 20 May 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/csapplabattack-lab/</guid>
+      <guid>https://1nten.github.io//post/csapplabattack-lab/</guid>
       <description>ctarget 首先执行getbuf函数，读取标准输入。
-unsigned getbuf() { char buf[BUFFER_SIZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现
+unsigned gethttps://1nten.github.io/ZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现
 FAILED: Initialization error: Running on an illegal host [localhost.localdomain] 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。
 1.1level 1 观察test，getbuf和touch1
-目的：将getbuf的返回地址由test改为touch1
+目的：将getbuf的返https://1nten.github.io/
 小建议
  利用objdump -d ./ctarget&amp;gt;&amp;gt;ctarget.s得到汇编代码 思路是将touch1的开始地址，放在某个位置，以实现当ret指令被getbuf执行后会将控制权转移给touch1 一定要注意字节序 你可以使用gdb设置断点来进行调试。并且gcc会影响栈帧中buf存放的位置。需要注意  思路：getbuf函数执行ret指令后，就会从%rsp+40处获取返回地址，只要我们修改这个返回地址，改为touch1的地址，就能使程序返回touch1，而不是test。
 (gdb) p (char*)0x403188 #p(print) 0x403188上存的值 $1 = 0x403188 &amp;#34;No exploit. Getbuf returned 0x%x\n&amp;#34; stack : padding(00..) + touch1(0x4017c0)
@@ -123,26 +136,34 @@ FAILED: Initialization error: Running on an illegal host [localhost.localdomain]
     
     <item>
       <title>[CSAPPLAB]Bomb Lab</title>
-      <link>https://inten.kro1lsec.com/post/csapplabbomb-lab/</link>
+      <link>https://1nten.github.io//post/csapplabbomb-lab/</link>
       <pubDate>Thu, 15 Apr 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/csapplabbomb-lab/</guid>
+      <guid>https://1nten.github.io//post/csapplabbomb-lab/</guid>
       <description>总体感觉考查对汇编的理解和熟练度
-phase_1 400e37: 48 89 c7 mov %rax,%rdi //第一个参数 400e3a: e8 a1 00 00 00 callq 400ee0 &amp;lt;phase_1&amp;gt;...0x0000000000400ee0 &amp;lt;+0&amp;gt;: sub $0x8,%rsp 0x0000000000400ee4 &amp;lt;+4&amp;gt;: mov $0x402400,%esi //第二个参数0x0000000000400ee9 &amp;lt;+9&amp;gt;: callq 0x401338 &amp;lt;strings_not_equal&amp;gt;让参数一，二相等即可
+phase_1 400e37: 48 89 c7 mov %rax,%rdi //第一个参数 400e3a: e8 a1 00 00 00 callq 400ee0 &amp;lt;phase_1&amp;gt;
+...https://1nten.github.io/
+0x0000000000400ee0 &amp;lt;+0&amp;gt;: sub $0x8,%rsp 0x0000000000400ee4 &amp;lt;+4&amp;gt;: mov $0x402400,%esi //第二个参数
+0x0000000000400ee9 &amp;lt;+9&amp;gt;: callq 0x401338 &amp;lt;strings_not_equal&amp;gt;
+让参数一，二相等即可
 Border relations with Canada have never been better.
 phase_2 利用callq 0x40145c &amp;lt;read_six_numbers&amp;gt;确定字符串格式，
 利用0000000000400F1A add eax, eax让后边的数翻倍
 字符串为“1 2 4 8 16 32”
 phase_3 尝试分析时，发现jcc指令经常弄混，又回去复习了一遍
-cmp oprd1,oprd2 + JNBE/JA 无符号cmp oprd1,oprd2 + JNLE/JG 有符号oprd1&amp;gt;oprd2时跳转JZ/JE 相等则跳转代码中0x402470+8*第一参数打印内存信息，可以看到相应的跳转地址，已经对应的eax值应该是多少，也就是第二数字的应该的取值。打印内存信息的命令行为jmp QWORD PTR [rax*8+0x402470]</description>
+cmp oprd1,oprd2 + JNBE/JA 无符号
+cmp oprd1,oprd2 + JNLE/JG 有符号
+oprd1&amp;gt;oprd2时跳转
+JZ/JE 相等则跳转
+代码中0x402470+8*第一参数打印内存信息，可以看到相应的跳转地址，已经对应的eax值应该是多少，也就是第二数字的应该的取值。打印内存信息的命令行为jmp QWORD PTR [rax*8+0x402470]</description>
     </item>
     
     <item>
       <title>[CSAPPLAB]Data lab</title>
-      <link>https://inten.kro1lsec.com/post/csapplabdata-lab/</link>
+      <link>https://1nten.github.io//post/csapplabdata-lab/</link>
       <pubDate>Sun, 11 Apr 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/csapplabdata-lab/</guid>
+      <guid>https://1nten.github.io//post/csapplabdata-lab/</guid>
       <description>前置知识 csapp第二章
 位运算符
    运算符 描述 实例     &amp;amp; 按位与操作，按二进制位进行&amp;quot;与&amp;quot;运算。运算规则：0&amp;amp;0=0; 0&amp;amp;1=0; 1&amp;amp;0=0; 1&amp;amp;1=1; (A &amp;amp; B) 将得到 12，即为 0000 1100   | 按位或运算符，按二进制位进行&amp;quot;或&amp;quot;运算。运算规则：`0 0=0; 0   ^ 异或运算符，按二进制位进行&amp;quot;异或&amp;quot;运算。运算规则：0^0=0; 0^1=1; 1^0=1; 1^1=0; (A ^ B) 将得到 49，即为 0011 0001   ~ 取反运算符，按二进制位进行&amp;quot;取反&amp;quot;运算。运算规则：~1=-2; ~0=-1; (~A ) 将得到 -61，即为 1100 0011，一个有符号二进制数的补码形式。   &amp;laquo; 二进制左移运算符。将一个运算对象的各二进制位全部左移若干位（左边的二进制位丢弃，右边补0）。 A &amp;laquo; 2 将得到 240，即为 1111 0000   &amp;raquo; 二进制右移运算符。将一个数的各二进制位全部右移若干位，正数左补0，负数左补1，右边丢弃。 A &amp;raquo; 2 将得到 15，即为 0000 1111    运算符的优先级</description>

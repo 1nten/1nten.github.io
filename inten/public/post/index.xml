@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on intenのblog🍦</title>
-    <link>https://inten.kro1lsec.com/post/</link>
+    <link>https://1nten.github.io//post/</link>
     <description>Recent content in Posts on intenのblog🍦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://inten.kro1lsec.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://1nten.github.io//post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>周报</title>
-      <link>https://inten.kro1lsec.com/post/%E5%91%A8%E6%8A%A5/</link>
+      <link>https://1nten.github.io//post/%E5%91%A8%E6%8A%A5/</link>
       <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E5%91%A8%E6%8A%A5/</guid>
+      <guid>https://1nten.github.io//post/%E5%91%A8%E6%8A%A5/</guid>
       <description>这里定期记录天问之路和日常的学习内容。
  [WEEK 12] Tiny Kernel (6.14~6.20) 日均学习时间6~9小时
 天问：
@@ -54,10 +54,10 @@ CVE-2017-11882漏洞分析
     
     <item>
       <title>[uCore]Lab1</title>
-      <link>https://inten.kro1lsec.com/post/ucorelab1/</link>
+      <link>https://1nten.github.io//post/ucorelab1/</link>
       <pubDate>Sun, 20 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/ucorelab1/</guid>
+      <guid>https://1nten.github.io//post/ucorelab1/</guid>
       <description>练习1 练习指南
 操作系统镜像文件 ucore.img 是如何一步一步生成的?(需要比较详细地解释 Makefile 中每一条相关命令和命令参数的含义,以及说明命令导致的结果)
  设置了项目名称，EMPTY，SPACE，SLASH等，变量V设置是为了进行打印. 设置GCCPRETIX和QEMU，检查是否支持32位的elf文件。 配置 USELLVM include tools/function.mk,包含一个已经已经封装好函数的文件，下文大量调用。 为了生成ucore.img，首先需要生成kernel、bootblock 为了生成kernel，首先需要 kernel.ld init.o readline.o stdio.o kdebug.o kmonitor.o panic.o clock.o console.o intr.o picirq.o trap.o trapentry.o vectors.o pmm.o printfmt.o string.o 为了生成bootblock，首先需要生成bootasm.o、bootmain.o、sign sign的作用是先检测bootblock的大小要小于500，然后在最后增加0x55, 0xaa的标识位， 然后复制到对应目录。 ucore.img使用dd指令将对应的文件合并 最后配置target  all: 对应直接使用make的时候，就是编译出ucore.img，
@@ -76,10 +76,10 @@ file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强�
     
     <item>
       <title>操作系统真象还原笔记</title>
-      <link>https://inten.kro1lsec.com/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9C%9F%E8%B1%A1%E8%BF%98%E5%8E%9F%E7%AC%94%E8%AE%B0/</link>
+      <link>https://1nten.github.io//post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9C%9F%E8%B1%A1%E8%BF%98%E5%8E%9F%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Sun, 20 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9C%9F%E8%B1%A1%E8%BF%98%E5%8E%9F%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://1nten.github.io//post/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9C%9F%E8%B1%A1%E8%BF%98%E5%8E%9F%E7%AC%94%E8%AE%B0/</guid>
       <description>01操作系统是是什么 社会组织和人们之间的关系，正是操作系统和用户进程的关系
 当人们想和远方的朋友说话时，虽然可以徒步走到亲朋好友身边再对其表达想说的话，但社会组织 已经给提供了邮局和电话，何必自己再大老远跑一趟呢。这就是操作系统（社会组织）提供的资源。两 个人想在一起生活，要不要一定先结婚呢？完全不用，领不领证都不会阻碍人们在一起生活，但是社会 组织为了方便人口管理做了额外约束。不领证的话，至少社会组织无法预测未来人口数量趋势，无法做 出宏观调控，甚至这是找到你家人的一种方法。这就如 Linux 系统中的内存管理，分别要记录哪些页是 Active，哪些是“脏页“。不记录不会影响程序执行，记录这些状态还不是为了更好地管理 内存。
 03写操作系统，哪些需要我来做 操作系统是管理资源的软件，操作系统能做什么，取决于主机上硬件的功能。
@@ -93,10 +93,10 @@ file obj/bootblock.o set architecture i8086 target remote :1234 b* 0x7c00 #强�
     
     <item>
       <title>[IOT]简易毫米波雷达开发小记</title>
-      <link>https://inten.kro1lsec.com/post/iot%E7%AE%80%E6%98%93%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/</link>
+      <link>https://1nten.github.io//post/iot%E7%AE%80%E6%98%93%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/</link>
       <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/iot%E7%AE%80%E6%98%93%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/</guid>
+      <guid>https://1nten.github.io//post/iot%E7%AE%80%E6%98%93%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E5%BC%80%E5%8F%91%E5%B0%8F%E8%AE%B0/</guid>
       <description>开发环境 软件
 Visual Studio 2019
 EasyX_2018春分版
@@ -119,27 +119,40 @@ Micro USB数据线
     
     <item>
       <title>[uCore]Lab0</title>
-      <link>https://inten.kro1lsec.com/post/ucorelab0/</link>
+      <link>https://1nten.github.io//post/ucorelab0/</link>
       <pubDate>Sun, 06 Jun 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/ucorelab0/</guid>
-      <description>gcc #安装sudo apt-get install build-essential#编译$ gcc -Wall hello.c -o hello该命令将文件‘hello.c’中的代码编译为机器码并存储在可执行文件 ‘hello’中。机器码的文件名是通过 -o 选项指定的。该选项通常作为命令行中的最后一个参数。如果被省略，输出文件默认为 ‘a.out’。
+      <guid>https://1nten.github.io//post/ucorelab0/</guid>
+      <description>gcc #安装
+sudo apt-get install build-essential
+#编译
+$ gcc -Wall hello.c -o hello
+该命令将文件‘hello.c’中的代码编译为机器码并存储在可执行文件 ‘hello’中。机器码的文件名是通过 -o 选项指定的。该选项通常作为命令行中的最后一个参数。如果被省略，输出文件默认为 ‘a.out’。
 选项 -Wall 开启编译器几乎所有常用的警告，默认情况下GCC 不会产生任何警告信息。
 AT&amp;amp;T汇编基本语法 Ucore中用到的是AT&amp;amp;T格式的汇编，与Intel格式的汇编有一些不同。二者语法上主要有以下几个不同：
-* 寄存器命名原则AT&amp;amp;T: %eax Intel: eax* 源/目的操作数顺序 AT&amp;amp;T: movl %eax, %ebx Intel: mov ebx, eax* 常数/立即数的格式　AT&amp;amp;T: movl $_value, %ebx Intel: mov eax, _value把value的地址放入eax寄存器AT&amp;amp;T: movl $0xd00d, %ebx Intel: mov ebx, 0xd00d* 操作数长度标识 AT&amp;amp;T: movw %ax, %bx Intel: mov bx, ax* 寻址方式 AT&amp;amp;T: immed32(basepointer, indexpointer, indexscale)Intel: [basepointer + indexpointer × indexscale + imm32)如果操作系统工作于保护模式下，用的是32位线性地址，所以在计算地址时不用考虑segment:offset的问题。上式中的地址应为：</description>
+* 寄存器命名原则
+AT&amp;amp;Thttps://1nten.github.io/
+* 源/目的操作数顺序 AT&amp;amp;T: movl %eax, %ebx Intel: mov ebx, eax
+* 常数/立即数的格式　AT&amp;amp;T: movl $_value, %ebx Intel: mov eax, _value
+把value的地址放入ehttps://1nten.github.io/
+AT&amp;amp;T: movl $0xd00d, %ebx Intel: mov ebx, 0xd00d
+* 操作数长度标识 AT&amp;amp;T: movw %ax, %bx Intel: mov bx, ax
+* 寻址方式 AT&amp;amp;T: immed32(basepointer, indexpointer, indexscale)
+Intel: [basepointer + indexpointer × indexscale + imm32)
+如果操作系统工作于保护模式下，用的是32位线性地址，所以在计算地址时不用考虑segment:offset的问题。上式中的地址应为：</description>
     </item>
     
     <item>
       <title>[CSAPPLAB]Attack Lab</title>
-      <link>https://inten.kro1lsec.com/post/csapplabattack-lab/</link>
+      <link>https://1nten.github.io//post/csapplabattack-lab/</link>
       <pubDate>Thu, 20 May 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/csapplabattack-lab/</guid>
+      <guid>https://1nten.github.io//post/csapplabattack-lab/</guid>
       <description>ctarget 首先执行getbuf函数，读取标准输入。
-unsigned getbuf() { char buf[BUFFER_SIZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现
+unsigned gethttps://1nten.github.io/ZE]; Gets(buf); return 1; } 参数 (ctarget和rtarget都有) -q 不发送成绩 -i 从文件中输入 如果你没有使用-q，就会出现
 FAILED: Initialization error: Running on an illegal host [localhost.localdomain] 因为你没有使用CMU的内网，是无法建立连接的。所以每次进行操作都要带上-q。也可以用qi。
 1.1level 1 观察test，getbuf和touch1
-目的：将getbuf的返回地址由test改为touch1
+目的：将getbuf的返https://1nten.github.io/
 小建议
  利用objdump -d ./ctarget&amp;gt;&amp;gt;ctarget.s得到汇编代码 思路是将touch1的开始地址，放在某个位置，以实现当ret指令被getbuf执行后会将控制权转移给touch1 一定要注意字节序 你可以使用gdb设置断点来进行调试。并且gcc会影响栈帧中buf存放的位置。需要注意  思路：getbuf函数执行ret指令后，就会从%rsp+40处获取返回地址，只要我们修改这个返回地址，改为touch1的地址，就能使程序返回touch1，而不是test。
 (gdb) p (char*)0x403188 #p(print) 0x403188上存的值 $1 = 0x403188 &amp;#34;No exploit. Getbuf returned 0x%x\n&amp;#34; stack : padding(00..) + touch1(0x4017c0)
@@ -149,58 +162,78 @@ FAILED: Initialization error: Running on an illegal host [localhost.localdomain]
     
     <item>
       <title>CVE-2017-11882漏洞分析</title>
-      <link>https://inten.kro1lsec.com/post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
+      <link>https://1nten.github.io//post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
       <pubDate>Tue, 11 May 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
+      <guid>https://1nten.github.io//post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
       <description>漏洞描述  成因：Office的公式编辑器EQNEDT32.EXE读入包含MathType的OLE数据，在拷贝公式字体名称前没有对名称长度进行校验，当EQNEDT32.EXE尝试将字体名称复制到本地创建的缓冲区时，攻击者可以通过刻意构造的数据内容覆盖栈上的函数返回地址，从而劫持程序流程。 影响版本：Office 2003到2016的所有版本 POC：https://github.com/Ridter/CVE-2017-11882  漏洞复现   环境
 Microsoft Windows XPProfessional版本2002 Service Fack 3
 Office2003SP3
   复现过程
-下载poc，输出test.doc，将test.doc复制到相应环境下，双击打开即可。
+下载poc，输出testhttps://1nten.github.io/开即可。
 漏洞分析  环境 Winxp x32 Office2003 工具 windbg IDA Pro  漏洞发生点如下图所示：
 可以看到，函数给SrcStr变量分配的大小是0x24个字节，长度超过该大小就会造成栈溢出。微软后续的补丁将大小限制为0x20可能是为了安全起见。
-触发逻辑
+触发逻辑https://1nten.github.io/
 构造POC 由于该漏洞涉及到MathType公式数据在OLE中的结构，所以我们需要熟悉其结构分布。整个“Equation Native”的数据构成为：
 Equation Native Stream Data = EQNOLEFILEHDR + MTEFData，其中
 MTEFData = MTEF header + MTEF Byte Stream
 EQNOLEFILEHDR 头的结构
-struct EQNOLEFILEHDR {WORD cCBHdr; // 格式头长度,大小为0x1CDWORD nVersion; // 固定为0×00020000。WORD nCf; // 该公式对象的剪贴板格式DWORD cbObject; // MTEF数据的长度，不包括头部DWORD nReserved1; // 未使用DWORD nReserved2; // 未使用DWORD nReserved3; // 未使用DWORD nReserved4; // 未使用};MTEF header 的结构，里面存放一些版本信息</description>
-    </item>
+struct EQNOLEFILEHDR {
+WORD cCBHdr; // 格式头长度,大小为0x1C
+DWORD nVersion; // 固定为0×00020000。
+WORD nCf; // 该公式对象的剪贴板格式
+DWORD cbObject; // MTEF数据的长度，不包括头部
+DWORD nReserved1; // 未使用
+DWORD nReserved2; // 未使用
+DWORD nReserved3; // 未使用
+DWORD nReserhttps://1nten.github.io/
+};
+MTEF header 的结构，里面存放一些版本信息</description>
+    </item>https://1nten.github.io/
     
     <item>
       <title>[CSAPPLAB]Bomb Lab</title>
-      <link>https://inten.kro1lsec.com/post/csapplabbomb-lab/</link>
+      <link>https://1nten.github.io//post/csapplabbomb-lab/</link>
       <pubDate>Thu, 15 Apr 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/csapplabbomb-lab/</guid>
+      <guid>https://1nten.github.io//post/csapplabbomb-lab/</guid>
       <description>总体感觉考查对汇编的理解和熟练度
-phase_1 400e37: 48 89 c7 mov %rax,%rdi //第一个参数 400e3a: e8 a1 00 00 00 callq 400ee0 &amp;lt;phase_1&amp;gt;...0x0000000000400ee0 &amp;lt;+0&amp;gt;: sub $0x8,%rsp 0x0000000000400ee4 &amp;lt;+4&amp;gt;: mov $0x402400,%esi //第二个参数0x0000000000400ee9 &amp;lt;+9&amp;gt;: callq 0x401338 &amp;lt;strings_not_equal&amp;gt;让参数一，二相等即可
+phase_1 400e37: 48 89 c7 mov %rax,%rdi //第一个参数 400e3a: e8 a1 00 00 00 callq 400ee0 &amp;lt;phase_1&amp;gt;
+...
+0x0000000000400ee0 &amp;lt;+0&amp;gt;: sub $0x8,%rsp 0x0000000000400ee4 &amp;lt;+4&amp;gt;: mov $0x402400,%esi //第二个参数
+0x0000000000400ee9 &amp;lt;+9&amp;gt;: callq 0x401338 &amp;lt;strings_not_equal&amp;gt;
+让参数一，二相等即可
 Border relations with Canada have never been better.
 phase_2 利用callq 0x40145c &amp;lt;read_six_numbers&amp;gt;确定字符串格式，
 利用0000000000400F1A add eax, eax让后边的数翻倍
 字符串为“1 2 4 8 16 32”
 phase_3 尝试分析时，发现jcc指令经常弄混，又回去复习了一遍
-cmp oprd1,oprd2 + JNBE/JA 无符号cmp oprd1,oprd2 + JNLE/JG 有符号oprd1&amp;gt;oprd2时跳转JZ/JE 相等则跳转代码中0x402470+8*第一参数打印内存信息，可以看到相应的跳转地址，已经对应的eax值应该是多少，也就是第二数字的应该的取值。打印内存信息的命令行为jmp QWORD PTR [rax*8+0x402470]</description>
+cmp oprd1,oprd2 + JNBE/JA 无符号
+cmp oprd1,oprd2 + JNLE/JG 有符号
+oprd1&amp;gt;oprd2时跳转
+JZ/JE 相等则跳转
+代码中0x402470+8*第一参数打印内存信息，可以看到相应的跳转地址，已经对应的eax值应该是多少，也就是第二数字的应该的取值。打印内存信息的命令行为jmp QWORD PTR [rax*8+0x402470]</description>
     </item>
     
     <item>
       <title>应急响应</title>
-      <link>https://inten.kro1lsec.com/post/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</link>
+      <link>https://1nten.github.io//post/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</link>
       <pubDate>Thu, 15 Apr 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</guid>
+      <guid>https://1nten.github.io//post/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</guid>
       <description>https://bypass007.github.io/Emergency-Response-Notes/ 应急响应笔记
 https://www.cnblogs.com/H4ck3R-XiX/p/12234762.html Nmap使用教程（进阶篇）
 方法论 浅谈我所理解的应急响应流程
-https://www.freebuf.com/column/193690.html应急响应的整体思路和基本流程
-https://www.freebuf.com/articles/terminal/192859.html应急响应方式 现场应急响应：通常是要到客户突发现场进行应急处置。需注意相关操作必须获得用户授权，并对操作过程进行记录。 远程应急响应：远程通过电话、邮件等方式指导用户进行应急处置。
+https://www.freebuf.com/column/193690.html
+应急响应的整体思路和基本流程
+https://www.freebuf.com/articles/terminal/192859.html
+应急响应方式 现场应急响应：通常是要到客户突发现场进行应急处置。需注意相关操作必须获得用户授权，并对操作过程进行记录。 远程应急响应：远程通过电话、邮件等方式指导用户进行应急处置。
 应急响应流程 业内通常使用的
 PDCERF方法学 准备阶段——&amp;gt;检测阶段——&amp;gt;抑制阶段——&amp;gt;根除阶段——&amp;gt;恢复阶段——&amp;gt;跟踪总结
-准备阶段 准备阶段需要及时和客户确认事件背景、相关负责人联系方式、确定参与此次应急响应人员、根据客户描述，初步判定事件响应策略，携带应急响应工具包前往客户现场。
+准备阶段 准备阶段需要及https://1nten.github.io/次应急响应人员、根据客户描述，初步判定事件响应策略，携带应急响应工具包前往客户现场。
 准备阶段主要包括：事件背景、响应人员确定、事件响应策略、相关负责人联系方式、应急响应相关授权、应急响应工具包、应急响应手册等。
 检测阶段 检测阶段确认入侵事件是否发生，如真发生了入侵事件，评估造成的危害、范围以及发展的速度，事件会不会进一步升级。然后根据评估结果通知相关的人员进入应急的流程。
-检测阶段主要包括：事件类型、事件影响范围、受影响系统、事件发展趋势、安全设备等。
+检测阶段主要包括：事件类https://1nten.github.io/等。
 备注：事件类型分类
 安全事件分类主要参考中央网信办发布《国家网络安全事件应急预案》，网络安全事件分为有害程序事件、网络攻击事件、信息破坏事件、信息内容安全事件、设备设施故障、灾害性事件和其他网络安全事件等。 （1）有害程序事件分为计算机病毒事件、蠕虫事件、特洛伊木马事件、僵尸网络事件、混合程序攻击事件、网页内嵌恶意代码事件和其他有害程序事件。 （2）网络攻击事件分为拒绝服务攻击事件、后门攻击事件、漏洞攻击事件、网络扫描窃听事件、网络钓鱼事件、干扰事件和其他网络攻击事件。 （3）信息破坏事件分为信息篡改事件、信息假冒事件、信息泄露事件、信息窃取事件、信息丢失事件和其他信息破坏事件。 （4）信息内容安全事件是指通过网络传播法律法规禁止信息，组织非法串联、煽动集会游行或炒作敏感问题并危害国家安全、社会稳定和公众利益的事件。 （5）设备设施故障分为软硬件自身故障、外围保障设施故障、人为破坏事故和其他设备设施故障。 （6）灾害性事件是指由自然灾害等其他突发事件导致的网络安全事件。 （7）其他事件是指不能归为以上分类的网络安全事件
 抑制阶段 采用针对性的安全措施降低事件损失、避免安全事件的扩散和安全事件对受害系统的持续性破坏。主要分为：物理遏制、网络遏制、主机遏制、应用遏制等。常见手段：断网、降权、网络封堵等。
@@ -208,10 +241,10 @@ PDCERF方法学 准备阶段——&amp;gt;检测阶段——&amp;gt;抑制阶段
 恢复阶段 恢复系统的运行过程，就是把受影响系统、设备、软件和应用服务还原到正常的工作状态；系统恢复、网络恢复、用户恢复、数据恢复以及重新部署。常见手段：系统重装、补丁加固、网络恢复、密码重置、木马清除等。
 跟踪阶段 在业务系统恢复后，需要整理一份详细的事件总结报告，包括事件发生及各部门介入处理的时间线，事件可能造成的损失，为客户提供安全加固优化建议。
 跟踪阶段主要包括：调查事件原因，输出应急响应报告，提供安全建议、加强安全教育、避免同类事件再次发生。
-常规流程 **收集信息：**收集客户信息和中毒主机信息，包括样本。
+常规流程 **收集信息：https://1nten.github.io/
 **判断类型：**判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DoS等等。
 **深入分析：**日志分析、进程分析、启动项分析、样本分析。
-**清理处置：**直接杀掉进程，删除文件，打补丁，抑或是修复文件。
+**清理处置：**直接杀https://1nten.github.io/
 **产出报告：**整理并输出完整的安全事件报告。
 系统日志及日志分析 日志类型  **Windows系统日志：**Windows系统自带的审计日志、操作日志、故障日志。
 **Linux系统日志：**Linux系统自带的审计日志、操作日志、故障日志。
@@ -230,27 +263,27 @@ PDCERF方法学 准备阶段——&amp;gt;检测阶段——&amp;gt;抑制阶段
     
     <item>
       <title>[CSAPPLAB]Data lab</title>
-      <link>https://inten.kro1lsec.com/post/csapplabdata-lab/</link>
+      <link>https://1nten.github.io//post/csapplabdata-lab/</link>
       <pubDate>Sun, 11 Apr 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/csapplabdata-lab/</guid>
+      <guid>https://1nten.github.io//post/csapplabdata-lab/</guid>
       <description>前置知识 csapp第二章
 位运算符
    运算符 描述 实例     &amp;amp; 按位与操作，按二进制位进行&amp;quot;与&amp;quot;运算。运算规则：0&amp;amp;0=0; 0&amp;amp;1=0; 1&amp;amp;0=0; 1&amp;amp;1=1; (A &amp;amp; B) 将得到 12，即为 0000 1100   | 按位或运算符，按二进制位进行&amp;quot;或&amp;quot;运算。运算规则：`0 0=0; 0   ^ 异或运算符，按二进制位进行&amp;quot;异或&amp;quot;运算。运算规则：0^0=0; 0^1=1; 1^0=1; 1^1=0; (A ^ B) 将得到 49，即为 0011 0001   ~ 取反运算符，按二进制位进行&amp;quot;取反&amp;quot;运算。运算规则：~1=-2; ~0=-1; (~A ) 将得到 -61，即为 1100 0011，一个有符号二进制数的补码形式。   &amp;laquo; 二进制左移运算符。将一个运算对象的各二进制位全部左移若干位（左边的二进制位丢弃，右边补0）。 A &amp;laquo; 2 将得到 240，即为 1111 0000   &amp;raquo; 二进制右移运算符。将一个数的各二进制位全部右移若干位，正数左补0，负数左补1，右边丢弃。 A &amp;raquo; 2 将得到 15，即为 0000 1111    运算符的优先级</description>
     </item>
-    
+    https://1nten.github.io/
     <item>
       <title>Typora &#43; PicGo&#43; Chevereto踩坑指南</title>
-      <link>https://inten.kro1lsec.com/post/typora-&#43;-picgo&#43;-chevereto/</link>
+      <link>https://1nten.github.io//post/typora-&#43;-picgo&#43;-chevereto/</link>
       <pubDate>Sat, 13 Mar 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/typora-&#43;-picgo&#43;-chevereto/</guid>
+      <guid>https://1nten.github.io//post/typora-&#43;-picgo&#43;-chevereto/</guid>
       <description>目的： 解决md文件图片传输不方便的问题，将图片上传到图床，方便分享md文件。
 运行环境 win10
-version 0. 9. 98 (beta)★website★@typora
+version 0. 9https://1nten.github.io/a
 picgo-2.2.2
 1.去官网下载最新的typora和picgo，并安装 2.配置typora 2.配置picgo 修改端口
-安装插件
+安装插件https://1nten.github.io/
 配置Chevereto
 注意仔细核对url
 &amp;#34;url&amp;#34;: &amp;#34;https://个人服务器Cheverto图床域名或地址/api/1/upload&amp;#34; 记得打开时间戳重命名，Chevereto不允许上传同名图片，不然会出现以下错误。
@@ -271,19 +304,19 @@ PicGo的本质还是收发数据包吧，我没有去看源码，但感觉和web
     
     <item>
       <title>[工具]Ollydbg</title>
-      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ollydbg/</link>
+      <link>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7ollydbg/</link>
       <pubDate>Thu, 11 Mar 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ollydbg/</guid>
+      <guid>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7ollydbg/</guid>
       <description>简介 快捷键  Ctrl+F1：打开与所选行内符号相关的 API 帮助文档。 F2：在光标选定位置按 F2 键设置或取消断点。 Shift+F2：在首个选择命令设置条件断点。 Ctrl+F2：重新启动被调试程序。 F4：运行到光标选定位置处暂停。 Shift+F4：设置记录断点。 F5：最大化当前窗口。 Ctrl+F5：打开与首个选择的命令相对应的源文件。 Alt+F5：让 OllyDbg 窗口总在最前面。 F6：切换到下一个窗口。 Shift+F6：切换到前一个窗口。 F7：单步步入：每次执行一条指令，遇到 call 等子程序时进入其中。 Shift+F7：与 F7 相同，但当被调试程序发生异常而中止时，调试器首先尝试步入被调试程序指定的异常处理。 Ctrl+F7：自动步入，在所有的函数调用中一条一条地执行命令。 Alt+F7：转到上一个找到的参考。 F8：单步步过，每次执行一条指令，遇到 call 等子程序时不进入其中。 Shift+F8：与 F8 相同，但当被调试程序发生异常而中止时，调试器首先尝试步过被调试程序指定的异常处理。 Ctrl+F8：自动步过，一条一条执行命令，但不进入函数内部调用。 Alt+F8：转到下一个找到的参考。 F9：运行，被调试软件继续运行，直到遇到下一个断点。 Shift+F9：与 F9 相同，但当被调试程序发生异常而中止时，调试器首先尝试执行被调试程序指定的异常处理。 Ctrl+F9：执行到返回，在执行到一个 ret 指令时暂停，常用于从当前函数快速返回到上一个函数。 Alt+F9：执行到用户代码，可用于从系统部分快速返回到被调试程序部分。 F10：打开与当前窗口或面板相关的快捷菜单。 Ctrl+F11：Run 跟踪步入，一条一条执行命令，进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 F12：停止执行，暂停所有线程。 Ctrl+F12：Run 跟踪步过，一条一条执行命令，不进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 Alt+F3：关闭当前窗口。 Alt+B：显示断点窗口。 Alt+C：显示 CPU 窗口。 Alt+E：显示模块列表。 Alt+K：显示调用栈。 Alt+L：显示日志窗口。 Alt+M：显示内存窗口。 Alt+O：显示选项对话框。 Alt+Backspace：撤销对所选部分的修改。 Ctrl+A：分析当前模块的代码段。 Ctrl+B：开始二进制搜索。 Ctrl+E：以十六进制格式编辑所选内容。 Ctrl+F：开始命令搜索。 Ctrl+G：转到某地址。 Ctrl+J：列出所有的涉及到该位置的调用和跳转。 Ctrl+K：查看与当前函数相关的调用树。 Ctrl+L：搜索下一个。 Ctrl+N：打开当前模块的名称列表。 Ctrl+O：扫描对象文件。 Ctrl+P：显示补丁窗口。 Ctrl+R：搜索所选命令的参考。 Ctrl+S：命令搜索。 Ctrl+T：打开“暂停Run跟踪”对话框。 Esc：停止自动执行或跟踪。 Enter：将选中的命令添加到命令历史，如果当前命令是一个跳转或者函数，则进入到目的地址。 Backspace：如果分析器将代码误识为数据，可以将选中部分的自动分析信息移除。 *：转到原始位置 Ctrl+*：指定新的起始位置。 +：如果 Run 跟踪没有激活，则根据历史命令跳到下一条运行过命令的地方；否则跳到 Run 跟踪的下一个记录。 Ctrl++：跳到前一个函数的开始处。 -：如果 Run 跟踪没有激活，则根据历史命令跳到前一条运行过命令的地方；否则跳到 Run 跟踪的前一个记录。 Ctrl+-：跳到下一个函数的开始处。 Space：修改命令。 :：添加标签。 ;：添加注释。  -（减号）：回看之前单步跟踪的代码</description>
     </item>
     
     <item>
-      <title>[工具]IDA</title>
-      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ida/</link>
+      <titlehttps://1nten.github.io/
+      <link>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7ida/</link>
       <pubDate>Wed, 10 Mar 2021 15:07:34 +0800</pubDate>
-      
-      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ida/</guid>
+      https://1nten.github.io/
+      <guid>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7ida/</guid>
       <description>简介 加密与解密 p122
 再探 IDA 常用操作 窗口介绍 Structures 结构体窗口
 显示硬编码 ACDU
@@ -294,10 +327,10 @@ a 字符串
 Alt + q 引用结构体窗口中对应的结构体
 局部变量指定结构体 T
 y 改函数的声明
-d 改类型
+d 改类型https://1nten.github.io/
 注释 ; 会在任何引用该位置的地方留下注释的副本
 ：引用的地方没有副本
-针对函数的注释 选中函数按;
+针对函数的注释 选中函数https://1nten.github.io/
 会显示在被注释函数的上方
 交叉引用 Ctrl+x
 所有调用该函数 / 数据的地方
@@ -312,13 +345,13 @@ d 添加成员
     
     <item>
       <title>[工具]Github初入</title>
-      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7github%E5%88%9D%E5%85%A5/</link>
+      <link>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7github%E5%88%9D%E5%85%A5/</link>
       <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7github%E5%88%9D%E5%85%A5/</guid>
+      <guid>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7github%E5%88%9D%E5%85%A5/</guid>
       <description>Git基本操作 初次使用需要配置好邮箱用户名，ssh或token
 https://docs.github.com/cn/github/getting-started-with-github/quickstart
-大致流程 1.链接
+大致流程 1.链接https://1nten.github.io/
 2.增删改查
 3.提交更改
 4.提交分支
@@ -327,12 +360,18 @@ echo &amp;#34;# KroCTF&amp;#34; &amp;gt;&amp;gt; README.md git init git add READ
     
     <item>
       <title>C/C&#43;&#43;基础</title>
-      <link>https://inten.kro1lsec.com/post/%E5%9F%BA%E7%A1%80c/</link>
+      <link>https://1nten.github.io//post/%E5%9F%BA%E7%A1%80c/</link>
       <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E5%9F%BA%E7%A1%80c/</guid>
-      <description>裸函数 void __declspec(naked) Function() //编译器不执行格外操作{__asm //在c中调用汇编格式__asm{}{ret } //需要手动写ret才能正常运行}常见的几种调用约定：
-__cdecl:默认调用约定。外平栈。
+      <guid>https://1nten.github.io//post/%E5%9F%BA%E7%A1%80c/</guid>
+      <description>裸函数 void __declspec(naked) Function() //编译器不执行格外操作
+{
+__asm //在c中调用汇编格式__asm{}
+{
+ret } //需要手动https://1nten.github.io/
+}
+常见的几种调用约定：
+__cdecl:默认调用https://1nten.github.io/
 __stdcall:内平栈。
 __fastcall:2个参数以内时，直接用寄存器存取数据，提高执行速度。内平栈。
 浮点数的存储 以12.5为例
@@ -343,15 +382,18 @@ __fastcall:2个参数以内时，直接用寄存器存取数据，提高执行�
 尾数部分： 1001 0000000000000000000
 指数部分：127 + 3 = 130 =&amp;raquo; 1000 0010 //127 + 指数计算即可
 0 1000 0010 1001 0000000000000000000
-内存图 全局变量&amp;amp;局部变量 mov [ arr (00427326)] ，eax //全局变量mov dword ptr [ebp-4] , 6Ah //局部变量mov dword ptr [ebp-8], 14h全局变量</description>
-    </item>
+内存图 全局变量&amp;amp;局部变量 mov [ arr (00427326)] ，eax //全局变量
+mov dword ptr [ebp-4] , 6Ah //局部变量
+mov dword ptr [ebp-8], 14h
+全局变量</description>
+    </item>https://1nten.github.io/
     
     <item>
-      <title>[工具]GDB</title>
-      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7gdb/</link>
+      <titlehttps://1nten.github.io/
+      <link>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7gdb/</link>
       <pubDate>Fri, 05 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7gdb/</guid>
+      <guid>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7gdb/</guid>
       <description>小记 GDB&amp;amp;Pwndbg run：r 开始执行 continue：c 继续执行，到下一个断点 stack 24 查看栈中24个单位的数据 vmmap 虚拟内存的空间分布 gdb link plt 查看plt表 got 查看got表 x/20 gxb info b 查看断点 start 停留在main函数的第一行，如果没有，则停留在入口 backtrace 显示函数调用栈 return 跳出当前函数 gdb 里面 单步调试分两种一种是C语言级别的单步n一种是汇编指令级别的单步nini按一次 之后直接回车就好了gdb自动重复指令的 next：n 单步步过 ni： 汇编指令级别的单步步过
 step：s 单步步入
 si：汇编指令级别的 单步步入
@@ -368,10 +410,10 @@ pwndbg&amp;gt; vmmap
     
     <item>
       <title>[工具]Docker</title>
-      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7docker/</link>
+      <link>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7docker/</link>
       <pubDate>Tue, 02 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7docker/</guid>
+      <guid>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7docker/</guid>
       <description>Docker
 基本概念 Docker 包括三个基本概念
  镜像（Image） 容器（Container） 仓库（Repository）  简单理解：
@@ -386,10 +428,10 @@ $ docker image ls REPOSITORY TAG IMAGE ID CREATED SIZE redis latest 5f515359c7f8
     
     <item>
       <title>CTFD源码简析</title>
-      <link>https://inten.kro1lsec.com/post/ctfd%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90/</link>
+      <link>https://1nten.github.io//post/ctfd%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/ctfd%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90/</guid>
+      <guid>https://1nten.github.io//post/ctfd%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90/</guid>
       <description>源地址：CTFd
 框架：Flask
 FLASK 安装与快速启动

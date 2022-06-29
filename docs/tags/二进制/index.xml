@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>二进制 on intenのblog🍦</title>
-    <link>https://inten.kro1lsec.com/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/</link>
+    <link>https://1nten.github.io//tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/</link>
     <description>Recent content in 二进制 on intenのblog🍦</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 May 2021 15:07:34 +0800</lastBuildDate><atom:link href="https://inten.kro1lsec.com/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 May 2021 15:07:34 +0800</lastBuildDate><atom:link href="https://1nten.github.io//tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CVE-2017-11882漏洞分析</title>
-      <link>https://inten.kro1lsec.com/post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
+      <link>https://1nten.github.io//post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</link>
       <pubDate>Tue, 11 May 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
+      <guid>https://1nten.github.io//post/cve-2017-11882%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</guid>
       <description>漏洞描述  成因：Office的公式编辑器EQNEDT32.EXE读入包含MathType的OLE数据，在拷贝公式字体名称前没有对名称长度进行校验，当EQNEDT32.EXE尝试将字体名称复制到本地创建的缓冲区时，攻击者可以通过刻意构造的数据内容覆盖栈上的函数返回地址，从而劫持程序流程。 影响版本：Office 2003到2016的所有版本 POC：https://github.com/Ridter/CVE-2017-11882  漏洞复现   环境
 Microsoft Windows XPProfessional版本2002 Service Fack 3
 Office2003SP3
@@ -25,24 +25,34 @@ Office2003SP3
 Equation Native Stream Data = EQNOLEFILEHDR + MTEFData，其中
 MTEFData = MTEF header + MTEF Byte Stream
 EQNOLEFILEHDR 头的结构
-struct EQNOLEFILEHDR {WORD cCBHdr; // 格式头长度,大小为0x1CDWORD nVersion; // 固定为0×00020000。WORD nCf; // 该公式对象的剪贴板格式DWORD cbObject; // MTEF数据的长度，不包括头部DWORD nReserved1; // 未使用DWORD nReserved2; // 未使用DWORD nReserved3; // 未使用DWORD nReserved4; // 未使用};MTEF header 的结构，里面存放一些版本信息</description>
+struct EQNOLEFILEHDR {
+WORD cCBHdr; // 格式头长度,大小为0x1C
+DWORD nVersion; // 固定为0×00020000。
+WORD nCf; // 该公式对象的剪贴板格式
+DWORD cbObject; // MTEF数据的长度，不包括头部
+DWORD nReserhttps://1nten.github.io/
+DWORD nReserved2; // 未使用
+DWORD nReserved3; // 未使用
+DWORD nReserhttps://1nten.github.io/
+};
+MTEF header 的结构，里面存放一些版本信息</description>
     </item>
     
     <item>
-      <title>[工具]Ollydbg</title>
-      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ollydbg/</link>
+      <titlehttps://1nten.github.io/
+      <link>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7ollydbg/</link>
       <pubDate>Thu, 11 Mar 2021 15:07:34 +0800</pubDate>
-      
-      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ollydbg/</guid>
+      https://1nten.github.io/
+      <guid>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7ollydbg/</guid>
       <description>简介 快捷键  Ctrl+F1：打开与所选行内符号相关的 API 帮助文档。 F2：在光标选定位置按 F2 键设置或取消断点。 Shift+F2：在首个选择命令设置条件断点。 Ctrl+F2：重新启动被调试程序。 F4：运行到光标选定位置处暂停。 Shift+F4：设置记录断点。 F5：最大化当前窗口。 Ctrl+F5：打开与首个选择的命令相对应的源文件。 Alt+F5：让 OllyDbg 窗口总在最前面。 F6：切换到下一个窗口。 Shift+F6：切换到前一个窗口。 F7：单步步入：每次执行一条指令，遇到 call 等子程序时进入其中。 Shift+F7：与 F7 相同，但当被调试程序发生异常而中止时，调试器首先尝试步入被调试程序指定的异常处理。 Ctrl+F7：自动步入，在所有的函数调用中一条一条地执行命令。 Alt+F7：转到上一个找到的参考。 F8：单步步过，每次执行一条指令，遇到 call 等子程序时不进入其中。 Shift+F8：与 F8 相同，但当被调试程序发生异常而中止时，调试器首先尝试步过被调试程序指定的异常处理。 Ctrl+F8：自动步过，一条一条执行命令，但不进入函数内部调用。 Alt+F8：转到下一个找到的参考。 F9：运行，被调试软件继续运行，直到遇到下一个断点。 Shift+F9：与 F9 相同，但当被调试程序发生异常而中止时，调试器首先尝试执行被调试程序指定的异常处理。 Ctrl+F9：执行到返回，在执行到一个 ret 指令时暂停，常用于从当前函数快速返回到上一个函数。 Alt+F9：执行到用户代码，可用于从系统部分快速返回到被调试程序部分。 F10：打开与当前窗口或面板相关的快捷菜单。 Ctrl+F11：Run 跟踪步入，一条一条执行命令，进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 F12：停止执行，暂停所有线程。 Ctrl+F12：Run 跟踪步过，一条一条执行命令，不进入子函数调用，并把寄存器信息加入到 Run 跟踪的存储数据中。 Alt+F3：关闭当前窗口。 Alt+B：显示断点窗口。 Alt+C：显示 CPU 窗口。 Alt+E：显示模块列表。 Alt+K：显示调用栈。 Alt+L：显示日志窗口。 Alt+M：显示内存窗口。 Alt+O：显示选项对话框。 Alt+Backspace：撤销对所选部分的修改。 Ctrl+A：分析当前模块的代码段。 Ctrl+B：开始二进制搜索。 Ctrl+E：以十六进制格式编辑所选内容。 Ctrl+F：开始命令搜索。 Ctrl+G：转到某地址。 Ctrl+J：列出所有的涉及到该位置的调用和跳转。 Ctrl+K：查看与当前函数相关的调用树。 Ctrl+L：搜索下一个。 Ctrl+N：打开当前模块的名称列表。 Ctrl+O：扫描对象文件。 Ctrl+P：显示补丁窗口。 Ctrl+R：搜索所选命令的参考。 Ctrl+S：命令搜索。 Ctrl+T：打开“暂停Run跟踪”对话框。 Esc：停止自动执行或跟踪。 Enter：将选中的命令添加到命令历史，如果当前命令是一个跳转或者函数，则进入到目的地址。 Backspace：如果分析器将代码误识为数据，可以将选中部分的自动分析信息移除。 *：转到原始位置 Ctrl+*：指定新的起始位置。 +：如果 Run 跟踪没有激活，则根据历史命令跳到下一条运行过命令的地方；否则跳到 Run 跟踪的下一个记录。 Ctrl++：跳到前一个函数的开始处。 -：如果 Run 跟踪没有激活，则根据历史命令跳到前一条运行过命令的地方；否则跳到 Run 跟踪的前一个记录。 Ctrl+-：跳到下一个函数的开始处。 Space：修改命令。 :：添加标签。 ;：添加注释。  -（减号）：回看之前单步跟踪的代码</description>
     </item>
     
     <item>
       <title>[工具]IDA</title>
-      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ida/</link>
+      <link>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7ida/</link>
       <pubDate>Wed, 10 Mar 2021 15:07:34 +0800</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7ida/</guid>
+      <guid>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7ida/</guid>
       <description>简介 加密与解密 p122
 再探 IDA 常用操作 窗口介绍 Structures 结构体窗口
 显示硬编码 ACDU
@@ -61,20 +71,20 @@ d 改类型
 交叉引用 Ctrl+x
 所有调用该函数 / 数据的地方
 在 F5 的界面里，选定一个函数按 X 交叉引用
-IDA PATCH 修改错误无法撤销
+IDA PATCH 修改https://1nten.github.io/
 保存文件
 导入头文件 注意：即使导入头文件，也无法识别标准库函数
-新建结构体 在结构体窗口按 insert
+新建结构体 在结构体窗口https://1nten.github.io/
 d 添加成员
 实战技巧 IDA 类型识别错误 *(_BYTE *)(i + a2) = byte_442198[j] ^ (*(_BYTE *)(i + a1) + 13); 当出现 (_BYTE ) 这种类型，多半是识别错误</description>
     </item>
     
     <item>
       <title>[工具]GDB</title>
-      <link>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7gdb/</link>
+      <link>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7gdb/</link>
       <pubDate>Fri, 05 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7gdb/</guid>
+      <guid>https://1nten.github.io//post/%E5%B7%A5%E5%85%B7gdb/</guid>
       <description>小记 GDB&amp;amp;Pwndbg run：r 开始执行 continue：c 继续执行，到下一个断点 stack 24 查看栈中24个单位的数据 vmmap 虚拟内存的空间分布 gdb link plt 查看plt表 got 查看got表 x/20 gxb info b 查看断点 start 停留在main函数的第一行，如果没有，则停留在入口 backtrace 显示函数调用栈 return 跳出当前函数 gdb 里面 单步调试分两种一种是C语言级别的单步n一种是汇编指令级别的单步nini按一次 之后直接回车就好了gdb自动重复指令的 next：n 单步步过 ni： 汇编指令级别的单步步过
 step：s 单步步入
 si：汇编指令级别的 单步步入

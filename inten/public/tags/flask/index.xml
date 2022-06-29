@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>FLASK on intenのblog🍦</title>
-    <link>https://inten.kro1lsec.com/tags/flask/</link>
+    <link>https://1nten.github.io//tags/flask/</link>
     <description>Recent content in FLASK on intenのblog🍦</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://inten.kro1lsec.com/tags/flask/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://1nten.github.io//tags/flask/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CTFD源码简析</title>
-      <link>https://inten.kro1lsec.com/post/ctfd%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90/</link>
+      <link>https://1nten.github.io//post/ctfd%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://inten.kro1lsec.com/post/ctfd%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90/</guid>
+      <guid>https://1nten.github.io//post/ctfd%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90/</guid>
       <description>源地址：CTFd
 框架：Flask
 FLASK 安装与快速启动

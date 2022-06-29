@@ -187,7 +187,7 @@ command：make需要执行的命令（任意的shell命令）。
 
 ##### GDB
 
-https://inten.kro1lsec.com/post/%E5%B7%A5%E5%85%B7gdb/
+https://1nten.github.io//post/%E5%B7%A5%E5%85%B7gdb/
 
 #### Intel 80386
 
